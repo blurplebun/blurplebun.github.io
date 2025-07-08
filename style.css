@@ -2,7 +2,6 @@
 
 @font-face {
 	font-family: 'Baloo 2';
-	font-style: normal;
 	font-weight: 800;
 	font-display: swap;
 	src: url(Righteous-Regular.woff) format('woff');
@@ -37,8 +36,8 @@
 	justify-content: center;
 	text-align: center;
 	border-radius: 4px;
-	padding: 20px;
-	padding-bottom: 20px;
+	padding: 5px;
+	padding-bottom: 5px;
 	font-size: 110%;
 	word-break: break-word;
 	background: #c894f9;
@@ -72,7 +71,7 @@ h1, h2, h3, h4, h5, h6, p, ul, ol, dl {
 }
 
 h1 {
-	color: #fff;
+	color: #c894f9;
 }
 
 img {
