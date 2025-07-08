@@ -10,59 +10,91 @@
 	<meta content="Artifyber" property="og:title" />
 	<meta content="I like to draw and make music" property="og:description" />
 	<meta content="https://blurplebun.github.io/" property="og:url" />
-	<!-- <link rel="stylesheet" href="martin-magni.css"> -->
 	<link rel="stylesheet" href="style.css">
 	<title>Artifyber</title>
 </head>
 
+<script>
+function switchPage(idToShow) {
+	document.querySelectorAll('.page').forEach(page => {
+		page.style.display = 'none';
+	});
+	document.getElementById(idToShow).style.display = 'block';
+	}
+</script>
+
 <body id="body">
 <div class="center" style="margin-top: 40px;">
 
-<h1>
-Artifyber
-</h1>
-    
-<p>i like to draw and make music</p>
-   
-<div class="div-line"></div>
-    
-<div class="hCon" id="border">
-    	<img src="profile.png" alt="Artibun">
-    	
-	<p>This page is still in progress :3c</p>
-	<p>In the meantime, check out my <a href="https://artifyber.carrd.co">carrd</a> and my socials:</p>
-    	 
+<!-- home page -->
+<div id="homePage" class="page">
+	
+	<h1>
+	Artifyber
+	</h1>
+		
+	<p>Digital Artist and Music Producer</p>
+
+	<div class="div-line" id="bold"></div>
+
+	<p>Looking for commissions?</p>
 	<div class="vbCon">
 		<div class="outline">
-		<a href="https://discord.gg/mvZT3ANvSS" class="anchor" style="color: #fff">Discord</a>
-		</div>
-
-		<div class="outline">
-		<a href="https://www.youtube.com/channel/UCzQzcPYudJO6UMIGSCGaopw" class="anchor" style="color: #fff">YouTube</a>
+		<a href="https://artifyber.carrd.co" class="anchor" style="color: #fff">artifyber.carrd.co</a>
 		</div>
 	</div>
 
-	<div class="vbCon">
-		<div class="outline">
-		<a href="https://www.instagram.com/artifyber/" class="anchor" style="color: #fff">Instagram</a>
+	<div class="div-line"></div>
+
+	<div class="hCon" id="border">
+		<img src="profile.png" alt="Artibun" id="small">
+			
+		<p>This page is still in progress :3c<br>Nothing much to show for now, but you can check my other socials here:</p>
+			
+		<div class="vbCon">
+			<div class="outline">
+			<a href="https://discord.gg/mvZT3ANvSS" class="anchor" style="color: #fff">Discord</a>
+			</div>
+
+			<div class="outline">
+			<a href="https://www.youtube.com/channel/UCzQzcPYudJO6UMIGSCGaopw" class="anchor" style="color: #fff">YouTube</a>
+			</div>
 		</div>
 
-		<div class="outline">
-		<a href="https://twitter.com/artifyber" class="anchor" style="color: #fff">Twitter</a>
+		<div class="vbCon">
+			<div class="outline">
+			<a href="https://www.instagram.com/artifyber/" class="anchor" style="color: #fff">Instagram</a>
+			</div>
+
+			<div class="outline">
+			<a href="https://twitter.com/artifyber" class="anchor" style="color: #fff">Twitter</a>
+			</div>
 		</div>
 	</div>
+
+	<div class="hCon" id="border">
+		<a class="twitter-timeline" data-height="640" data-dnt="true" data-theme="dark" href="https://twitter.com/artifyber?ref_src=twsrc%5Etfw">Tweets by artifyber</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+	</div>
+
+	<div class="div-line"></div>
+
+	<p>test page <a href="#" onclick="switchPage('testPage');">is here</a></p>
 </div>
-    
-<div class="div-line"></div>
 
-<div class="hCon" id="border">
-<a class="twitter-timeline" data-height="640" data-dnt="true" data-theme="dark" href="https://twitter.com/artifyber?ref_src=twsrc%5Etfw">Tweets by artifyber</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<!-- test page -->
+<div id="testPage" class="page" style="display:none;">
+	<div class="hCon">
+		<p>This is a test page. But nothing much is happening for now.</p>
+		<img src="Untitled2985_20250622075338.png" alt="Artifish">
+		<p>At least you found Fifi! not sure what they're doing here...</p>
+	</div>
+	<div class="outline">
+		<a href="#" class="anchor" style="color: #fff" onclick="switchPage('homePage');">Home</a>
+	</div>
 </div>
 
-<div class="div-line"></div>
 
-<p>test page <a href="test/index.html">is here</a></p>
-    
+
 </body>
 
 </html>
