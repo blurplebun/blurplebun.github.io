@@ -12,12 +12,8 @@ header {
 }
 
 img {
-	width:256px;
-	height:256px;
-   	margin-top: 10%;
-   	margin-bottom: 10%;
-   	margin-left: 10%;
-   	margin-right: 10%;
+	max-width: 50%;
+   	margin: 10%;
 	padding:0px;
    	border-radius: 10px;
    	border: 0px #c894f9 solid;
@@ -25,13 +21,13 @@ img {
 
 /*Container*/
 .vbCon {
-	display:flex;
+	display: flex;
 	align-items:center;
 	border: 0px
 }
 
 .hCon {
-	display:block;
+	display: block;
 	align-items:center;
 	border: 0px
 }
@@ -45,11 +41,18 @@ img {
 
 /*Button CSS*/
 .anchor {
-	display: block;
+	max-width: 100%;
+	height: 80px;
+	box-sizing: border-box;
+	display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 	border-radius: 4px;
 	padding: 20px;
 	padding-bottom: 20px;
-	font-size: 120%;
+	font-size: 110%;
+	word-break: break-word;
 	background: #c894f9;
 	color: #c894f9;
 	border: 0 solid transparent;
@@ -121,6 +124,7 @@ div {
 html,
 body {
 	width: 100%;
+	max-width: 100%;
 	height: 100%;
 	padding: 0;
 	margin: 0;
