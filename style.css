@@ -1,7 +1,4 @@
 /*Font*/
-header {
-	font-color: #ffffff;
-}
 
 @font-face {
 	font-family: 'Baloo 2';
@@ -11,32 +8,23 @@ header {
 	src: url(Righteous-Regular.woff) format('woff');
 }
 
-img {
-	max-width: 50%;
-   	margin: 10%;
-	padding:0px;
-   	border-radius: 10px;
-   	border: 0px #c894f9 solid;
-}
-
 /*Container*/
 .vbCon {
 	display: flex;
-	align-items:center;
-	border: 0px
+	border: 0px;
 }
 
 .hCon {
 	display: block;
 	align-items:center;
-	border: 0px
+	border: 0px;
+	padding: 16px;
+	margin: 16px;
 }
 
 .hCon#border, .vbCon#border {
 	border: 1px #6569ff solid;
 	border-radius: 10px;
-	padding: 16px;
-	margin: 16px;
 }
 
 /*Button CSS*/
@@ -44,10 +32,10 @@ img {
 	max-width: 100%;
 	height: 80px;
 	box-sizing: border-box;
-	display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+	display: block;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 	border-radius: 4px;
 	padding: 20px;
 	padding-bottom: 20px;
@@ -88,12 +76,20 @@ h1 {
 }
 
 img {
+	max-width: 80%;
+   	margin: 16px;
+   	border-radius: 10px;
+   	border: 0px #c894f9 solid;
 	vertical-align: top;
 	transition: transform 0.2s ease;
 }
 
 img:hover {
 	transform: scale(1.025);
+}
+
+img#small {
+	max-width: 50%;
 }
 
 body {
@@ -185,11 +181,15 @@ a img {
 .div-line {
 	width: 90%;
 	height: 0vh;
-	border: 3px solid #c894f9;
+	border: 1px solid #6569ff;
 	margin-top: 10%;
 	margin-bottom: 10%;
 	border-radius: 100vh;
 	opacity: 1;
+}
+
+.div-line#bold {
+	border: 3px solid #c894f9;
 }
 
 /*Gradient background*/
@@ -209,7 +209,7 @@ a img {
 	margin-bottom: 1%;
 	margin-left: 1%;
 	margin-right: 1%;
-	width: 70%;
+	width: 100%;
    	border-radius: 10px;
 	border: 0px #9d80ff solid;
 }
@@ -229,4 +229,18 @@ body  {
 	100% {
 		opacity: 1;
 	}
+}
+
+
+/*BG ANIM*/
+body {
+  background: linear-gradient(135deg, #321e7f, #151b33);
+  background-size: 800% 800%;
+  animation: gradientShift 20s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
