@@ -213,3 +213,20 @@ a img {
    	border-radius: 10px;
 	border: 0px #9d80ff solid;
 }
+
+/*Fade-in*/
+body  {
+	animation: fadeInAnimation ease 0.5s;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+	0% {
+		opacity: 0;
+		transform: scale(0.99)
+	}
+	100% {
+		opacity: 1;
+	}
+}
