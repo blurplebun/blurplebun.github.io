@@ -712,7 +712,7 @@ body {
     :root {
         --menu-radius: 100px;
         --button-size: 70px;
-        --card-scale: 0.75;
+        --card-scale: 0.625;
         --card-gap: 12px;
     }
 
