@@ -63,7 +63,10 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    touch-action: none;
 }
 
 /* Main menu stage */
