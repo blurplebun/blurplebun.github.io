@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image" href="icons/fav-icon.png">
+    <meta name="theme-color" content="#C894F9">
+    <meta content="Artifyber" property="og:title" />
+    <meta content="I like to draw and make music" property="og:description" />
+    <meta content="https://blurplebun.github.io/" property="og:url" />
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+    <title>Artifyber</title>
+</head>
+
+<body>
+    <div class="app">
+        <div class="starfield"></div>
+        <div class="menu-stage">
+            <div class="menu-center-text">
+                <img class="menu-logo" src="images/logoinfo.png"><br>
+            </p></div>
+            <div class="ring" data-rotation-duration>
+                <!-- buttons injected here -->
+            </div>
+        </div>
+
+        <div id="expander" class="expander" style="opacity:0"></div>
+
+        <!-- content view area (single page) -->
+        <div id="contentView" class="content-view" aria-hidden="true">
+            <div class="content-header">
+                <div class="content-title" id="contentTitle">Menu Title</div>
+                <div class="content-sub" id="contentSubtitle">Subtitle / description</div>
+            </div>
+
+            <div id="cardsContainer" class="cards-grid max-cols-5" data-max="5">
+                <!-- cards injected here -->
+            </div>
+
+            <!-- focused layout (hidden until a card selected) -->
+            <div id="focusedLayout" class="focused-layout" style="display:none">
+                <div class="panel-left" id="focusedCardArea"></div>
+                <div class="panel-right" id="detailArea">
+                    <h3>Detail</h3>
+                    <p>Select a card to see details here.</p>
+                </div>
+            </div>
+        </div>
+
+        <button id="backBtn" class="back-btn" aria-hidden="true" title="Back"><svg viewBox="0 0 24 24" fill="none"
+                stroke="currentColor">
+                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+            </svg><span>Back</span></button>
+    </div>
+
+    <script src="menuData.js"></script>
+    <script src="main.js"></script>
+
+
+</body>
+
+</html>
