@@ -54,6 +54,7 @@ body {
     background: var(--bg);
     color: var(--white);
     font-family: 'Baloo 2', 'Ubuntu', verdana, sans-serif;
+    overscroll-behavior: none;
 }
 
 .app {
