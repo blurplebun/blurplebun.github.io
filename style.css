@@ -268,13 +268,14 @@ body {
     font-weight: 800;
     text-align: center;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    pointer-events: none;
+    /* pointer-events: none; */
     z-index: 20;
     font-family: 'Baloo 2', 'Ubuntu', verdana, sans-serif;
 }
 
 .menu-logo {
     max-width: 280px;
+    pointer-events: none;
 }
 
 /* Expander circle */
@@ -519,12 +520,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.panel-right #detailArea a,
-.panel-right #detailArea a:link,
-.panel-right #detailArea a:visited,
-.panel-right #detailArea a:hover,
-.panel-right #detailArea a:active {
-    color: var(--color-3) !important;
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: var(--white) !important;
     opacity: 1;
     text-decoration: underline;
     transition: color 0.2s, opacity 0.2s;
@@ -789,4 +790,38 @@ body {
     50% {
         opacity: 1;
     }
+}
+
+.splash-text {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--white);
+    text-shadow: 2px 2px 0 var(--bg);
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.splash-text[data-info="info"] {
+    color: color-mix(in srgb, var(--white) 50%, transparent);
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    font-size: 12px;
+    transform: translate(-50%, 50%);
+}
+
+.splash-text[data-info="splash"] {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    animation: floatSplash 1s ease-in-out infinite alternate;
+}
+
+/* Floating animation */
+@keyframes floatSplash {
+    0% { transform: translate(-50%, 50%); }
+    100% { transform: translate(-50%, 55%); }
 }

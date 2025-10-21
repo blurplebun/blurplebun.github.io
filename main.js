@@ -244,6 +244,34 @@ window.addEventListener('load', () => {
     }, 500);
 });
 
+window.addEventListener('load', () => {
+    const splashTexts = document.querySelectorAll('.splash-text');
+
+    splashTexts.forEach(el => {
+        const type = el.dataset.info;
+
+        if (type === 'info') {
+            el.textContent = "(drag to move around)"; // static label
+        }
+
+        if (type === 'splash') {
+            // choose random splash
+            const text = splashLines[Math.floor(Math.random() * splashLines.length)];
+            el.innerHTML = text;
+            // adjust font size proportionally
+            const baseSize = 20; // max font size for short text
+            const minSize = 12;  // never go smaller than this
+            const maxLen = 45;   // expected longest splash length
+
+            // scaling factor
+            let size = baseSize - (text.length / maxLen) * (baseSize - minSize);
+            size = Math.max(minSize, Math.min(size, baseSize)); // clamp
+
+            el.style.fontSize = `${size}px`;
+        }
+    });
+});
+
 
 
 
