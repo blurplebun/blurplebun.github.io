@@ -1302,7 +1302,7 @@ menuItems = [
                 id: 4,
                 title: 'Discord Server',
                 excerpt: '',
-                url: 'https://discord.gg/artifyber',
+                url: 'https://discord.gg/mvZT3ANvSS',
                 image: 'icons/l-discord.png'
             },
             {
