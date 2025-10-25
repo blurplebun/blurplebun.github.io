@@ -1571,12 +1571,13 @@ menuItems = [
                     `
                     Showing latest posts from my Instagram.<br><br>
                     <div id="instaCard">
-                    <iframe
-                        src="http://lightwidget.com/widgets/8de0d57c2b9e5ed6882d4b65b461c8c3.html"
-                        scrolling="no" allowtransparency="true"
-                        class="lightwidget-widget"
-                        style="width:100%;border:0;overflow:hidden;"
-                    </iframe>
+                        <iframe
+                            src="https://cdn.lightwidget.com/widgets/ce1b2c5863eb58798710d296e980a26c.html"
+                            scrolling="no"
+                            allowtransparency="true"
+                            class="lightwidget-widget"
+                            style="width:100%;border:0;overflow:hidden;">
+                        </iframe>
                     </div>
                     `,
                 image: 'icons/l-instagram.png'

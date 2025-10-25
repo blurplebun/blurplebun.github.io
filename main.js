@@ -119,11 +119,13 @@ function createOrbitVisuals() {
         orbitRing.style.zIndex = '-1';
         orbitRing.style.pointerEvents = 'auto';
         orbitRing.style.position = 'absolute';
-        
+
         menuStage.insertBefore(orbitRing, menuStage.firstChild);
     });
 }
 
+
+const orbitButtons = [];
 
 function createMenuButtons() {
     // group menu items by orbit layer
@@ -149,50 +151,53 @@ function createMenuButtons() {
         ringLayer.className = 'ring';
         ringLayer.style.zIndex = '10';
 
-        // Alternate rotation direction
         const direction = orbit % 2 === 0 ? -1 : 1;
-
-        // Make outer layers slower
-        ringLayer.style.animationDuration = `${baseDuration * orbit}s`;
-        ringLayer.style.animationDirection = direction === 1 ? 'normal' : 'reverse';
-
         const randomPhase = Math.random() * 360;
         const count = items.length;
+
         items.forEach((m, index) => {
-            const angle = (index / count + 0.75) * 360 + randomPhase;
+            const angleDeg = (index / count + 0.75) * 360 + randomPhase;
+            const angleRad = (angleDeg * Math.PI) / 180;
+
             const btn = document.createElement('button');
             btn.className = 'menu-button';
-            btn.dataset.angle = angle;
+            btn.dataset.angle0 = angleRad; // initial angle in radians
+            btn.dataset.orbit = orbit;
             btn.setAttribute('aria-label', m.name);
             btn.style.setProperty('--glow', m.color);
             btn.style.background = m.color;
             btn.innerHTML = `
-            <div class="inner" style="
-                animation-duration:${baseDuration * orbit}s;
-                animation-direction:${direction === -1 ? 'reverse' : 'normal'};
-            ">
-                <div class="menu-thumb-square" style="background-image:url('${m.image || ''}')"></div>
-                ${m.showName && m.name ? `<div class="menu-subtitle">${m.name}</div>` : ''}
-            </div>
-            `;
+        <div class="inner">
+          <div class="menu-thumb-square" style="background-image:url('${m.image || ''}')"></div>
+          ${m.showName && m.name ? `<div class="menu-subtitle">${m.name}</div>` : ''}
+        </div>
+      `;
 
-
-            // compute radius based on orbit layer
+            // compute pixel radius
             const baseRadius = parseInt(
                 getComputedStyle(document.documentElement)
                     .getPropertyValue('--menu-radius')
             ) || 180;
             const r = baseRadius * orbit * 1.2 + 60;
 
+            // store motion params on the element
+            btn.dataset.radius = r;
+            // period = baseDuration * orbit
+            const baseDuration = parseFloat(
+                getComputedStyle(document.documentElement)
+                    .getPropertyValue('--ring-rotation-duration')
+            ) || 60;
+            const periodSec = Math.max(0.01, baseDuration * orbit); // seconds per revolution
+            const omega = (2 * Math.PI) / periodSec * direction; // radians/sec
+
+            btn.dataset.omega = omega;
+            btn.dataset.scale = m.scale || 1;
+
+            const x0 = Math.cos(angleRad) * r;
+            const y0 = Math.sin(angleRad) * r;
             btn.style.left = '50%';
             btn.style.top = '50%';
-            btn.style.transform = `rotate(${angle}deg) translate(${r}px) rotate(-${angle}deg) scale(${m.scale || 1}`;
-
-            if (orbit === 0) {
-                btn.style.left = '50%';
-                btn.style.top = '50%';
-                btn.style.transform = `translate(0%, 0%) scale(${m.scale || 1}`;
-            }
+            btn.style.transform = `translate3d(${x0}px, ${y0}px, 0) scale(${m.scale || 1})`;
 
             if (m.noFocus) {
                 btn.tabIndex = -1;
@@ -201,13 +206,56 @@ function createMenuButtons() {
 
             btn.addEventListener('click', () => openMenu(m, btn));
             btn.addEventListener('click', snapCameraToCenter);
+
             ringLayer.appendChild(btn);
 
+            orbitButtons.push(btn);
         });
 
         document.querySelector('.menu-stage').appendChild(ringLayer);
     });
+
+    startOrbitAnimation();
 }
+
+
+let orbitAnimStarted = false;
+let orbitStartTs = performance.now();
+
+function startOrbitAnimation() {
+    if (orbitAnimStarted) return;
+    orbitAnimStarted = true;
+    orbitStartTs = performance.now();
+    requestAnimationFrame(orbitFrame);
+}
+
+function orbitFrame(ts) {
+    const elapsed = (ts - orbitStartTs) / 1000;
+    for (let i = 0; i < orbitButtons.length; i++) {
+        const el = orbitButtons[i];
+        const a0 = parseFloat(el.dataset.angle0) || 0;
+        const w = parseFloat(el.dataset.omega) || 0;
+        const r = parseFloat(el.dataset.radius) || 0;
+        const s = parseFloat(el.dataset.scale) || 1;
+
+        const angle = a0 + w * elapsed;
+        const x = Math.cos(angle) * r;
+        const y = Math.sin(angle) * r;
+
+        el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s})`;
+    }
+
+    requestAnimationFrame(orbitFrame);
+}
+
+window.addEventListener('resize', () => {
+    const baseRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
+    orbitButtons.forEach(el => {
+        const orbit = parseInt(el.dataset.orbit) || 1;
+        const r = baseRadius * orbit * 1.2 + 60;
+        el.dataset.radius = r;
+    });
+});
 
 
 // Open menu and optional card via URL (?q=menu&i=id)

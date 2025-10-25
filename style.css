@@ -124,8 +124,6 @@ body {
     position: absolute;
     inset: 0;
     display: block;
-    transform-origin: center center;
-    animation: spin linear infinite;
     z-index: 0;
     pointer-events: none;
 }
@@ -156,16 +154,6 @@ body {
 
 .orbit-visual.pulse {
     animation: orbitPulse 6s ease-in-out infinite;
-}
-
-@keyframes spin {
-    100% {
-        transform: rotate(360deg)
-    }
-}
-
-.ring[data-rotation-duration] {
-    animation-duration: var(--ring-rotation-duration)
 }
 
 /* Menu buttons */
@@ -204,27 +192,11 @@ body {
     opacity: .85
 }
 
-.menu-button[data-angle] {
-    transform-origin: center center;
-}
-
 .menu-button .inner {
     transform: rotate(0deg)
 }
 
-.menu-button .inner {
-    animation: counterSpin linear infinite;
-    animation-duration: var(--ring-rotation-duration);
-}
-
-@keyframes counterSpin {
-    100% {
-        transform: rotate(-360deg);
-    }
-}
-
 .menu-button {
-    transform-origin: center center;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -277,6 +249,15 @@ body {
     max-width: 280px;
     pointer-events: none;
 }
+
+.ring { animation: none !important; }
+.menu-button .inner { animation: none !important; }
+.menu-button {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+
 
 /* Expander circle */
 .expander {
