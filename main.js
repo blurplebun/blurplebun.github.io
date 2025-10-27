@@ -402,9 +402,15 @@ function showContentFor(menu) {
 
         const totalCardsCounter = c.querySelector('#totalCardsCounter');
         if (totalCardsCounter) {
-            totalCardsCounter.textContent = `
-            totalCards: ${totalCards}
-            `;
+            totalCardsCounter.textContent = `totalCards: ${totalCards}`;
+        }
+        const totalMenusCounter = c.querySelector('#totalMenusCounter');
+        if (totalMenusCounter) {
+            totalMenusCounter.textContent = `totalMenus: ${totalMenus}`;
+        }
+        const totalSplashCounter = c.querySelector('#totalSplashCounter');
+        if (totalSplashCounter) {
+            totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
         }
 
         c.addEventListener('click', () => {

@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'October 21th, 2025';
-const version = '0.0.06-alpha';
+const version = '0.0.1';
 
 menuItems = [
     {
@@ -1257,7 +1257,10 @@ menuItems = [
                 excerpt: `
                 Updated: ${lastUpdated}<br>
                 Version: ${version}<br>
-                <div id="totalCardsCounter"></div><br>
+                <br>
+                <div id="totalCardsCounter"></div>
+                <div id="totalMenusCounter"></div>
+                <div id="totalSplashCounter"></div>
                 `,
                 unclickable: true,
                 detail:
@@ -1747,6 +1750,7 @@ splashLines = [
     "Absolute Cinema",
     "Check out BFDI!",
     "Go follow ZestyLemonss!",
+    "Go follow C0denameDelta!",
     "Also listen to Frums!",
     "Also listen to Disphing!",
     "Also listen to YonKaGor!",
@@ -1759,6 +1763,34 @@ splashLines = [
     "Fyberverse == Artiverse",
     "beep beep i'm a sheep",
     "wrong splashtext srry",
+    "Placeholder!",
+    "When the fajitas come out sizzling",
+    "take your height, swap the feet and inches, that's not your height.",
+    "6️⃣7️⃣",
+    "Sleeping is the best thing in the world.",
+    "LESBIANS EAT WHAT!?",
+    "i made mac n cheese :D",
+    "RAGEBAIT!",
+    "i am at my limit.",
+    "24eeev0-$",
+    "something terrifying is about to happen...",
+    "hello darkness my old friend",
+    "i forgor",
+    "do you have ibuprofen?",
+    "#1 horse hater",
+    "Loading...",
+    "Black holes are so cool!",
+    "colon three",
+    "💥💥💥",
+    "🐇🐇🐇",
+    "Stay safe out there!",
+    "Eat more carrots!",
+    "Drink more water!",
+    "Get some rest!",
+    "4:38 AM",
+    "testing testing 1 2 3",
 ];
+
+totalSplash = splashLines.length;
 
 // splashLines = [  ]
