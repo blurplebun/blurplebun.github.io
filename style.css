@@ -721,6 +721,7 @@ a:active {
 
     .panel-right {
         min-height: 320px;
+        margin-bottom: 60px;
     }
 
     .focused-layout {
@@ -820,4 +821,26 @@ a:active {
 @keyframes floatSplash {
     0% { transform: translate(-50%, 50%); }
     100% { transform: translate(-50%, 55%); }
+}
+
+.ticker-bar {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 2em;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  color: var(--white);
+  font-size: 1.1em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5em;
+  box-sizing: border-box;
+}
+
+.ticker-text {
+  position: absolute;
+  white-space: nowrap;
+  will-change: transform;
+  animation-timing-function: linear;
 }

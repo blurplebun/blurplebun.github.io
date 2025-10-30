@@ -1082,9 +1082,16 @@ menuItems = [
                 title: 'Info',
                 excerpt: 'About Nansenz',
                 detail:
-                    `A world beyond logical limits where anything can exist. It’s like a fever dream. Anything you imagine or could be imagined, objects with limbs, cube-shaped planets, galaxies made of spaghetti, there are no boundaries in Nansenz. The entire purpose of this universe is to contain everything that defy all sense of logic.<br>
+                    `
+                    A world beyond logical limits where anything can exist. It’s like a fever dream. Anything you imagine or could be imagined, objects with limbs, cube-shaped planets, galaxies made of spaghetti, there are no boundaries in Nansenz. The entire purpose of this universe is to contain everything that defy all sense of logic.<br>
                     <h4>What's in this page</h4>
-                    This page is a list of all Fyberverse characters located in Nansenz. This include character information, reference art, and picture gallery of each character.<br>`,
+                    This page is a list of all Fyberverse characters located in Nansenz. This include character information, reference art, and picture gallery of each character.<br>
+                    <br>
+                    oh and also this useless ticker (it shows nothing):<br>
+                    <br>
+                    <div class="ticker-bar">
+                        <div class="ticker-text"></div>
+                    </div>`,
                 image: 'icons/nansenz.png'
             },
             {
@@ -1789,8 +1796,25 @@ splashLines = [
     "Get some rest!",
     "4:38 AM",
     "testing testing 1 2 3",
+    // "hey HEY HEYY WHAT ARE YOU DOING?? you're not supposed to be here!! ewww you're looking at my data... ewwww who are you a perv!?!?!?!?",
+    "Down for maintenance. Please come back later.",
+    "I CAST BUNNYPILLED!!",
+    "I CAST EXCESSIVE FLUFF!!!",
+    "Peace! ✌️",
+    "we def live in a simulation. and whoever in control is weird af",
+    "WE REACHING NANEINF WITH THIS ONE 🔥",
+    "caught you reading",
+    "made ya look",
+    "Mostly salt water!",
+    "I squeak, therefore I am.",
+    "Did someone say snacks?",
+    "Share this website to your friends!",
+    "purple buyn",
+    "MY FAV FOOD!!!",
+    `<div style="font-size:20px; transform: scaleY(0.5)">squishe</div>`,
+    "aaaaaaaaaaaaaaaaaaaaaa",
 ];
 
 totalSplash = splashLines.length;
 
-// splashLines = [  ]
+// splashLines = []
