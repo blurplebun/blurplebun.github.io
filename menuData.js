@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'October 21th, 2025';
-const version = '0.0.1';
+const version = '0.0.1.1';
 
 menuItems = [
     {
