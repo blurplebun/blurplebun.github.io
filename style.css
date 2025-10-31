@@ -89,7 +89,7 @@ body {
         left: 50%;
         transform: translateX(-50%) rotate(0deg);
         white-space: nowrap;
-        font-size: 11px;
+        font-size: 14px;
         color: var(--white);
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
         font-family: 'Baloo 2', 'Ubuntu', verdana, sans-serif;
@@ -137,18 +137,20 @@ body {
     pointer-events: auto;
     z-index: -1;
     transform-origin: center center;
-    transition: opacity 0.6s;
+    transition:
+        transform 0.5s cubic-bezier(.2, .9, .2, 1),
+        opacity 0.6s ease;
 }
 
 @keyframes orbitPulse {
 
     0%,
     100% {
-        opacity: 0.5;
+        opacity: 0.4;
     }
 
     50% {
-        opacity: 0.8;
+        opacity: 0.6;
     }
 }
 
@@ -250,11 +252,17 @@ body {
     pointer-events: none;
 }
 
-.ring { animation: none !important; }
-.menu-button .inner { animation: none !important; }
+.ring {
+    animation: none !important;
+}
+
+.menu-button .inner {
+    animation: none !important;
+}
+
 .menu-button {
-  will-change: transform;
-  transform: translateZ(0);
+    will-change: transform;
+    transform: translateZ(0);
 }
 
 
@@ -319,6 +327,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(calc(250px * var(--card-scale)), 1fr));
     gap: var(--card-gap);
     align-items: start;
+    margin-bottom: 80px;
 }
 
 .card {
@@ -374,7 +383,8 @@ body {
     /* margin-bottom: calc(4px * var(--card-scale)); */
 }
 
-.card .card-text .excerpt, .card .card-text small {
+.card .card-text .excerpt,
+.card .card-text small {
     font-size: calc(12px * var(--card-scale));
     white-space: nowrap;
     overflow: hidden;
@@ -423,7 +433,8 @@ body {
         max-height: 100%;
         flex-wrap: wrap;
 
-        .excerpt, small {
+        .excerpt,
+        small {
             white-space: normal;
             overflow: visible;
             text-overflow: clip;
@@ -522,6 +533,7 @@ a:active {
     flex-wrap: wrap;
     padding: 16px;
     max-width: 100%;
+
     img {
         max-width: 33%;
         max-height: 33%;
@@ -531,28 +543,29 @@ a:active {
 }
 
 #detailArea .imgContainer {
-  position: relative;
+    position: relative;
 }
 
 #detailArea .imgContainer img {
-  position: relative;
-  display: inline-block;
-  vertical-align: top;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
 }
 
 /* Caption overlay */
 #detailArea .imgContainer img[data-caption]::after {
-  content: attr(data-caption);
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -18px; /* adjust distance below image */
-  font-size: 13px;
-  color: var(--accentl);
-  text-align: center;
-  white-space: nowrap;
-  pointer-events: none;
-  opacity: 0.8;
+    content: attr(data-caption);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -18px;
+    /* adjust distance below image */
+    font-size: 13px;
+    color: var(--accentl);
+    text-align: center;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0.8;
 }
 
 #instaCard iframe {
@@ -583,7 +596,8 @@ a:active {
     /* margin-bottom: 4px; */
 }
 
-.card.focused .card-text .excerpt, .card.focused .card-text small {
+.card.focused .card-text .excerpt,
+.card.focused .card-text small {
     font-size: 12px;
     white-space: normal;
 }
@@ -597,6 +611,36 @@ a:active {
     transform: scale(.92);
     pointer-events: none
 }
+
+.copy-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-left: 8px;
+    opacity: 0.7;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.copy-link:hover {
+    opacity: 1;
+}
+
+.copy-link svg {
+    width: 16px;
+    height: 16px;
+    stroke: var(--accentl);
+    stroke-width: 2;
+    transition: stroke 0.3s ease, transform 0.2s ease;
+}
+
+.copy-link.copied svg {
+    stroke: var(--color-5);
+    transform: scale(1.2) rotate(45deg);
+}
+
 
 
 
@@ -687,7 +731,6 @@ a:active {
     transform: scale(1.01);
 }
 
-
 /* small screens adjustments */
 @media (max-width:770px) {
     .menu-stage {
@@ -700,6 +743,10 @@ a:active {
         --button-size: 70px;
         --card-scale: 0.625;
         --card-gap: 12px;
+    }
+
+    .card .card-text {
+        margin-top: -2px;
     }
 
     .content-view {
@@ -745,7 +792,7 @@ a:active {
         max-height: 80%;
     }
 
-    
+
     .card.focused {
         transform: translateX(-6px);
         width: 50%;
@@ -782,10 +829,12 @@ a:active {
     0%,
     100% {
         opacity: 0.2;
+        transform: scale(0.75);
     }
 
     50% {
         opacity: 1;
+        transform: scale(2);
     }
 }
 
@@ -819,28 +868,33 @@ a:active {
 
 /* Floating animation */
 @keyframes floatSplash {
-    0% { transform: translate(-50%, 50%); }
-    100% { transform: translate(-50%, 55%); }
+    0% {
+        transform: translate(-50%, 50%);
+    }
+
+    100% {
+        transform: translate(-50%, 55%);
+    }
 }
 
 .ticker-bar {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 2em;
-  background: color-mix(in srgb, var(--bg) 70%, transparent);
-  color: var(--white);
-  font-size: 1.1em;
-  white-space: nowrap;
-  display: flex;
-  align-items: center;
-  padding-left: 0.5em;
-  box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 2em;
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    color: var(--white);
+    font-size: 1.1em;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    padding-left: 0.5em;
+    box-sizing: border-box;
 }
 
 .ticker-text {
-  position: absolute;
-  white-space: nowrap;
-  will-change: transform;
-  animation-timing-function: linear;
+    position: absolute;
+    white-space: nowrap;
+    will-change: transform;
+    animation-timing-function: linear;
 }

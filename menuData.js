@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'October 21th, 2025';
-const version = '0.0.1.1';
+const version = '0.0.2';
 
 menuItems = [
     {
@@ -1593,6 +1593,38 @@ menuItems = [
             },
         ]
     },
+    /*
+    {
+        id: 1000,
+        name: 'Test',
+        showName: true,
+        q: 'test',
+        subtitle: '',
+        image: '',
+        color: 'var(--color-10)',
+        orbit: 3,
+        scale: 1,
+        noFocus: true,
+        labels: [
+            {
+                id: 1,
+                title: 'testloop1',
+                excerpt: '',
+                detail:
+                    `<a data-open-card="test:2">testloop2</a>`,
+                image: 'images/temp2.png'
+            },
+            {
+                id: 2,
+                title: 'testloop2',
+                excerpt: '',
+                detail:
+                    `<a data-open-card="test:1">testloop1</a>`,
+                image: 'images/temp.png'
+            },
+        ]
+    },
+    */
     {
         id: 99,
         name: 'Whitespace',
@@ -1730,7 +1762,7 @@ splashLines = [
     "Trans Soda!!",
     "Bisexual Pie!!",
     "I swear, these splashtexts are getting ridiculous.",
-    `${totalCards}${totalMenus} is an interesting number.`,
+    `Now with ${totalCards} flavors!`,
     "As seen on Twitter!",
     "Awesome!",
     "Random splashtext!",
@@ -1813,6 +1845,7 @@ splashLines = [
     "MY FAV FOOD!!!",
     `<div style="font-size:20px; transform: scaleY(0.5)">squishe</div>`,
     "aaaaaaaaaaaaaaaaaaaaaa",
+    "is not crash-proof. please be gentle.",
 ];
 
 totalSplash = splashLines.length;

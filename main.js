@@ -16,6 +16,7 @@ const backBtn = document.getElementById('backBtn');
 const menuStage = document.querySelector('.menu-stage');
 
 
+/// -- DRAGGING --
 // Camera pan vars
 let isDragging = false;
 let startX = 0, startY = 0;
@@ -92,13 +93,16 @@ function snapCameraToCenter() {
     }
 }
 
-/* set rotation duration from CSS var */
-ring.style.animationDuration = getComputedStyle(document.documentElement).getPropertyValue('--ring-rotation-duration') || '60s';
 
+/// -- ORBITS --
+orbitRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
+orbitDuration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ring-rotation-duration')) || 60;
+//orbitRadius = 180;
+//orbitDuration = 10;
+ring.style.animationDuration = getComputedStyle(document.documentElement).getPropertyValue('--ring-rotation-duration') || '60s';
 function createOrbitVisuals() {
     const menuStage = document.querySelector('.menu-stage');
-    const baseRadius = parseInt(getComputedStyle(document.documentElement)
-        .getPropertyValue('--menu-radius')) || 180;
+    const baseRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
 
     // remove existing orbit visuals first (if regenerating)
     document.querySelectorAll('.orbit-visual').forEach(el => el.remove());
@@ -125,8 +129,8 @@ function createOrbitVisuals() {
 }
 
 
+/// -- ORBITS: BUTTONS --
 const orbitButtons = [];
-
 function createMenuButtons() {
     // group menu items by orbit layer
     const grouped = {};
@@ -135,12 +139,6 @@ function createMenuButtons() {
         if (!grouped[orbit]) grouped[orbit] = [];
         grouped[orbit].push(m);
     });
-
-    // get base rotation duration
-    const baseDuration = parseFloat(
-        getComputedStyle(document.documentElement)
-            .getPropertyValue('--ring-rotation-duration')
-    ) || 60;
 
     // create one ring per orbit layer
     Object.keys(grouped).forEach(layer => {
@@ -167,26 +165,20 @@ function createMenuButtons() {
             btn.style.setProperty('--glow', m.color);
             btn.style.background = m.color;
             btn.innerHTML = `
-        <div class="inner">
-          <div class="menu-thumb-square" style="background-image:url('${m.image || ''}')"></div>
-          ${m.showName && m.name ? `<div class="menu-subtitle">${m.name}</div>` : ''}
-        </div>
-      `;
+                <div class="inner">
+                <div class="menu-thumb-square" style="background-image:url('${m.image || ''}')"></div>
+                ${m.showName && m.name ? `<div class="menu-subtitle">${m.name}</div>` : ''}
+                </div>
+            `;
 
             // compute pixel radius
-            const baseRadius = parseInt(
-                getComputedStyle(document.documentElement)
-                    .getPropertyValue('--menu-radius')
-            ) || 180;
+            const baseRadius = orbitRadius;
             const r = baseRadius * orbit * 1.2 + 60;
 
             // store motion params on the element
             btn.dataset.radius = r;
             // period = baseDuration * orbit
-            const baseDuration = parseFloat(
-                getComputedStyle(document.documentElement)
-                    .getPropertyValue('--ring-rotation-duration')
-            ) || 60;
+            const baseDuration = orbitDuration;
             const periodSec = Math.max(0.01, baseDuration * orbit); // seconds per revolution
             const omega = (2 * Math.PI) / periodSec * direction; // radians/sec
 
@@ -198,7 +190,6 @@ function createMenuButtons() {
             btn.style.left = '50%';
             btn.style.top = '50%';
             btn.style.transform = `translate3d(${x0}px, ${y0}px, 0) scale(${m.scale || 1})`;
-
             if (m.noFocus) {
                 btn.tabIndex = -1;
                 btn.setAttribute('aria-hidden', 'true');
@@ -206,22 +197,16 @@ function createMenuButtons() {
 
             btn.addEventListener('click', () => openMenu(m, btn));
             btn.addEventListener('click', snapCameraToCenter);
-
             ringLayer.appendChild(btn);
-
             orbitButtons.push(btn);
         });
-
         document.querySelector('.menu-stage').appendChild(ringLayer);
     });
-
     startOrbitAnimation();
 }
 
-
 let orbitAnimStarted = false;
 let orbitStartTs = performance.now();
-
 function startOrbitAnimation() {
     if (orbitAnimStarted) return;
     orbitAnimStarted = true;
@@ -237,35 +222,39 @@ function orbitFrame(ts) {
         const w = parseFloat(el.dataset.omega) || 0;
         const r = parseFloat(el.dataset.radius) || 0;
         const s = parseFloat(el.dataset.scale) || 1;
-
         const angle = a0 + w * elapsed;
         const x = Math.cos(angle) * r;
         const y = Math.sin(angle) * r;
-
         el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s})`;
     }
-
     requestAnimationFrame(orbitFrame);
 }
 
+let resizeTimeout;
 window.addEventListener('resize', () => {
-    const baseRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
-    orbitButtons.forEach(el => {
-        const orbit = parseInt(el.dataset.orbit) || 1;
-        const r = baseRadius * orbit * 1.2 + 60;
-        el.dataset.radius = r;
-    });
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        const baseRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
+
+        orbitButtons.forEach(el => {
+            const orbit = parseInt(el.dataset.orbit) || 1;
+            const r = baseRadius * orbit * 1.2 + 60;
+            el.dataset.radius = r;
+        });
+
+        createOrbitVisuals();
+    }, 300);
 });
 
 
-// Open menu and optional card via URL (?q=menu&i=id)
+
+/// -- URL QUERY HANDLER ?m=<menu>&i=<card-id> --
 window.addEventListener('load', () => {
     const params = new URLSearchParams(window.location.search);
     const menuCode = params.get('m');
     const itemId = params.get('i');
     if (!menuCode) return;
 
-    // find menu by "q"
     const targetMenu = menuItems.find(
         m => m.q && m.q.toLowerCase() === menuCode.toLowerCase()
     );
@@ -276,42 +265,36 @@ window.addEventListener('load', () => {
         const button = Array.from(document.querySelectorAll('.menu-button'))
             .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
         if (!button) return;
-        openMenu(targetMenu, button);
+        openMenu(targetMenu, button, { skipAnimation: true });
 
         // if ?i= exists, open the card after content loads
         if (itemId) {
-            setTimeout(() => {
-                const targetLabel = targetMenu.labels.find(l => l.id == itemId);
-                if (targetLabel) {
-                    const cardEl = [...document.querySelectorAll('.card')]
-                        .find(c => c.dataset.id == itemId);
-                    if (cardEl) focusCard(cardEl, targetLabel);
-                }
-            }, 1000);
+            const targetLabel = targetMenu.labels.find(l => l.id == itemId);
+            if (targetLabel) {
+                const cardEl = [...document.querySelectorAll('.card')]
+                    .find(c => c.dataset.id == itemId);
+                if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+            }
         }
     }, 500);
 });
 
+
+/// -- SPLASHTEXTS --
 window.addEventListener('load', () => {
     const splashTexts = document.querySelectorAll('.splash-text');
-
     splashTexts.forEach(el => {
         const type = el.dataset.info;
-
         if (type === 'info') {
             el.textContent = "(drag to move around)"; // static label
         }
-
         if (type === 'splash') {
-            // choose random splash
             const text = splashLines[Math.floor(Math.random() * splashLines.length)];
             el.innerHTML = text;
-            // adjust font size proportionally
             const baseSize = 20; // max font size for short text
             const minSize = 12;  // never go smaller than this
             const maxLen = 45;   // expected longest splash length
 
-            // scaling factor
             let size = baseSize - (text.length / maxLen) * (baseSize - minSize);
             size = Math.max(minSize, Math.min(size, baseSize)); // clamp
 
@@ -322,8 +305,12 @@ window.addEventListener('load', () => {
 
 
 
-
-function openMenu(menu, buttonEl) {
+/// -- OPEN MAIN MENU BUTTONS --
+function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
+    if (skipAnimation) {
+        showContentFor(menu);
+        return;
+    }
     // compute center position of button for expander origin
     const rect = buttonEl.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
@@ -345,7 +332,6 @@ function openMenu(menu, buttonEl) {
         expander.style.transition = `transform var(--overlay-transition) cubic-bezier(.2,.9,.2,1),opacity var(--overlay-transition)`;
         buttonEl.style.transform += ' scale(1.02)';
 
-        // after transition, show content
         setTimeout(() => {
             expander.style.opacity = '0';
             expander.style.left = '0';
@@ -354,10 +340,12 @@ function openMenu(menu, buttonEl) {
             expander.style.height = '1px';
             expander.style.transform = 'translate(-50%,-50%) scale(1)';
             showContentFor(menu);
+            history.pushState({}, '', `?m=${menu.q}`);
         }, 700);
     });
 }
 
+/// -- SHOW CONTENT FROM MENU --
 function showContentFor(menu) {
     contentTitle.textContent = menu.name;
     contentSubtitle.textContent = menu.subtitle;
@@ -367,6 +355,32 @@ function showContentFor(menu) {
     backBtn.classList.add('visible');
     backBtn.setAttribute('aria-hidden', 'false');
     backBtn.querySelector('span').textContent = 'Menu';
+
+    // Add copy link icon to menu title
+    const linkIcon = document.createElement('span');
+    linkIcon.className = 'copy-link';
+    linkIcon.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none">
+            <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
+            <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
+        </svg>
+        `;
+    linkIcon.title = "Copy shareable link";
+    linkIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const link = `${location.origin}${location.pathname}?m=${menu.q}`;
+        navigator.clipboard.writeText(link);
+
+        // visual + tooltip feedback
+        linkIcon.classList.add('copied');
+        linkIcon.title = "Copied!";
+        setTimeout(() => {
+            linkIcon.classList.remove('copied');
+            linkIcon.title = "Copy shareable link";
+        }, 1500);
+    });
+    contentTitle.appendChild(linkIcon);
+
 
     const maxCols = parseInt(cardsContainer.dataset.max) || 5;
     // cardsContainer.className = `cards-grid max-cols-5`;
@@ -420,7 +434,7 @@ function showContentFor(menu) {
                 window.open(lbl.url, '_blank');
             } else {
                 // default behavior (show description)
-                focusCard(c, lbl);
+                focusCard(c, lbl, menu);
             }
         });
 
@@ -437,24 +451,53 @@ function showContentFor(menu) {
             if (single.url) {
                 window.open(single.url, '_blank');
             } else {
-                focusCard(cardEl, single);
+                focusCard(cardEl, single, menu);
             }
         }
     }
 }
 
 
-
-function focusCard(cardEl, label) {
-    // move to focused layout
+/// -- CARD DETAIL HANDLER --
+function focusCard(cardEl, label, menu = null) {
     // clone card into left panel for appearance
     focusedCardArea.innerHTML = '';
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
 
-    // fill details
-    detailArea.innerHTML = `<h1>${label.title}</h1><hr>${label.detail}`;
+    if (menu) {
+        // fill details
+        const shareURL = `${location.origin}${location.pathname}?m=${menu.q}&i=${label.id}`;
+        detailArea.innerHTML = `
+            <h1>
+                ${label.title}
+                <span class="copy-link" title="Copy shareable link">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
+                    <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
+                </svg>
+                </span>
+            </h1>
+            <hr>${label.detail}
+            `;
+        detailArea.querySelector('.copy-link').addEventListener('click', (e) => {
+            e.stopPropagation();
+            navigator.clipboard.writeText(shareURL);
+
+            const icon = e.currentTarget;
+            icon.classList.add('copied');
+            icon.title = "Copied!";
+            setTimeout(() => {
+                icon.classList.remove('copied');
+                icon.title = "Copy shareable link";
+            }, 1500);
+        });
+        history.pushState({}, '', `?m=${menu.q}&i=${label.id}`);
+
+    } else {
+        detailArea.innerHTML = `<h1>${label.title}</h1><hr>${label.detail}`;
+    }
 
     // hide grid cards except the one we moved
     cardsContainer.classList.add('hidden');
@@ -462,25 +505,19 @@ function focusCard(cardEl, label) {
     contentView.style.overflow = 'hidden';
     contentView.insertBefore(cardsContainer, focusedLayout);
 
-    // show animation
-    // setTimeout(() => {
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
     backBtn.querySelector('span').textContent = 'Back';
-    // }, 60);
 }
 
 
-// Handle internal card-opening links like <a data-open-card="q:id">
+/// -- INTERNAL LINK HANDLER <a data-open-card="q:id"> --
 detailArea.addEventListener('click', function (e) {
     const link = e.target.closest('a[data-open-card]');
     if (!link) return;
-
     e.preventDefault();
-
     const ref = link.dataset.openCard.trim();
     const [menuCode, itemIdStr] = ref.split(':');
     const itemId = parseInt(itemIdStr);
-
     if (!menuCode || isNaN(itemId)) {
         console.warn('Invalid open-card reference:', ref);
         return;
@@ -507,52 +544,52 @@ detailArea.addEventListener('click', function (e) {
         const button = Array.from(document.querySelectorAll('.menu-button'))
             .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
         if (!button) return;
-
-        // Open that menu first
-        openMenu(targetMenu, button);
-
+        openMenu(targetMenu, button, { skipAnimation: true });
         // Wait for cards to render, then open the target card
-        setTimeout(() => {
-            const cardEl = [...document.querySelectorAll('.card')]
-                .find(c => c.dataset.id == itemId);
-            if (cardEl) focusCard(cardEl, targetLabel);
-        }, 800);
+        const cardEl = [...document.querySelectorAll('.card')]
+            .find(c => c.dataset.id == itemId);
+        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
     } else {
         // Already in same menu — just focus the card directly
         const cardEl = [...document.querySelectorAll('.card')]
             .find(c => c.dataset.id == itemId);
-        if (cardEl) focusCard(cardEl, targetLabel);
+        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
     }
 });
 
 
+/// -- BACK NAVIGATION HANDLER --
 function goBack() {
-    // if a card is focused, go back to grid view (only if multi-card menu)
-    if (cardsContainer.classList.contains('hidden')) {
+    const params = new URLSearchParams(location.search);
+    const menuCode = params.get('m');
+    const itemId = params.get('i');
+
+    if (itemId) {
+        // Currently viewing a card → go back to menu grid
+        history.pushState({}, '', `?m=${menuCode}`);
         cardsContainer.classList.remove('hidden');
         focusedLayout.style.display = 'none';
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;
         contentView.style.overflow = '';
         backBtn.querySelector('span').textContent = 'Menu';
-
-        // if the current menu was single-card, skip grid and go straight back to menu
-        if (contentView.dataset.singleCardMenu === 'true') {
-            contentView.classList.remove('visible');
-            backBtn.classList.remove('visible');
-            backBtn.setAttribute('aria-hidden', 'true');
-            contentView.style.overflow = '';
-        }
         return;
     }
 
-    // otherwise, go back to the main menu
-    contentView.classList.remove('visible');
-    backBtn.classList.remove('visible');
-    backBtn.setAttribute('aria-hidden', 'true');
-    contentView.style.overflow = '';
+    if (menuCode) {
+        // Currently in a menu → go back to main stage
+        history.pushState({}, '', location.pathname);
+        contentView.classList.remove('visible');
+        backBtn.classList.remove('visible');
+        backBtn.setAttribute('aria-hidden', 'true');
+        contentView.style.overflow = '';
+        return;
+    }
 }
 
 
+
+
+/// -- IMAGE PREVIEW HANDLER --
 document.addEventListener('click', function (e) {
     const img = e.target.closest('#detailArea img');
     if (img) {
@@ -574,6 +611,7 @@ document.addEventListener('click', function (e) {
 });
 
 
+/// -- STARS --
 function createStarfield(count = 120) {
     const container = document.querySelector('.starfield');
     const fragment = document.createDocumentFragment();
@@ -588,6 +626,7 @@ function createStarfield(count = 120) {
         star.style.height = `${size}px`;
         star.style.left = `${Math.random() * 100}%`;
         star.style.top = `${Math.random() * 100}%`;
+        star.dataset.parallax = Math.random() * (1 - 0.5) + 0.5; // Math.random() * (max - min) + min;
 
         // random twinkle offset
         star.style.animationDelay = `${Math.random() * 5}s`;
@@ -600,7 +639,6 @@ function createStarfield(count = 120) {
 
 
 backBtn.addEventListener('click', goBack);
-
 // close content when clicking outside (optional)
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 
@@ -609,6 +647,44 @@ createStarfield(150);
 createOrbitVisuals();
 createMenuButtons();
 
+
+
+// --- HISTORY STATE HANDLING ---
+window.addEventListener('popstate', (event) => {
+    const params = new URLSearchParams(location.search);
+    const menuCode = params.get('m');
+    const itemId = params.get('i');
+    if (!menuCode) {
+        // Go back to main menu
+        goBack();
+        contentView.classList.remove('visible');
+        backBtn.classList.remove('visible');
+        backBtn.setAttribute('aria-hidden', 'true');
+        return;
+    }
+
+    // Find the target menu
+    const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
+    if (!targetMenu) return;
+    const button = Array.from(document.querySelectorAll('.menu-button'))
+        .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+
+    if (!button) return;
+    openMenu(targetMenu, button, { skipAnimation: true });
+
+    // If card ID is present, open it
+    if (itemId) {
+        const targetLabel = targetMenu.labels.find(l => l.id == itemId);
+        if (targetLabel) {
+            setTimeout(() => {
+                const cardEl = [...document.querySelectorAll('.card')]
+                    .find(c => c.dataset.id == itemId);
+                if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+            }, 800);
+        }
+    }
+});
+
+
 /* Expose some helpers for quick editing in console */
 window.prototypeMenu = { menuItems, openMenu, showContentFor, goBack };
-
