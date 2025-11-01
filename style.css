@@ -307,7 +307,6 @@ body {
 }
 
 .content-header {
-    display: flex;
     gap: 12px;
     align-items: center
 }
@@ -318,8 +317,13 @@ body {
 }
 
 .content-sub {
-    opacity: .7
+    color: color-mix(in srgb, var(--accentl) 75%, transparent)
 }
+
+.content-header.hidden {
+    display: none !important;
+}
+
 
 /* Cards */
 .cards-grid {
@@ -760,10 +764,14 @@ a:active {
     }
 
     .panel-left {
-        align-self: start;
-        margin-bottom: 12px;
+        max-width: 100%;
+        margin: 12px;
         margin-top: -50px;
-        margin-left: -24px;
+        /*
+        align-self: start;
+        margin-left: 30px;
+        margin-bottom: 12px;
+        */
     }
 
     .panel-right {
@@ -792,33 +800,60 @@ a:active {
         max-height: 80%;
     }
 
-
     .card.focused {
-        transform: translateX(-6px);
-        width: 50%;
-        padding: 8px;
+    width: 100% !important;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 12px;
+}
 
-        .card-text strong {
-            font-size: 12px;
-        }
+.card.focused .thumb {
+    width: 20%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
+    margin: 0;
+    flex-shrink: 0;
+}
 
-        .card-text .excerpt {
-            font-size: 8px;
-        }
-    }
+.card.focused .card-text {
+    width: 50%;
+    padding-left: 12px;
+    background: transparent;
+    flex: 1;
+    text-align: left;
+    max-height: none;
+}
+
+.card.focused .card-text strong {
+    font-size: 20px;
+}
+
+.card.focused .card-text .excerpt {
+    font-size: 14px;
+    white-space: normal;
+}
+
 }
 
 /* Stars*/
 .starfield {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    z-index: 0;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.star-layer {
+  position: absolute;
+  inset: 0;
 }
 
 .star {
     position: absolute;
-    background: var(--accent);
+    background: var(--accent2);
     border-radius: 50%;
     opacity: 0.8;
     animation: twinkle 3s infinite ease-in-out;
@@ -851,7 +886,7 @@ a:active {
 }
 
 .splash-text[data-info="info"] {
-    color: color-mix(in srgb, var(--white) 50%, transparent);
+    color: color-mix(in srgb, var(--accentl) 75%, transparent);
     position: absolute;
     top: 80%;
     left: 50%;

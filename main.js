@@ -37,14 +37,22 @@ window.addEventListener('mousemove', function (e) {
     if (!isDragging) return;
     currentX = e.clientX - startX;
     currentY = e.clientY - startY;
+    menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
     menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
 
-    const starfield = document.querySelector('.starfield');
-    if (starfield) {
-        parallaxX = -currentX * parallaxFactor;
-        parallaxY = -currentY * parallaxFactor;
-        starfield.style.transform = `translate(${parallaxX}px, ${parallaxY}px)`;
-    }
+const starfield = document.querySelector('.starfield');
+if (starfield) {
+    const layers = starfield.querySelectorAll('.star-layer');
+    layers.forEach(layer => {
+        const depth = parseFloat(layer.dataset.depth);
+        const x = -currentX * parallaxFactor * depth;
+        const y = -currentY * parallaxFactor * depth;
+        layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
+        layer.style.transform = `translate(${x}px, ${y}px)`;
+    });
+}
+
+
 });
 
 window.addEventListener('mouseup', function (e) {
@@ -65,14 +73,22 @@ window.addEventListener('touchmove', function (e) {
     if (!isDragging || e.touches.length !== 1) return;
     currentX = e.touches[0].clientX - startX;
     currentY = e.touches[0].clientY - startY;
+    menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
     menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
 
-    const starfield = document.querySelector('.starfield');
-    if (starfield) {
-        parallaxX = -currentX * parallaxFactor;
-        parallaxY = -currentY * parallaxFactor;
-        starfield.style.transform = `translate(${parallaxX}px, ${parallaxY}px)`;
-    }
+const starfield = document.querySelector('.starfield');
+if (starfield) {
+    const layers = starfield.querySelectorAll('.star-layer');
+    layers.forEach(layer => {
+        const depth = parseFloat(layer.dataset.depth);
+        const x = -currentX * parallaxFactor * depth;
+        const y = -currentY * parallaxFactor * depth;
+        layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
+        layer.style.transform = `translate(${x}px, ${y}px)`;
+    });
+}
+
+
 });
 
 window.addEventListener('touchend', function (e) {
@@ -85,13 +101,21 @@ function snapCameraToCenter() {
     currentY = 0;
     menuStage.style.transition = 'transform 0.5s cubic-bezier(.2, .9, .2, 1)';
     menuStage.style.transform = 'translate(0, 0)';
+
     const starfield = document.querySelector('.starfield');
     if (starfield) {
-        starfield.style.transition = 'transform 0.8s ease-out';
-        starfield.style.transform = 'translate(0, 0)';
-        setTimeout(() => starfield.style.transition = '', 900);
+        const layers = starfield.querySelectorAll('.star-layer');
+        layers.forEach(layer => {
+            // Smoothly animate each layer back to origin
+            layer.style.transition = 'transform 0.8s ease-out';
+            layer.style.transform = 'translate(0, 0)';
+            setTimeout(() => {
+                layer.style.transition = '';
+            }, 900);
+        });
     }
 }
+
 
 
 /// -- ORBITS --
@@ -502,6 +526,7 @@ function focusCard(cardEl, label, menu = null) {
     // hide grid cards except the one we moved
     cardsContainer.classList.add('hidden');
     focusedLayout.style.display = 'flex';
+    document.querySelector('.content-header')?.classList.add('hidden');
     contentView.style.overflow = 'hidden';
     contentView.insertBefore(cardsContainer, focusedLayout);
 
@@ -569,6 +594,7 @@ function goBack() {
         history.pushState({}, '', `?m=${menuCode}`);
         cardsContainer.classList.remove('hidden');
         focusedLayout.style.display = 'none';
+        document.querySelector('.content-header')?.classList.remove('hidden');
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;
         contentView.style.overflow = '';
         backBtn.querySelector('span').textContent = 'Menu';
@@ -612,30 +638,30 @@ document.addEventListener('click', function (e) {
 
 
 /// -- STARS --
-function createStarfield(count = 120) {
+function createStarfield(layerCount = 4, starsPerLayer = 50) {
     const container = document.querySelector('.starfield');
-    const fragment = document.createDocumentFragment();
-
-    for (let i = 0; i < count; i++) {
-        const star = document.createElement('div');
-        star.classList.add('star');
-
-        // random size & position
-        const size = Math.random() * 3;
-        star.style.width = `${size}px`;
-        star.style.height = `${size}px`;
-        star.style.left = `${Math.random() * 100}%`;
-        star.style.top = `${Math.random() * 100}%`;
-        star.dataset.parallax = Math.random() * (1 - 0.5) + 0.5; // Math.random() * (max - min) + min;
-
-        // random twinkle offset
-        star.style.animationDelay = `${Math.random() * 5}s`;
-
-        fragment.appendChild(star);
+    for (let l = 0; l < layerCount; l++) {
+        const layer = document.createElement('div');
+        layer.classList.add('star-layer');
+        layer.dataset.depth = 0.5 + Math.random() * 1; // randomize layer parallax
+        for (let i = 0; i < starsPerLayer; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            
+            //random size
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 5}s`;
+            layer.appendChild(star);
+        }
+        container.appendChild(layer);
     }
-
-    container.appendChild(fragment);
 }
+
+
 
 
 backBtn.addEventListener('click', goBack);
@@ -643,7 +669,7 @@ backBtn.addEventListener('click', goBack);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 
 // init
-createStarfield(150);
+createStarfield();
 createOrbitVisuals();
 createMenuButtons();
 

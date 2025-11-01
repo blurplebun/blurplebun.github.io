@@ -2,8 +2,8 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'October 31th, 2025';
-const version = '0.0.2';
+const lastUpdated = 'November 1st, 2025';
+const version = '0.0.2.2';
 
 menuItems = [
     {
@@ -1213,6 +1213,7 @@ menuItems = [
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
                     <img src="images/Δ-c.png">
+                    <img src="images/Δ-c2.png">
                 </div>
                 `,
                 image: 'images/c/Δ-i.png'
