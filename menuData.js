@@ -2,8 +2,16 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'November 1st, 2025';
-const version = '0.0.2.2';
+const lastUpdated = 'November 2nd, 2025';
+const version = '0.0.2.3';
+
+/*
+facts = [
+    "Artibun was a faulty clone of Articat. She was meant to have the same color as Articat and a shorter tail, but due to genetic errors ended up being the Artibun we know.",
+    "Teksui and Chromasia are two major cities in Terra, Deltadim. Most of the characters depicted in Daily Art+ live in these cities.",
+    `Nansenz was originally called "The Nonsense Galaxy".`,
+]
+*/
 
 menuItems = [
     {
@@ -738,18 +746,19 @@ menuItems = [
                     <h2>Album Cover:</h2><br>
                     <img src="images/fv-i.png"><br>
                     <hr>
-                    <h2>Associated Flories:</h2>
+                    <h2>Associated Flories</h2>
+                    Click a florie to view its name
                     <div class="imgContainer">
-                    <img src="images/flories/fv-potto.png"><br>
-                    <img src="images/flories/fv-twinkle.png"><br>
-                    <img src="images/flories/fv-strawmon.png"><br>
-                    <img src="images/flories/fv-nocto.png"><br>
-                    <img src="images/flories/fv-furflow.png"><br>
-                    <img src="images/flories/fv-pana.png"><br>
-                    <img src="images/flories/fv-kosmaya.png"><br>
-                    <img src="images/flories/fv-pinkly.png"><br>
-                    <img src="images/flories/fv-mincha.png"><br>
-                    <img src="images/flories/fv-lan.png"><br>
+                    <img src="images/flories/fv-potto.png" data-caption="Potto" data-subcaption="Potted plant - Male"><br>
+                    <img src="images/flories/fv-twinkle.png" data-caption="Twinkle" data-subcaption="Star flower - Female"><br>
+                    <img src="images/flories/fv-strawmon.png" data-caption="Strawmon" data-subcaption="Glass-head tulip - Male"><br>
+                    <img src="images/flories/fv-nocto.png" data-caption="Nocto" data-subcaption="Spirit tulip - Genderless"><br>
+                    <img src="images/flories/fv-furflow.png" data-caption="Furflow" data-subcaption="Catdelion - Female"><br>
+                    <img src="images/flories/fv-pana.png" data-caption="Pana" data-subcaption="Pancake tulip - Female"><br>
+                    <img src="images/flories/fv-kosmaya.png" data-caption="Kosmaya" data-subcaption="Exotic flower - Female"><br>
+                    <img src="images/flories/fv-pinkly.png" data-caption="Pinkly" data-subcaption="Tulip - Female"><br>
+                    <img src="images/flories/fv-mincha.png" data-caption="Mincha" data-subcaption="Jasmine - Female"><br>
+                    <img src="images/flories/fv-lan.png" data-caption="Lan" data-subcaption="Lemon - Male"><br>
                     </div>
                     `,
                 image: 'images/fv-i.png'
@@ -767,39 +776,40 @@ menuItems = [
                     <h2>Album Cover:</h2><br>
                     <img src="images/fvd-i.png"><br>
                     <hr>
-                    <h2>Associated Flories:</h2>
+                    <h2>Associated Flories</h2>
+                    Click a florie to view its name
                     <div class="imgContainer">
-                    <img src="images/flories/fvd-starple.png" data-caption="Starple"><br>
-                    <img src="images/flories/fvd-chrora.png" data-caption="Chrora"><br>
-                    <img src="images/flories/fvd-orply.png" data-caption="Orply"><br>
-                    <img src="images/flories/fvd-tiram.png" data-caption="Tiram"><br>
-                    <img src="images/flories/fvd-nimibi.png" data-caption="Nimibi"><br>
-                    <img src="images/flories/fvd-slump.png" data-caption="Slump"><br>
-                    <img src="images/flories/fvd-pio.png"><br>
-                    <img src="images/flories/fvd-yana.png"><br>
-                    <img src="images/flories/fvd-looni.png"><br>
-                    <img src="images/flories/fvd-chocopop.png"><br>
-                    <img src="images/flories/fvd-staz.png"><br>
-                    <img src="images/flories/fvd-delly.png"><br>
-                    <img src="images/flories/fvd-sprinkly.png"><br>
-                    <img src="images/flories/fvd-ecno.png"><br>
-                    <img src="images/flories/fvd-disaton.png"><br>
-                    <img src="images/flories/fvd-protoberries.png"><br>
-                    <img src="images/flories/fvd-pipix.png"><br>
-                    <img src="images/flories/fvd-pico.png"><br>
-                    <img src="images/flories/fvd-starlila.png"><br>
-                    <img src="images/flories/fvd-wina.png"><br>
-                    <img src="images/flories/fvd-fret.png"><br>
-                    <img src="images/flories/fvd-azka.png"><br>
-                    <img src="images/flories/fvd-cherro.png"><br>
-                    <img src="images/flories/fvd-floorion.png"><br>
-                    <img src="images/flories/fvd-stell-a.png"><br>
-                    <img src="images/flories/fvd-datum.png"><br>
-                    <img src="images/flories/fvd-poloniloo.png"><br>
-                    <img src="images/flories/fvd-grayscale.png"><br>
-                    <img src="images/flories/fvd-erwith.png"><br>
-                    <img src="images/flories/fvd-fyzer.png"><br>
-                    <img src="images/flories/fvd-kloroforo.png"><br>
+                    <img src="images/flories/fvd-starple.png" data-caption="Starple" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/fvd-chrora.png" data-caption="Chrora" data-subcaption="Exotic flower - Non-Binary"><br>
+                    <img src="images/flories/fvd-orply.png" data-caption="Orply" data-subcaption="Tulip - Female"><br>
+                    <img src="images/flories/fvd-tiram.png" data-caption="Tiram" data-subcaption="Mushroom - Female"><br>
+                    <img src="images/flories/fvd-nimibi.png" data-caption="Nimibi" data-subcaption="Cloudy flower - Female"><br>
+                    <img src="images/flories/fvd-slump.png" data-caption="Slump" data-subcaption="Rock with kelps - Male"><br>
+                    <img src="images/flories/fvd-pio.png" data-caption="Pio" data-subcaption="Berry - Male"><br>
+                    <img src="images/flories/fvd-yana.png" data-caption="Yana" data-subcaption="Tulip - Female"><br>
+                    <img src="images/flories/fvd-looni.png" data-caption="Looni" data-subcaption="Fruit - Female"><br>
+                    <img src="images/flories/fvd-chocopop.png" data-caption="Chocopop" data-subcaption="Chocoflower - Male"><br>
+                    <img src="images/flories/fvd-staz.png" data-caption="Staz" data-subcaption="Pistachio - Male"><br>
+                    <img src="images/flories/fvd-delly.png" data-caption="Delly" data-subcaption="Catdelion - Male"><br>
+                    <img src="images/flories/fvd-sprinkly.png" data-caption="Sprinkly" data-subcaption="Potted cakeflower - Male"><br>
+                    <img src="images/flories/fvd-ecno.png" data-caption="Ecno" data-subcaption="Multi-flower"><br>
+                    <img src="images/flories/fvd-disaton.png" data-caption="Disaton" data-subcaption="Cottonbun - Female"><br>
+                    <img src="images/flories/fvd-protoberries.png" data-caption="Protoberries" data-subcaption="Berries"><br>
+                    <img src="images/flories/fvd-pipix.png" data-caption="Pipix" data-subcaption="Pixel flower - Female"><br>
+                    <img src="images/flories/fvd-pico.png" data-caption="Pico" data-subcaption="Robot flower - Male"><br>
+                    <img src="images/flories/fvd-starlila.png" data-caption="Starlila" data-subcaption="Transgender flower - Female"><br>
+                    <img src="images/flories/fvd-wina.png" data-caption="Wina" data-subcaption="Charred flower - Female"><br>
+                    <img src="images/flories/fvd-fret.png" data-caption="Fret" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/fvd-azka.png" data-caption="Azka" data-subcaption="Angel - Genderless"><br>
+                    <img src="images/flories/fvd-cherro.png" data-caption="Cherro" data-subcaption="Tomatoes"><br>
+                    <img src="images/flories/fvd-floorion.png" data-caption="Floorion" data-subcaption="Potted robot flower - Genderless"><br>
+                    <img src="images/flories/fvd-stell-a.png" data-caption="Stell-A" data-subcaption="Black hole flower - Genderless"><br>
+                    <img src="images/flories/fvd-datum.png" data-caption="Datum" data-subcaption="Digital flower - Genderless"><br>
+                    <img src="images/flories/fvd-poloniloo.png" data-caption="Poloniloo" data-subcaption="Polonium flower - Male"><br>
+                    <img src="images/flories/fvd-grayscale.png" data-caption="Grayscale" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/fvd-erwith.png" data-caption="Erwith" data-subcaption="Flower - Male"><br>
+                    <img src="images/flories/fvd-fyzer.png" data-caption="Fyzer" data-subcaption="Florifyber - Genderless"><br>
+                    <img src="images/flories/fvd-kloroforo.png" data-caption="Kloroforo" data-subcaption="Robot flower - Male"><br>
                     </div>
                     `,
                 image: 'images/fvd-i.png'
@@ -817,56 +827,57 @@ menuItems = [
                     <h2>Album Cover:</h2><br>
                     <img src="images/fve-i.png"><br>
                     <hr>
-                    <h2>Associated Flories:</h2>
+                    <h2>Associated Flories</h2>
+                    Click a florie to view its name
                     <div class="imgContainer">
-                    <img src="images/flories/fve-solaris.png"><br>
-                    <img src="images/flories/fve-trix.png"><br>
-                    <img src="images/flories/fve-lux.png"><br>
-                    <img src="images/flories/fve-glitter.png"><br>
-                    <img src="images/flories/fve-fomfz.png"><br>
-                    <img src="images/flories/fve-bion.png"><br>
-                    <img src="images/flories/fve-zoey.png"><br>
-                    <img src="images/flories/fve-hera.png"><br>
-                    <img src="images/flories/fve-isla.png"><br>
-                    <img src="images/flories/fve-azira.png"><br>
-                    <img src="images/flories/fve-misty.png"><br>
-                    <img src="images/flories/fve-nya.png"><br>
-                    <img src="images/flories/fve-atto.png"><br>
-                    <img src="images/flories/fve-clara.png"><br>
-                    <img src="images/flories/fve-lyra.png"><br>
-                    <img src="images/flories/fve-strawnilla.png"><br>
-                    <img src="images/flories/fve-poppers.png"><br>
-                    <img src="images/flories/fve-aurelia.png"><br>
-                    <img src="images/flories/fve-dysis.png"><br>
-                    <img src="images/flories/fve-butter.png"><br>
-                    <img src="images/flories/fve-bell.png"><br>
-                    <img src="images/flories/fve-nila.png"><br>
-                    <img src="images/flories/fve-zest.png"><br>
-                    <img src="images/flories/fve-corrode.png"><br>
-                    <img src="images/flories/fve-amalgamapot.png"><br>
-                    <img src="images/flories/fve-posie.png"><br>
-                    <img src="images/flories/fve-nonsense.png"><br>
-                    <img src="images/flories/fve-torq.png"><br>
-                    <img src="images/flories/fve-persen.png"><br>
-                    <img src="images/flories/fve-terentia.png"><br>
-                    <img src="images/flories/fve-lumina.png"><br>
-                    <img src="images/flories/fve-triplequestionmark.png"><br>
-                    <img src="images/flories/fve-upsidedowntriplequestionmark.png"><br>
-                    <img src="images/flories/fve-ghoargh.png"><br>
-                    <img src="images/flories/fve-hyd-124.png"><br>
-                    <img src="images/flories/fve-thorn.png"><br>
-                    <img src="images/flories/fve-reva.png"><br>
-                    <img src="images/flories/fve-ash.png"><br>
-                    <img src="images/flories/fve-flailer.png"><br>
-                    <img src="images/flories/fve-mang.png"><br>
-                    <img src="images/flories/fve-zappie.png"><br>
-                    <img src="images/flories/fve-kai.png"><br>
-                    <img src="images/flories/fve-console.png"><br>
-                    <img src="images/flories/fve-xi.png"><br>
-                    <img src="images/flories/fve-floriecookies.png"><br>
-                    <img src="images/flories/fve-nini.png"><br>
-                    <img src="images/flories/fve-xyxiv.png"><br>
-                    <img src="images/flories/fve-nau.png"><br>
+                    <img src="images/flories/fve-solaris.png" data-caption="Solaris" data-subcaption="Fire flower - Female"><br>
+                    <img src="images/flories/fve-trix.png" data-caption="Trix" data-subcaption="Dandelion - Female"><br>
+                    <img src="images/flories/fve-lux.png" data-caption="Lux" data-subcaption="Exotic flower - Male"><br>
+                    <img src="images/flories/fve-glitter.png" data-caption="Glitter" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/fve-fomfz.png" data-caption="Fomfz" data-subcaption="Tree - Female"><br>
+                    <img src="images/flories/fve-bion.png" data-caption="Bion" data-subcaption="Spirit flower - Male"><br>
+                    <img src="images/flories/fve-zoey.png" data-caption="Zoey" data-subcaption="Mushroom - Female"><br>
+                    <img src="images/flories/fve-hera.png" data-caption="Hera" data-subcaption="Goddess of time - Female"><br>
+                    <img src="images/flories/fve-isla.png" data-caption="Isla" data-subcaption="Palm tree - Female"><br>
+                    <img src="images/flories/fve-azira.png" data-caption="Azira" data-subcaption="Blueberry - Male"><br>
+                    <img src="images/flories/fve-misty.png" data-caption="Misty" data-subcaption="Catdelion - Female"><br>
+                    <img src="images/flories/fve-nya.png" data-caption="Nya" data-subcaption="Catdelion - Female"><br>
+                    <img src="images/flories/fve-atto.png" data-caption="Atto" data-subcaption="Catdelion - Male"><br>
+                    <img src="images/flories/fve-clara.png" data-caption="Clara" data-subcaption="Cottonbun - Female"><br>
+                    <img src="images/flories/fve-lyra.png" data-caption="Lyra" data-subcaption="Cottonbun - Female"><br>
+                    <img src="images/flories/fve-strawnilla.png" data-caption="Strawnilla" data-subcaption="Poptart berry - Male"><br>
+                    <img src="images/flories/fve-poppers.png" data-caption="Poppers" data-subcaption="Berries"><br>
+                    <img src="images/flories/fve-aurelia.png" data-caption="Aurelia" data-subcaption="Zinnia - Female"><br>
+                    <img src="images/flories/fve-dysis.png" data-caption="Dysis" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/fve-butter.png" data-caption="Butter" data-subcaption="Tulip - Female"><br>
+                    <img src="images/flories/fve-bell.png" data-caption="Bell" data-subcaption="Mistletoe - Female"><br>
+                    <img src="images/flories/fve-nila.png" data-caption="Nila" data-subcaption="Tulip - Female"><br>
+                    <img src="images/flories/fve-zest.png" data-caption="Zest" data-subcaption="Lemon - Male"><br>
+                    <img src="images/flories/fve-corrode.png" data-caption="Corrode" data-subcaption="Charred tulip - Male"><br>
+                    <img src="images/flories/fve-amalgamapot.png" data-caption="Amalgamapot" data-subcaption="Amalgamation - Multi-florie"><br>
+                    <img src="images/flories/fve-posie.png" data-caption="Posie" data-subcaption="Multi-flower"><br>
+                    <img src="images/flories/fve-nonsense.png" data-caption="Nonsense (Florie)" data-subcaption="Shapeshifter - Non-binary"><br>
+                    <img src="images/flories/fve-torq.png" data-caption="Torq" data-subcaption="Mechanical flower - Male"><br>
+                    <img src="images/flories/fve-persen.png" data-caption="Persen" data-subcaption="Exotic flower - Genderless"><br>
+                    <img src="images/flories/fve-terentia.png" data-caption="Terentia" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/fve-lumina.png" data-caption="Lumina" data-subcaption="Aquatic mushroom - Non-binary"><br>
+                    <img src="images/flories/fve-triplequestionmark.png" data-caption="???" data-subcaption="Unknown florie"><br>
+                    <img src="images/flories/fve-upsidedowntriplequestionmark.png" data-caption="¿¿¿" data-subcaption="Unknown Florie"><br>
+                    <img src="images/flories/fve-ghoargh.png" data-caption="Ghoargh" data-subcaption="Prehistoric plant - Male"><br>
+                    <img src="images/flories/fve-hyd-124.png" data-caption="HYD-124" data-subcaption="Black-hole flower - Male"><br>
+                    <img src="images/flories/fve-thorn.png" data-caption="Thorn" data-subcaption="Wilted rose - Male"><br>
+                    <img src="images/flories/fve-reva.png" data-caption="Reva" data-subcaption="Cactus - Female"><br>
+                    <img src="images/flories/fve-ash.png" data-caption="Ash" data-subcaption="Burning flower - Non-binary"><br>
+                    <img src="images/flories/fve-flailer.png" data-caption="Flailer" data-subcaption="Femtanyl bootleg florie - Female"><br>
+                    <img src="images/flories/fve-mang.png" data-caption="Mang" data-subcaption="Potted mango tree - Male"><br>
+                    <img src="images/flories/fve-zappie.png" data-caption="Zappie" data-subcaption="Bee tulip - Male"><br>
+                    <img src="images/flories/fve-kai.png" data-caption="Kai" data-subcaption="Clouds - Non-binary"><br>
+                    <img src="images/flories/fve-console.png" data-caption="Console" data-subcaption="Robot bush - Genderless"><br>
+                    <img src="images/flories/fve-xi.png" data-caption="Xi" data-subcaption="Angel - Genderless"><br>
+                    <img src="images/flories/fve-floriecookies.png" data-caption="Floriecookies" data-subcaption="Cookies"><br>
+                    <img src="images/flories/fve-nini.png" data-caption="Nini" data-subcaption="Mystical lemon - Female"><br>
+                    <img src="images/flories/fve-xyxiv.png" data-caption="Xyxiv" data-subcaption="Angel - Genderless"><br>
+                    <img src="images/flories/fve-nau.png" data-caption="Nau" data-subcaption="Flower - Female"><br>
                     </div>
                     `,
                 image: 'images/fve-i.png'
@@ -1018,7 +1029,7 @@ menuItems = [
             },
             {
                 id: 8,
-                title: '< placeholder >',
+                title: '&lt;placeholder&gt;',
                 excerpt: '',
                 detail:
                     `Species: Cat<br>
@@ -1259,16 +1270,36 @@ menuItems = [
 `,
                 image: 'images/temp3.png'
             },
+            /*
             {
                 id: 2,
-                title: `Website Info:<br>`,
+                title: `
+                    <h2 style='margin-bottom: -12px'>Did you know:</h2><br>
+                    <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent)'>
+                        ${facts[Math.floor(Math.random() * facts.length)]}
+                    </p>
+                    `,
+                excerpt: ``,
+                unclickable: true,
+                detail:
+                    ``,
+                image: ''
+            },
+            */
+            {
+                id: 3,
+                title: `
+                    <h2 style='margin-bottom: -12px'>Website Info:</h2><br>
+                    <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent); font-size: 11px'>
+                        Updated: ${lastUpdated}<br>
+                        Version: ${version}<br>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCardsCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalMenusCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalSplashCounter"></div>
+                    </p>
+                    `,
                 excerpt: `
-                Updated: ${lastUpdated}<br>
-                Version: ${version}<br>
                 <br>
-                <div id="totalCardsCounter"></div>
-                <div id="totalMenusCounter"></div>
-                <div id="totalSplashCounter"></div>
                 `,
                 unclickable: true,
                 detail:
@@ -1847,6 +1878,10 @@ splashLines = [
     `<div style="font-size:20px; transform: scaleY(0.5)">squishe</div>`,
     "aaaaaaaaaaaaaaaaaaaaaa",
     "is not crash-proof. please be gentle.",
+    "This is worth noting!",
+    "This is worth nothing!",
+    "Starts with A and we all love it!",
+    "I like triangles!",
 ];
 
 totalSplash = splashLines.length;

@@ -297,7 +297,7 @@ window.addEventListener('load', () => {
             if (targetLabel) {
                 const cardEl = [...document.querySelectorAll('.card')]
                     .find(c => c.dataset.id == itemId);
-                if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+                if (cardEl && !(cardEl.dataset.link || cardEl.dataset.noclick)) focusCard(cardEl, targetLabel, targetMenu);
             }
         }
     }, 500);
@@ -628,7 +628,25 @@ document.addEventListener('click', function (e) {
         }
 
         // insert enlarged image
-        overlay.innerHTML = `<img src="${img.src}" alt="preview">`;
+        caption = img.dataset.caption ? `<h1 style="margin-top: 12px; margin-bottom: -10px;">${img.dataset.caption}</h1>` : '';
+        if (caption && img.dataset.subcaption) {
+            subcaption = `<p style="color: color-mix(in srgb, var(--accentl) 75%, transparent)">${img.dataset.subcaption}</p>`
+            overlay.innerHTML =
+                `
+                <img src="${img.src}" data-hasCaption=true alt="preview">
+                ${caption}
+                ${subcaption}
+                `;
+        } else if (caption) {
+            overlay.innerHTML =
+                `
+                <img src="${img.src}" data-hasCaption=true alt="preview">
+                ${caption}
+                `;
+        } else {
+            overlay.innerHTML = `<img src="${img.src}" alt="preview">`
+        }
+        
         overlay.classList.add('visible');
 
         // close on click

@@ -711,6 +711,7 @@ a:active {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     z-index: 9999;
     opacity: 0;
     pointer-events: none;
@@ -729,6 +730,11 @@ a:active {
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
     cursor: zoom-out;
     transition: transform 0.3s ease;
+}
+
+.img-preview-overlay img[data-hasCaption="true"] {
+    max-width: 80%;
+    max-height: 80%;    
 }
 
 .img-preview-overlay img:hover {
