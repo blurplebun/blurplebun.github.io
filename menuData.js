@@ -777,57 +777,57 @@ menuItems = [
                     <h2>Uncategorized Flories</h2>
                     Click a florie to view its name
                     <div class="imgContainer">
-                    <img src="images/flories/uncat/zep.png" data-caption="Zep" data-subcaption="Alien flower - Non-binary"><br>
-                    <img src="images/flories/uncat/mintscreen.png" data-caption="Mintscreen" data-subcaption="Robot florie - Male"><br>
-                    <img src="images/flories/uncat/kau.png" data-caption="Kau" data-subcaption="Cauliflower - Non-binary"><br>
-                    <img src="images/flories/uncat/sweetbreaker.png" data-caption="Sweetbreaker" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/uncat/cuby.png" data-caption="Cuby" data-subcaption="Slimy blueberry - Male"><br>
-                    <img src="images/flories/uncat/blizzi.png" data-caption="Blizzi" data-subcaption="Ice flower - Non-binary"><br>
-                    <img src="images/flories/uncat/plugika.png" data-caption="Plugika" data-subcaption="Electric plug florie - Female"><br>
-                    <img src="images/flories/uncat/tessa.png" data-caption="Tessa" data-subcaption="Tulip - Genderless"><br>
-                    <img src="images/flories/uncat/gem.png" data-caption="Gem" data-subcaption="Gem - Female"><br>
-                    <img src="images/flories/uncat/anvre.png" data-caption="Anvre" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/uncat/latrice.png" data-caption="Latrice" data-subcaption="Bellflower - Male"><br>
-                    <img src="images/flories/uncat/cactunandpipin.png" data-caption="Cactun & Pipin" data-subcaption="Cactus - Male and Female respectively"><br>
-                    <img src="images/flories/uncat/sa.png" data-caption="Sa" data-subcaption="Sawblade Flower - Male"><br>
-                    <img src="images/flories/uncat/chloe.png" data-caption="Chloe" data-subcaption="Four-leaf clover - Female"><br>
-                    <img src="images/flories/uncat/teknia.png" data-caption="Teknia" data-subcaption="Robot flower - Female"><br>
-                    <img src="images/flories/uncat/artiflow.png" data-caption="Artiflow" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/artidell.png" data-caption="Artidell" data-subcaption="Catdelion - Male"><br>
-                    <img src="images/flories/uncat/kappa.png" data-caption="Kappa" data-subcaption="Sunflower - Male"><br>
-                    <img src="images/flories/uncat/sunflette.png" data-caption="Sunflette" data-subcaption="Sunflower - Female"><br>
-                    <img src="images/flories/uncat/strawrberry.png" data-caption="Strawrberry" data-subcaption="Strawberrikitty - Male"><br>
-                    <img src="images/flories/uncat/lyte.png" data-caption="Lyte" data-subcaption="Robot berry - Female"><br>
-                    <img src="images/flories/uncat/fyra.png" data-caption="Fyra" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/therra.png" data-caption="Therra" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/djmuseberry.png" data-caption="DJ Museberry" data-subcaption="Berry - Male"><br>
-                    <img src="images/flories/uncat/lineko.png" data-caption="Lineko" data-subcaption="Cat lemon - Male"><br>
-                    <img src="images/flories/uncat/pompy.png" data-caption="Pompy" data-subcaption="Allium - Female"><br>
-                    <img src="images/flories/uncat/beep.png" data-caption="Beep" data-subcaption="Tulip - Genderless"><br>
-                    <img src="images/flories/uncat/sweetree.png" data-caption="Sweetree" data-subcaption="Candy tree - Non-binary"><br>
-                    <img src="images/flories/uncat/eco.png" data-caption="Eco" data-subcaption="Cloudy cottonflower - Male"><br>
-                    <img src="images/flories/uncat/cryoflow.png" data-caption="Cryoflow" data-subcaption="Frozen flower - Male"><br>
-                    <img src="images/flories/uncat/delia.png" data-caption="Delia" data-subcaption="Dandelion - Female"><br>
-                    <img src="images/flories/uncat/spinny.png" data-caption="Spinny" data-subcaption="Berry with wind turbine - Male"><br>
-                    <img src="images/flories/uncat/aero.png" data-caption="Aero" data-subcaption="Baloon tulip - Genderless"><br>
-                    <img src="images/flories/uncat/enila.png" data-caption="Enila" data-subcaption="Fruit with broken stem - Female"><br>
-                    <img src="images/flories/uncat/tikao.png" data-caption="Tikao" data-subcaption="Megaphone-head florie - Male"><br>
-                    <img src="images/flories/uncat/flaany.png" data-caption="Flaany" data-subcaption="Upside-down tulip - Female"><br>
-                    <img src="images/flories/uncat/b-na.png" data-caption="B-na" data-subcaption="Tulip - Non-binary"><br>
-                    <img src="images/flories/uncat/kraka.png" data-caption="Kraka" data-subcaption="Cactus monster - Male"><br>
-                    <img src="images/flories/uncat/azerium.png" data-caption="Azerium" data-subcaption="Robot tulip - Non-binary"><br>
-                    <img src="images/flories/uncat/vo.png" data-caption="Vo" data-subcaption="Ghost tulip - Genderless"><br>
-                    <img src="images/flories/uncat/smog.png" data-caption="Smog" data-subcaption="Pollutant - Genderless"><br>
-                    <img src="images/flories/uncat/niane.png" data-caption="Niane" data-subcaption="Tulip - Female"><br>
-                    <img src="images/flories/uncat/neru.png" data-caption="Neru" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/uncat/viona.png" data-caption="Viona" data-subcaption="Venus flytrap - Female"><br>
-                    <img src="images/flories/uncat/phyana.png" data-caption="Phyana" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/nell.png" data-caption="Nell" data-subcaption="Popcorn?? - Male"><br>
-                    <img src="images/flories/uncat/voni.png" data-caption="Voni" data-subcaption="Void tulip - Non-binary"><br>
-                    <img src="images/flories/uncat/mizudria.png" data-caption="Mizudria" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/suneea.png" data-caption="Suneea" data-subcaption="Sunflower - Female"><br>
-                    <img src="images/flories/uncat/acidzer.png" data-caption="Acidzer" data-subcaption="Acid tulip - Genderless"><br>
-                    <img src="images/flories/uncat/mia.png" data-caption="Mia" data-subcaption="Potted plant - Female"><br>
+                    <img src="images/flories/uncat/Zep.png" data-caption="Zep" data-subcaption="Alien flower - Non-binary"><br>
+                    <img src="images/flories/uncat/Mintscreen.png" data-caption="Mintscreen" data-subcaption="Robot florie - Male"><br>
+                    <img src="images/flories/uncat/Kau.png" data-caption="Kau" data-subcaption="Cauliflower - Non-binary"><br>
+                    <img src="images/flories/uncat/Sweetbreaker.png" data-caption="Sweetbreaker" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/uncat/Cuby.png" data-caption="Cuby" data-subcaption="Slimy blueberry - Male"><br>
+                    <img src="images/flories/uncat/Blizzi.png" data-caption="Blizzi" data-subcaption="Ice flower - Non-binary"><br>
+                    <img src="images/flories/uncat/Plugika.png" data-caption="Plugika" data-subcaption="Electric plug florie - Female"><br>
+                    <img src="images/flories/uncat/Tessa.png" data-caption="Tessa" data-subcaption="Tulip - Genderless"><br>
+                    <img src="images/flories/uncat/Gem.png" data-caption="Gem" data-subcaption="Gem - Female"><br>
+                    <img src="images/flories/uncat/Anvre.png" data-caption="Anvre" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/uncat/Latrice.png" data-caption="Latrice" data-subcaption="Bellflower - Male"><br>
+                    <img src="images/flories/uncat/CactunAndPipin.png" data-caption="Cactun & Pipin" data-subcaption="Cactus - Male and Female respectively"><br>
+                    <img src="images/flories/uncat/Sa.png" data-caption="Sa" data-subcaption="Sawblade Flower - Male"><br>
+                    <img src="images/flories/uncat/Chloe.png" data-caption="Chloe" data-subcaption="Four-leaf clover - Female"><br>
+                    <img src="images/flories/uncat/Teknia.png" data-caption="Teknia" data-subcaption="Robot flower - Female"><br>
+                    <img src="images/flories/uncat/Artiflow.png" data-caption="Artiflow" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/Artidell.png" data-caption="Artidell" data-subcaption="Catdelion - Male"><br>
+                    <img src="images/flories/uncat/Kappa.png" data-caption="Kappa" data-subcaption="Sunflower - Male"><br>
+                    <img src="images/flories/uncat/Sunflette.png" data-caption="Sunflette" data-subcaption="Sunflower - Female"><br>
+                    <img src="images/flories/uncat/Strawrberry.png" data-caption="Strawrberry" data-subcaption="Strawberrikitty - Male"><br>
+                    <img src="images/flories/uncat/Lyte.png" data-caption="Lyte" data-subcaption="Robot berry - Female"><br>
+                    <img src="images/flories/uncat/Fyra.png" data-caption="Fyra" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/Therra.png" data-caption="Therra" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/DJMuseberry.png" data-caption="DJ Museberry" data-subcaption="Berry - Male"><br>
+                    <img src="images/flories/uncat/Lineko.png" data-caption="Lineko" data-subcaption="Cat lemon - Male"><br>
+                    <img src="images/flories/uncat/Pompy.png" data-caption="Pompy" data-subcaption="Allium - Female"><br>
+                    <img src="images/flories/uncat/Beep.png" data-caption="Beep" data-subcaption="Tulip - Genderless"><br>
+                    <img src="images/flories/uncat/Sweetree.png" data-caption="Sweetree" data-subcaption="Candy tree - Non-binary"><br>
+                    <img src="images/flories/uncat/Eco.png" data-caption="Eco" data-subcaption="Cloudy cottonflower - Male"><br>
+                    <img src="images/flories/uncat/Cryoflow.png" data-caption="Cryoflow" data-subcaption="Frozen flower - Male"><br>
+                    <img src="images/flories/uncat/Delia.png" data-caption="Delia" data-subcaption="Dandelion - Female"><br>
+                    <img src="images/flories/uncat/Spinny.png" data-caption="Spinny" data-subcaption="Berry with wind turbine - Male"><br>
+                    <img src="images/flories/uncat/Aero.png" data-caption="Aero" data-subcaption="Baloon tulip - Genderless"><br>
+                    <img src="images/flories/uncat/Enila.png" data-caption="Enila" data-subcaption="Fruit with broken stem - Female"><br>
+                    <img src="images/flories/uncat/Tikao.png" data-caption="Tikao" data-subcaption="Megaphone-head florie - Male"><br>
+                    <img src="images/flories/uncat/Flaany.png" data-caption="Flaany" data-subcaption="Upside-down tulip - Female"><br>
+                    <img src="images/flories/uncat/B-na.png" data-caption="B-na" data-subcaption="Tulip - Non-binary"><br>
+                    <img src="images/flories/uncat/Kraka.png" data-caption="Kraka" data-subcaption="Cactus monster - Male"><br>
+                    <img src="images/flories/uncat/Azerium.png" data-caption="Azerium" data-subcaption="Robot tulip - Non-binary"><br>
+                    <img src="images/flories/uncat/Vo.png" data-caption="Vo" data-subcaption="Ghost tulip - Genderless"><br>
+                    <img src="images/flories/uncat/Smog.png" data-caption="Smog" data-subcaption="Pollutant - Genderless"><br>
+                    <img src="images/flories/uncat/Niane.png" data-caption="Niane" data-subcaption="Tulip - Female"><br>
+                    <img src="images/flories/uncat/Neru.png" data-caption="Neru" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/uncat/Viona.png" data-caption="Viona" data-subcaption="Venus flytrap - Female"><br>
+                    <img src="images/flories/uncat/Phyana.png" data-caption="Phyana" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/Nell.png" data-caption="Nell" data-subcaption="Popcorn?? - Male"><br>
+                    <img src="images/flories/uncat/Voni.png" data-caption="Voni" data-subcaption="Void tulip - Non-binary"><br>
+                    <img src="images/flories/uncat/Mizudria.png" data-caption="Mizudria" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/Suneea.png" data-caption="Suneea" data-subcaption="Sunflower - Female"><br>
+                    <img src="images/flories/uncat/Acidzer.png" data-caption="Acidzer" data-subcaption="Acid tulip - Genderless"><br>
+                    <img src="images/flories/uncat/Mia.png" data-caption="Mia" data-subcaption="Potted plant - Female"><br>
                     </div>
                     `,
                 image: 'images/flories/strawlineko-pfp.png'
