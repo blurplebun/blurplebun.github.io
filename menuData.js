@@ -2,8 +2,8 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'November 2nd, 2025';
-const version = '0.0.2.3';
+const lastUpdated = 'November 3rd, 2025';
+const version = '0.0.2.8';
 
 /*
 facts = [
@@ -25,6 +25,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Deltadim',
                 detail:
@@ -35,6 +36,7 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'artibun',
                 title: 'Artibun',
                 excerpt: '',
                 detail:
@@ -63,6 +65,7 @@ menuItems = [
             },
             {
                 id: 3,
+                cardId: 'articat',
                 title: 'Articat',
                 excerpt: '',
                 detail:
@@ -88,6 +91,7 @@ menuItems = [
             },
             {
                 id: 4,
+                cardId: 'artifox',
                 title: 'Artifox',
                 excerpt: '',
                 detail:
@@ -111,6 +115,7 @@ menuItems = [
             },
             {
                 id: 5,
+                cardId: 'artifish',
                 title: 'Artifish',
                 excerpt: '',
                 detail:
@@ -134,6 +139,7 @@ menuItems = [
             },
             {
                 id: 6,
+                cardId: 'artigoat',
                 title: 'Artigoat',
                 excerpt: '',
                 detail:
@@ -157,6 +163,7 @@ menuItems = [
             },
             {
                 id: 7,
+                cardId: 'artilope',
                 title: 'Artilope',
                 excerpt: '',
                 detail:
@@ -180,6 +187,7 @@ menuItems = [
             },
             {
                 id: 8,
+                cardId: 'artipup',
                 title: 'Artipup',
                 excerpt: '',
                 detail:
@@ -203,6 +211,7 @@ menuItems = [
             },
             {
                 id: 9,
+                cardId: 'artineko',
                 title: 'Artineko',
                 excerpt: '',
                 detail:
@@ -226,6 +235,7 @@ menuItems = [
             },
             {
                 id: 10,
+                cardId: 'skitty',
                 title: 'Singularikitty',
                 excerpt: '',
                 detail:
@@ -253,6 +263,7 @@ menuItems = [
             },
             {
                 id: 11,
+                cardId: 'gamma',
                 title: 'Gamma',
                 excerpt: '',
                 detail:
@@ -273,6 +284,7 @@ menuItems = [
             },
             {
                 id: 12,
+                cardId: 'micro',
                 title: 'Micro',
                 excerpt: '',
                 detail:
@@ -294,6 +306,7 @@ menuItems = [
             },
             {
                 id: 13,
+                cardId: 'caramella',
                 title: 'Caramella',
                 excerpt: '',
                 detail:
@@ -321,6 +334,7 @@ menuItems = [
             },
             {
                 id: 14,
+                cardId: 'azurey',
                 title: 'Azurey',
                 excerpt: '',
                 detail:
@@ -343,6 +357,7 @@ menuItems = [
             },
             {
                 id: 15,
+                cardId: 'shirley',
                 title: 'Shirley',
                 excerpt: '',
                 detail:
@@ -368,6 +383,7 @@ menuItems = [
             },
             {
                 id: 16,
+                cardId: 'rose',
                 title: 'Rose',
                 excerpt: '',
                 detail:
@@ -390,6 +406,7 @@ menuItems = [
             },
             {
                 id: 17,
+                cardId: 'eros',
                 title: 'Eros',
                 excerpt: '',
                 detail:
@@ -412,6 +429,7 @@ menuItems = [
             },
             {
                 id: 18,
+                cardId: 'sora',
                 title: 'Sora',
                 excerpt: '',
                 detail:
@@ -432,6 +450,7 @@ menuItems = [
             },
             {
                 id: 19,
+                cardId: 'furfy',
                 title: 'Furfy',
                 excerpt: '',
                 detail:
@@ -453,6 +472,7 @@ menuItems = [
             },
             {
                 id: 20,
+                cardId: 'articani',
                 title: 'Articani',
                 excerpt: '',
                 detail:
@@ -475,6 +495,7 @@ menuItems = [
             },
             {
                 id: 21,
+                cardId: 'ryon',
                 title: 'Ryon',
                 excerpt: '',
                 detail:
@@ -497,6 +518,7 @@ menuItems = [
             },
             {
                 id: 22,
+                cardId: 'card',
                 title: 'Card',
                 excerpt: '',
                 detail:
@@ -519,6 +541,7 @@ menuItems = [
             },
             {
                 id: 23,
+                cardId: 'gift',
                 title: 'Gift',
                 excerpt: '',
                 detail:
@@ -533,6 +556,7 @@ menuItems = [
             },
             {
                 id: 24,
+                cardId: 'elise',
                 title: 'Elise',
                 excerpt: '',
                 detail:
@@ -550,6 +574,7 @@ menuItems = [
             },
             {
                 id: 25,
+                cardId: 'fika',
                 title: 'Fika',
                 excerpt: '',
                 detail:
@@ -568,6 +593,7 @@ menuItems = [
             },
             {
                 id: 26,
+                cardId: 'rai',
                 title: 'Rai',
                 excerpt: '',
                 detail:
@@ -588,6 +614,7 @@ menuItems = [
             },
             {
                 id: 27,
+                cardId: 'hana',
                 title: 'Hana',
                 excerpt: '',
                 detail:
@@ -609,6 +636,7 @@ menuItems = [
             },
             {
                 id: 28,
+                cardId: 'mida',
                 title: 'Mida',
                 excerpt: '',
                 detail:
@@ -628,6 +656,7 @@ menuItems = [
             },
             {
                 id: 29,
+                cardId: 'lilac',
                 title: 'Lilac',
                 excerpt: '',
                 detail:
@@ -644,6 +673,7 @@ menuItems = [
             },
             {
                 id: 30,
+                cardId: 'moka',
                 title: 'Moka',
                 excerpt: '',
                 detail:
@@ -658,6 +688,7 @@ menuItems = [
             },
             {
                 id: 31,
+                cardId: 'nameless',
                 title: 'Nameless',
                 excerpt: '',
                 detail:
@@ -677,6 +708,7 @@ menuItems = [
             },
             {
                 id: 32,
+                cardId: 'nuki',
                 title: 'Nuki',
                 excerpt: '',
                 detail:
@@ -697,6 +729,7 @@ menuItems = [
             },
             {
                 id: 33,
+                cardId: 'sawo',
                 title: 'Sawo',
                 excerpt: '',
                 detail:
@@ -722,6 +755,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Floriverse',
                 detail:
@@ -735,6 +769,72 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'uncat',
+                title: 'Uncategorized',
+                excerpt: 'Flories with no associated album',
+                detail:
+                    `
+                    <h2>Uncategorized Flories</h2>
+                    Click a florie to view its name
+                    <div class="imgContainer">
+                    <img src="images/flories/uncat/zep.png" data-caption="Zep" data-subcaption="Alien flower - Non-binary"><br>
+                    <img src="images/flories/uncat/mintscreen.png" data-caption="Mintscreen" data-subcaption="Robot florie - Male"><br>
+                    <img src="images/flories/uncat/kau.png" data-caption="Kau" data-subcaption="Cauliflower - Non-binary"><br>
+                    <img src="images/flories/uncat/sweetbreaker.png" data-caption="Sweetbreaker" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/uncat/cuby.png" data-caption="Cuby" data-subcaption="Slimy blueberry - Male"><br>
+                    <img src="images/flories/uncat/blizzi.png" data-caption="Blizzi" data-subcaption="Ice flower - Non-binary"><br>
+                    <img src="images/flories/uncat/plugika.png" data-caption="Plugika" data-subcaption="Electric plug florie - Female"><br>
+                    <img src="images/flories/uncat/tessa.png" data-caption="Tessa" data-subcaption="Tulip - Genderless"><br>
+                    <img src="images/flories/uncat/gem.png" data-caption="Gem" data-subcaption="Gem - Female"><br>
+                    <img src="images/flories/uncat/anvre.png" data-caption="Anvre" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/uncat/latrice.png" data-caption="Latrice" data-subcaption="Bellflower - Male"><br>
+                    <img src="images/flories/uncat/cactunandpipin.png" data-caption="Cactun & Pipin" data-subcaption="Cactus - Male and Female respectively"><br>
+                    <img src="images/flories/uncat/sa.png" data-caption="Sa" data-subcaption="Sawblade Flower - Male"><br>
+                    <img src="images/flories/uncat/chloe.png" data-caption="Chloe" data-subcaption="Four-leaf clover - Female"><br>
+                    <img src="images/flories/uncat/teknia.png" data-caption="Teknia" data-subcaption="Robot flower - Female"><br>
+                    <img src="images/flories/uncat/artiflow.png" data-caption="Artiflow" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/artidell.png" data-caption="Artidell" data-subcaption="Catdelion - Male"><br>
+                    <img src="images/flories/uncat/kappa.png" data-caption="Kappa" data-subcaption="Sunflower - Male"><br>
+                    <img src="images/flories/uncat/sunflette.png" data-caption="Sunflette" data-subcaption="Sunflower - Female"><br>
+                    <img src="images/flories/uncat/strawrberry.png" data-caption="Strawrberry" data-subcaption="Strawberrikitty - Male"><br>
+                    <img src="images/flories/uncat/lyte.png" data-caption="Lyte" data-subcaption="Robot berry - Female"><br>
+                    <img src="images/flories/uncat/fyra.png" data-caption="Fyra" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/therra.png" data-caption="Therra" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/djmuseberry.png" data-caption="DJ Museberry" data-subcaption="Berry - Male"><br>
+                    <img src="images/flories/uncat/lineko.png" data-caption="Lineko" data-subcaption="Cat lemon - Male"><br>
+                    <img src="images/flories/uncat/pompy.png" data-caption="Pompy" data-subcaption="Allium - Female"><br>
+                    <img src="images/flories/uncat/beep.png" data-caption="Beep" data-subcaption="Tulip - Genderless"><br>
+                    <img src="images/flories/uncat/sweetree.png" data-caption="Sweetree" data-subcaption="Candy tree - Non-binary"><br>
+                    <img src="images/flories/uncat/eco.png" data-caption="Eco" data-subcaption="Cloudy cottonflower - Male"><br>
+                    <img src="images/flories/uncat/cryoflow.png" data-caption="Cryoflow" data-subcaption="Frozen flower - Male"><br>
+                    <img src="images/flories/uncat/delia.png" data-caption="Delia" data-subcaption="Dandelion - Female"><br>
+                    <img src="images/flories/uncat/spinny.png" data-caption="Spinny" data-subcaption="Berry with wind turbine - Male"><br>
+                    <img src="images/flories/uncat/aero.png" data-caption="Aero" data-subcaption="Baloon tulip - Genderless"><br>
+                    <img src="images/flories/uncat/enila.png" data-caption="Enila" data-subcaption="Fruit with broken stem - Female"><br>
+                    <img src="images/flories/uncat/tikao.png" data-caption="Tikao" data-subcaption="Megaphone-head florie - Male"><br>
+                    <img src="images/flories/uncat/flaany.png" data-caption="Flaany" data-subcaption="Upside-down tulip - Female"><br>
+                    <img src="images/flories/uncat/b-na.png" data-caption="B-na" data-subcaption="Tulip - Non-binary"><br>
+                    <img src="images/flories/uncat/kraka.png" data-caption="Kraka" data-subcaption="Cactus monster - Male"><br>
+                    <img src="images/flories/uncat/azerium.png" data-caption="Azerium" data-subcaption="Robot tulip - Non-binary"><br>
+                    <img src="images/flories/uncat/vo.png" data-caption="Vo" data-subcaption="Ghost tulip - Genderless"><br>
+                    <img src="images/flories/uncat/smog.png" data-caption="Smog" data-subcaption="Pollutant - Genderless"><br>
+                    <img src="images/flories/uncat/niane.png" data-caption="Niane" data-subcaption="Tulip - Female"><br>
+                    <img src="images/flories/uncat/neru.png" data-caption="Neru" data-subcaption="Tulip - Male"><br>
+                    <img src="images/flories/uncat/viona.png" data-caption="Viona" data-subcaption="Venus flytrap - Female"><br>
+                    <img src="images/flories/uncat/phyana.png" data-caption="Phyana" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/nell.png" data-caption="Nell" data-subcaption="Popcorn?? - Male"><br>
+                    <img src="images/flories/uncat/voni.png" data-caption="Voni" data-subcaption="Void tulip - Non-binary"><br>
+                    <img src="images/flories/uncat/mizudria.png" data-caption="Mizudria" data-subcaption="Flower - Female"><br>
+                    <img src="images/flories/uncat/suneea.png" data-caption="Suneea" data-subcaption="Sunflower - Female"><br>
+                    <img src="images/flories/uncat/acidzer.png" data-caption="Acidzer" data-subcaption="Acid tulip - Genderless"><br>
+                    <img src="images/flories/uncat/mia.png" data-caption="Mia" data-subcaption="Potted plant - Female"><br>
+                    </div>
+                    `,
+                image: 'images/flories/strawlineko-pfp.png'
+            },
+            {
+                id: 3,
+                cardId: 'fvvanilla',
                 title: 'Floriverse',
                 excerpt: 'Album',
                 detail:
@@ -764,7 +864,8 @@ menuItems = [
                 image: 'images/fv-i.png'
             },
             {
-                id: 3,
+                id: 4,
+                cardId: 'fvdelta',
                 title: 'Floriverse : Delta',
                 excerpt: 'Album',
                 detail:
@@ -815,7 +916,8 @@ menuItems = [
                 image: 'images/fvd-i.png'
             },
             {
-                id: 4,
+                id: 5,
+                cardId: 'fvepsilon',
                 title: 'Floriverse : Epsilon',
                 excerpt: 'Album',
                 detail:
@@ -883,7 +985,8 @@ menuItems = [
                 image: 'images/fve-i.png'
             },
             {
-                id: 5,
+                id: 6,
+                cardId: 'fvzeta',
                 title: 'Floriverse : Zeta',
                 excerpt: 'Album',
                 detail:
@@ -903,6 +1006,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Digirel',
                 detail:
@@ -913,6 +1017,7 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'soap',
                 title: 'Soap',
                 excerpt: '',
                 detail:
@@ -935,6 +1040,7 @@ menuItems = [
             },
             {
                 id: 3,
+                cardId: 'semyk',
                 title: 'Semyk',
                 excerpt: '',
                 detail:
@@ -957,6 +1063,7 @@ menuItems = [
             },
             {
                 id: 4,
+                cardId: 'artifolder',
                 title: 'Artifolder',
                 excerpt: '',
                 detail:
@@ -974,6 +1081,7 @@ menuItems = [
             },
             {
                 id: 5,
+                cardId: 'byte',
                 title: 'Byte',
                 excerpt: '',
                 detail:
@@ -991,6 +1099,7 @@ menuItems = [
             },
             {
                 id: 6,
+                cardId: 'cherry',
                 title: 'Cherry',
                 excerpt: '',
                 detail:
@@ -1009,6 +1118,7 @@ menuItems = [
             },
             {
                 id: 7,
+                cardId: 'ebta',
                 title: 'Ebta',
                 excerpt: '',
                 detail:
@@ -1029,6 +1139,7 @@ menuItems = [
             },
             {
                 id: 8,
+                cardId: 'placeholder',
                 title: '&lt;placeholder&gt;',
                 excerpt: '',
                 detail:
@@ -1048,6 +1159,7 @@ menuItems = [
             },
             {
                 id: 9,
+                cardId: 'sakura',
                 title: 'Sakura',
                 excerpt: '',
                 detail:
@@ -1065,6 +1177,7 @@ menuItems = [
             },
             {
                 id: 10,
+                cardId: 'quanta',
                 title: 'Quanta',
                 excerpt: '',
                 detail:
@@ -1090,6 +1203,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Nansenz',
                 detail:
@@ -1107,6 +1221,7 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'mu',
                 title: 'Mu',
                 excerpt: '',
                 detail:
@@ -1133,6 +1248,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Hizen',
                 detail:
@@ -1143,6 +1259,7 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'lyne',
                 title: 'Lyne',
                 excerpt: '',
                 detail:
@@ -1174,6 +1291,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Nadir',
                 detail:
@@ -1184,6 +1302,7 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'infineko',
                 title: 'Infineko',
                 excerpt: '',
                 detail:
@@ -1199,6 +1318,7 @@ menuItems = [
             },
             {
                 id: 3,
+                cardId: 'ugo',
                 title: 'Ugo',
                 excerpt: '',
                 detail:
@@ -1213,6 +1333,7 @@ menuItems = [
             },
             {
                 id: 4,
+                cardId: 'unknown',
                 title: '???',
                 excerpt: '',
                 detail:
@@ -1244,6 +1365,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'about',
                 title: 'About Artifyber',
                 excerpt: 'artifyber@gmail.com',
                 detail:
@@ -1273,6 +1395,7 @@ menuItems = [
             /*
             {
                 id: 2,
+                cardId: 'didyouknow',
                 title: `
                     <h2 style='margin-bottom: -12px'>Did you know:</h2><br>
                     <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent)'>
@@ -1288,6 +1411,7 @@ menuItems = [
             */
             {
                 id: 3,
+                cardId: 'webinfo',
                 title: `
                     <h2 style='margin-bottom: -12px'>Website Info:</h2><br>
                     <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent); font-size: 11px'>
@@ -1321,6 +1445,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'twitter',
                 title: 'Twitter',
                 excerpt: '',
                 url: 'https://twitter.com/artifyber',
@@ -1328,6 +1453,7 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'instagram',
                 title: 'Instagram',
                 excerpt: '',
                 url: 'https://instagram.com/artifyber',
@@ -1335,6 +1461,7 @@ menuItems = [
             },
             {
                 id: 3,
+                cardId: 'bluesky',
                 title: 'BlueSky',
                 excerpt: '',
                 url: 'https://bsky.app/profile/artifyber.xyz',
@@ -1342,6 +1469,7 @@ menuItems = [
             },
             {
                 id: 4,
+                cardId: 'discord',
                 title: 'Discord Server',
                 excerpt: '',
                 url: 'https://discord.gg/mvZT3ANvSS',
@@ -1349,6 +1477,7 @@ menuItems = [
             },
             {
                 id: 5,
+                cardId: 'youtube',
                 title: 'YouTube',
                 excerpt: '',
                 url: 'https://youtube.com/@artifyber',
@@ -1356,6 +1485,7 @@ menuItems = [
             },
             {
                 id: 6,
+                cardId: 'spotify',
                 title: 'Spotify Artist',
                 excerpt: '',
                 url: 'https://open.spotify.com/intl-id/artist/41B16M5LFJKcwUW3L75PVh',
@@ -1363,6 +1493,7 @@ menuItems = [
             },
             {
                 id: 7,
+                cardId: 'newgrounds',
                 title: 'Newgrounds',
                 excerpt: '',
                 url: 'https://artifyber.newgrounds.com/',
@@ -1370,6 +1501,7 @@ menuItems = [
             },
             {
                 id: 8,
+                cardId: 'soundcloud',
                 title: 'SoundCloud',
                 excerpt: '',
                 url: 'https://on.soundcloud.com/3V5Uz',
@@ -1377,6 +1509,7 @@ menuItems = [
             },
             {
                 id: 9,
+                cardId: 'toyhouse',
                 title: 'Toyhouse',
                 excerpt: '',
                 url: 'https://toyhou.se/artifyber',
@@ -1384,6 +1517,7 @@ menuItems = [
             },
             {
                 id: 10,
+                cardId: 'carrd',
                 title: 'Carrd',
                 excerpt: 'Backup website just in case',
                 url: 'https://artifyber.carrd.co/',
@@ -1391,6 +1525,7 @@ menuItems = [
             },
             {
                 id: 11,
+                cardId: 'alts',
                 title: 'Alternates',
                 excerpt: 'All of my alternative accounts on various platforms',
                 detail:
@@ -1425,6 +1560,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'kofi',
                 title: 'Ko-Fi',
                 excerpt: 'For a method of payment',
                 url: 'https://ko-fi.com/artifyber',
@@ -1432,76 +1568,78 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'tos',
                 title: 'Information and ToS',
                 excerpt: 'Rules and how to commission',
                 detail:
                     `
-<h2>Before You Commission:</h2>     
-<ul>
-<li>Please check my <a href="https://x.com/artifyber" target="_blank">Twitter</a> account for my current commission status. It should be written on my bio as either one of these:</li><br>
-<ul>
-    <li>Open: I am available for new commissions.</li><br>
-    <li>Full: I am currently at full capacity and cannot take new commissions.</li><br>
-    <li>Ask: I may be available for new commissions. Please ask me first by sending me a direct message.</li><br>
-    <li>Closed: I am not accepting any new commissions at the moment.</li><br>
-</ul>
-<li>Please read the Terms of Service listed below. By commissioning me you acknowledge that you agree to my Terms of Service.</li><br>
-</ul>
-<hr>
-<h2>Art Commission T.O.S</h2>
-<ul>
-<li>The customer understands they are paying for a digital commission, and will receive a digital file (e.g. JPG, PNG) of the commissioned artwork. Artworks are made using Ibis Paint and the customer will not receive any raw project file after the commission is complete. The customer will not receive any physical item in the mail from this purchase either.</li><br>
-<li>Payment is upfront via Paypal invoice or Ko-Fi.</li><br>
-<li>There is no limitation on character request. But keep in mind that I'm a primarily furry artist and i am more comfortable drawing species i'm interested in (cats, rabbits, dogs and foxes).</li><br>
-<li>Please provide details and references beforehand as i may not provide sketches or WIPs during the process. You can provide minor revision to the final product later.</li><br>
-<li>By default the artwork size for icon commissions will be in 2048x2048 (1:1) while thigh-ups and full-bodies will be in 2000x2500 (4:5). Please specify beforehand for custom canvas size.</li><br>
-<li>The estimated turnaround time is a day to 2 weeks.</li><br>
-<li>If the commission is private, please let me know in advance and the name will be anonymous.</li><br>
-<li>The illustration should only be used in personal case. No commercial use allowed.</li><br>
-<li>I do not allow my artworks to be feed into AI art generators or being used in any AI-related services. A copyright strike will be issued if this is violated.</li><br>
-<li>You have the right to ask for a full refund only if the commission has not been started yet.</li><br>
-<li>If you are interested send a DM on my <a href="https://x.com/artifyber" target="_blank">Twitter</a>. However if you want to contact me through Discord, please notify me first. My Discord DM's are only open to close friends or commissioners with my permission.</li><br>
-</ul>
-<h4>What I'm willing to draw:</h4>
-<ul>
-<li>Any species that isn't too complex (Furries, humanoid, a selection of scalies)</li><br>
-<li>Plants and flowers</li><br>
-<li>Background or interior</li><br>
-<li>Cosmic or space theme</li><br>
-<li>Simple icons or logo</li><br>
-</ul>
-<h4>What I'm NOT willing to draw:</h4>
-<ul>
-<li>Mechas or complicated designs</li><br>
-<li>Images intended to promote hate or bigotry</li><br>
-</ul>
-<hr>
-<h2>Music Commission T.O.S</h2>
-<ul>
-<li>The customer understands they are paying for a digital file (e.g. MP3, WAV, FLAC, OGG) of the commissioned track. Music is made using FL Studio Mobile and the customer will not receive any raw project file after the commission is complete. The customer will not receive any physical item in the mail from this purchase either.</li><br>
-<li>Payment is upfront via Paypal invoice or Ko-Fi.</li><br>
-<li>Please provide details regarding the music. Such as the theme, BPM, genre, time signature, etc. I have flexibility on song genres but keep in mind that i'm more capable on composing the following: Chiptune, Breakcore, Hardcore, Techno, and Trance.</li><br>
-<li>You may provide additional samples ONLY if you have the full rights with it. Samples must be in MP3, WAV, FLAC, or DWP file format.</li><br>
-<li>You can request individual stems export or make the song looped (no extra charge required!)</li><br>
-<li>I do not make remix, cover, or bootleg of already existing songs without the artist's consent. However i'm open on remaking my own songs.</li><br>
-<li>I do not provide lyrics or vocal recording. If you want vocals, please provide the vocal recording yourself.</li><br>
-<li>The estimated turnaround time is a week to a month depending on the complexity of the request.</li><br>
-<li>Commissioned music will be posted to my SoundCloud account unless private. If the commission is private or you wish to not publish it, please let me know in advance.</li><br>
-<li>Commissioned music can be used for personal purpose. Commercial use can be discussed.</li><br>
-<li>I do not allow my music to be feed into AI music generators or being used in any AI-related services. A copyright strike will be issued if this is violated.</li><br>
-<li>You have the right to ask for a full refund only if the commission has not been started yet.</li><br>
-<li>Only for this type of commission, you'll have to contact me through Discord. This is necessary to keep file sharing easier (e.g. WIPs and samples). Please DM my <a href="https://x.com/artifyber" target="_blank">Twitter</a> to ask for a Discord DM request approval.</li><br>
-</ul>
-`,
+                    <h2>Before You Commission:</h2>     
+                    <ul>
+                    <li>Please check my <a href="https://x.com/artifyber" target="_blank">Twitter</a> account for my current commission status. It should be written on my bio as either one of these:</li><br>
+                    <ul>
+                        <li>Open: I am available for new commissions.</li><br>
+                        <li>Full: I am currently at full capacity and cannot take new commissions.</li><br>
+                        <li>Ask: I may be available for new commissions. Please ask me first by sending me a direct message.</li><br>
+                        <li>Closed: I am not accepting any new commissions at the moment.</li><br>
+                    </ul>
+                    <li>Please read the Terms of Service listed below. By commissioning me you acknowledge that you agree to my Terms of Service.</li><br>
+                    </ul>
+                    <hr>
+                    <h2>Art Commission T.O.S</h2>
+                    <ul>
+                    <li>The customer understands they are paying for a digital commission, and will receive a digital file (e.g. JPG, PNG) of the commissioned artwork. Artworks are made using Ibis Paint and the customer will not receive any raw project file after the commission is complete. The customer will not receive any physical item in the mail from this purchase either.</li><br>
+                    <li>Payment is upfront via Paypal invoice or Ko-Fi.</li><br>
+                    <li>There is no limitation on character request. But keep in mind that I'm a primarily furry artist and i am more comfortable drawing species i'm interested in (cats, rabbits, dogs and foxes).</li><br>
+                    <li>Please provide details and references beforehand as i may not provide sketches or WIPs during the process. You can provide minor revision to the final product later.</li><br>
+                    <li>By default the artwork size for icon commissions will be in 2048x2048 (1:1) while thigh-ups and full-bodies will be in 2000x2500 (4:5). Please specify beforehand for custom canvas size.</li><br>
+                    <li>The estimated turnaround time is a day to 2 weeks.</li><br>
+                    <li>If the commission is private, please let me know in advance and the name will be anonymous.</li><br>
+                    <li>The illustration should only be used in personal case. No commercial use allowed.</li><br>
+                    <li>I do not allow my artworks to be feed into AI art generators or being used in any AI-related services. A copyright strike will be issued if this is violated.</li><br>
+                    <li>You have the right to ask for a full refund only if the commission has not been started yet.</li><br>
+                    <li>If you are interested send a DM on my <a href="https://x.com/artifyber" target="_blank">Twitter</a>. However if you want to contact me through Discord, please notify me first. My Discord DM's are only open to close friends or commissioners with my permission.</li><br>
+                    </ul>
+                    <h4>What I'm willing to draw:</h4>
+                    <ul>
+                    <li>Any species that isn't too complex (Furries, humanoid, a selection of scalies)</li><br>
+                    <li>Plants and flowers</li><br>
+                    <li>Background or interior</li><br>
+                    <li>Cosmic or space theme</li><br>
+                    <li>Simple icons or logo</li><br>
+                    </ul>
+                    <h4>What I'm NOT willing to draw:</h4>
+                    <ul>
+                    <li>Mechas or complicated designs</li><br>
+                    <li>Images intended to promote hate or bigotry</li><br>
+                    </ul>
+                    <hr>
+                    <h2>Music Commission T.O.S</h2>
+                    <ul>
+                    <li>The customer understands they are paying for a digital file (e.g. MP3, WAV, FLAC, OGG) of the commissioned track. Music is made using FL Studio Mobile and the customer will not receive any raw project file after the commission is complete. The customer will not receive any physical item in the mail from this purchase either.</li><br>
+                    <li>Payment is upfront via Paypal invoice or Ko-Fi.</li><br>
+                    <li>Please provide details regarding the music. Such as the theme, BPM, genre, time signature, etc. I have flexibility on song genres but keep in mind that i'm more capable on composing the following: Chiptune, Breakcore, Hardcore, Techno, and Trance.</li><br>
+                    <li>You may provide additional samples ONLY if you have the full rights with it. Samples must be in MP3, WAV, FLAC, or DWP file format.</li><br>
+                    <li>You can request individual stems export or make the song looped (no extra charge required!)</li><br>
+                    <li>I do not make remix, cover, or bootleg of already existing songs without the artist's consent. However i'm open on remaking my own songs.</li><br>
+                    <li>I do not provide lyrics or vocal recording. If you want vocals, please provide the vocal recording yourself.</li><br>
+                    <li>The estimated turnaround time is a week to a month depending on the complexity of the request.</li><br>
+                    <li>Commissioned music will be posted to my SoundCloud account unless private. If the commission is private or you wish to not publish it, please let me know in advance.</li><br>
+                    <li>Commissioned music can be used for personal purpose. Commercial use can be discussed.</li><br>
+                    <li>I do not allow my music to be feed into AI music generators or being used in any AI-related services. A copyright strike will be issued if this is violated.</li><br>
+                    <li>You have the right to ask for a full refund only if the commission has not been started yet.</li><br>
+                    <li>Only for this type of commission, you'll have to contact me through Discord. This is necessary to keep file sharing easier (e.g. WIPs and samples). Please DM my <a href="https://x.com/artifyber" target="_blank">Twitter</a> to ask for a Discord DM request approval.</li><br>
+                    </ul>
+                    `,
                 image: 'icons/comm-tos.png'
             },
             {
                 id: 3,
+                cardId: 'art',
                 title: 'Art Pricing',
                 excerpt: 'With examples',
                 detail:
                     `
-                    <h2><i>PLEASE READ MY <a data-open-card="comms:2">T.O.S</a> BEFORE COMMISIONING ME.</i></h2>
+                    <h2><i>PLEASE READ MY <a data-open-card="comms:tos">T.O.S</a> BEFORE COMMISIONING ME.</i></h2>
                     <hr>
                     <h2>Full-body</h2>
                     80 USD per character<br>
@@ -1566,11 +1704,12 @@ menuItems = [
             },
             {
                 id: 4,
+                cardId: 'music',
                 title: 'Music Pricing',
                 excerpt: 'With examples',
                 detail:
                     `
-                    <h2><i>PLEASE READ MY <a data-open-card="comms:2">T.O.S</a> BEFORE COMMISIONING ME.</i></h2>
+                    <h2><i>PLEASE READ MY <a data-open-card="comms:tos">T.O.S</a> BEFORE COMMISIONING ME.</i></h2>
                     <hr>
                     <h2>Range A = 50 USD per minute</h2>
                     Simple beat, minimal layers, genre examples: chiptune, elevator music, ambient, lo-fi, minimal techno.<br><br>
@@ -1583,6 +1722,7 @@ menuItems = [
             },
             {
                 id: 5,
+                cardId: 'adult',
                 title: '18+ Commissions',
                 excerpt: '',
                 detail:
@@ -1606,6 +1746,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'dailyartplus',
                 title: 'Daily Art+',
                 excerpt: '',
                 detail:
@@ -1640,6 +1781,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'testloop1',
                 title: 'testloop1',
                 excerpt: '',
                 detail:
@@ -1648,6 +1790,7 @@ menuItems = [
             },
             {
                 id: 2,
+                cardId: 'testloop2',
                 title: 'testloop2',
                 excerpt: '',
                 detail:
@@ -1670,6 +1813,7 @@ menuItems = [
         labels: [
             {
                 id: 1,
+                cardId: 'blank',
                 title: ' ',
                 excerpt: '',
                 detail:
@@ -1679,6 +1823,41 @@ menuItems = [
         ]
     },
 ];
+
+
+if (Math.floor(Math.random() * 333) == 333) {
+    menuItems.forEach(menu => {
+        if (menu.name == "Information") {
+            menu.labels.push(
+                {
+                    id: 1000,
+                    title: 'Beecat',
+                    excerpt: 'Beecat',
+                    detail:
+                        `
+                        It's a bee!<br>
+                        It's a cat!<br>
+                        It's a beecat!<br>
+                        And it's spinning!<br>
+                        But why is it spinning?<br>
+                        <br>
+                        Character by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
+                        <br>
+                        <img src="images/beecatspin.gif" data-caption="Beecat" data-subcaption="beecatspin.gif" style="width: 100%">
+                        `,
+                    image: 'images/beecatspin.gif'
+                }
+            )
+        }
+    });
+}
+
+
+
+
+
+
+
 
 // generate placeholder cards
 function generateLabels(n, prefix) {
@@ -1691,199 +1870,5 @@ function generateLabels(n, prefix) {
     }))
 }
 
-
-
 totalCards = menuItems.reduce((sum, item) => sum + item.labels.length, 0);
 totalMenus = menuItems.length;
-
-splashWordFoods1 = [
-    "Pancake",
-    "Burger",
-    "French Fries",
-    "Sandwich",
-    "Ice Cream",
-]
-
-splashWordFoods2 = [
-    "Milkshake",
-    "Waffle",
-    "Sushi",
-    "Apple Pie",
-    "Pizza",
-]
-
-splashLines = [
-    "Hello world!",
-    "Welcome to the Fyberverse!",
-    "bnuy,,,",
-    "ktiy,,,",
-    "fxo,,,",
-    "meow!",
-    "squeak!",
-    "This is a splashtext.",
-    "IS THAT ARTI???",
-    "•- •-• - ••",
-    "i like women",
-    "You're Loved <3",
-    "Your gender is valid!",
-    "Show your true colors!",
-    "bigender and bisexual call that double gay!",
-    "AYAM GORENG!!!",
-    "tf is goin on teksui 😭😭🥀🥀",
-    ":3",
-    "x3",
-    "xD",
-    ">w<",
-    "-w-",
-    "/w\\",
-    "blehhh",
-    "This is fine...",
-    "can you guys recommend me splashtexts",
-    "Also check out Folder18!",
-    "I Wanna Be That Girl!",
-    "Stay positive!",
-    "TWITTER SUCKS!!! *stays*",
-    "We bunnies are superior!",
-    "fih 🥀",
-    `what kind of universe is "Information" anyway?`,
-    "i miss that breakfast girl...",
-    "zzz...",
-    "How hungry...",
-    "If there are two genders, I am both.",
-    "Look under there!",
-    "Achoo!",
-    "Bugs are cool",
-    "I'm all ears!",
-    "Fiber optic cables not included",
-    "This message is considerably rare",
-    "Welcoe!",
-    "so skibidi",
-    "You are beautiful <3",
-    "Mom look! I'm a splashtext!",
-    "wdym character limit i don",
-    "don't bully me i'll cry",
-    "🔫🔫🔫 pew pew pew",
-    "ERROR 404: Splashtext Not Found",
-    "boobies",
-    "It's Art 'n' Fyber!",
-    "i don't even know anymore",
-    "↗️ grown ass woman btw 💀",
-    "🌈🍔❤️🏳️‍⚧️🥤",
-    "🔥🔥🔥🔥🔥🔥🔥🔥",
-    "✋🗿🤚",
-    "I'm cringe but I'm free",
-    "Trans rights!",
-    "why are yall so queer... not complaining",
-    `<div style="font-size:16px; transform: rotate(180deg)">upside down!</div>`,
-    `<div style="font-size:16px; transform: rotate(180deg)">rotate your monitor</div>`,
-    `<div style="font-size:16px; transform: scaleX(-1)">oops! wrong direction...</div>`,
-    `<div style="font-size:16px; transform: scaleY(0.8) skew(-80deg)">ow my back hurts</div>`,
-    `<a style="font-size:15px; text-decoration: none" href="https://www.youtube.com/watch?v=s-L4DqanZYw" target="_blank" >Click here for a free burger!</a>`,
-    `<b style="font-size:16px; color:var(--color-2)">I'M BLUE NOW!</b>`,
-    `<b style="font-size:13px; color:var(--color-4)">I'M... red!? wait no this ain't right</b>`,
-    `<b style="font-size:15px; color:var(--color-5)">how to reset color???</b>`,
-    "undefined",
-    "333",
-    `<div style="font-size:18px; transform: scaleX(-1)">:3</div>`,
-    "Take your age, add 4, that's not your age.",
-    "Jkfjhgjhfghkg",
-    "🐓   🚓🚓",
-    "ARTIFYBER MENTIONED!!",
-    "Gay Burger!!",
-    "Lesbian Fries!!",
-    "Trans Soda!!",
-    "Bisexual Pie!!",
-    "I swear, these splashtexts are getting ridiculous.",
-    `Now with ${totalCards} flavors!`,
-    "As seen on Twitter!",
-    "Awesome!",
-    "Random splashtext!",
-    "May contain beans",
-    "Made in Fyber's basement!",
-    "Also visit Chromasia!",
-    "Also visit Klorofil!",
-    "Whoa, dude",
-    "Stay hydrated!",
-    "⁉️",
-    "Concentrate the energy in your heart",
-    "ERROR 404: Artist Not Found",
-    "if (!ok) { return; }",
-    "NYA NYA NYA NYA NYA",
-    "MRRWW!!",
-    "pls rt",
-    "FIRE IN THE HOLE!!!",
-    "please do something productive",
-    "Contains infinite genders!",
-    "is this tuff or no",
-    `${splashWordFoods1[Math.floor(Math.random() * splashWordFoods1.length)]} is better than ${splashWordFoods2[Math.floor(Math.random() * splashWordFoods2.length)]}`,
-    "don't listen to the text below!",
-    "don't listen to the next splashtext!",
-    "Absolute Cinema",
-    "Check out BFDI!",
-    "Go follow ZestyLemonss!",
-    "Go follow C0denameDelta!",
-    "Also listen to Frums!",
-    "Also listen to Disphing!",
-    "Also listen to YonKaGor!",
-    "Also listen to Tanger!",
-    "i don't think",
-    "you're just gonna click that refresh button again aren't you?",
-    "why are you looking at splashtexts anyway?",
-    "*paws at you*",
-    `Dice be like: IT'S A ${Math.floor(Math.random() * 20) + 1}‼️`,
-    "Fyberverse == Artiverse",
-    "beep beep i'm a sheep",
-    "wrong splashtext srry",
-    "Placeholder!",
-    "When the fajitas come out sizzling",
-    "take your height, swap the feet and inches, that's not your height.",
-    "6️⃣7️⃣",
-    "Sleeping is the best thing in the world.",
-    "LESBIANS EAT WHAT!?",
-    "i made mac n cheese :D",
-    "RAGEBAIT!",
-    "i am at my limit.",
-    "24eeev0-$",
-    "something terrifying is about to happen...",
-    "hello darkness my old friend",
-    "i forgor",
-    "do you have ibuprofen?",
-    "#1 horse hater",
-    "Loading...",
-    "Black holes are so cool!",
-    "colon three",
-    "💥💥💥",
-    "🐇🐇🐇",
-    "Stay safe out there!",
-    "Eat more carrots!",
-    "Drink more water!",
-    "Get some rest!",
-    "4:38 AM",
-    "testing testing 1 2 3",
-    // "hey HEY HEYY WHAT ARE YOU DOING?? you're not supposed to be here!! ewww you're looking at my data... ewwww who are you a perv!?!?!?!?",
-    "Down for maintenance. Please come back later.",
-    "I CAST BUNNYPILLED!!",
-    "I CAST EXCESSIVE FLUFF!!!",
-    "Peace! ✌️",
-    "we def live in a simulation. and whoever in control is weird af",
-    "WE REACHING NANEINF WITH THIS ONE 🔥",
-    "caught you reading",
-    "made ya look",
-    "Mostly salt water!",
-    "I squeak, therefore I am.",
-    "Did someone say snacks?",
-    "Share this website to your friends!",
-    "purple buyn",
-    "MY FAV FOOD!!!",
-    `<div style="font-size:20px; transform: scaleY(0.5)">squishe</div>`,
-    "aaaaaaaaaaaaaaaaaaaaaa",
-    "is not crash-proof. please be gentle.",
-    "This is worth noting!",
-    "This is worth nothing!",
-    "Starts with A and we all love it!",
-    "I like triangles!",
-];
-
-totalSplash = splashLines.length;
-
-// splashLines = []

@@ -274,34 +274,35 @@ window.addEventListener('resize', () => {
 
 /// -- URL QUERY HANDLER ?m=<menu>&i=<card-id> --
 window.addEventListener('load', () => {
-    const params = new URLSearchParams(window.location.search);
-    const menuCode = params.get('m');
-    const itemId = params.get('i');
-    if (!menuCode) return;
+  const params = new URLSearchParams(window.location.search);
+  const menuCode = params.get('m');
+  const cardKey = params.get('i'); // may be null or "" if ?i= or missing
+  if (!menuCode) return;
 
-    const targetMenu = menuItems.find(
-        m => m.q && m.q.toLowerCase() === menuCode.toLowerCase()
-    );
-    if (!targetMenu) return;
+  const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
+  if (!targetMenu) return;
 
-    // wait until buttons exist, then open the menu
-    setTimeout(() => {
-        const button = Array.from(document.querySelectorAll('.menu-button'))
-            .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-        if (!button) return;
-        openMenu(targetMenu, button, { skipAnimation: true });
+  // wait until buttons exist, then open the menu
+  setTimeout(() => {
+    const button = Array.from(document.querySelectorAll('.menu-button'))
+      .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+    if (!button) return;
+    openMenu(targetMenu, button, { skipAnimation: true });
 
-        // if ?i= exists, open the card after content loads
-        if (itemId) {
-            const targetLabel = targetMenu.labels.find(l => l.id == itemId);
-            if (targetLabel) {
-                const cardEl = [...document.querySelectorAll('.card')]
-                    .find(c => c.dataset.id == itemId);
-                if (cardEl && !(cardEl.dataset.link || cardEl.dataset.noclick)) focusCard(cardEl, targetLabel, targetMenu);
-            }
+    // if ?i= exists AND is non-empty, open the card after content loads
+    if (cardKey) {
+      const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+      if (targetLabel) {
+        const cardEl = [...document.querySelectorAll('.card')]
+          .find(c => c.dataset.cardId === cardKey);
+        if (cardEl && !(cardEl.dataset.link || cardEl.dataset.noclick)) {
+          focusCard(cardEl, targetLabel, targetMenu);
         }
-    }, 500);
+      }
+    }
+  }, 500);
 });
+
 
 
 /// -- SPLASHTEXTS --
@@ -414,7 +415,7 @@ function showContentFor(menu) {
     menu.labels.forEach(lbl => {
         const c = document.createElement('div');
         c.className = 'card';
-        c.dataset.id = lbl.id;
+        c.dataset.cardId = lbl.cardId;
         if (lbl.url) {
             c.dataset.link = "true";
         }
@@ -492,7 +493,7 @@ function focusCard(cardEl, label, menu = null) {
 
     if (menu) {
         // fill details
-        const shareURL = `${location.origin}${location.pathname}?m=${menu.q}&i=${label.id}`;
+        const shareURL = `${location.origin}${location.pathname}?m=${menu.q}&i=${label.cardId}`;
         detailArea.innerHTML = `
             <h1>
                 ${label.title}
@@ -517,7 +518,7 @@ function focusCard(cardEl, label, menu = null) {
                 icon.title = "Copy shareable link";
             }, 1500);
         });
-        history.pushState({}, '', `?m=${menu.q}&i=${label.id}`);
+        history.pushState({}, '', `?m=${menu.q}&i=${label.cardId}`);
 
     } else {
         detailArea.innerHTML = `<h1>${label.title}</h1><hr>${label.detail}`;
@@ -537,49 +538,43 @@ function focusCard(cardEl, label, menu = null) {
 
 /// -- INTERNAL LINK HANDLER <a data-open-card="q:id"> --
 detailArea.addEventListener('click', function (e) {
-    const link = e.target.closest('a[data-open-card]');
-    if (!link) return;
-    e.preventDefault();
-    const ref = link.dataset.openCard.trim();
-    const [menuCode, itemIdStr] = ref.split(':');
-    const itemId = parseInt(itemIdStr);
-    if (!menuCode || isNaN(itemId)) {
-        console.warn('Invalid open-card reference:', ref);
-        return;
-    }
+  const link = e.target.closest('a[data-open-card]');
+  if (!link) return;
+  e.preventDefault();
+  const ref = link.dataset.openCard.trim();
+  const [menuCode, cardKey] = ref.split(':');
+  if (!menuCode || !cardKey) {
+    console.warn('Invalid open-card reference:', ref);
+    return;
+  }
 
-    // Find the target menu
-    const targetMenu = menuItems.find(
-        m => m.q && m.q.toLowerCase() === menuCode.toLowerCase()
-    );
-    if (!targetMenu) {
-        console.warn('Menu not found for', menuCode);
-        return;
-    }
+  const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
+  if (!targetMenu) {
+    console.warn('Menu not found for', menuCode);
+    return;
+  }
 
-    // Find the target label/card
-    const targetLabel = targetMenu.labels.find(l => l.id === itemId);
-    if (!targetLabel) {
-        console.warn('Card ID not found in menu', menuCode, itemId);
-        return;
-    }
+  const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+  if (!targetLabel) {
+    console.warn('Card cardId not found in menu', menuCode, cardKey);
+    return;
+  }
 
-    // If it's a different menu, open it
-    if (contentTitle.textContent.toLowerCase() !== targetMenu.name.toLowerCase()) {
-        const button = Array.from(document.querySelectorAll('.menu-button'))
-            .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-        if (!button) return;
-        openMenu(targetMenu, button, { skipAnimation: true });
-        // Wait for cards to render, then open the target card
-        const cardEl = [...document.querySelectorAll('.card')]
-            .find(c => c.dataset.id == itemId);
-        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
-    } else {
-        // Already in same menu — just focus the card directly
-        const cardEl = [...document.querySelectorAll('.card')]
-            .find(c => c.dataset.id == itemId);
-        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
-    }
+  if (contentTitle.textContent.toLowerCase() !== targetMenu.name.toLowerCase()) {
+    const button = Array.from(document.querySelectorAll('.menu-button'))
+      .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+    if (!button) return;
+    openMenu(targetMenu, button, { skipAnimation: true });
+    // Wait for cards to render, then open the target card
+    const cardEl = [...document.querySelectorAll('.card')]
+      .find(c => c.dataset.cardId === cardKey);
+    if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+  } else {
+    // Already in same menu — just focus the card directly
+    const cardEl = [...document.querySelectorAll('.card')]
+      .find(c => c.dataset.cardId === cardKey);
+    if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+  }
 });
 
 
@@ -695,39 +690,38 @@ createMenuButtons();
 
 // --- HISTORY STATE HANDLING ---
 window.addEventListener('popstate', (event) => {
-    const params = new URLSearchParams(location.search);
-    const menuCode = params.get('m');
-    const itemId = params.get('i');
-    if (!menuCode) {
-        // Go back to main menu
-        goBack();
-        contentView.classList.remove('visible');
-        backBtn.classList.remove('visible');
-        backBtn.setAttribute('aria-hidden', 'true');
-        return;
+  const params = new URLSearchParams(location.search);
+  const menuCode = params.get('m');
+  const cardKey = params.get('i');
+
+  if (!menuCode) {
+    // Go back to main menu
+    goBack();
+    contentView.classList.remove('visible');
+    backBtn.classList.remove('visible');
+    backBtn.setAttribute('aria-hidden', 'true');
+    return;
+  }
+
+  const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
+  if (!targetMenu) return;
+  const button = Array.from(document.querySelectorAll('.menu-button'))
+    .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+  if (!button) return;
+  openMenu(targetMenu, button, { skipAnimation: true });
+
+  if (cardKey) {
+    const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+    if (targetLabel) {
+      setTimeout(() => {
+        const cardEl = [...document.querySelectorAll('.card')]
+          .find(c => c.dataset.cardId === cardKey);
+        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+      }, 800);
     }
-
-    // Find the target menu
-    const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
-    if (!targetMenu) return;
-    const button = Array.from(document.querySelectorAll('.menu-button'))
-        .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-
-    if (!button) return;
-    openMenu(targetMenu, button, { skipAnimation: true });
-
-    // If card ID is present, open it
-    if (itemId) {
-        const targetLabel = targetMenu.labels.find(l => l.id == itemId);
-        if (targetLabel) {
-            setTimeout(() => {
-                const cardEl = [...document.querySelectorAll('.card')]
-                    .find(c => c.dataset.id == itemId);
-                if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
-            }, 800);
-        }
-    }
+  }
 });
+
 
 
 /* Expose some helpers for quick editing in console */
