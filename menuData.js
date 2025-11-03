@@ -14,6 +14,32 @@ facts = [
 */
 
 menuItems = [
+    /* TEMPLATE
+    {
+        id: 0,
+        q: 'menu',
+        name: 'Menu',
+        showName: true,
+        subtitle: '',
+        image: '',
+        color: 'var(--color-1)',
+        orbit: 3,
+        scale: 1.5,
+        labels: [
+            {
+                id: 1,
+                cardId: 'card',
+                title: 'Card',
+                excerpt: '',
+                detail:
+                    `
+                    This is a template
+                    `,
+                image: 'images/temp.png'
+            },
+        ]
+    },
+    */
     {
         id: 1,
         name: 'Deltadim',
@@ -50,18 +76,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <!-- <figure> -->
-                    <img src="images/artibun-c.png">
-                    <!-- <figcaption>Artibun</figcaption>
-                    </figure> -->
-                    <img src="images/artibun-c2.png">
-                    <img src="images/artibun-c3.png">
-                    <img src="images/artibun-c4.png">
-                    <img src="images/artibun-c5.png">
-                    <img src="images/artibun-c6.png">
+                    <img src="images/c/artibun-c.png">
+                    <img src="images/c/artibun-c2.png">
+                    <img src="images/c/artibun-c3.png">
+                    <img src="images/c/artibun-c4.png">
+                    <img src="images/c/artibun-c5.png">
+                    <img src="images/c/artibun-c6.png">
                 </div>
                 `,
-                image: 'images/c/artibun-i.png'
+                image: 'images/i/artibun-i.png'
             },
             {
                 id: 3,
@@ -74,20 +97,18 @@ menuItems = [
                 Gender: Male<br>
                 Sexuality: Bisexual<br>
                 Nickname: Arti, Kiki<br>
-                <!-- <h2>Reference Art:</h2><br>
-                <img src="images/r/artibun-r.png"><br> -->
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/articat-c.png">
-                    <img src="images/articat-c2.png">
-                    <img src="images/articat-c3.png">
-                    <img src="images/articat-c4.png">
-                    <img src="images/articat-c5.png">
-                    <img src="images/articat-c6.png">
+                    <img src="images/c/articat-c.png">
+                    <img src="images/c/articat-c2.png">
+                    <img src="images/c/articat-c3.png">
+                    <img src="images/c/articat-c4.png">
+                    <img src="images/c/articat-c5.png">
+                    <img src="images/c/articat-c6.png">
                 </div>
                 `,
-                image: 'images/c/articat-i.png'
+                image: 'images/i/articat-i.png'
             },
             {
                 id: 4,
@@ -103,15 +124,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/artifox-c.png">
-                    <img src="images/artifox-c2.png">
-                    <img src="images/artifox-c3.png">
-                    <img src="images/artifox-c4.png">
-                    <img src="images/artifox-c5.png">
-                    <img src="images/artifox-c6.png">
+                    <img src="images/c/artifox-c.png">
+                    <img src="images/c/artifox-c2.png">
+                    <img src="images/c/artifox-c3.png">
+                    <img src="images/c/artifox-c4.png">
+                    <img src="images/c/artifox-c5.png">
+                    <img src="images/c/artifox-c6.png">
                 </div>
                 `,
-                image: 'images/c/artifox-i.png'
+                image: 'images/i/artifox-i.png'
             },
             {
                 id: 5,
@@ -127,15 +148,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/artifish-c.png">
-                    <img src="images/artifish-c2.png">
-                    <img src="images/artifish-c3.png">
-                    <img src="images/artifish-c4.png">
-                    <img src="images/artifish-c5.png">
-                    <img src="images/artifish-c6.png">
+                    <img src="images/c/artifish-c.png">
+                    <img src="images/c/artifish-c2.png">
+                    <img src="images/c/artifish-c3.png">
+                    <img src="images/c/artifish-c4.png">
+                    <img src="images/c/artifish-c5.png">
+                    <img src="images/c/artifish-c6.png">
                 </div>
                 `,
-                image: 'images/c/artifish-i.png'
+                image: 'images/i/artifish-i.png'
             },
             {
                 id: 6,
@@ -151,15 +172,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/artigoat-c.png">
-                    <img src="images/artigoat-c2.png">
-                    <img src="images/artigoat-c3.png">
-                    <img src="images/artigoat-c4.png">
-                    <img src="images/artigoat-c5.png">
-                    <img src="images/artigoat-c6.png">
+                    <img src="images/c/artigoat-c.png">
+                    <img src="images/c/artigoat-c2.png">
+                    <img src="images/c/artigoat-c3.png">
+                    <img src="images/c/artigoat-c4.png">
+                    <img src="images/c/artigoat-c5.png">
+                    <img src="images/c/artigoat-c6.png">
                 </div>
                 `,
-                image: 'images/c/artigoat-i.png'
+                image: 'images/i/artigoat-i.png'
             },
             {
                 id: 7,
@@ -175,15 +196,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/artilope-c.png">
-                    <img src="images/artilope-c2.png">
-                    <img src="images/artilope-c3.png">
-                    <img src="images/artilope-c4.png">
-                    <img src="images/artilope-c5.png">
-                    <img src="images/artilope-c6.png">
+                    <img src="images/c/artilope-c.png">
+                    <img src="images/c/artilope-c2.png">
+                    <img src="images/c/artilope-c3.png">
+                    <img src="images/c/artilope-c4.png">
+                    <img src="images/c/artilope-c5.png">
+                    <img src="images/c/artilope-c6.png">
                 </div>
                 `,
-                image: 'images/c/artilope-i.png'
+                image: 'images/i/artilope-i.png'
             },
             {
                 id: 8,
@@ -199,15 +220,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/artipup-c.png">
-                    <img src="images/artipup-c2.png">
-                    <img src="images/artipup-c3.png">
-                    <img src="images/artipup-c4.png">
-                    <img src="images/artipup-c5.png">
-                    <img src="images/artipup-c6.png">
+                    <img src="images/c/artipup-c.png">
+                    <img src="images/c/artipup-c2.png">
+                    <img src="images/c/artipup-c3.png">
+                    <img src="images/c/artipup-c4.png">
+                    <img src="images/c/artipup-c5.png">
+                    <img src="images/c/artipup-c6.png">
                 </div>
                 `,
-                image: 'images/c/artipup-i.png'
+                image: 'images/i/artipup-i.png'
             },
             {
                 id: 9,
@@ -223,15 +244,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/artineko-c.png">
-                    <img src="images/artineko-c2.png">
-                    <img src="images/artineko-c3.png">
-                    <img src="images/artineko-c4.png">
-                    <img src="images/artineko-c5.png">
-                    <img src="images/artineko-c6.png">
+                    <img src="images/c/artineko-c.png">
+                    <img src="images/c/artineko-c2.png">
+                    <img src="images/c/artineko-c3.png">
+                    <img src="images/c/artineko-c4.png">
+                    <img src="images/c/artineko-c5.png">
+                    <img src="images/c/artineko-c6.png">
                 </div>
                 `,
-                image: 'images/c/artineko-i.png'
+                image: 'images/i/artineko-i.png'
             },
             {
                 id: 10,
@@ -251,15 +272,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/skitty-c.png"><br>
-                    <img src="images/skitty-c2.png"><br>
-                    <img src="images/skitty-c3.png"><br>
-                    <img src="images/skitty-c4.png"><br>
-                    <img src="images/skitty-c5.png"><br>
-                    <img src="images/skitty-c6.png"><br>
+                    <img src="images/c/skitty-c.png"><br>
+                    <img src="images/c/skitty-c2.png"><br>
+                    <img src="images/c/skitty-c3.png"><br>
+                    <img src="images/c/skitty-c4.png"><br>
+                    <img src="images/c/skitty-c5.png"><br>
+                    <img src="images/c/skitty-c6.png"><br>
                 </div>
                 `,
-                image: 'images/c/skitty-i.png'
+                image: 'images/i/skitty-i.png'
             },
             {
                 id: 11,
@@ -274,13 +295,13 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/gamma-c.png"><br>
-                    <img src="images/gamma-c2.png"><br>
-                    <img src="images/gamma-c3.png"><br>
-                    <img src="images/gamma-c4.png"><br>
+                    <img src="images/c/gamma-c.png"><br>
+                    <img src="images/c/gamma-c2.png"><br>
+                    <img src="images/c/gamma-c3.png"><br>
+                    <img src="images/c/gamma-c4.png"><br>
                 </div>
                 `,
-                image: 'images/c/gamma-i.png'
+                image: 'images/i/gamma-i.png'
             },
             {
                 id: 12,
@@ -295,14 +316,14 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/micro-c.png"><br>
-                    <img src="images/micro-c2.png"><br>
-                    <img src="images/micro-c3.png"><br>
-                    <img src="images/micro-c4.png"><br>
-                    <img src="images/micro-c5.png"><br>
+                    <img src="images/c/micro-c.png"><br>
+                    <img src="images/c/micro-c2.png"><br>
+                    <img src="images/c/micro-c3.png"><br>
+                    <img src="images/c/micro-c4.png"><br>
+                    <img src="images/c/micro-c5.png"><br>
                 </div>
                 `,
-                image: 'images/c/micro-i.png'
+                image: 'images/i/micro-i.png'
             },
             {
                 id: 13,
@@ -322,15 +343,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/caramella-c.png"><br>
-                    <img src="images/caramella-c2.png"><br>
-                    <img src="images/caramella-c3.png"><br>
-                    <img src="images/caramella-c4.png"><br>
-                    <img src="images/caramella-c5.png"><br>
-                    <img src="images/caramella-c6.png"><br>
+                    <img src="images/c/caramella-c.png"><br>
+                    <img src="images/c/caramella-c2.png"><br>
+                    <img src="images/c/caramella-c3.png"><br>
+                    <img src="images/c/caramella-c4.png"><br>
+                    <img src="images/c/caramella-c5.png"><br>
+                    <img src="images/c/caramella-c6.png"><br>
                 </div>
                 `,
-                image: 'images/c/caramella-i.png'
+                image: 'images/i/caramella-i.png'
             },
             {
                 id: 14,
@@ -348,12 +369,12 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/azurey-c.png"><br>
-                    <img src="images/azurey-c2.png"><br>
-                    <img src="images/azurey-c3.png"><br>
+                    <img src="images/c/azurey-c.png"><br>
+                    <img src="images/c/azurey-c2.png"><br>
+                    <img src="images/c/azurey-c3.png"><br>
                 </div>
                 `,
-                image: 'images/c/azurey-i.png'
+                image: 'images/i/azurey-i.png'
             },
             {
                 id: 15,
@@ -371,15 +392,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/shirley-c.png"><br>
-                    <img src="images/shirley-c2.png"><br>
-                    <img src="images/shirley-c3.png"><br>
-                    <img src="images/shirley-c4.png"><br>
-                    <img src="images/shirley-c5.png"><br>
-                    <img src="images/shirley-c6.png"><br>
+                    <img src="images/c/shirley-c.png"><br>
+                    <img src="images/c/shirley-c2.png"><br>
+                    <img src="images/c/shirley-c3.png"><br>
+                    <img src="images/c/shirley-c4.png"><br>
+                    <img src="images/c/shirley-c5.png"><br>
+                    <img src="images/c/shirley-c6.png"><br>
                 </div>
                 `,
-                image: 'images/c/shirley-i.png'
+                image: 'images/i/shirley-i.png'
             },
             {
                 id: 16,
@@ -397,12 +418,12 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/rose-c.png"><br>
-                    <img src="images/rose-c2.png"><br>
-                    <img src="images/rose-c3.png"><br>
+                    <img src="images/c/rose-c.png"><br>
+                    <img src="images/c/rose-c2.png"><br>
+                    <img src="images/c/rose-c3.png"><br>
                 </div>
                 `,
-                image: 'images/c/rose-i.png'
+                image: 'images/i/rose-i.png'
             },
             {
                 id: 17,
@@ -417,15 +438,15 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/eros-c.png"><br>
-                    <img src="images/eros-c2.png"><br>
-                    <img src="images/eros-c3.png"><br>
-                    <img src="images/eros-c4.png"><br>
-                    <img src="images/eros-c5.png"><br>
-                    <img src="images/eros-c6.png"><br>
+                    <img src="images/c/eros-c.png"><br>
+                    <img src="images/c/eros-c2.png"><br>
+                    <img src="images/c/eros-c3.png"><br>
+                    <img src="images/c/eros-c4.png"><br>
+                    <img src="images/c/eros-c5.png"><br>
+                    <img src="images/c/eros-c6.png"><br>
                 </div>
                 `,
-                image: 'images/c/eros-i.png'
+                image: 'images/i/eros-i.png'
             },
             {
                 id: 18,
@@ -442,11 +463,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/sora-c.png"><br>
-                    <img src="images/sora-c2.png"><br>
+                    <img src="images/c/sora-c.png"><br>
+                    <img src="images/c/sora-c2.png"><br>
                 </div>
                 `,
-                image: 'images/c/sora-i.png'
+                image: 'images/i/sora-i.png'
             },
             {
                 id: 19,
@@ -461,14 +482,14 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/furfy-c.png"><br>
-                    <img src="images/furfy-c2.png"><br>
-                    <img src="images/furfy-c3.png"><br>
-                    <img src="images/furfy-c4.png"><br>
-                    <img src="images/furfy-c5.png"><br>
+                    <img src="images/c/furfy-c.png"><br>
+                    <img src="images/c/furfy-c2.png"><br>
+                    <img src="images/c/furfy-c3.png"><br>
+                    <img src="images/c/furfy-c4.png"><br>
+                    <img src="images/c/furfy-c5.png"><br>
                 </div>
                 `,
-                image: 'images/c/furfy-i.png'
+                image: 'images/i/furfy-i.png'
             },
             {
                 id: 20,
@@ -488,10 +509,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/articani-c.png"><br>
+                    <img src="images/c/articani-c.png"><br>
                 </div>
                 `,
-                image: 'images/c/articani-i.png'
+                image: 'images/i/articani-i.png'
             },
             {
                 id: 21,
@@ -511,10 +532,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/ryon-c.png"><br>
+                    <img src="images/c/ryon-c.png"><br>
                 </div>
                 `,
-                image: 'images/c/ryon-i.png'
+                image: 'images/i/ryon-i.png'
             },
             {
                 id: 22,
@@ -531,13 +552,13 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/card-c.png"><br>
-                    <img src="images/card-c2.png"><br>
-                    <img src="images/card-c3.png"><br>
-                    <img src="images/card-c4.png"><br>
+                    <img src="images/c/card-c.png"><br>
+                    <img src="images/c/card-c2.png"><br>
+                    <img src="images/c/card-c3.png"><br>
+                    <img src="images/c/card-c4.png"><br>
                 </div>
                 `,
-                image: 'images/c/card-i.png'
+                image: 'images/i/card-i.png'
             },
             {
                 id: 23,
@@ -552,7 +573,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/gift-r.png"><br>
                 `,
-                image: 'images/c/gift-i.png'
+                image: 'images/i/gift-i.png'
             },
             {
                 id: 24,
@@ -567,10 +588,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/elise-c.png"><br>
+                    <img src="images/c/elise-c.png"><br>
                 </div>
                 `,
-                image: 'images/c/elise-i.png'
+                image: 'images/i/elise-i.png'
             },
             {
                 id: 25,
@@ -585,11 +606,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/fika-c.png"><br>
-                    <img src="images/fika-c2.png"><br>
+                    <img src="images/c/fika-c.png"><br>
+                    <img src="images/c/fika-c2.png"><br>
                 </div>
                 `,
-                image: 'images/c/fika-i.png'
+                image: 'images/i/fika-i.png'
             },
             {
                 id: 26,
@@ -606,11 +627,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/rai-c.png"><br>
-                    <img src="images/rai-c2.png"><br>
+                    <img src="images/c/rai-c.png"><br>
+                    <img src="images/c/rai-c2.png"><br>
                 </div>
                 `,
-                image: 'images/c/rai-i.png'
+                image: 'images/i/rai-i.png'
             },
             {
                 id: 27,
@@ -625,14 +646,14 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/hana-c.png"><br>
-                    <img src="images/hana-c2.png"><br>
-                    <img src="images/hana-c3.png"><br>
-                    <img src="images/hana-c4.png"><br>
-                    <img src="images/hana-c5.png"><br>
+                    <img src="images/c/hana-c.png"><br>
+                    <img src="images/c/hana-c2.png"><br>
+                    <img src="images/c/hana-c3.png"><br>
+                    <img src="images/c/hana-c4.png"><br>
+                    <img src="images/c/hana-c5.png"><br>
                 </div>
                 `,
-                image: 'images/c/hana-i.png'
+                image: 'images/i/hana-i.png'
             },
             {
                 id: 28,
@@ -648,11 +669,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/mida-c.png"><br>
-                    <img src="images/mida-c2.png"><br>
+                    <img src="images/c/mida-c.png"><br>
+                    <img src="images/c/mida-c2.png"><br>
                 </div>
                 `,
-                image: 'images/c/mida-i.png'
+                image: 'images/i/mida-i.png'
             },
             {
                 id: 29,
@@ -669,7 +690,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/lilac-r.png"><br>
                 `,
-                image: 'images/c/lilac-i.png'
+                image: 'images/i/lilac-i.png'
             },
             {
                 id: 30,
@@ -684,7 +705,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/moka-r.png"><br>
                 `,
-                image: 'images/c/moka-i.png'
+                image: 'images/i/moka-i.png'
             },
             {
                 id: 31,
@@ -701,10 +722,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/nameless-c.png"><br>
+                    <img src="images/c/nameless-c.png"><br>
                 </div>
                 `,
-                image: 'images/c/nameless-i.png'
+                image: 'images/i/nameless-i.png'
             },
             {
                 id: 32,
@@ -721,11 +742,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/nuki-c.png"><br>
-                    <img src="images/nuki-c2.png"><br>
+                    <img src="images/c/nuki-c.png"><br>
+                    <img src="images/c/nuki-c2.png"><br>
                 </div>
                 `,
-                image: 'images/c/nuki-i.png'
+                image: 'images/i/nuki-i.png'
             },
             {
                 id: 33,
@@ -740,7 +761,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/sawo-r.png"><br>
                 `,
-                image: 'images/c/sawo-i.png'
+                image: 'images/i/sawo-i.png'
             },
         ]
     },
@@ -1031,12 +1052,12 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/soap-c.png">
-                    <img src="images/soap-c2.png">
-                    <img src="images/soap-c3.png">
+                    <img src="images/c/soap-c.png">
+                    <img src="images/c/soap-c2.png">
+                    <img src="images/c/soap-c3.png">
                 </div>
                 `,
-                image: 'images/c/soap-i.png'
+                image: 'images/i/soap-i.png'
             },
             {
                 id: 3,
@@ -1054,12 +1075,12 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/semyk-c.png">
-                    <img src="images/semyk-c2.png">
-                    <img src="images/semyk-c3.png">
+                    <img src="images/c/semyk-c.png">
+                    <img src="images/c/semyk-c2.png">
+                    <img src="images/c/semyk-c3.png">
                 </div>
                 `,
-                image: 'images/c/semyk-i.png'
+                image: 'images/i/semyk-i.png'
             },
             {
                 id: 4,
@@ -1074,10 +1095,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/artifolder-c.png">
+                    <img src="images/c/artifolder-c.png">
                 </div>
                 `,
-                image: 'images/c/artifolder-i.png'
+                image: 'images/i/artifolder-i.png'
             },
             {
                 id: 5,
@@ -1092,10 +1113,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/byte-c.png">
+                    <img src="images/c/byte-c.png">
                 </div>
                 `,
-                image: 'images/c/byte-i.png'
+                image: 'images/i/byte-i.png'
             },
             {
                 id: 6,
@@ -1110,11 +1131,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/cherry-c.png">
-                    <img src="images/cherry-c2.png">
+                    <img src="images/c/cherry-c.png">
+                    <img src="images/c/cherry-c2.png">
                 </div>
                 `,
-                image: 'images/c/cherry-i.png'
+                image: 'images/i/cherry-i.png'
             },
             {
                 id: 7,
@@ -1131,11 +1152,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/ebta-c.png">
-                    <img src="images/ebta-c2.png">
+                    <img src="images/c/ebta-c.png">
+                    <img src="images/c/ebta-c2.png">
                 </div>
                 `,
-                image: 'images/c/ebta-i.png'
+                image: 'images/i/ebta-i.png'
             },
             {
                 id: 8,
@@ -1150,12 +1171,12 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/placeholder-c.png">
-                    <img src="images/placeholder-c2.png">
-                    <img src="images/placeholder-c3.png">
+                    <img src="images/c/placeholder-c.png">
+                    <img src="images/c/placeholder-c2.png">
+                    <img src="images/c/placeholder-c3.png">
                 </div>
                 `,
-                image: 'images/c/placeholder-i.png'
+                image: 'images/i/placeholder-i.png'
             },
             {
                 id: 9,
@@ -1170,10 +1191,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/sakura-c.png">
+                    <img src="images/c/sakura-c.png">
                 </div>
                 `,
-                image: 'images/c/sakura-i.png'
+                image: 'images/i/sakura-i.png'
             },
             {
                 id: 10,
@@ -1188,7 +1209,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/quanta-r.png"><br>
                 `,
-                image: 'images/c/quanta-i.png'
+                image: 'images/i/quanta-i.png'
             },
         ]
     },
@@ -1233,7 +1254,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/mu-r.png"><br>
                 `,
-                image: 'images/c/mu-i.png'
+                image: 'images/i/mu-i.png'
             },
         ]
     },
@@ -1273,10 +1294,10 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/lyne-c.png"><br>
+                    <img src="images/c/lyne-c.png"><br>
                 </div>
                 `,
-                image: 'images/c/lyne-i.png'
+                image: 'images/i/lyne-i.png'
             },
         ]
     },
@@ -1314,7 +1335,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/infineko-r.png"><br>
                 `,
-                image: 'images/c/infineko-i.png'
+                image: 'images/i/infineko-i.png'
             },
             {
                 id: 3,
@@ -1329,7 +1350,7 @@ menuItems = [
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/ugo-r.png"><br>
                 `,
-                image: 'images/c/ugo-i.png'
+                image: 'images/i/ugo-i.png'
             },
             {
                 id: 4,
@@ -1344,11 +1365,11 @@ menuItems = [
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
-                    <img src="images/Δ-c.png">
-                    <img src="images/Δ-c2.png">
+                    <img src="images/c/Δ-c.png">
+                    <img src="images/c/Δ-c2.png">
                 </div>
                 `,
-                image: 'images/c/Δ-i.png'
+                image: 'images/i/Δ-i.png'
             },
         ]
     },
@@ -1681,23 +1702,23 @@ menuItems = [
                     <h4>Simple / Geometric = Free</h4>
                     Can also be transparent<br>
                     <div class="imgContainer">
-                    <img src="images/artibun-c2.png"><br>
-                    <img src="images/artigoat-c4.png"><br>
-                    <img src="images/micro-c.png"><br>
+                    <img src="images/c/artibun-c2.png"><br>
+                    <img src="images/c/artigoat-c4.png"><br>
+                    <img src="images/c/micro-c.png"><br>
                     </div>
                     <h4>Nature = +10 USD</h4>
                     This include clouds and space-themed background<br>
                     <div class="imgContainer">
-                    <img src="images/artigoat-c2.png"><br>
-                    <img src="images/skitty-c3.png"><br>
-                    <img src="images/furfy-c.png"><br>
+                    <img src="images/c/artigoat-c2.png"><br>
+                    <img src="images/c/skitty-c3.png"><br>
+                    <img src="images/c/furfy-c.png"><br>
                     </div>
                     <h4>Many objects = +30 USD</h4>
                     Cityscapes, interior, etc.<br>
                     <div class="imgContainer">
-                    <img src="images/artifox-c4.png"><br>
-                    <img src="images/eros-c2.png"><br>
-                    <img src="images/articat-c5.png"><br>
+                    <img src="images/c/artifox-c4.png"><br>
+                    <img src="images/c/eros-c2.png"><br>
+                    <img src="images/c/articat-c5.png"><br>
                     </div>
                     `,
                 image: 'icons/comm-art.png'
@@ -1825,7 +1846,7 @@ menuItems = [
 ];
 
 
-if (Math.floor(Math.random() * 333) == 333) {
+if (Math.floor(Math.random() * 333) == 0) {
     menuItems.forEach(menu => {
         if (menu.name == "Information") {
             menu.labels.push(
