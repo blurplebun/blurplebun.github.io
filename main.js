@@ -12,6 +12,8 @@ const focusedLayout = document.getElementById('focusedLayout');
 const focusedCardArea = document.getElementById('focusedCardArea');
 const detailArea = document.getElementById('detailArea');
 const backBtn = document.getElementById('backBtn');
+const centerBtn = document.getElementById('centerBtn');
+centerBtn.classList.add('hide');
 
 const menuStage = document.querySelector('.menu-stage');
 
@@ -51,6 +53,7 @@ window.addEventListener('mousemove', function (e) {
             layer.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
+    centerBtn.classList.remove('hide');
 });
 
 window.addEventListener('mouseup', function (e) {
@@ -85,6 +88,7 @@ window.addEventListener('touchmove', function (e) {
             layer.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
+    centerBtn.classList.remove('hide');
 });
 
 window.addEventListener('touchend', function (e) {
@@ -109,6 +113,7 @@ menuStage.addEventListener('wheel', (e) => {
             });
         }
     }
+    centerBtn.classList.remove('hide');
 }, { passive: false });
 
 // Snap back to center when a button is clicked
@@ -130,6 +135,7 @@ function snapCameraToCenter() {
             }, 900);
         });
     }
+    centerBtn.classList.add('hide');
 }
 
 
@@ -236,7 +242,7 @@ function createMenuButtons() {
             }
 
             btn.addEventListener('click', () => openMenu(m, btn));
-            btn.addEventListener('click', snapCameraToCenter);
+            /*btn.addEventListener('click', snapCameraToCenter);*/
             ringLayer.appendChild(btn);
             orbitButtons.push(btn);
         });
@@ -337,6 +343,7 @@ function showContentFor(menu) {
     cardsContainer.innerHTML = '';
     focusedLayout.style.display = 'none';
     contentView.classList.add('visible');
+    centerBtn.classList.add('hide');
     backBtn.classList.add('visible');
     backBtn.setAttribute('aria-hidden', 'false');
     backBtn.querySelector('span').textContent = 'Menu';
@@ -594,6 +601,7 @@ function goBack() {
         // Currently in a menu → go back to main stage
         history.pushState({}, '', location.pathname);
         contentView.classList.remove('visible');
+        centerBtn.classList.remove('hide');
         backBtn.classList.remove('visible');
         backBtn.setAttribute('aria-hidden', 'true');
         contentView.style.overflow = '';
@@ -696,8 +704,9 @@ function createStarfield(layerCount = 4, starsPerLayer = 50) {
 
 
 backBtn.addEventListener('click', goBack);
-// close content when clicking outside (optional)
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
+
+centerBtn.addEventListener('click', snapCameraToCenter);
 
 // init
 createStarfield();

@@ -191,8 +191,12 @@ splashLines = [
     "I fucking hate javascript",
     `<a style="font-size:18px; text-decoration: none" href="https://www.youtube.com/watch?v=3L7VJl76i9U" target="_blank" >egg</a>`,
     "Now with a rare chance of Beecat!",
+    "Good girl/boy/they/it!",
+    "hi random guy",
+    "🐘",
+    "↗️ going to explode in 3 sec",
 ];
 
 totalSplash = splashLines.length;
 
-//splashLines = []
+// splashLines = []

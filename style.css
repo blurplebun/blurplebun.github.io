@@ -33,6 +33,10 @@
     --color-9: #6CC0FF;
     --color-10: #FFFFFF;
     --color-11: #ffcf70;
+    --color-12: #86a3ff;
+    --color-13: #9fe551;
+    --color-14: #ff8d57;
+    --color-15: #432cae;
 }
 
 @font-face {
@@ -694,13 +698,39 @@ a:active {
 
 .back-btn.visible {
     opacity: 1;
-    pointer-events: auto
+    pointer-events: auto;
 }
 
 .back-btn svg {
     width: 18px;
     height: 18px
 }
+
+.center-btn {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: var(--white);
+    color: var(--bg);
+    padding: 12px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    cursor: pointer;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    pointer-events: auto;
+    transition: opacity 300ms;
+    font-family: 'Baloo 2', 'Ubuntu', verdana, sans-serif;
+}
+
+.center-btn.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
 
 /* Image preview */
 .img-preview-overlay {
@@ -740,6 +770,16 @@ a:active {
 .img-preview-overlay img:hover {
     transform: scale(1.01);
 }
+
+
+
+
+
+
+
+
+
+
 
 /* small screens adjustments */
 @media (max-width:770px) {
