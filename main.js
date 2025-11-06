@@ -95,8 +95,8 @@ window.addEventListener('touchend', function (e) {
 menuStage.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
-        currentX -= e.deltaX * 2;
-        currentY -= e.deltaY * 2;
+        currentX -= e.deltaX * 1.5;
+        currentY -= e.deltaY * 1.5;
         menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
         const starfield = document.querySelector('.starfield');
         if (starfield) {
