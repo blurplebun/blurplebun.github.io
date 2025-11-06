@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'November 3rd, 2025';
-const version = '0.0.2.8';
+const version = '0.0.3';
 
 /*
 facts = [
@@ -16,7 +16,6 @@ facts = [
 menuItems = [
     /* TEMPLATE
     {
-        id: 0,
         q: 'menu',
         name: 'Menu',
         showName: true,
@@ -27,7 +26,6 @@ menuItems = [
         scale: 1.5,
         labels: [
             {
-                id: 1,
                 cardId: 'card',
                 title: 'Card',
                 excerpt: '',
@@ -41,7 +39,6 @@ menuItems = [
     },
     */
     {
-        id: 1,
         name: 'Deltadim',
         q: 'deltadim',
         subtitle: 'Delta Dimension',
@@ -50,7 +47,6 @@ menuItems = [
         orbit: 1,
         labels: [
             {
-                id: 1,
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Deltadim',
@@ -61,7 +57,6 @@ menuItems = [
                 image: 'icons/deltadim.png'
             },
             {
-                id: 2,
                 cardId: 'artibun',
                 title: 'Artibun',
                 excerpt: '',
@@ -71,6 +66,8 @@ menuItems = [
                 Gender: Bigender<br>
                 Sexuality: Bisexual<br>
                 Nickname: Arti, Bunbun<br>
+                <br>
+                S/O: <a data-open-card="deltadim:articat">Articat</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/artibun-r.png"><br>
                 <hr>
@@ -87,7 +84,6 @@ menuItems = [
                 image: 'images/i/artibun-i.png'
             },
             {
-                id: 3,
                 cardId: 'articat',
                 title: 'Articat',
                 excerpt: '',
@@ -97,6 +93,8 @@ menuItems = [
                 Gender: Male<br>
                 Sexuality: Bisexual<br>
                 Nickname: Arti, Kiki<br>
+                <br>
+                S/O: <a data-open-card="deltadim:artibun">Artibun</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -111,7 +109,6 @@ menuItems = [
                 image: 'images/i/articat-i.png'
             },
             {
-                id: 4,
                 cardId: 'artifox',
                 title: 'Artifox',
                 excerpt: '',
@@ -135,7 +132,6 @@ menuItems = [
                 image: 'images/i/artifox-i.png'
             },
             {
-                id: 5,
                 cardId: 'artifish',
                 title: 'Artifish',
                 excerpt: '',
@@ -145,6 +141,8 @@ menuItems = [
                 Gender: Non-Binary<br>
                 Sexuality: Demisexual<br>
                 Nickname: Arti, Fifi<br>
+                <br>
+                S/O: <a data-open-card="deltadim:artilope">Artilope</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -159,7 +157,6 @@ menuItems = [
                 image: 'images/i/artifish-i.png'
             },
             {
-                id: 6,
                 cardId: 'artigoat',
                 title: 'Artigoat',
                 excerpt: '',
@@ -169,6 +166,8 @@ menuItems = [
                 Gender: Male<br>
                 Sexuality: Gay<br>
                 Nickname: Arti, Baba<br>
+                <br>
+                S/O: <a data-open-card="deltadim:artipup">Artipup</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -183,7 +182,6 @@ menuItems = [
                 image: 'images/i/artigoat-i.png'
             },
             {
-                id: 7,
                 cardId: 'artilope',
                 title: 'Artilope',
                 excerpt: '',
@@ -193,6 +191,8 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Demisexual<br>
                 Nickname: Arti, Lolo, Lope<br>
+                <br>
+                S/O: <a data-open-card="deltadim:artifish">Artifish</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -207,7 +207,6 @@ menuItems = [
                 image: 'images/i/artilope-i.png'
             },
             {
-                id: 8,
                 cardId: 'artipup',
                 title: 'Artipup',
                 excerpt: '',
@@ -217,6 +216,8 @@ menuItems = [
                 Gender: Male<br>
                 Sexuality: Gay<br>
                 Nickname: Arti, Arfy<br>
+                <br>
+                S/O: <a data-open-card="deltadim:artigoat">Artigoat</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -231,7 +232,6 @@ menuItems = [
                 image: 'images/i/artipup-i.png'
             },
             {
-                id: 9,
                 cardId: 'artineko',
                 title: 'Artineko',
                 excerpt: '',
@@ -255,7 +255,6 @@ menuItems = [
                 image: 'images/i/artineko-i.png'
             },
             {
-                id: 10,
                 cardId: 'skitty',
                 title: 'Singularikitty',
                 excerpt: '',
@@ -283,7 +282,6 @@ menuItems = [
                 image: 'images/i/skitty-i.png'
             },
             {
-                id: 11,
                 cardId: 'gamma',
                 title: 'Gamma',
                 excerpt: '',
@@ -304,7 +302,6 @@ menuItems = [
                 image: 'images/i/gamma-i.png'
             },
             {
-                id: 12,
                 cardId: 'micro',
                 title: 'Micro',
                 excerpt: '',
@@ -326,7 +323,6 @@ menuItems = [
                 image: 'images/i/micro-i.png'
             },
             {
-                id: 13,
                 cardId: 'caramella',
                 title: 'Caramella',
                 excerpt: '',
@@ -336,6 +332,8 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Bisexual<br>
                 Nickname: Mella<br>
+                <br>
+                S/O: <a data-open-card="deltadim:azurey">Azurey</a><br>
                 <br>
                 Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a><br>
                 <h2>Reference Art:</h2><br>
@@ -354,7 +352,6 @@ menuItems = [
                 image: 'images/i/caramella-i.png'
             },
             {
-                id: 14,
                 cardId: 'azurey',
                 title: 'Azurey',
                 excerpt: '',
@@ -364,6 +361,8 @@ menuItems = [
                 Gender: Demiboy<br>
                 Sexuality: Pansexual<br>
                 Nickname: Azu<br>
+                <br>
+                S/O: <a data-open-card="deltadim:caramella">Caramella</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/azurey-r.png"><br>
                 <hr>
@@ -377,7 +376,6 @@ menuItems = [
                 image: 'images/i/azurey-i.png'
             },
             {
-                id: 15,
                 cardId: 'shirley',
                 title: 'Shirley',
                 excerpt: '',
@@ -387,6 +385,8 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Heterosexual<br>
                 Nickname: Manda, Alamanda<br>
+                <br>
+                S/O: <a data-open-card="deltadim:rose">Rose</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/shirley-r.png"><br>
                 <hr>
@@ -403,7 +403,6 @@ menuItems = [
                 image: 'images/i/shirley-i.png'
             },
             {
-                id: 16,
                 cardId: 'rose',
                 title: 'Rose',
                 excerpt: '',
@@ -413,6 +412,8 @@ menuItems = [
                 Gender: Male<br>
                 Sexuality: Heterosexual<br>
                 Nickname: Rosey<br>
+                <br>
+                S/O: <a data-open-card="deltadim:shirley">Shirley</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/rose-r.png"><br>
                 <hr>
@@ -426,7 +427,6 @@ menuItems = [
                 image: 'images/i/rose-i.png'
             },
             {
-                id: 17,
                 cardId: 'eros',
                 title: 'Eros',
                 excerpt: '',
@@ -435,6 +435,8 @@ menuItems = [
                 Pronouns: She/They<br>
                 Gender: Trans-female<br>
                 Sexuality: Demisexual<br>
+                <br>
+                S/O: <a data-open-card="deltadim:sora">Sora</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -449,7 +451,6 @@ menuItems = [
                 image: 'images/i/eros-i.png'
             },
             {
-                id: 18,
                 cardId: 'sora',
                 title: 'Sora',
                 excerpt: '',
@@ -458,6 +459,8 @@ menuItems = [
                 Pronouns: She/They<br>
                 Gender: Trans-female<br>
                 Sexuality: Bisexual<br>
+                <br>
+                S/O: <a data-open-card="deltadim:eros">Eros</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/sora-r.png"><br>
                 <hr>
@@ -470,7 +473,6 @@ menuItems = [
                 image: 'images/i/sora-i.png'
             },
             {
-                id: 19,
                 cardId: 'furfy',
                 title: 'Furfy',
                 excerpt: '',
@@ -492,7 +494,6 @@ menuItems = [
                 image: 'images/i/furfy-i.png'
             },
             {
-                id: 20,
                 cardId: 'articani',
                 title: 'Articani',
                 excerpt: '',
@@ -515,7 +516,6 @@ menuItems = [
                 image: 'images/i/articani-i.png'
             },
             {
-                id: 21,
                 cardId: 'ryon',
                 title: 'Ryon',
                 excerpt: '',
@@ -538,7 +538,6 @@ menuItems = [
                 image: 'images/i/ryon-i.png'
             },
             {
-                id: 22,
                 cardId: 'card',
                 title: 'Card',
                 excerpt: '',
@@ -547,6 +546,8 @@ menuItems = [
                 Pronouns: She/Any<br>
                 Gender: Female<br>
                 Sexuality: Bisexual<br>
+                <br>
+                S/O: <a data-open-card="deltadim:gift">Gift</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/card-r.png"><br>
                 <hr>
@@ -561,7 +562,6 @@ menuItems = [
                 image: 'images/i/card-i.png'
             },
             {
-                id: 23,
                 cardId: 'gift',
                 title: 'Gift',
                 excerpt: '',
@@ -570,13 +570,14 @@ menuItems = [
                 Pronouns: She/Any<br>
                 Gender: Female<br>
                 Sexuality: Bisexual<br>
+                <br>
+                S/O: <a data-open-card="deltadim:card">Card</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/gift-r.png"><br>
                 `,
                 image: 'images/i/gift-i.png'
             },
             {
-                id: 24,
                 cardId: 'elise',
                 title: 'Elise',
                 excerpt: '',
@@ -594,7 +595,6 @@ menuItems = [
                 image: 'images/i/elise-i.png'
             },
             {
-                id: 25,
                 cardId: 'fika',
                 title: 'Fika',
                 excerpt: '',
@@ -603,6 +603,8 @@ menuItems = [
                 Pronouns: She<br>
                 Gender: Female<br>
                 Sexuality: Heterosexual<br>
+                <br>
+                S/O: <a data-open-card="deltadim:rai">Rai</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -613,7 +615,6 @@ menuItems = [
                 image: 'images/i/fika-i.png'
             },
             {
-                id: 26,
                 cardId: 'rai',
                 title: 'Rai',
                 excerpt: '',
@@ -622,6 +623,8 @@ menuItems = [
                 Pronouns: He<br>
                 Gender: Male<br>
                 Sexuality: Heterosexual<br>
+                <br>
+                S/O: <a data-open-card="deltadim:fika">Fika</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/rai-r.png"><br>
                 <hr>
@@ -634,7 +637,6 @@ menuItems = [
                 image: 'images/i/rai-i.png'
             },
             {
-                id: 27,
                 cardId: 'hana',
                 title: 'Hana',
                 excerpt: '',
@@ -656,7 +658,6 @@ menuItems = [
                 image: 'images/i/hana-i.png'
             },
             {
-                id: 28,
                 cardId: 'mida',
                 title: 'Mida',
                 excerpt: '',
@@ -676,7 +677,6 @@ menuItems = [
                 image: 'images/i/mida-i.png'
             },
             {
-                id: 29,
                 cardId: 'lilac',
                 title: 'Lilac',
                 excerpt: '',
@@ -693,7 +693,6 @@ menuItems = [
                 image: 'images/i/lilac-i.png'
             },
             {
-                id: 30,
                 cardId: 'moka',
                 title: 'Moka',
                 excerpt: '',
@@ -708,7 +707,6 @@ menuItems = [
                 image: 'images/i/moka-i.png'
             },
             {
-                id: 31,
                 cardId: 'nameless',
                 title: 'Nameless',
                 excerpt: '',
@@ -728,7 +726,6 @@ menuItems = [
                 image: 'images/i/nameless-i.png'
             },
             {
-                id: 32,
                 cardId: 'nuki',
                 title: 'Nuki',
                 excerpt: '',
@@ -749,7 +746,6 @@ menuItems = [
                 image: 'images/i/nuki-i.png'
             },
             {
-                id: 33,
                 cardId: 'sawo',
                 title: 'Sawo',
                 excerpt: '',
@@ -766,7 +762,6 @@ menuItems = [
         ]
     },
     {
-        id: 2,
         name: 'Floriverse',
         q: 'floriverse',
         subtitle: 'Florie Universe',
@@ -775,7 +770,6 @@ menuItems = [
         orbit: 1,
         labels: [
             {
-                id: 1,
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Floriverse',
@@ -789,7 +783,6 @@ menuItems = [
                 image: 'icons/floriverse.png'
             },
             {
-                id: 2,
                 cardId: 'uncat',
                 title: 'Uncategorized',
                 excerpt: 'Flories with no associated album',
@@ -854,7 +847,6 @@ menuItems = [
                 image: 'images/flories/strawlineko-pfp.png'
             },
             {
-                id: 3,
                 cardId: 'fvvanilla',
                 title: 'Floriverse',
                 excerpt: 'Album',
@@ -885,7 +877,6 @@ menuItems = [
                 image: 'images/fv-i.png'
             },
             {
-                id: 4,
                 cardId: 'fvdelta',
                 title: 'Floriverse : Delta',
                 excerpt: 'Album',
@@ -937,7 +928,6 @@ menuItems = [
                 image: 'images/fvd-i.png'
             },
             {
-                id: 5,
                 cardId: 'fvepsilon',
                 title: 'Floriverse : Epsilon',
                 excerpt: 'Album',
@@ -1006,7 +996,6 @@ menuItems = [
                 image: 'images/fve-i.png'
             },
             {
-                id: 6,
                 cardId: 'fvzeta',
                 title: 'Floriverse : Zeta',
                 excerpt: 'Album',
@@ -1017,7 +1006,6 @@ menuItems = [
         ]
     },
     {
-        id: 3,
         name: 'Digirel',
         q: 'digirel',
         subtitle: 'Digital Realm',
@@ -1026,7 +1014,6 @@ menuItems = [
         orbit: 1,
         labels: [
             {
-                id: 1,
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Digirel',
@@ -1037,7 +1024,6 @@ menuItems = [
                 image: 'icons/digirel.png'
             },
             {
-                id: 2,
                 cardId: 'soap',
                 title: 'Soap',
                 excerpt: '',
@@ -1060,7 +1046,6 @@ menuItems = [
                 image: 'images/i/soap-i.png'
             },
             {
-                id: 3,
                 cardId: 'semyk',
                 title: 'Semyk',
                 excerpt: '',
@@ -1083,7 +1068,6 @@ menuItems = [
                 image: 'images/i/semyk-i.png'
             },
             {
-                id: 4,
                 cardId: 'artifolder',
                 title: 'Artifolder',
                 excerpt: '',
@@ -1101,7 +1085,6 @@ menuItems = [
                 image: 'images/i/artifolder-i.png'
             },
             {
-                id: 5,
                 cardId: 'byte',
                 title: 'Byte',
                 excerpt: '',
@@ -1119,7 +1102,6 @@ menuItems = [
                 image: 'images/i/byte-i.png'
             },
             {
-                id: 6,
                 cardId: 'cherry',
                 title: 'Cherry',
                 excerpt: '',
@@ -1138,7 +1120,6 @@ menuItems = [
                 image: 'images/i/cherry-i.png'
             },
             {
-                id: 7,
                 cardId: 'ebta',
                 title: 'Ebta',
                 excerpt: '',
@@ -1159,7 +1140,6 @@ menuItems = [
                 image: 'images/i/ebta-i.png'
             },
             {
-                id: 8,
                 cardId: 'placeholder',
                 title: '&lt;placeholder&gt;',
                 excerpt: '',
@@ -1179,7 +1159,6 @@ menuItems = [
                 image: 'images/i/placeholder-i.png'
             },
             {
-                id: 9,
                 cardId: 'sakura',
                 title: 'Sakura',
                 excerpt: '',
@@ -1197,7 +1176,6 @@ menuItems = [
                 image: 'images/i/sakura-i.png'
             },
             {
-                id: 10,
                 cardId: 'quanta',
                 title: 'Quanta',
                 excerpt: '',
@@ -1214,7 +1192,6 @@ menuItems = [
         ]
     },
     {
-        id: 4,
         name: 'Nansenz',
         q: 'nansenz',
         subtitle: 'World of Nonsense',
@@ -1223,7 +1200,6 @@ menuItems = [
         orbit: 1,
         labels: [
             {
-                id: 1,
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Nansenz',
@@ -1241,7 +1217,6 @@ menuItems = [
                 image: 'icons/nansenz.png'
             },
             {
-                id: 2,
                 cardId: 'mu',
                 title: 'Mu',
                 excerpt: '',
@@ -1259,7 +1234,6 @@ menuItems = [
         ]
     },
     {
-        id: 5,
         name: 'Hizen',
         q: 'hizen',
         subtitle: 'Hi-Zenith',
@@ -1268,7 +1242,6 @@ menuItems = [
         orbit: 1,
         labels: [
             {
-                id: 1,
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Hizen',
@@ -1279,7 +1252,6 @@ menuItems = [
                 image: 'icons/hizen.png'
             },
             {
-                id: 2,
                 cardId: 'lyne',
                 title: 'Lyne',
                 excerpt: '',
@@ -1302,7 +1274,6 @@ menuItems = [
         ]
     },
     {
-        id: 6,
         name: 'Nadir',
         q: 'nadir',
         subtitle: 'Void of Nadir',
@@ -1311,7 +1282,6 @@ menuItems = [
         orbit: 1,
         labels: [
             {
-                id: 1,
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Nadir',
@@ -1322,7 +1292,6 @@ menuItems = [
                 image: 'icons/nadir.png'
             },
             {
-                id: 2,
                 cardId: 'infineko',
                 title: 'Infineko',
                 excerpt: '',
@@ -1338,7 +1307,6 @@ menuItems = [
                 image: 'images/i/infineko-i.png'
             },
             {
-                id: 3,
                 cardId: 'ugo',
                 title: 'Ugo',
                 excerpt: '',
@@ -1353,7 +1321,6 @@ menuItems = [
                 image: 'images/i/ugo-i.png'
             },
             {
-                id: 4,
                 cardId: 'unknown',
                 title: '???',
                 excerpt: '',
@@ -1374,7 +1341,6 @@ menuItems = [
         ]
     },
     {
-        id: 7,
         name: 'Information',
         q: 'info',
         subtitle: 'Information about Artifyber and this website',
@@ -1385,7 +1351,6 @@ menuItems = [
         scale: 1.5,
         labels: [
             {
-                id: 1,
                 cardId: 'about',
                 title: 'About Artifyber',
                 excerpt: 'artifyber@gmail.com',
@@ -1415,7 +1380,6 @@ menuItems = [
             },
             /*
             {
-                id: 2,
                 cardId: 'didyouknow',
                 title: `
                     <h2 style='margin-bottom: -12px'>Did you know:</h2><br>
@@ -1431,7 +1395,6 @@ menuItems = [
             },
             */
             {
-                id: 3,
                 cardId: 'webinfo',
                 title: `
                     <h2 style='margin-bottom: -12px'>Website Info:</h2><br>
@@ -1454,7 +1417,6 @@ menuItems = [
         ]
     },
     {
-        id: 8,
         name: 'Links',
         q: 'links',
         subtitle: 'All links to my social media',
@@ -1465,7 +1427,6 @@ menuItems = [
         scale: 1.5,
         labels: [
             {
-                id: 1,
                 cardId: 'twitter',
                 title: 'Twitter',
                 excerpt: '',
@@ -1473,7 +1434,6 @@ menuItems = [
                 image: 'icons/l-twitter.png'
             },
             {
-                id: 2,
                 cardId: 'instagram',
                 title: 'Instagram',
                 excerpt: '',
@@ -1481,7 +1441,6 @@ menuItems = [
                 image: 'icons/l-instagram.png'
             },
             {
-                id: 3,
                 cardId: 'bluesky',
                 title: 'BlueSky',
                 excerpt: '',
@@ -1489,7 +1448,6 @@ menuItems = [
                 image: 'icons/l-bluesky.png'
             },
             {
-                id: 4,
                 cardId: 'discord',
                 title: 'Discord Server',
                 excerpt: '',
@@ -1497,7 +1455,6 @@ menuItems = [
                 image: 'icons/l-discord.png'
             },
             {
-                id: 5,
                 cardId: 'youtube',
                 title: 'YouTube',
                 excerpt: '',
@@ -1505,7 +1462,6 @@ menuItems = [
                 image: 'icons/l-youtube.png'
             },
             {
-                id: 6,
                 cardId: 'spotify',
                 title: 'Spotify Artist',
                 excerpt: '',
@@ -1513,7 +1469,6 @@ menuItems = [
                 image: 'icons/l-spotify.png'
             },
             {
-                id: 7,
                 cardId: 'newgrounds',
                 title: 'Newgrounds',
                 excerpt: '',
@@ -1521,7 +1476,6 @@ menuItems = [
                 image: 'icons/l-newgrounds.png'
             },
             {
-                id: 8,
                 cardId: 'soundcloud',
                 title: 'SoundCloud',
                 excerpt: '',
@@ -1529,7 +1483,6 @@ menuItems = [
                 image: 'icons/l-soundcloud.png'
             },
             {
-                id: 9,
                 cardId: 'toyhouse',
                 title: 'Toyhouse',
                 excerpt: '',
@@ -1537,7 +1490,6 @@ menuItems = [
                 image: 'icons/l-toyhouse.png'
             },
             {
-                id: 10,
                 cardId: 'carrd',
                 title: 'Carrd',
                 excerpt: 'Backup website just in case',
@@ -1545,7 +1497,6 @@ menuItems = [
                 image: 'icons/l-carrd.png'
             },
             {
-                id: 11,
                 cardId: 'alts',
                 title: 'Alternates',
                 excerpt: 'All of my alternative accounts on various platforms',
@@ -1569,7 +1520,6 @@ menuItems = [
         ]
     },
     {
-        id: 9,
         name: 'Commissions',
         q: 'comms',
         subtitle: 'Information about art/music commissions',
@@ -1580,7 +1530,6 @@ menuItems = [
         scale: 1.5,
         labels: [
             {
-                id: 1,
                 cardId: 'kofi',
                 title: 'Ko-Fi',
                 excerpt: 'For a method of payment',
@@ -1588,7 +1537,6 @@ menuItems = [
                 image: 'icons/comm-kofi.png'
             },
             {
-                id: 2,
                 cardId: 'tos',
                 title: 'Information and ToS',
                 excerpt: 'Rules and how to commission',
@@ -1654,7 +1602,6 @@ menuItems = [
                 image: 'icons/comm-tos.png'
             },
             {
-                id: 3,
                 cardId: 'art',
                 title: 'Art Pricing',
                 excerpt: 'With examples',
@@ -1724,7 +1671,6 @@ menuItems = [
                 image: 'icons/comm-art.png'
             },
             {
-                id: 4,
                 cardId: 'music',
                 title: 'Music Pricing',
                 excerpt: 'With examples',
@@ -1742,7 +1688,6 @@ menuItems = [
                 image: 'icons/comm-music.png'
             },
             {
-                id: 5,
                 cardId: 'adult',
                 title: '18+ Commissions',
                 excerpt: '',
@@ -1755,7 +1700,6 @@ menuItems = [
         ]
     },
     {
-        id: 10,
         name: 'Daily Art+',
         showName: true,
         q: 'dailyartplus',
@@ -1766,7 +1710,6 @@ menuItems = [
         scale: 2,
         labels: [
             {
-                id: 1,
                 cardId: 'dailyartplus',
                 title: 'Daily Art+',
                 excerpt: '',
@@ -1789,7 +1732,6 @@ menuItems = [
     },
     /*
     {
-        id: 1000,
         name: 'Test',
         showName: true,
         q: 'test',
@@ -1801,7 +1743,6 @@ menuItems = [
         noFocus: true,
         labels: [
             {
-                id: 1,
                 cardId: 'testloop1',
                 title: 'testloop1',
                 excerpt: '',
@@ -1810,7 +1751,6 @@ menuItems = [
                 image: 'images/temp2.png'
             },
             {
-                id: 2,
                 cardId: 'testloop2',
                 title: 'testloop2',
                 excerpt: '',
@@ -1822,7 +1762,6 @@ menuItems = [
     },
     */
     {
-        id: 99,
         name: 'Whitespace',
         q: 'yolkspocketdimension',
         subtitle: '',
@@ -1851,7 +1790,6 @@ if (Math.floor(Math.random() * 333) == 0) {
         if (menu.name == "Information") {
             menu.labels.push(
                 {
-                    id: 1000,
                     title: 'Beecat',
                     excerpt: 'Beecat',
                     detail:

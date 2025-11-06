@@ -40,19 +40,17 @@ window.addEventListener('mousemove', function (e) {
     menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
     menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
 
-const starfield = document.querySelector('.starfield');
-if (starfield) {
-    const layers = starfield.querySelectorAll('.star-layer');
-    layers.forEach(layer => {
-        const depth = parseFloat(layer.dataset.depth);
-        const x = -currentX * parallaxFactor * depth;
-        const y = -currentY * parallaxFactor * depth;
-        layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
-        layer.style.transform = `translate(${x}px, ${y}px)`;
-    });
-}
-
-
+    const starfield = document.querySelector('.starfield');
+    if (starfield) {
+        const layers = starfield.querySelectorAll('.star-layer');
+        layers.forEach(layer => {
+            const depth = parseFloat(layer.dataset.depth);
+            const x = -currentX * parallaxFactor * depth;
+            const y = -currentY * parallaxFactor * depth;
+            layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
+            layer.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    }
 });
 
 window.addEventListener('mouseup', function (e) {
@@ -76,24 +74,44 @@ window.addEventListener('touchmove', function (e) {
     menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
     menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
 
-const starfield = document.querySelector('.starfield');
-if (starfield) {
-    const layers = starfield.querySelectorAll('.star-layer');
-    layers.forEach(layer => {
-        const depth = parseFloat(layer.dataset.depth);
-        const x = -currentX * parallaxFactor * depth;
-        const y = -currentY * parallaxFactor * depth;
-        layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
-        layer.style.transform = `translate(${x}px, ${y}px)`;
-    });
-}
-
-
+    const starfield = document.querySelector('.starfield');
+    if (starfield) {
+        const layers = starfield.querySelectorAll('.star-layer');
+        layers.forEach(layer => {
+            const depth = parseFloat(layer.dataset.depth);
+            const x = -currentX * parallaxFactor * depth;
+            const y = -currentY * parallaxFactor * depth;
+            layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
+            layer.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    }
 });
 
 window.addEventListener('touchend', function (e) {
     isDragging = false;
 });
+
+// two-finger trackpad gesture
+let offsetX = 0;
+let offsetY = 0;
+menuStage.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
+        offsetX -= e.deltaX;
+        offsetY -= e.deltaY;
+        menuStage.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        const starfield = document.querySelector('.starfield');
+        if (starfield) {
+            const layers = starfield.querySelectorAll('.star-layer');
+            layers.forEach(layer => {
+                const depth = parseFloat(layer.dataset.depth);
+                const x = -offsetX * parallaxFactor * depth;
+                const y = -offsetY * parallaxFactor * depth;
+                layer.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        }
+    }
+}, { passive: false });
 
 // Snap back to center when a button is clicked
 function snapCameraToCenter() {
@@ -272,64 +290,6 @@ window.addEventListener('resize', () => {
 
 
 
-/// -- URL QUERY HANDLER ?m=<menu>&i=<card-id> --
-window.addEventListener('load', () => {
-  const params = new URLSearchParams(window.location.search);
-  const menuCode = params.get('m');
-  const cardKey = params.get('i'); // may be null or "" if ?i= or missing
-  if (!menuCode) return;
-
-  const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
-  if (!targetMenu) return;
-
-  // wait until buttons exist, then open the menu
-  setTimeout(() => {
-    const button = Array.from(document.querySelectorAll('.menu-button'))
-      .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-    if (!button) return;
-    openMenu(targetMenu, button, { skipAnimation: true });
-
-    // if ?i= exists AND is non-empty, open the card after content loads
-    if (cardKey) {
-      const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
-      if (targetLabel) {
-        const cardEl = [...document.querySelectorAll('.card')]
-          .find(c => c.dataset.cardId === cardKey);
-        if (cardEl && !(cardEl.dataset.link || cardEl.dataset.noclick)) {
-          focusCard(cardEl, targetLabel, targetMenu);
-        }
-      }
-    }
-  }, 500);
-});
-
-
-
-/// -- SPLASHTEXTS --
-window.addEventListener('load', () => {
-    const splashTexts = document.querySelectorAll('.splash-text');
-    splashTexts.forEach(el => {
-        const type = el.dataset.info;
-        if (type === 'info') {
-            el.textContent = "(drag to move around)"; // static label
-        }
-        if (type === 'splash') {
-            const text = splashLines[Math.floor(Math.random() * splashLines.length)];
-            el.innerHTML = text;
-            const baseSize = 20; // max font size for short text
-            const minSize = 12;  // never go smaller than this
-            const maxLen = 45;   // expected longest splash length
-
-            let size = baseSize - (text.length / maxLen) * (baseSize - minSize);
-            size = Math.max(minSize, Math.min(size, baseSize)); // clamp
-
-            el.style.fontSize = `${size}px`;
-        }
-    });
-});
-
-
-
 /// -- OPEN MAIN MENU BUTTONS --
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (skipAnimation) {
@@ -370,6 +330,8 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     });
 }
 
+
+
 /// -- SHOW CONTENT FROM MENU --
 function showContentFor(menu) {
     contentTitle.textContent = menu.name;
@@ -406,8 +368,6 @@ function showContentFor(menu) {
     });
     contentTitle.appendChild(linkIcon);
 
-
-    const maxCols = parseInt(cardsContainer.dataset.max) || 5;
     // cardsContainer.className = `cards-grid max-cols-5`;
     cardsContainer.className = `cards-grid`;
     contentView.dataset.singleCardMenu = menu.labels.length === 1 ? 'true' : 'false';
@@ -483,6 +443,7 @@ function showContentFor(menu) {
 }
 
 
+
 /// -- CARD DETAIL HANDLER --
 function focusCard(cardEl, label, menu = null) {
     // clone card into left panel for appearance
@@ -536,46 +497,81 @@ function focusCard(cardEl, label, menu = null) {
 }
 
 
+
+/// -- URL QUERY HANDLER ?m=<menu>&i=<card-id> --
+window.addEventListener('load', () => {
+    const params = new URLSearchParams(window.location.search);
+    const menuCode = params.get('m');
+    const cardKey = params.get('i'); // may be null or "" if ?i= or missing
+    if (!menuCode) return;
+
+    const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
+    if (!targetMenu) return;
+
+    // wait until buttons exist, then open the menu
+    setTimeout(() => {
+        const button = Array.from(document.querySelectorAll('.menu-button'))
+            .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+        if (!button) return;
+        openMenu(targetMenu, button, { skipAnimation: true });
+
+        // if ?i= exists AND is non-empty, open the card after content loads
+        if (cardKey) {
+            const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+            if (targetLabel) {
+                const cardEl = [...document.querySelectorAll('.card')]
+                    .find(c => c.dataset.cardId === cardKey);
+                if (cardEl && !(cardEl.dataset.link || cardEl.dataset.noclick)) {
+                    focusCard(cardEl, targetLabel, targetMenu);
+                }
+            }
+        }
+    }, 100);
+});
+
+
+
 /// -- INTERNAL LINK HANDLER <a data-open-card="q:id"> --
 detailArea.addEventListener('click', function (e) {
-  const link = e.target.closest('a[data-open-card]');
-  if (!link) return;
-  e.preventDefault();
-  const ref = link.dataset.openCard.trim();
-  const [menuCode, cardKey] = ref.split(':');
-  if (!menuCode || !cardKey) {
-    console.warn('Invalid open-card reference:', ref);
-    return;
-  }
+    const link = e.target.closest('a[data-open-card]');
+    if (!link) return;
+    e.preventDefault();
+    const ref = link.dataset.openCard.trim();
+    const [menuCode, cardKey] = ref.split(':');
+    if (!menuCode || !cardKey) {
+        console.warn('Invalid open-card reference:', ref);
+        return;
+    }
 
-  const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
-  if (!targetMenu) {
-    console.warn('Menu not found for', menuCode);
-    return;
-  }
+    const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
+    if (!targetMenu) {
+        console.warn('Menu not found for', menuCode);
+        return;
+    }
 
-  const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
-  if (!targetLabel) {
-    console.warn('Card cardId not found in menu', menuCode, cardKey);
-    return;
-  }
+    const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+    if (!targetLabel) {
+        console.warn('Card cardId not found in menu', menuCode, cardKey);
+        return;
+    }
 
-  if (contentTitle.textContent.toLowerCase() !== targetMenu.name.toLowerCase()) {
-    const button = Array.from(document.querySelectorAll('.menu-button'))
-      .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-    if (!button) return;
-    openMenu(targetMenu, button, { skipAnimation: true });
-    // Wait for cards to render, then open the target card
-    const cardEl = [...document.querySelectorAll('.card')]
-      .find(c => c.dataset.cardId === cardKey);
-    if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
-  } else {
-    // Already in same menu — just focus the card directly
-    const cardEl = [...document.querySelectorAll('.card')]
-      .find(c => c.dataset.cardId === cardKey);
-    if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
-  }
+    if (contentTitle.textContent.toLowerCase() !== targetMenu.name.toLowerCase()) {
+        const button = Array.from(document.querySelectorAll('.menu-button'))
+            .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+        if (!button) return;
+        openMenu(targetMenu, button, { skipAnimation: true });
+        // Wait for cards to render, then open the target card
+        const cardEl = [...document.querySelectorAll('.card')]
+            .find(c => c.dataset.cardId === cardKey);
+        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+    } else {
+        // Already in same menu — just focus the card directly
+        const cardEl = [...document.querySelectorAll('.card')]
+            .find(c => c.dataset.cardId === cardKey);
+        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+    }
 });
+
 
 
 /// -- BACK NAVIGATION HANDLER --
@@ -606,7 +602,6 @@ function goBack() {
         return;
     }
 }
-
 
 
 
@@ -641,13 +636,39 @@ document.addEventListener('click', function (e) {
         } else {
             overlay.innerHTML = `<img src="${img.src}" alt="preview">`
         }
-        
+
         overlay.classList.add('visible');
 
         // close on click
         overlay.addEventListener('click', () => overlay.classList.remove('visible'), { once: true });
     }
 });
+
+
+
+/// -- SPLASHTEXTS --
+window.addEventListener('load', () => {
+    const splashTexts = document.querySelectorAll('.splash-text');
+    splashTexts.forEach(el => {
+        const type = el.dataset.info;
+        if (type === 'info') {
+            el.textContent = "(drag to move around)"; // static label
+        }
+        if (type === 'splash') {
+            const text = splashLines[Math.floor(Math.random() * splashLines.length)];
+            el.innerHTML = text;
+            const baseSize = 20; // max font size for short text
+            const minSize = 12;  // never go smaller than this
+            const maxLen = 45;   // expected longest splash length
+
+            let size = baseSize - (text.length / maxLen) * (baseSize - minSize);
+            size = Math.max(minSize, Math.min(size, baseSize)); // clamp
+
+            el.style.fontSize = `${size}px`;
+        }
+    });
+});
+
 
 
 /// -- STARS --
@@ -660,7 +681,7 @@ function createStarfield(layerCount = 4, starsPerLayer = 50) {
         for (let i = 0; i < starsPerLayer; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
-            
+
             //random size
             const size = Math.random() * 2 + 1;
             star.style.width = `${size}px`;
@@ -673,7 +694,6 @@ function createStarfield(layerCount = 4, starsPerLayer = 50) {
         container.appendChild(layer);
     }
 }
-
 
 
 
@@ -690,36 +710,34 @@ createMenuButtons();
 
 // --- HISTORY STATE HANDLING ---
 window.addEventListener('popstate', (event) => {
-  const params = new URLSearchParams(location.search);
-  const menuCode = params.get('m');
-  const cardKey = params.get('i');
+    const params = new URLSearchParams(location.search);
+    const menuCode = params.get('m');
+    const cardKey = params.get('i');
 
-  if (!menuCode) {
-    // Go back to main menu
-    goBack();
-    contentView.classList.remove('visible');
-    backBtn.classList.remove('visible');
-    backBtn.setAttribute('aria-hidden', 'true');
-    return;
-  }
-
-  const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
-  if (!targetMenu) return;
-  const button = Array.from(document.querySelectorAll('.menu-button'))
-    .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-  if (!button) return;
-  openMenu(targetMenu, button, { skipAnimation: true });
-
-  if (cardKey) {
-    const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
-    if (targetLabel) {
-      setTimeout(() => {
-        const cardEl = [...document.querySelectorAll('.card')]
-          .find(c => c.dataset.cardId === cardKey);
-        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
-      }, 800);
+    if (!menuCode) {
+        // Go back to main menu
+        goBack();
+        contentView.classList.remove('visible');
+        backBtn.classList.remove('visible');
+        backBtn.setAttribute('aria-hidden', 'true');
+        return;
     }
-  }
+
+    const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
+    if (!targetMenu) return;
+    const button = Array.from(document.querySelectorAll('.menu-button'))
+        .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+    if (!button) return;
+    openMenu(targetMenu, button, { skipAnimation: true });
+
+    if (cardKey) {
+        const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+        if (targetLabel) {
+            const cardEl = [...document.querySelectorAll('.card')]
+                .find(c => c.dataset.cardId === cardKey);
+            if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+        }
+    }
 });
 
 
