@@ -92,21 +92,19 @@ window.addEventListener('touchend', function (e) {
 });
 
 // two-finger trackpad gesture
-let offsetX = 0;
-let offsetY = 0;
 menuStage.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
-        offsetX -= e.deltaX;
-        offsetY -= e.deltaY;
-        menuStage.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        currentX -= e.deltaX * 2;
+        currentY -= e.deltaY * 2;
+        menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
         const starfield = document.querySelector('.starfield');
         if (starfield) {
             const layers = starfield.querySelectorAll('.star-layer');
             layers.forEach(layer => {
                 const depth = parseFloat(layer.dataset.depth);
-                const x = -offsetX * parallaxFactor * depth;
-                const y = -offsetY * parallaxFactor * depth;
+                const x = -currentX * parallaxFactor * depth;
+                const y = -currentY * parallaxFactor * depth;
                 layer.style.transform = `translate(${x}px, ${y}px)`;
             });
         }
