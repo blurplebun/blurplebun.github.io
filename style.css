@@ -11,6 +11,7 @@
     --white: #fff;
     --ring: var(--accent2);
     --menu-radius: 150px;
+    --menu-stage-scale: 1;
 
     --button-size: 100px;
     --button-gap: 20px;
@@ -830,12 +831,6 @@ a:active {
 
 
 
-
-
-
-
-
-
 /* small screens adjustments */
 @media (max-width:770px) {
     .menu-stage {
@@ -844,8 +839,11 @@ a:active {
     }
 
     :root {
+        /*
         --menu-radius: 100px;
-        --button-size: 70px;
+        --button-size: 80px;
+        */
+        --menu-stage-scale: 0.75;
         --card-scale: 0.625;
         --card-gap: 12px;
     }
@@ -960,6 +958,7 @@ a:active {
     animation: twinkle 3s infinite ease-in-out;
 }
 
+
 @keyframes twinkle {
 
     0%,
@@ -973,6 +972,7 @@ a:active {
         transform: scale(2);
     }
 }
+
 
 .splash-text {
     position: absolute;

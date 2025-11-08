@@ -26,6 +26,8 @@ let currentX = 0, currentY = 0;
 let parallaxX = 0, parallaxY = 0;
 const parallaxFactor = -0.1;
 
+// menuStageScale = getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale');
+
 // Mouse drag to pan
 menuStage.addEventListener('mousedown', function (e) {
     isDragging = true;
@@ -40,7 +42,7 @@ window.addEventListener('mousemove', function (e) {
     currentX = e.clientX - startX;
     currentY = e.clientY - startY;
     menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
-    menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    menuStage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
 
     const starfield = document.querySelector('.starfield');
     if (starfield) {
@@ -74,7 +76,7 @@ window.addEventListener('touchmove', function (e) {
     currentX = e.touches[0].clientX - startX;
     currentY = e.touches[0].clientY - startY;
     menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
-    menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    menuStage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
 
     const starfield = document.querySelector('.starfield');
     if (starfield) {
@@ -99,7 +101,7 @@ menuStage.addEventListener('wheel', (e) => {
     if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
         currentX -= e.deltaX * 1.5;
         currentY -= e.deltaY * 1.5;
-        menuStage.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        menuStage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
         const starfield = document.querySelector('.starfield');
         if (starfield) {
             const layers = starfield.querySelectorAll('.star-layer');
@@ -118,7 +120,7 @@ function snapCameraToCenter() {
     currentX = 0;
     currentY = 0;
     menuStage.style.transition = 'transform 0.5s cubic-bezier(.2, .9, .2, 1)';
-    menuStage.style.transform = 'translate(0, 0)';
+    menuStage.style.transform = `translate(0, 0) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
 
     const starfield = document.querySelector('.starfield');
     if (starfield) {
@@ -142,6 +144,12 @@ function showCenterBtn() {
     requestAnimationFrame(showCenterBtn);
 }
 showCenterBtn();
+
+
+snapCameraToCenter();
+window.addEventListener('resize', () => {
+    snapCameraToCenter();
+});
 
 
 
@@ -346,6 +354,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
 
 /// -- SHOW CONTENT FROM MENU --
 function showContentFor(menu) {
+    // contentView.querySelectorAll('hr').forEach(h => h.remove());
     contentTitle.textContent = menu.name;
     contentSubtitle.textContent = menu.subtitle;
     cardsContainer.innerHTML = '';
@@ -383,6 +392,14 @@ function showContentFor(menu) {
     // cardsContainer.className = `cards-grid max-cols-5`;
     cardsContainer.className = `cards-grid`;
     contentView.dataset.singleCardMenu = menu.labels.length === 1 ? 'true' : 'false';
+
+    /*
+    const hr = document.createElement('hr');
+    hr.style.border = "none";
+    hr.style.borderTop = `3px solid color-mix(in srgb, var(--accent) 50%, transparent)`;
+    hr.style.margin = "12px 0"
+    contentView.appendChild(hr);
+    */
 
     menu.labels.forEach(lbl => {
         const c = document.createElement('div');
@@ -652,7 +669,7 @@ detailArea.addEventListener('click', async function (e) {
         } else {
             const button = Array.from(document.querySelectorAll('.menu-button'))
                 .find(b => (b.dataset.menuQ && b.dataset.menuQ.toLowerCase() === targetMenu.q.toLowerCase())
-                        || (b.getAttribute('aria-label') && b.getAttribute('aria-label').toLowerCase() === (targetMenu.name || '').toLowerCase()));
+                    || (b.getAttribute('aria-label') && b.getAttribute('aria-label').toLowerCase() === (targetMenu.name || '').toLowerCase()));
             if (typeof openMenu === 'function') {
                 openMenu(targetMenu, button || null, { skipAnimation: !button });
             } else {
@@ -785,7 +802,7 @@ window.addEventListener('load', () => {
 
 
 /// -- STARS --
-function createStarfield(layerCount = 4, starsPerLayer = 50) {
+function createStarfield(layerCount = 3, starsPerLayer = 40) {
     const container = document.querySelector('.starfield');
     for (let l = 0; l < layerCount; l++) {
         const layer = document.createElement('div');
@@ -801,7 +818,7 @@ function createStarfield(layerCount = 4, starsPerLayer = 50) {
             star.style.height = `${size}px`;
             star.style.left = `${Math.random() * 100}%`;
             star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 5}s`;
+            star.style.animationDelay = `-${Math.random() * 5}s`;
             layer.appendChild(star);
         }
         container.appendChild(layer);

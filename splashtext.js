@@ -195,6 +195,7 @@ splashLines = [
     "hi random guy",
     "🐘",
     "↗️ going to explode in 3 sec",
+    "Powered by Omniverse™",
 ];
 
 totalSplash = splashLines.length;
