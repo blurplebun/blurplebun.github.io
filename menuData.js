@@ -2,8 +2,8 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'November 3rd, 2025';
-const version = '0.0.4';
+const lastUpdated = 'November 8th, 2025';
+const version = '0.0.6';
 
 /*
 facts = [
@@ -24,6 +24,7 @@ menuItems = [
         color: 'var(--color-1)',
         orbit: 3,
         scale: 1.5,
+        hidden: false,
         labels: [
             {
                 cardId: 'card',
@@ -39,6 +40,8 @@ menuItems = [
     },
     */
     {
+        // Orbit 1
+        // Deltadim
         name: 'Deltadim',
         q: 'deltadim',
         subtitle: 'Delta Dimension',
@@ -57,6 +60,32 @@ menuItems = [
                 image: 'icons/deltadim.png'
             },
             {
+                cardId: 'deltadim-teksui',
+                linkId: 'deltadim-teksui',
+            },
+            {
+                cardId: 'deltadim-chromasia',
+                linkId: 'deltadim-chromasia',
+            },
+            {
+                cardId: 'deltadim-deltaspace',
+                linkId: 'deltadim-deltaspace',
+            },
+        ]
+    },
+    {
+        q: 'deltadim-teksui',
+        name: 'Teksui',
+        subtitle: 'Terra',
+        image: 'images/deltadim-teksui.png',
+        color: 'var(--color-9)',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'deltadim',
+                linkId: 'deltadim',
+            },
+            {
                 cardId: 'artibun',
                 title: 'Artibun',
                 excerpt: '',
@@ -67,7 +96,7 @@ menuItems = [
                 Sexuality: Bisexual<br>
                 Nickname: Arti, Bunbun<br>
                 <br>
-                S/O: <a data-open-card="deltadim:articat">Articat</a><br>
+                S/O: <a data-open-card="deltadim-teksui:articat">Articat</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/artibun-r.png"><br>
                 <hr>
@@ -94,7 +123,7 @@ menuItems = [
                 Sexuality: Bisexual<br>
                 Nickname: Arti, Kiki<br>
                 <br>
-                S/O: <a data-open-card="deltadim:artibun">Artibun</a><br>
+                S/O: <a data-open-card="deltadim-teksui:artibun">Artibun</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -142,7 +171,7 @@ menuItems = [
                 Sexuality: Demisexual<br>
                 Nickname: Arti, Fifi<br>
                 <br>
-                S/O: <a data-open-card="deltadim:artilope">Artilope</a><br>
+                S/O: <a data-open-card="deltadim-teksui:artilope">Artilope</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -167,7 +196,7 @@ menuItems = [
                 Sexuality: Gay<br>
                 Nickname: Arti, Baba<br>
                 <br>
-                S/O: <a data-open-card="deltadim:artipup">Artipup</a><br>
+                S/O: <a data-open-card="deltadim-teksui:artipup">Artipup</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -192,7 +221,7 @@ menuItems = [
                 Sexuality: Demisexual<br>
                 Nickname: Arti, Lolo, Lope<br>
                 <br>
-                S/O: <a data-open-card="deltadim:artifish">Artifish</a><br>
+                S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -217,7 +246,7 @@ menuItems = [
                 Sexuality: Gay<br>
                 Nickname: Arti, Arfy<br>
                 <br>
-                S/O: <a data-open-card="deltadim:artigoat">Artigoat</a><br>
+                S/O: <a data-open-card="deltadim-teksui:artigoat">Artigoat</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -255,178 +284,6 @@ menuItems = [
                 image: 'images/i/artineko-i.png'
             },
             {
-                cardId: 'skitty',
-                title: 'Singularikitty',
-                excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: Any Pronouns<br>
-                Gender: Pangender<br>
-                Sexuality: Aroace<br>
-                Nickname: Skitty<br>
-                <br>
-                Adopted from <a href="https://x.com/C0denameDelta" target="_blank">C0denameDelta</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/skitty-r.png"><br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/skitty-c.png"><br>
-                    <img src="images/c/skitty-c2.png"><br>
-                    <img src="images/c/skitty-c3.png"><br>
-                    <img src="images/c/skitty-c4.png"><br>
-                    <img src="images/c/skitty-c5.png"><br>
-                    <img src="images/c/skitty-c6.png"><br>
-                </div>
-                `,
-                image: 'images/i/skitty-i.png'
-            },
-            {
-                cardId: 'gamma',
-                title: 'Gamma',
-                excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Bisexual<br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/gamma-c.png"><br>
-                    <img src="images/c/gamma-c2.png"><br>
-                    <img src="images/c/gamma-c3.png"><br>
-                    <img src="images/c/gamma-c4.png"><br>
-                </div>
-                `,
-                image: 'images/i/gamma-i.png'
-            },
-            {
-                cardId: 'micro',
-                title: 'Micro',
-                excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: They<br>
-                Gender: Non-Binary<br>
-                Sexuality: Omnisexual<br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/micro-c.png"><br>
-                    <img src="images/c/micro-c2.png"><br>
-                    <img src="images/c/micro-c3.png"><br>
-                    <img src="images/c/micro-c4.png"><br>
-                    <img src="images/c/micro-c5.png"><br>
-                </div>
-                `,
-                image: 'images/i/micro-i.png'
-            },
-            {
-                cardId: 'caramella',
-                title: 'Caramella',
-                excerpt: '',
-                detail:
-                    `Species: Cat + Shrimp<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Bisexual<br>
-                Nickname: Mella<br>
-                <br>
-                S/O: <a data-open-card="deltadim:azurey">Azurey</a><br>
-                <br>
-                Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/caramella-r.png"><br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/caramella-c.png"><br>
-                    <img src="images/c/caramella-c2.png"><br>
-                    <img src="images/c/caramella-c3.png"><br>
-                    <img src="images/c/caramella-c4.png"><br>
-                    <img src="images/c/caramella-c5.png"><br>
-                    <img src="images/c/caramella-c6.png"><br>
-                </div>
-                `,
-                image: 'images/i/caramella-i.png'
-            },
-            {
-                cardId: 'azurey',
-                title: 'Azurey',
-                excerpt: '',
-                detail:
-                    `Species: Cat + Shark<br>
-                Pronouns: He/They<br>
-                Gender: Demiboy<br>
-                Sexuality: Pansexual<br>
-                Nickname: Azu<br>
-                <br>
-                S/O: <a data-open-card="deltadim:caramella">Caramella</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/azurey-r.png"><br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/azurey-c.png"><br>
-                    <img src="images/c/azurey-c2.png"><br>
-                    <img src="images/c/azurey-c3.png"><br>
-                </div>
-                `,
-                image: 'images/i/azurey-i.png'
-            },
-            {
-                cardId: 'shirley',
-                title: 'Shirley',
-                excerpt: '',
-                detail:
-                    `Species: Cat + Fox<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Heterosexual<br>
-                Nickname: Manda, Alamanda<br>
-                <br>
-                S/O: <a data-open-card="deltadim:rose">Rose</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/shirley-r.png"><br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/shirley-c.png"><br>
-                    <img src="images/c/shirley-c2.png"><br>
-                    <img src="images/c/shirley-c3.png"><br>
-                    <img src="images/c/shirley-c4.png"><br>
-                    <img src="images/c/shirley-c5.png"><br>
-                    <img src="images/c/shirley-c6.png"><br>
-                </div>
-                `,
-                image: 'images/i/shirley-i.png'
-            },
-            {
-                cardId: 'rose',
-                title: 'Rose',
-                excerpt: '',
-                detail:
-                    `Species: Fox<br>
-                Pronouns: He/Any<br>
-                Gender: Male<br>
-                Sexuality: Heterosexual<br>
-                Nickname: Rosey<br>
-                <br>
-                S/O: <a data-open-card="deltadim:shirley">Shirley</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/rose-r.png"><br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/rose-c.png"><br>
-                    <img src="images/c/rose-c2.png"><br>
-                    <img src="images/c/rose-c3.png"><br>
-                </div>
-                `,
-                image: 'images/i/rose-i.png'
-            },
-            {
                 cardId: 'eros',
                 title: 'Eros',
                 excerpt: '',
@@ -436,7 +293,7 @@ menuItems = [
                 Gender: Trans-female<br>
                 Sexuality: Demisexual<br>
                 <br>
-                S/O: <a data-open-card="deltadim:sora">Sora</a><br>
+                S/O: <a data-open-card="deltadim-teksui:sora">Sora</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -460,7 +317,7 @@ menuItems = [
                 Gender: Trans-female<br>
                 Sexuality: Bisexual<br>
                 <br>
-                S/O: <a data-open-card="deltadim:eros">Eros</a><br>
+                S/O: <a data-open-card="deltadim-teksui:eros">Eros</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/sora-r.png"><br>
                 <hr>
@@ -494,50 +351,6 @@ menuItems = [
                 image: 'images/i/furfy-i.png'
             },
             {
-                cardId: 'articani',
-                title: 'Articani',
-                excerpt: '',
-                detail:
-                    `Species: Lucani<br>
-                Pronouns: He/They<br>
-                Gender: Male<br>
-                Sexuality: Heterosexual<br>
-                Nickname: Cani<br>
-                <br>
-                Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/articani-r.png"><br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/articani-c.png"><br>
-                </div>
-                `,
-                image: 'images/i/articani-i.png'
-            },
-            {
-                cardId: 'ryon',
-                title: 'Ryon',
-                excerpt: '',
-                detail:
-                    `Species: Lucani<br>
-                Pronouns: Any Pronouns<br>
-                Gender: Non-Binary<br>
-                Sexuality: Asexual<br>
-                Nickname: Baryon<br>
-                <br>
-                Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/ryon-r.png"><br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/ryon-c.png"><br>
-                </div>
-                `,
-                image: 'images/i/ryon-i.png'
-            },
-            {
                 cardId: 'card',
                 title: 'Card',
                 excerpt: '',
@@ -547,7 +360,7 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Bisexual<br>
                 <br>
-                S/O: <a data-open-card="deltadim:gift">Gift</a><br>
+                S/O: <a data-open-card="deltadim-teksui:gift">Gift</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/card-r.png"><br>
                 <hr>
@@ -571,7 +384,7 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Bisexual<br>
                 <br>
-                S/O: <a data-open-card="deltadim:card">Card</a><br>
+                S/O: <a data-open-card="deltadim-teksui:card">Card</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/gift-r.png"><br>
                 `,
@@ -604,7 +417,7 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Heterosexual<br>
                 <br>
-                S/O: <a data-open-card="deltadim:rai">Rai</a><br>
+                S/O: <a data-open-card="deltadim-teksui:rai">Rai</a><br>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -624,7 +437,7 @@ menuItems = [
                 Gender: Male<br>
                 Sexuality: Heterosexual<br>
                 <br>
-                S/O: <a data-open-card="deltadim:fika">Fika</a><br>
+                S/O: <a data-open-card="deltadim-teksui:fika">Fika</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/rai-r.png"><br>
                 <hr>
@@ -635,6 +448,71 @@ menuItems = [
                 </div>
                 `,
                 image: 'images/i/rai-i.png'
+            },
+        ]
+    },
+    {
+        q: 'deltadim-chromasia',
+        name: 'Chromasia',
+        subtitle: 'Terra',
+        image: 'images/deltadim-chromasia.png',
+        color: 'var(--color-14)',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'deltadim',
+                linkId: 'deltadim',
+            },
+            {
+                cardId: 'shirley',
+                title: 'Shirley',
+                excerpt: '',
+                detail:
+                    `Species: Cat + Fox<br>
+                Pronouns: She<br>
+                Gender: Female<br>
+                Sexuality: Heterosexual<br>
+                Nickname: Manda, Alamanda<br>
+                <br>
+                S/O: <a data-open-card="deltadim-chromasia:rose">Rose</a><br>
+                <h2>Reference Art:</h2><br>
+                <img src="images/r/shirley-r.png"><br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/shirley-c.png"><br>
+                    <img src="images/c/shirley-c2.png"><br>
+                    <img src="images/c/shirley-c3.png"><br>
+                    <img src="images/c/shirley-c4.png"><br>
+                    <img src="images/c/shirley-c5.png"><br>
+                    <img src="images/c/shirley-c6.png"><br>
+                </div>
+                `,
+                image: 'images/i/shirley-i.png'
+            },
+            {
+                cardId: 'rose',
+                title: 'Rose',
+                excerpt: '',
+                detail:
+                    `Species: Fox<br>
+                Pronouns: He/Any<br>
+                Gender: Male<br>
+                Sexuality: Heterosexual<br>
+                Nickname: Rosey<br>
+                <br>
+                S/O: <a data-open-card="deltadim-chromasia:shirley">Shirley</a><br>
+                <h2>Reference Art:</h2><br>
+                <img src="images/r/rose-r.png"><br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/rose-c.png"><br>
+                    <img src="images/c/rose-c2.png"><br>
+                    <img src="images/c/rose-c3.png"><br>
+                </div>
+                `,
+                image: 'images/i/rose-i.png'
             },
             {
                 cardId: 'hana',
@@ -656,6 +534,59 @@ menuItems = [
                 </div>
                 `,
                 image: 'images/i/hana-i.png'
+            },
+            {
+                cardId: 'caramella',
+                title: 'Caramella',
+                excerpt: '',
+                detail:
+                    `Species: Cat + Shrimp<br>
+                Pronouns: She<br>
+                Gender: Female<br>
+                Sexuality: Bisexual<br>
+                Nickname: Mella<br>
+                <br>
+                S/O: <a data-open-card="deltadim-chromasia:azurey">Azurey</a><br>
+                <br>
+                Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a><br>
+                <h2>Reference Art:</h2><br>
+                <img src="images/r/caramella-r.png"><br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/caramella-c.png"><br>
+                    <img src="images/c/caramella-c2.png"><br>
+                    <img src="images/c/caramella-c3.png"><br>
+                    <img src="images/c/caramella-c4.png"><br>
+                    <img src="images/c/caramella-c5.png"><br>
+                    <img src="images/c/caramella-c6.png"><br>
+                </div>
+                `,
+                image: 'images/i/caramella-i.png'
+            },
+            {
+                cardId: 'azurey',
+                title: 'Azurey',
+                excerpt: '',
+                detail:
+                    `Species: Cat + Shark<br>
+                Pronouns: He/They<br>
+                Gender: Demiboy<br>
+                Sexuality: Pansexual<br>
+                Nickname: Azu<br>
+                <br>
+                S/O: <a data-open-card="deltadim-chromasia:caramella">Caramella</a><br>
+                <h2>Reference Art:</h2><br>
+                <img src="images/r/azurey-r.png"><br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/azurey-c.png"><br>
+                    <img src="images/c/azurey-c2.png"><br>
+                    <img src="images/c/azurey-c3.png"><br>
+                </div>
+                `,
+                image: 'images/i/azurey-i.png'
             },
             {
                 cardId: 'mida',
@@ -761,6 +692,135 @@ menuItems = [
             },
         ]
     },
+    {
+        q: 'deltadim-deltaspace',
+        name: 'Deltaspace',
+        subtitle: 'Somewhere in space',
+        image: 'images/deltadim-deltaspace.png',
+        color: 'var(--color-15)',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'deltadim',
+                linkId: 'deltadim',
+            },
+            {
+                cardId: 'skitty',
+                title: 'Singularikitty',
+                excerpt: '',
+                detail:
+                    `Species: Cat<br>
+                Pronouns: Any Pronouns<br>
+                Gender: Pangender<br>
+                Sexuality: Aroace<br>
+                Nickname: Skitty<br>
+                <br>
+                Adopted from <a href="https://x.com/C0denameDelta" target="_blank">C0denameDelta</a><br>
+                <h2>Reference Art:</h2><br>
+                <img src="images/r/skitty-r.png"><br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/skitty-c.png"><br>
+                    <img src="images/c/skitty-c2.png"><br>
+                    <img src="images/c/skitty-c3.png"><br>
+                    <img src="images/c/skitty-c4.png"><br>
+                    <img src="images/c/skitty-c5.png"><br>
+                    <img src="images/c/skitty-c6.png"><br>
+                </div>
+                `,
+                image: 'images/i/skitty-i.png'
+            },
+            {
+                cardId: 'gamma',
+                title: 'Gamma',
+                excerpt: '',
+                detail:
+                    `Species: Cat<br>
+                Pronouns: She<br>
+                Gender: Female<br>
+                Sexuality: Bisexual<br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/gamma-c.png"><br>
+                    <img src="images/c/gamma-c2.png"><br>
+                    <img src="images/c/gamma-c3.png"><br>
+                    <img src="images/c/gamma-c4.png"><br>
+                </div>
+                `,
+                image: 'images/i/gamma-i.png'
+            },
+            {
+                cardId: 'micro',
+                title: 'Micro',
+                excerpt: '',
+                detail:
+                    `Species: Cat<br>
+                Pronouns: They<br>
+                Gender: Non-Binary<br>
+                Sexuality: Omnisexual<br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/micro-c.png"><br>
+                    <img src="images/c/micro-c2.png"><br>
+                    <img src="images/c/micro-c3.png"><br>
+                    <img src="images/c/micro-c4.png"><br>
+                    <img src="images/c/micro-c5.png"><br>
+                </div>
+                `,
+                image: 'images/i/micro-i.png'
+            },
+            {
+                cardId: 'articani',
+                title: 'Articani',
+                excerpt: '',
+                detail:
+                    `Species: Lucani<br>
+                Pronouns: He/They<br>
+                Gender: Male<br>
+                Sexuality: Heterosexual<br>
+                Nickname: Cani<br>
+                <br>
+                Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
+                <h2>Reference Art:</h2><br>
+                <img src="images/r/articani-r.png"><br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/articani-c.png"><br>
+                </div>
+                `,
+                image: 'images/i/articani-i.png'
+            },
+            {
+                cardId: 'ryon',
+                title: 'Ryon',
+                excerpt: '',
+                detail:
+                    `Species: Lucani<br>
+                Pronouns: Any Pronouns<br>
+                Gender: Non-Binary<br>
+                Sexuality: Asexual<br>
+                Nickname: Baryon<br>
+                <br>
+                Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
+                <h2>Reference Art:</h2><br>
+                <img src="images/r/ryon-r.png"><br>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/ryon-c.png"><br>
+                </div>
+                `,
+                image: 'images/i/ryon-i.png'
+            },
+        ]
+    },
+
+
+    // Floriverse
     {
         name: 'Floriverse',
         q: 'floriverse',
@@ -1005,6 +1065,9 @@ menuItems = [
             },
         ]
     },
+
+
+    // Digirel
     {
         name: 'Digirel',
         q: 'digirel',
@@ -1191,6 +1254,9 @@ menuItems = [
             },
         ]
     },
+
+
+    // Nansenz
     {
         name: 'Nansenz',
         q: 'nansenz',
@@ -1233,6 +1299,9 @@ menuItems = [
             },
         ]
     },
+
+
+    // Hizen
     {
         name: 'Hizen',
         q: 'hizen',
@@ -1273,6 +1342,9 @@ menuItems = [
             },
         ]
     },
+
+
+    // Nadir
     {
         name: 'Nadir',
         q: 'nadir',
@@ -1340,6 +1412,12 @@ menuItems = [
             },
         ]
     },
+
+
+
+
+    // Orbit 2
+    // Information
     {
         name: 'Information',
         q: 'info',
@@ -1370,7 +1448,7 @@ menuItems = [
                     <br>
                     I've been doing art and music on a phone since the beginning and still am to this day. Even though I have a more powerful PC, I still prefer being mobile with my work. I use Ibis Paint for drawing and FL Studio Mobile for music production. Just a phone and my fingers.<br>
                     <br>
-                    In the future I want to be a game developer and create something out of the worlds and characters i've made. It's a dream of mine to creat an actual game and I still have a long way to go.<br>
+                    In the future I want to be a game developer and create something out of the worlds and characters i've made. It's a dream of mine to create an actual game and I still have a long way to go.<br>
                     <br>
                     <hr>
                     All done. Thank you for enjoying what I make :3<br>
@@ -1397,7 +1475,7 @@ menuItems = [
             {
                 cardId: 'webinfo',
                 title: `
-                    <h2 style='margin-bottom: -12px'>Website Info:</h2><br>
+                    <h2 style='margin-bottom: -12px'>Website Info</h2><br>
                     <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent); font-size: 11px'>
                         Updated: ${lastUpdated}<br>
                         Version: ${version}<br>
@@ -1414,8 +1492,28 @@ menuItems = [
                     ``,
                 image: ''
             },
+            {
+                cardId: 'keybinds',
+                title: `
+                    <h2 style='margin-bottom: -12px'>Keyboard Shortcut</h2><br>
+                    <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent); font-size: 14px'>
+                        ESC = Go back<br>
+                        C = Center view<br>
+                    </p>
+                    `,
+                excerpt: `
+                <br>
+                `,
+                unclickable: true,
+                detail:
+                    ``,
+                image: ''
+            },
         ]
     },
+
+
+    // Links
     {
         name: 'Links',
         q: 'links',
@@ -1519,6 +1617,9 @@ menuItems = [
             },
         ]
     },
+
+
+    // Commissions
     {
         name: 'Commissions',
         q: 'comms',
@@ -1699,6 +1800,12 @@ menuItems = [
             },
         ]
     },
+
+
+
+
+    // Orbit 4
+    // Daily Art+
     {
         name: 'Daily Art+',
         showName: true,

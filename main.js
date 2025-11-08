@@ -53,7 +53,6 @@ window.addEventListener('mousemove', function (e) {
             layer.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
-    centerBtn.classList.remove('hide');
 });
 
 window.addEventListener('mouseup', function (e) {
@@ -88,7 +87,6 @@ window.addEventListener('touchmove', function (e) {
             layer.style.transform = `translate(${x}px, ${y}px)`;
         });
     }
-    centerBtn.classList.remove('hide');
 });
 
 window.addEventListener('touchend', function (e) {
@@ -113,7 +111,6 @@ menuStage.addEventListener('wheel', (e) => {
             });
         }
     }
-    centerBtn.classList.remove('hide');
 }, { passive: false });
 
 // Snap back to center when a button is clicked
@@ -135,8 +132,16 @@ function snapCameraToCenter() {
             }, 900);
         });
     }
-    centerBtn.classList.add('hide');
 }
+
+function showCenterBtn() {
+    centerBtn.classList.add('hide');
+    if (!(currentX == 0 && currentY == 0) && !(contentView.classList.contains('visible'))) {
+        centerBtn.classList.remove('hide');
+    }
+    requestAnimationFrame(showCenterBtn);
+}
+showCenterBtn();
 
 
 
@@ -181,6 +186,7 @@ function createMenuButtons() {
     // group menu items by orbit layer
     const grouped = {};
     menuItems.forEach(m => {
+        if (m.hidden) return;
         const orbit = m.orbit;
         if (!grouped[orbit]) grouped[orbit] = [];
         grouped[orbit].push(m);
@@ -207,6 +213,7 @@ function createMenuButtons() {
             btn.className = 'menu-button';
             btn.dataset.angle0 = angleRad; // initial angle in radians
             btn.dataset.orbit = orbit;
+            btn.dataset.menuQ = m.q;
             btn.setAttribute('aria-label', m.name);
             btn.style.setProperty('--glow', m.color);
             btn.style.background = m.color;
@@ -296,8 +303,9 @@ window.addEventListener('resize', () => {
 
 /// -- OPEN MAIN MENU BUTTONS --
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
-    if (skipAnimation) {
+    if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
+        history.pushState({}, '', `?m=${menu.q}`);
         return;
     }
     // compute center position of button for expander origin
@@ -343,7 +351,6 @@ function showContentFor(menu) {
     cardsContainer.innerHTML = '';
     focusedLayout.style.display = 'none';
     contentView.classList.add('visible');
-    centerBtn.classList.add('hide');
     backBtn.classList.add('visible');
     backBtn.setAttribute('aria-hidden', 'false');
     backBtn.querySelector('span').textContent = 'Menu';
@@ -381,12 +388,42 @@ function showContentFor(menu) {
         const c = document.createElement('div');
         c.className = 'card';
         c.dataset.cardId = lbl.cardId;
-        if (lbl.url) {
-            c.dataset.link = "true";
+
+        if (lbl.linkId) {
+            const linkedMenu = menuItems.find(m => m.q === lbl.linkId);
+            if (linkedMenu) {
+                c.dataset.link = "true";
+                c.style.border = `3px solid ${linkedMenu.color}`;
+                c.innerHTML = `
+                <div class="card-text">
+                    <strong>${linkedMenu.name}</strong>
+                    <div class="excerpt">${linkedMenu.subtitle || ''}</div>
+                </div>
+            `;
+
+                // Create floating bubble (menu button clone)
+                const bubble = document.createElement('div');
+                bubble.className = 'menu-button bubble';
+                bubble.style.background = linkedMenu.color || 'transparent';
+                // bubble.style.animationDelay = `${Math.random() * 2}s`;
+                bubble.innerHTML = `
+                <div class="inner">
+                    <div class="menu-thumb-square" style="background-image:url('${linkedMenu.image || ''}')"></div>
+                </div>
+            `;
+                c.appendChild(bubble);
+
+                c.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openMenuByQ(lbl.linkId, true);
+                });
+            }
+            cardsContainer.appendChild(c);
+            return;
         }
-        if (lbl.unclickable) {
-            c.dataset.noclick = "true";
-        }
+
+        if (lbl.url) c.dataset.link = "true";
+        if (lbl.unclickable) c.dataset.noclick = "true";
         if (lbl.image) {
             c.innerHTML = `
                 <div class="thumb" style="background-image:url('${lbl.image}')"></div>
@@ -498,49 +535,84 @@ function focusCard(cardEl, label, menu = null) {
     contentView.insertBefore(cardsContainer, focusedLayout);
 
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
-    backBtn.querySelector('span').textContent = 'Back';
+    backBtn.querySelector('span').textContent = 'Card Selector';
+}
+
+/// -- OPEN MENU BY Q --
+function openMenuByQ(q, skipAnim = false) {
+    if (!q) return;
+    const menu = menuItems.find(m => m.q === q);
+    if (!menu) return;
+
+    const btn = orbitButtons.find(b => b.dataset.menuQ === q);
+    openMenu(menu, btn || null, { skipAnimation: skipAnim || !btn });
 }
 
 
 
+
+
 /// -- URL QUERY HANDLER ?m=<menu>&i=<card-id> --
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
     const params = new URLSearchParams(window.location.search);
     const menuCode = params.get('m');
-    const cardKey = params.get('i'); // may be null or "" if ?i= or missing
+    const cardKey = params.get('i'); // may be null or ""
+
     if (!menuCode) return;
 
     const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
-    if (!targetMenu) return;
+    if (!targetMenu) {
+        console.warn('Menu not found for', menuCode);
+        return;
+    }
 
-    // wait until buttons exist, then open the menu
-    setTimeout(() => {
-        const button = Array.from(document.querySelectorAll('.menu-button'))
-            .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-        if (!button) return;
-        openMenu(targetMenu, button, { skipAnimation: true });
+    // Open menu - visible or hidden
+    if (typeof openMenuByQ === 'function') {
+        openMenuByQ(menuCode, true)
+    } else {
+        showContentFor(targetMenu);
+        history.pushState({}, '', `?m=${targetMenu.q}`);
+    }
 
-        // if ?i= exists AND is non-empty, open the card after content loads
-        if (cardKey) {
-            const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
-            if (targetLabel) {
-                const cardEl = [...document.querySelectorAll('.card')]
-                    .find(c => c.dataset.cardId === cardKey);
-                if (cardEl && !(cardEl.dataset.link || cardEl.dataset.noclick)) {
-                    focusCard(cardEl, targetLabel, targetMenu);
-                }
-            }
+    // helper: wait for card DOM element to appear
+    async function waitForCard(cardId, timeout = 2000, interval = 50) {
+        const start = performance.now();
+        while (performance.now() - start < timeout) {
+            const el = document.querySelector(`[data-card-id="${cardId}"]`);
+            if (el) return el;
+            await new Promise(r => setTimeout(r, interval));
         }
-    }, 100);
+        return null;
+    }
+
+    // if ?i= exists, focus that card
+    if (cardKey) {
+        const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+        if (!targetLabel) {
+            console.warn('Card not found in', menuCode, cardKey);
+            return;
+        }
+
+        const cardEl = await waitForCard(cardKey, 2000, 40);
+        if (cardEl) {
+            if (!(cardEl.dataset.link || cardEl.dataset.noclick)) {
+                focusCard(cardEl, targetLabel, targetMenu);
+            }
+        } else {
+            console.warn('Timed out waiting for card', cardKey);
+        }
+    }
 });
 
 
 
+
 /// -- INTERNAL LINK HANDLER <a data-open-card="q:id"> --
-detailArea.addEventListener('click', function (e) {
+detailArea.addEventListener('click', async function (e) {
     const link = e.target.closest('a[data-open-card]');
     if (!link) return;
     e.preventDefault();
+
     const ref = link.dataset.openCard.trim();
     const [menuCode, cardKey] = ref.split(':');
     if (!menuCode || !cardKey) {
@@ -560,22 +632,57 @@ detailArea.addEventListener('click', function (e) {
         return;
     }
 
-    if (contentTitle.textContent.toLowerCase() !== targetMenu.name.toLowerCase()) {
-        const button = Array.from(document.querySelectorAll('.menu-button'))
-            .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-        if (!button) return;
-        openMenu(targetMenu, button, { skipAnimation: true });
-        // Wait for cards to render, then open the target card
-        const cardEl = [...document.querySelectorAll('.card')]
-            .find(c => c.dataset.cardId === cardKey);
-        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+    // wait for the card DOM element to exist
+    async function waitForCard(cardId, timeout = 1200, interval = 40) {
+        const start = performance.now();
+        while (performance.now() - start < timeout) {
+            const cardEl = document.querySelector(`[data-card-id="${cardId}"]`);
+            if (cardEl) return cardEl;
+            await new Promise(r => setTimeout(r, interval));
+        }
+        return null;
+    }
+
+    // If we're not currently viewing the target menu, open it first.
+    const currentlyViewing = contentTitle.textContent && contentTitle.textContent.toLowerCase() === (targetMenu.name || '').toLowerCase();
+
+    if (!currentlyViewing) {
+        if (typeof openMenuByQ === 'function') {
+            openMenuByQ(targetMenu.q, true);
+        } else {
+            const button = Array.from(document.querySelectorAll('.menu-button'))
+                .find(b => (b.dataset.menuQ && b.dataset.menuQ.toLowerCase() === targetMenu.q.toLowerCase())
+                        || (b.getAttribute('aria-label') && b.getAttribute('aria-label').toLowerCase() === (targetMenu.name || '').toLowerCase()));
+            if (typeof openMenu === 'function') {
+                openMenu(targetMenu, button || null, { skipAnimation: !button });
+            } else {
+                showContentFor(targetMenu);
+                history.pushState({}, '', `?m=${targetMenu.q}`);
+            }
+        }
+
+        // wait for card to appear in the newly rendered menu
+        const cardEl = await waitForCard(cardKey, 1600, 40);
+        if (cardEl) {
+            focusCard(cardEl, targetLabel, targetMenu);
+        } else {
+            const fallback = document.querySelector(`[data-card-id="${cardKey}"]`);
+            if (fallback) focusCard(fallback, targetLabel, targetMenu);
+            else console.warn('Timed out waiting for card to render:', cardKey);
+        }
     } else {
-        // Already in same menu — just focus the card directly
-        const cardEl = [...document.querySelectorAll('.card')]
-            .find(c => c.dataset.cardId === cardKey);
-        if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+        // already in same menu - focus directly
+        const cardEl = document.querySelector(`[data-card-id="${cardKey}"]`);
+        if (cardEl) {
+            focusCard(cardEl, targetLabel, targetMenu);
+        } else {
+            const cardEl2 = await waitForCard(cardKey, 800, 40);
+            if (cardEl2) focusCard(cardEl2, targetLabel, targetMenu);
+            else console.warn('Card not found in current menu:', cardKey);
+        }
     }
 });
+
 
 
 
@@ -601,7 +708,7 @@ function goBack() {
         // Currently in a menu → go back to main stage
         history.pushState({}, '', location.pathname);
         contentView.classList.remove('visible');
-        centerBtn.classList.remove('hide');
+        document.querySelector('.content-header')?.classList.remove('hidden');
         backBtn.classList.remove('visible');
         backBtn.setAttribute('aria-hidden', 'true');
         contentView.style.overflow = '';
@@ -707,6 +814,7 @@ backBtn.addEventListener('click', goBack);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 
 centerBtn.addEventListener('click', snapCameraToCenter);
+document.addEventListener('keydown', (e) => { if (e.key === 'c') snapCameraToCenter(); });
 
 // init
 createStarfield();
@@ -721,7 +829,9 @@ window.addEventListener('popstate', (event) => {
     const menuCode = params.get('m');
     const cardKey = params.get('i');
 
-    if (!menuCode) {
+    if (menuCode) {
+        openMenuByQ(menuCode);
+    } else {
         // Go back to main menu
         goBack();
         contentView.classList.remove('visible');
