@@ -16,6 +16,8 @@ const centerBtn = document.getElementById('centerBtn');
 centerBtn.classList.add('hide');
 
 const menuStage = document.querySelector('.menu-stage');
+menuStage.style.transition = 'none';
+menuStage.style.transform = `translate(0px, 0px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
 
 
 /// -- DRAGGING --
@@ -25,8 +27,6 @@ let startX = 0, startY = 0;
 let currentX = 0, currentY = 0;
 let parallaxX = 0, parallaxY = 0;
 const parallaxFactor = -0.1;
-
-// menuStageScale = getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale');
 
 // Mouse drag to pan
 menuStage.addEventListener('mousedown', function (e) {
@@ -146,7 +146,6 @@ function showCenterBtn() {
 showCenterBtn();
 
 
-snapCameraToCenter();
 window.addEventListener('resize', () => {
     snapCameraToCenter();
 });
