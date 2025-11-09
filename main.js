@@ -781,10 +781,12 @@ document.addEventListener('click', function (e) {
 
         // close on click
         overlay.addEventListener('click', () => overlay.classList.remove('visible'), { once: true });
+        initLazyLoad();
     }
 });
 
 
+/// -- LAZY LOADER --
 function initLazyLoad() {
     const lazyImages = document.querySelectorAll("img.lazy:not(.loaded)");
     const lazyBackgrounds = document.querySelectorAll(".lazy-bg:not(.loaded)");
