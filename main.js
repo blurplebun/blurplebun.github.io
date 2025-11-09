@@ -514,10 +514,10 @@ function focusCard(cardEl, label, menu = null) {
     /* const html = label.detail; 
   ? label.detail.replace(/<img\s+([^>]*?)src\s*=\s*"(.*?)"/g, '<img class="lazy" $1data-src="$2"')
   : '';*/
-    
+
     const html = label.detail
-  ? label.detail.replace(/<img\s+/g, '<img class="lazy" ').replaceAll(' src=', ' data-src=')
-  : '';
+        ? label.detail.replace(/<img\s+/g, '<img class="lazy" ').replaceAll(' src=', ' data-src=')
+        : '';
 
     if (menu) {
         // fill details
@@ -563,6 +563,8 @@ function focusCard(cardEl, label, menu = null) {
 
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
     backBtn.querySelector('span').textContent = 'Card Selector'; initLazyLoad();
+
+    detailArea.scrollTop = 0;
 }
 
 /// -- OPEN MENU BY Q --
@@ -787,39 +789,39 @@ document.addEventListener('click', function (e) {
 
 
 /// -- LAZY LOADER --
+const lazyObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+
+            // <img>
+            if (el.tagName === "IMG") {
+                el.src = el.dataset.src;
+                el.onload = () => el.classList.add("loaded");
+            }
+
+            // background-image
+            else if (el.classList.contains("lazy-bg")) {
+                const bgUrl = el.dataset.bg;
+                const img = new Image();
+                img.src = bgUrl;
+                img.onload = () => {
+                    el.style.backgroundImage = `url('${bgUrl}')`;
+                    el.classList.add("loaded");
+                };
+            }
+
+            obs.unobserve(el);
+        }
+    });
+}, { rootMargin: "0px 0px 300px 0px" });
+
 function initLazyLoad() {
     const lazyImages = document.querySelectorAll("img.lazy:not(.loaded)");
     const lazyBackgrounds = document.querySelectorAll(".lazy-bg:not(.loaded)");
 
-    const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-
-                // <img>
-                if (el.tagName === "IMG") {
-                    el.src = el.dataset.src;
-                    el.onload = () => el.classList.add("loaded");
-                }
-
-                // background-image
-                else if (el.classList.contains("lazy-bg")) {
-                    const bgUrl = el.dataset.bg;
-                    const img = new Image();
-                    img.src = bgUrl;
-                    img.onload = () => {
-                        el.style.backgroundImage = `url('${bgUrl}')`;
-                        el.classList.add("loaded");
-                    };
-                }
-
-                obs.unobserve(el);
-            }
-        });
-    }, { rootMargin: "0px 0px 300px 0px" });
-
-    lazyImages.forEach(el => observer.observe(el));
-    lazyBackgrounds.forEach(el => observer.observe(el));
+    lazyImages.forEach(el => lazyObserver.observe(el));
+    lazyBackgrounds.forEach(el => lazyObserver.observe(el));
 }
 
 // Run once on load
