@@ -767,25 +767,24 @@ document.addEventListener('click', function (e) {
             subcaption = `<p style="color: color-mix(in srgb, var(--accentl) 75%, transparent)">${img.dataset.subcaption}</p>`
             overlay.innerHTML =
                 `
-                <img class="lazy" data-src="${img.src}" data-hasCaption=true alt="preview">
+                <img src="${img.src}" data-hasCaption=true alt="preview">
                 ${caption}
                 ${subcaption}
                 `;
         } else if (caption) {
             overlay.innerHTML =
                 `
-                <img class="lazy" data-src="${img.src}" data-hasCaption=true alt="preview">
+                <img src="${img.src}" data-hasCaption=true alt="preview">
                 ${caption}
                 `;
         } else {
-            overlay.innerHTML = `<img class="lazy" data-src="${img.src}" alt="preview">`
+            overlay.innerHTML = `<img src="${img.src}" alt="preview">`
         }
 
         overlay.classList.add('visible');
 
         // close on click
         overlay.addEventListener('click', () => overlay.classList.remove('visible'), { once: true });
-        initLazyLoad();
     }
 });
 
