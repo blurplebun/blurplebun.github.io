@@ -790,36 +790,25 @@ document.addEventListener('click', function (e) {
 });
 
 
-/// -- LAZY LOADER -- 
+/// -- LAZY LOADER --
 const lazyObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const el = entry.target;
 
-            // helper: rewrite GitHub Pages URL to jsDelivr
-            const rewriteURL = (url) => {
-                if (!url) return url;
-                const githubPrefix = "https://blurplebun.github.io/";
-                const cdnPrefix = "https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/";
-                if (url.startsWith(githubPrefix)) {
-                    return url.replace(githubPrefix, cdnPrefix);
-                }
-                return url;
-            }
-
             // <img>
             if (el.tagName === "IMG") {
-                el.src = rewriteURL(el.dataset.src);
+                el.src = `https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/${el.dataset.src}`;
                 el.onload = () => el.classList.add("loaded");
             }
 
             // background-image
             else if (el.classList.contains("lazy-bg")) {
-                const bgUrl = rewriteURL(el.dataset.bg);
+                const bgUrl = el.dataset.bg;
                 const img = new Image();
                 img.src = bgUrl;
                 img.onload = () => {
-                    el.style.backgroundImage = `url('${bgUrl}')`;
+                    el.style.backgroundImage = `url('https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/${bgUrl}')`;
                     el.classList.add("loaded");
                 };
             }
@@ -836,7 +825,6 @@ function initLazyLoad() {
     lazyImages.forEach(el => lazyObserver.observe(el));
     lazyBackgrounds.forEach(el => lazyObserver.observe(el));
 }
-
 
 // Run once on load
 document.addEventListener("DOMContentLoaded", initLazyLoad);
