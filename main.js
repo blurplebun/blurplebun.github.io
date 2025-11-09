@@ -226,7 +226,7 @@ function createMenuButtons() {
             btn.style.background = m.color;
             btn.innerHTML = `
                 <div class="inner">
-                <div class="menu-thumb-square" style="background-image:url('${m.image || ''}')"></div>
+                <div class="menu-thumb-square lazy-bg" data-bg='${m.image || ''}'></div>
                 ${m.showName && m.name ? `<div class="menu-subtitle">${m.name}</div>` : ''}
                 </div>
             `;
@@ -424,7 +424,7 @@ function showContentFor(menu) {
                 // bubble.style.animationDelay = `${Math.random() * 2}s`;
                 bubble.innerHTML = `
                 <div class="inner">
-                    <div class="menu-thumb-square" style="background-image:url('${linkedMenu.image || ''}')"></div>
+                    <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ''}'></div>
                 </div>
             `;
                 c.appendChild(bubble);
@@ -442,7 +442,7 @@ function showContentFor(menu) {
         if (lbl.unclickable) c.dataset.noclick = "true";
         if (lbl.image) {
             c.innerHTML = `
-                <div class="thumb" style="background-image:url('${lbl.image}')"></div>
+                <div class="thumb lazy-bg" data-bg="${lbl.image || ''}"></div>
                 <div class="card-text">
                     <strong>${lbl.title}</strong>
                     <div class="excerpt">${lbl.excerpt}</div>
@@ -498,6 +498,8 @@ function showContentFor(menu) {
             }
         }
     }
+
+    initLazyLoad();
 }
 
 
@@ -509,6 +511,13 @@ function focusCard(cardEl, label, menu = null) {
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
+    /* const html = label.detail; 
+  ? label.detail.replace(/<img\s+([^>]*?)src\s*=\s*"(.*?)"/g, '<img class="lazy" $1data-src="$2"')
+  : '';*/
+    
+    const html = label.detail
+  ? label.detail.replace(/<img\s+/g, '<img class="lazy" ').replaceAll(' src=', ' data-src=')
+  : '';
 
     if (menu) {
         // fill details
@@ -523,7 +532,7 @@ function focusCard(cardEl, label, menu = null) {
                 </svg>
                 </span>
             </h1>
-            <hr>${label.detail}
+            <hr>${html}
             `;
         detailArea.querySelector('.copy-link').addEventListener('click', (e) => {
             e.stopPropagation();
@@ -538,9 +547,11 @@ function focusCard(cardEl, label, menu = null) {
             }, 1500);
         });
         history.pushState({}, '', `?m=${menu.q}&i=${label.cardId}`);
+        initLazyLoad();
 
     } else {
-        detailArea.innerHTML = `<h1>${label.title}</h1><hr>${label.detail}`;
+        detailArea.innerHTML = `<h1>${label.title}</h1><hr>${html}`;
+        initLazyLoad();
     }
 
     // hide grid cards except the one we moved
@@ -551,7 +562,7 @@ function focusCard(cardEl, label, menu = null) {
     contentView.insertBefore(cardsContainer, focusedLayout);
 
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
-    backBtn.querySelector('span').textContent = 'Card Selector';
+    backBtn.querySelector('span').textContent = 'Card Selector'; initLazyLoad();
 }
 
 /// -- OPEN MENU BY Q --
@@ -752,18 +763,18 @@ document.addEventListener('click', function (e) {
             subcaption = `<p style="color: color-mix(in srgb, var(--accentl) 75%, transparent)">${img.dataset.subcaption}</p>`
             overlay.innerHTML =
                 `
-                <img src="${img.src}" data-hasCaption=true alt="preview">
+                <img class="lazy" data-src="${img.src}" data-hasCaption=true alt="preview">
                 ${caption}
                 ${subcaption}
                 `;
         } else if (caption) {
             overlay.innerHTML =
                 `
-                <img src="${img.src}" data-hasCaption=true alt="preview">
+                <img class="lazy" data-src="${img.src}" data-hasCaption=true alt="preview">
                 ${caption}
                 `;
         } else {
-            overlay.innerHTML = `<img src="${img.src}" alt="preview">`
+            overlay.innerHTML = `<img class="lazy" data-src="${img.src}" alt="preview">`
         }
 
         overlay.classList.add('visible');
@@ -772,6 +783,46 @@ document.addEventListener('click', function (e) {
         overlay.addEventListener('click', () => overlay.classList.remove('visible'), { once: true });
     }
 });
+
+
+function initLazyLoad() {
+    const lazyImages = document.querySelectorAll("img.lazy:not(.loaded)");
+    const lazyBackgrounds = document.querySelectorAll(".lazy-bg:not(.loaded)");
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+
+                // <img>
+                if (el.tagName === "IMG") {
+                    el.src = el.dataset.src;
+                    el.onload = () => el.classList.add("loaded");
+                }
+
+                // background-image
+                else if (el.classList.contains("lazy-bg")) {
+                    const bgUrl = el.dataset.bg;
+                    const img = new Image();
+                    img.src = bgUrl;
+                    img.onload = () => {
+                        el.style.backgroundImage = `url('${bgUrl}')`;
+                        el.classList.add("loaded");
+                    };
+                }
+
+                obs.unobserve(el);
+            }
+        });
+    }, { rootMargin: "0px 0px 300px 0px" });
+
+    lazyImages.forEach(el => observer.observe(el));
+    lazyBackgrounds.forEach(el => observer.observe(el));
+}
+
+// Run once on load
+document.addEventListener("DOMContentLoaded", initLazyLoad);
+
 
 
 

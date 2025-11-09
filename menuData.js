@@ -2,8 +2,8 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'November 8th, 2025';
-const version = '0.1.3';
+const lastUpdated = 'November 9th, 2025';
+const version = '0.1.4';
 
 /*
 facts = [

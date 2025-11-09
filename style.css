@@ -520,6 +520,8 @@ body {
 
 
 
+
+
 /* Detail view */
 .panel {
     flex: 1;
@@ -563,7 +565,7 @@ body {
     max-height: 60%;
     border-radius: 10px;
     cursor: zoom-in;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease-out;
 }
 
 #detailArea img:hover {
@@ -828,6 +830,78 @@ a:active {
 }
 
 
+/* General fade-in transition */
+.lazy,
+.lazy-bg {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Active (after loaded) */
+.lazy.loaded,
+.lazy-bg.loaded {
+  opacity: 1;
+}
+
+/* Optional: size hints to prevent layout shift */
+.lazy {
+  display: block;
+}
+
+/* Background-image elements */
+.lazy-bg {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  overflow: hidden; /* make ::before fit properly */
+}
+
+/* Placeholder overlay */
+.lazy-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: rgba(21, 27, 51, 0.5); /* <-- your solid placeholder */
+  opacity: 1;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+/* When loaded, fade out the placeholder */
+.lazy-bg.loaded::before {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.menu-button.bubble .menu-thumb,
+.menu-button.bubble .lazy-bg {
+  position: absolute;
+  inset: 0; /* fills the entire bubble */
+  width: 100%;
+  height: 100%;
+  border-radius: inherit; /* keeps same corner shape as bubble */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  box-shadow: none
+}
+
+
+/* Ensure card detail images fade in properly */
+#detailArea img.lazy {
+  opacity: 0;                   /* start hidden */
+  display: block;
+}
+
+#detailArea img.lazy.loaded {
+  opacity: 1;
+}
 
 
 
