@@ -516,8 +516,10 @@ function focusCard(cardEl, label, menu = null) {
   : '';*/
 
     const html = label.detail
-        ? label.detail.replace(/<img\s+/g, '<img class="lazy" ').replaceAll(' src=', ' data-src=')
-        : '';
+  ? label.detail
+      .replace(/<img\b(?![^>]*\bclass=)/g, '<img class="lazy"') // add class if not present
+      .replace(/(<img[^>]*?)\s+src=/g, '$1 data-src=') // replace only inside <img> tags
+  : '';
 
     if (menu) {
         // fill details

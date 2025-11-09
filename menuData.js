@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'November 9th, 2025';
-const version = '0.1.4';
+const version = '0.1.5';
 
 /*
 facts = [
