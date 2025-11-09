@@ -556,12 +556,6 @@ body {
     color: color-mix(in srgb, var(--accentl) 75%, transparent);
 }
 
-#detailArea hr {
-    border: none;
-    border-top: 3px solid color-mix(in srgb, var(--accent) 50%, transparent);
-    margin: 12px 0;
-}
-
 #detailArea img {
     display: block;
     margin: auto;
@@ -575,6 +569,12 @@ body {
 #detailArea img:hover {
     transform: scale(1.03);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+hr {
+    border: none;
+    border-top: 3px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    margin: 12px 0;
 }
 
 a,
