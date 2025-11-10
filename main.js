@@ -1078,7 +1078,7 @@ backBtn.addEventListener('click', goBack);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 
 centerBtn.addEventListener('click', snapCameraToCenter);
-document.addEventListener('keydown', (e) => { if (e.key === 'c') snapCameraToCenter(); });
+document.addEventListener('keydown', (e) => { if ((e.key === 'c') && (!searchBox.open)) snapCameraToCenter(); });
 
 // init
 createStarfield();
