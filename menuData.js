@@ -1908,6 +1908,7 @@ if (Math.floor(Math.random() * 333) == 0) {
         if (menu.name == "Information") {
             menu.labels.push(
                 {
+                    cardId: 'beecat',
                     title: 'Beecat',
                     excerpt: 'Beecat',
                     detail:
