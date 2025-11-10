@@ -516,10 +516,10 @@ function focusCard(cardEl, label, menu = null) {
   : '';*/
 
     const html = label.detail
-  ? label.detail
-      .replace(/<img\b(?![^>]*\bclass=)/g, '<img class="lazy"') // add class if not present
-      .replace(/(<img[^>]*?)\s+src=/g, '$1 data-src=') // replace only inside <img> tags
-  : '';
+        ? label.detail
+            .replace(/<img\b(?![^>]*\bclass=)/g, '<img class="lazy"') // add class if not present
+            .replace(/(<img[^>]*?)\s+src=/g, '$1 data-src=') // replace only inside <img> tags
+        : '';
 
     if (menu) {
         // fill details
@@ -555,6 +555,7 @@ function focusCard(cardEl, label, menu = null) {
         detailArea.innerHTML = `<h1>${label.title}</h1><hr>${html}`;
         initLazyLoad();
     }
+    imgConHandler(detailArea);
 
     // hide grid cards except the one we moved
     cardsContainer.classList.add('hidden');
@@ -568,6 +569,55 @@ function focusCard(cardEl, label, menu = null) {
 
     detailArea.scrollTop = 0;
 }
+
+
+/// -- IMG CONTAINER --
+function detailAreaImgHandler(img) {
+    // before load
+    if (!img.classList.contains('loaded')) {
+        img.style.aspectRatio = '4 / 5';
+        img.style.width = '90%';
+        img.style.objectFit = 'cover';
+        img.style.backgroundColor = 'var(--bg)';
+        img.style.opacity = 0.5;
+    }
+
+    // when it loads
+    img.addEventListener('load', () => {
+        img.style.width = '';
+        img.style.aspectRatio = '';
+        img.style.backgroundColor = '';
+        img.style.opacity = 1;
+        img.classList.add('loaded');
+    }, { once: true });
+
+    // when it fails
+    img.addEventListener('error', () => {
+        img.style.width = '90%';
+        img.style.aspectRatio = '4 / 5';
+        img.style.backgroundColor = 'var(--bg)';
+        img.style.opacity = 0.5;
+    }, { once: true });
+
+}
+function imgConHandler(detailArea) {
+    const contentImgs = detailArea.querySelectorAll('img');
+    contentImgs.forEach(img => {
+        detailAreaImgHandler(img);
+    });
+
+    const containers = detailArea.querySelectorAll('.imgContainer');
+    containers.forEach(container => {
+        const imgs = container.querySelectorAll('img');
+
+        imgs.forEach(img => {
+            detailAreaImgHandler(img);
+        });
+    });
+}
+
+
+
 
 /// -- OPEN MENU BY Q --
 function openMenuByQ(q, skipAnim = false) {
