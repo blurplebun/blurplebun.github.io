@@ -47,6 +47,7 @@ menuItems = [
         image: '',
         orbit: 1,
         hidden: true,
+        noFocus: true,
         labels: []
     },
     {

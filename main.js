@@ -662,13 +662,25 @@ const searchText = document.getElementById("searchText");
 const cancelSearch = document.getElementById("cancelSearch");
 
 function search() {
-    const q = searchText.value.trim().toLowerCase();
+    contentView.scrollTop = 0;
+    const query = searchText.value;
+    const q = query.trim().toLowerCase();
     if (!q) return;
 
     const results = [];
 
+    // find menus
+    const menuMatches = menuItems.filter(menu => {
+        if (menu.noFocus) return false;
+        return (
+            (menu.name && menu.name.toLowerCase().includes(q)) ||
+            (menu.subtitle && menu.subtitle.toLowerCase().includes(q))
+        );
+    });
+
+    // find cards
     menuItems.forEach(menu => {
-        const matches = menu.labels.filter(label => {
+        matches = menu.labels.filter(label => {
             return (
                 (label.title && label.title.toLowerCase().includes(q)) ||
                 (label.excerpt && label.excerpt.toLowerCase().includes(q)) ||
@@ -680,15 +692,15 @@ function search() {
             results[menu.q] = {
                 menu,
                 labels: matches
-            }
-        }
+            };
+        };
     });
 
     const labelGroup = [];
     menusFound = Object.values(results);
 
     specialQuery = false;
-    specialCase = ['nothing', 'content', 'RZ'];
+    specialCase = ['nothing', 'content', 'help'];
     if (specialCase.includes(q)) {
         menusFound = [];
         specialQuery = true;
@@ -701,12 +713,33 @@ function search() {
         } else {
             if (q === 'nothing') notFound = "Nothing found!";
             if (q === 'content') {notFound = "Content found!"; notFoundDesc = "Yup, i am the content. You've found me heehee!<br>Aww you listened to what i said!<br>Who's a good boy~ :3"}
+            if (q === 'help') notFound = "help yourself.";
         }
         labelGroup.push({
             title: notFound,
             excerpt: notFoundDesc,
         });
+
     } else {
+        // add menus
+        if (menuMatches.length > 0) {
+            labelGroup.push({
+                title: "Menus",
+                excerpt: "Matching menus found",
+            });
+
+            menuMatches.forEach(menu => {
+                labelGroup.push({
+                    cardId: `menu-${menu.q}`,
+                    title: menu.name,
+                    excerpt: menu.subtitle || "",
+                    image: menu.image || "",
+                    linkId: menu.q, // this makes it render as a linked menu card
+                });
+            });
+        };
+
+        // add cards
         menusFound.forEach(({ menu, labels }) => {
             labelGroup.push({
                 title: menu.name,
@@ -725,7 +758,7 @@ function search() {
     // make a temporary "search results" menu
     const searchMenu = {
         q: 'search',
-        name: `Search results for "${q}"`,
+        name: `Search results for "${query}"`,
         labels: labelGroup,
     };
 
