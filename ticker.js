@@ -49,7 +49,6 @@ async function startTicker(containerSelector, filePath, speed = 100) {
   showNextMessage();
 }
 
-const messages = [ `nothing` ]
 const tickerSpeed = 180;
 
 const observer = new MutationObserver((mutations) => {
@@ -66,3 +65,5 @@ const observer = new MutationObserver((mutations) => {
 });
 
 observer.observe(document.body, { childList: true, subtree: true });
+
+const messages = [ `nothing` ]

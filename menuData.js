@@ -45,6 +45,7 @@ menuItems = [
         q: 'search',
         subtitle: '',
         image: '',
+        orbit: 1,
         hidden: true,
         labels: []
     },

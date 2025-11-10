@@ -358,7 +358,6 @@ function showContentFor(menu) {
     // contentView.querySelectorAll('hr').forEach(h => h.remove());
     contentTitle.textContent = menu.name;
     contentSubtitle.textContent = menu.subtitle;
-    cardsContainer.innerHTML = '';
     focusedLayout.style.display = 'none';
     contentView.classList.add('visible');
     backBtn.classList.add('visible');
@@ -393,7 +392,7 @@ function showContentFor(menu) {
     }
 
     // cardsContainer.className = `cards-grid max-cols-5`;
-    cardsContainer.className = `cards-grid`;
+
     contentView.dataset.singleCardMenu = menu.labels.length === 1 ? 'true' : 'false';
 
     /*
@@ -404,11 +403,56 @@ function showContentFor(menu) {
     contentView.appendChild(hr);
     */
 
-    menu.labels.forEach(lbl => {
-        const c = document.createElement('div');
-        c.className = 'card';
+    cardsContainer.innerHTML = "";
+
+    // Create the first section grid
+    let section = document.createElement("div");
+    section.className = "cards-grid";
+    cardsContainer.appendChild(section);
+
+    menu.labels.forEach((lbl, i) => {
+        // Check for separator (no cardId)
+        if (!lbl.cardId) {
+            const header = document.createElement("div");
+            header.className = "content-header section-header";
+
+            if (lbl.title) {
+                const h1 = document.createElement("div");
+                h1.className = "content-title separator";
+                h1.textContent = lbl.title;
+                header.appendChild(h1);
+            }
+
+            if (lbl.excerpt) {
+                const h2 = document.createElement("div");
+                h2.className = "content-sub separator";
+                h2.innerHTML = lbl.excerpt;
+                header.appendChild(h2);
+            }
+
+            // Add the header if there was any text
+            if (lbl.title || lbl.excerpt) {
+                cardsContainer.appendChild(header);
+            }
+
+            // Add the separator line (optional visual)
+            const hr = document.createElement("hr");
+            hr.className = "card-separator";
+            cardsContainer.appendChild(hr);
+
+            // Start new grid section
+            section = document.createElement("div");
+            section.className = "cards-grid";
+            cardsContainer.appendChild(section);
+            return;
+        }
+
+        // --- CARD CREATION ---
+        const c = document.createElement("div");
+        c.className = "card";
         c.dataset.cardId = lbl.cardId;
 
+        // Linked menu card
         if (lbl.linkId) {
             const linkedMenu = menuItems.find(m => m.q === lbl.linkId);
             if (linkedMenu) {
@@ -417,50 +461,45 @@ function showContentFor(menu) {
                 c.innerHTML = `
                 <div class="card-text">
                     <strong>${linkedMenu.name}</strong>
-                    <div class="excerpt">${linkedMenu.subtitle || ''}</div>
+                    <div class="excerpt">${linkedMenu.subtitle || ""}</div>
+                </div>
+                <div class="menu-button bubble" style="background:${linkedMenu.color || "transparent"}">
+                    <div class="inner">
+                        <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ""}'></div>
+                    </div>
                 </div>
             `;
-
-                // Create floating bubble (menu button clone)
-                const bubble = document.createElement('div');
-                bubble.className = 'menu-button bubble';
-                bubble.style.background = linkedMenu.color || 'transparent';
-                // bubble.style.animationDelay = `${Math.random() * 2}s`;
-                bubble.innerHTML = `
-                <div class="inner">
-                    <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ''}'></div>
-                </div>
-            `;
-                c.appendChild(bubble);
-
-                c.addEventListener('click', (e) => {
+                c.addEventListener("click", e => {
                     e.stopPropagation();
                     openMenuByQ(lbl.linkId, true);
                 });
             }
-            cardsContainer.appendChild(c);
+            section.appendChild(c);
             return;
         }
 
+        // Standard card
         if (lbl.url) c.dataset.link = "true";
         if (lbl.unclickable) c.dataset.noclick = "true";
+
         if (lbl.image) {
             c.innerHTML = `
-                <div class="thumb lazy-bg" data-bg="${lbl.image || ''}"></div>
-                <div class="card-text">
-                    <strong>${lbl.title}</strong>
-                    <div class="excerpt">${lbl.excerpt}</div>
-                </div>
-            `;
+            <div class="thumb lazy-bg" data-bg="${lbl.image}"></div>
+            <div class="card-text">
+                <strong>${lbl.title}</strong>
+                <div class="excerpt">${lbl.excerpt || ""}</div>
+            </div>
+        `;
         } else {
             c.innerHTML = `
-                <div class="card-text full">
-                    <strong>${lbl.title}</strong>
-                    <div class="excerpt">${lbl.excerpt}</div>
-                </div>
-            `;
+            <div class="card-text full">
+                <strong>${lbl.title}</strong>
+                <div class="excerpt">${lbl.excerpt || ""}</div>
+            </div>
+        `;
         }
 
+        // webinfo
         const totalCardsCounter = c.querySelector('#totalCardsCounter');
         if (totalCardsCounter) {
             totalCardsCounter.textContent = `totalCards: ${totalCards}`;
@@ -474,18 +513,13 @@ function showContentFor(menu) {
             totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
         }
 
-        c.addEventListener('click', () => {
+        c.addEventListener("click", () => {
             if (lbl.unclickable) return;
-            if (lbl.url) {
-                // open external link
-                window.open(lbl.url, '_blank');
-            } else {
-                // default behavior (show description)
-                focusCard(c, lbl, menu);
-            }
+            if (lbl.url) window.open(lbl.url, "_blank");
+            else focusCard(c, lbl, menu);
         });
 
-        cardsContainer.appendChild(c);
+        section.appendChild(c);
     });
 
     contentView.setAttribute('aria-hidden', 'false');
@@ -560,7 +594,9 @@ function focusCard(cardEl, label, menu = null) {
     imgConHandler(detailArea);
 
     // hide grid cards except the one we moved
-    cardsContainer.classList.add('hidden');
+    cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => {
+        el.classList.add('hidden');
+    });
     focusedLayout.style.display = 'flex';
     document.querySelector('.content-header')?.classList.add('hidden');
     contentView.style.overflow = 'hidden';
@@ -632,25 +668,65 @@ function search() {
     const results = [];
 
     menuItems.forEach(menu => {
-        menu.labels.forEach(label => {
-            if (
+        const matches = menu.labels.filter(label => {
+            return (
                 (label.title && label.title.toLowerCase().includes(q)) ||
                 (label.excerpt && label.excerpt.toLowerCase().includes(q)) ||
                 (label.detail && label.detail.toLowerCase().includes(q))
-            ) {
-                results.push({ ...label, fromMenu: menu.q });
-            }
+            );
         });
+
+        if (matches.length > 0) {
+            results[menu.q] = {
+                menu,
+                labels: matches
+            }
+        }
     });
+
+    const labelGroup = [];
+    menusFound = Object.values(results);
+
+    specialQuery = false;
+    specialCase = ['nothing', 'content', 'RZ'];
+    if (specialCase.includes(q)) {
+        menusFound = [];
+        specialQuery = true;
+    }
+
+    if (menusFound.length === 0) {
+        notFoundDesc = "";
+        if (!specialQuery) {
+            notFound = "Nothing found";
+        } else {
+            if (q === 'nothing') notFound = "Nothing found!";
+            if (q === 'content') {notFound = "Content found!"; notFoundDesc = "Yup, i am the content. You've found me heehee!<br>Aww you listened to what i said!<br>Who's a good boy~ :3"}
+        }
+        labelGroup.push({
+            title: notFound,
+            excerpt: notFoundDesc,
+        });
+    } else {
+        menusFound.forEach(({ menu, labels }) => {
+            labelGroup.push({
+                title: menu.name,
+                excerpt: `Results from <a data-open-card="${menu.q}">${menu.name}</a>`,
+            });
+
+            labels.forEach(label => {
+                labelGroup.push({
+                    ...label,
+                    fromMenu: menu.q,
+                })
+            })
+        })
+    }
 
     // make a temporary "search results" menu
     const searchMenu = {
         q: 'search',
         name: `Search results for "${q}"`,
-        labels: results.length > 0 ? results : [{
-            title: 'No results found',
-            excerpt: '',
-        }],
+        labels: labelGroup,
     };
 
     openMenu(searchMenu);
@@ -753,17 +829,13 @@ window.addEventListener('load', async () => {
 
 
 /// -- INTERNAL LINK HANDLER <a data-open-card="q:id"> --
-detailArea.addEventListener('click', async function (e) {
+document.addEventListener('click', async function (e) {
     const link = e.target.closest('a[data-open-card]');
     if (!link) return;
     e.preventDefault();
 
     const ref = link.dataset.openCard.trim();
     const [menuCode, cardKey] = ref.split(':');
-    if (!menuCode || !cardKey) {
-        console.warn('Invalid open-card reference:', ref);
-        return;
-    }
 
     const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) {
@@ -771,62 +843,33 @@ detailArea.addEventListener('click', async function (e) {
         return;
     }
 
-    const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
-    if (!targetLabel) {
-        console.warn('Card cardId not found in menu', menuCode, cardKey);
+    if (!cardKey) {
+        // open the menu directly
+        openMenuByQ(menuCode, true);
         return;
     }
 
-    // wait for the card DOM element to exist
-    async function waitForCard(cardId, timeout = 1200, interval = 40) {
-        const start = performance.now();
-        while (performance.now() - start < timeout) {
-            const cardEl = document.querySelector(`[data-card-id="${cardId}"]`);
-            if (cardEl) return cardEl;
-            await new Promise(r => setTimeout(r, interval));
-        }
-        return null;
+    // open specific card inside that menu
+    const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+    if (!targetLabel) {
+        console.warn('Card not found in', menuCode, cardKey);
+        openMenuByQ(menuCode, true);
+        return;
     }
 
-    // If we're not currently viewing the target menu, open it first.
-    const currentlyViewing = contentTitle.textContent && contentTitle.textContent.toLowerCase() === (targetMenu.name || '').toLowerCase();
+    // Open the menu (skip anim)
+    const isCurrentlyOpen =
+        contentTitle.textContent &&
+        contentTitle.textContent.toLowerCase() === targetMenu.name.toLowerCase();
 
-    if (!currentlyViewing) {
-        if (typeof openMenuByQ === 'function') {
-            openMenuByQ(targetMenu.q, true);
-        } else {
-            const button = Array.from(document.querySelectorAll('.menu-button'))
-                .find(b => (b.dataset.menuQ && b.dataset.menuQ.toLowerCase() === targetMenu.q.toLowerCase())
-                    || (b.getAttribute('aria-label') && b.getAttribute('aria-label').toLowerCase() === (targetMenu.name || '').toLowerCase()));
-            if (typeof openMenu === 'function') {
-                openMenu(targetMenu, button || null, { skipAnimation: !button });
-            } else {
-                showContentFor(targetMenu);
-                history.pushState({}, '', `?m=${targetMenu.q}`);
-            }
-        }
-
-        // wait for card to appear in the newly rendered menu
-        const cardEl = await waitForCard(cardKey, 1600, 40);
-        if (cardEl) {
-            focusCard(cardEl, targetLabel, targetMenu);
-        } else {
-            const fallback = document.querySelector(`[data-card-id="${cardKey}"]`);
-            if (fallback) focusCard(fallback, targetLabel, targetMenu);
-            else console.warn('Timed out waiting for card to render:', cardKey);
-        }
-    } else {
-        // already in same menu - focus directly
-        const cardEl = document.querySelector(`[data-card-id="${cardKey}"]`);
-        if (cardEl) {
-            focusCard(cardEl, targetLabel, targetMenu);
-        } else {
-            const cardEl2 = await waitForCard(cardKey, 800, 40);
-            if (cardEl2) focusCard(cardEl2, targetLabel, targetMenu);
-            else console.warn('Card not found in current menu:', cardKey);
-        }
+    if (!isCurrentlyOpen) {
+        openMenuByQ(menuCode, true);
     }
+
+    const targetCard = document.querySelector(`[data-card-id="${cardKey}"]`);
+    if (targetCard) focusCard(targetCard, targetLabel, targetMenu);
 });
+
 
 
 
@@ -840,7 +883,9 @@ function goBack() {
     if (itemId) {
         // Currently viewing a card → go back to menu grid
         history.pushState({}, '', `?m=${menuCode}`);
-        cardsContainer.classList.remove('hidden');
+        cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => {
+            el.classList.remove('hidden');
+        });
         focusedLayout.style.display = 'none';
         document.querySelector('.content-header')?.classList.remove('hidden');
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;

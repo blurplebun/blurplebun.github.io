@@ -197,6 +197,8 @@ splashLines = [
     "↗️ going to explode in 3 sec",
     "Powered by Omniverse™",
     `<div style="font-size:20px; filter: blur(0.12rem)">got your glasses</div>`,
+    "seriousartifybernews",
+    "A mish-mash of whatever!"
 ];
 
 totalSplash = splashLines.length;

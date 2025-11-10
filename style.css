@@ -332,8 +332,21 @@ body {
     color: color-mix(in srgb, var(--accentl) 75%, transparent)
 }
 
-.content-header.hidden {
-    display: none !important;
+.content-title.separator {
+    font-size: 18px;
+    margin-top: -50px;
+}
+
+.content-sub.separator {
+    font-size: 14px;
+}
+
+.card-separator {
+    margin-bottom: 50px;
+}
+
+.hidden {
+    display: none;
 }
 
 
@@ -601,7 +614,7 @@ a:active {
     transition: color 0.2s, opacity 0.2s;
 }
 
-#detailArea a[data-open-card] {
+a[data-open-card] {
     cursor: pointer;
     text-decoration: underline;
 }
