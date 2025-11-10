@@ -669,15 +669,6 @@ function search() {
 
     const results = [];
 
-    // find menus
-    const menuMatches = menuItems.filter(menu => {
-        if (menu.noFocus) return false;
-        return (
-            (menu.name && menu.name.toLowerCase().includes(q)) ||
-            (menu.subtitle && menu.subtitle.toLowerCase().includes(q))
-        );
-    });
-
     // find cards
     menuItems.forEach(menu => {
         matches = menu.labels.filter(label => {
@@ -694,6 +685,15 @@ function search() {
                 labels: matches
             };
         };
+    });
+
+    // find menus
+    const menuMatches = menuItems.filter(menu => {
+        if (menu.noFocus) return false;
+        return (
+            (menu.name && menu.name.toLowerCase().includes(q)) ||
+            (menu.subtitle && menu.subtitle.toLowerCase().includes(q))
+        );
     });
 
     const labelGroup = [];
@@ -721,6 +721,20 @@ function search() {
         });
 
     } else {
+        // add cards
+        menusFound.forEach(({ menu, labels }) => {
+            labelGroup.push({
+                title: menu.name,
+                excerpt: `Results from <a data-open-card="${menu.q}">${menu.name}</a>`,
+            });
+
+            labels.forEach(label => {
+                labelGroup.push({
+                    ...label,
+                    fromMenu: menu.q,
+                })
+            })
+        })
         // add menus
         if (menuMatches.length > 0) {
             labelGroup.push({
@@ -739,20 +753,6 @@ function search() {
             });
         };
 
-        // add cards
-        menusFound.forEach(({ menu, labels }) => {
-            labelGroup.push({
-                title: menu.name,
-                excerpt: `Results from <a data-open-card="${menu.q}">${menu.name}</a>`,
-            });
-
-            labels.forEach(label => {
-                labelGroup.push({
-                    ...label,
-                    fromMenu: menu.q,
-                })
-            })
-        })
     }
 
     // make a temporary "search results" menu
