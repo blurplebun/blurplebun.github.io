@@ -19,14 +19,26 @@
         <div class="starfield"></div>
         <div class="menu-stage">
             <div class="menu-center-text">
-                <div class="splash-text" data-info="info"></div>
-                <img class="menu-logo" src="images/temp2.png" /><br>
+                <div class="splash-text splash-text-info" data-info="info"></div>
+                <img class="menu-logo" src="images/menu-logo.png" draggable="false"
+                    title="Click to open search box" /><br>
                 <div class="splash-text" data-info="splash"></div>
             </div>
             <div class="ring">
                 <!-- buttons injected here -->
             </div>
         </div>
+
+        <dialog id="searchBox">
+            <form method="dialog" id="searchForm">
+                <h2>Search</h2>
+                <input id="searchText" type="text" placeholder="Search for content..." autocomplete="off">
+                <div class="form-buttons">
+                    <button type="submit">Search</button>
+                    <button type="button" id="cancelSearch">Cancel</button>
+                </div>
+            </form>
+        </dialog>
 
         <div id="expander" class="expander" style="opacity:0"></div>
 

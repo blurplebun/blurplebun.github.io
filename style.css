@@ -254,8 +254,14 @@ body {
 }
 
 .menu-logo {
-    max-width: 280px;
-    pointer-events: none;
+    max-width: 200px;
+    pointer-events: auto;
+    transition: transform 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.menu-logo:hover {
+    transform: scale(1.05);
 }
 
 .ring {
@@ -713,8 +719,101 @@ a:active {
     transform: scale(1.2) rotate(45deg);
 }
 
+#searchBox {
+    border: none;
+    border-radius: 20px;
+    padding: 0;
+    background: color-mix(in srgb, var(--accent3) 50%, transparent);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    color: var(--white);
+    width: min(90%, 420px);
+    max-width: 420px;
+    animation: fadeInDialog 0.1s ease-out;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
 
+#searchBox[open] {
+    opacity: 1;
+    transform: scale(1);
+}
 
+#searchBox::backdrop {
+    background: color-mix(in srgb, var(--bg) 50%, transparent);
+    backdrop-filter: blur(8px);
+}
+
+#searchForm {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 16px;
+    text-align: center;
+}
+
+#searchForm h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accentl);
+    margin-bottom: 4px;
+}
+
+#searchText {
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    border: 2px solid var(--accent2);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#searchText:focus {
+    border-color: var(--accent);
+}
+
+/* Buttons */
+.form-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+#searchForm button {
+    background: var(--accent);
+    color: var(--white);
+    border: none;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-family: 'Baloo 2', 'Ubuntu', verdana, sans-serif;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+#searchForm button:hover {
+    background: var(--accent);
+    transform: translateY(-2px);
+}
+
+#searchForm button[type="button"] {
+    background: color-mix(in srgb, var(--accent2) 50%, transparent);
+}
+
+@keyframes fadeInDialog {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
 
 
 .focused-layout {
@@ -1076,12 +1175,13 @@ a:active {
     text-shadow: 2px 2px 0 var(--bg);
     white-space: nowrap;
     z-index: 10;
+    transition: opacity 1s;
 }
 
 .splash-text[data-info="info"] {
     color: color-mix(in srgb, var(--accentl) 75%, transparent);
     position: absolute;
-    top: 80%;
+    top: 115%;
     left: 50%;
     font-size: 12px;
     transform: translate(-50%, 50%);
@@ -1089,7 +1189,7 @@ a:active {
 
 .splash-text[data-info="splash"] {
     position: absolute;
-    top: 70%;
+    top: 95%;
     left: 50%;
     animation: floatSplash 1s ease-in-out infinite alternate;
 }

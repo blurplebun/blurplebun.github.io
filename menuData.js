@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'November 10th, 2025';
-const version = '0.1.6';
+const version = '0.1.7';
 
 /*
 facts = [
@@ -39,6 +39,15 @@ menuItems = [
         ]
     },
     */
+    {
+        // Search
+        name: 'Search result',
+        q: 'search',
+        subtitle: '',
+        image: '',
+        hidden: true,
+        labels: []
+    },
     {
         // Orbit 1
         // Deltadim

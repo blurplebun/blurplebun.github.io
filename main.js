@@ -11,6 +11,7 @@ const contentSubtitle = document.getElementById('contentSubtitle');
 const focusedLayout = document.getElementById('focusedLayout');
 const focusedCardArea = document.getElementById('focusedCardArea');
 const detailArea = document.getElementById('detailArea');
+const menuLogo = document.querySelector('.menu-logo');
 const backBtn = document.getElementById('backBtn');
 const centerBtn = document.getElementById('centerBtn');
 centerBtn.classList.add('hide');
@@ -140,6 +141,7 @@ function showCenterBtn() {
     centerBtn.classList.add('hide');
     if (!(currentX == 0 && currentY == 0) && !(contentView.classList.contains('visible'))) {
         centerBtn.classList.remove('hide');
+        document.querySelector('.splash-text-info').style.opacity = 0;
     }
     requestAnimationFrame(showCenterBtn);
 }
@@ -364,29 +366,31 @@ function showContentFor(menu) {
     backBtn.querySelector('span').textContent = 'Menu';
 
     // Add copy link icon to menu title
-    const linkIcon = document.createElement('span');
-    linkIcon.className = 'copy-link';
-    linkIcon.innerHTML = `
+    if (!(menu.q === "search")) {
+        const linkIcon = document.createElement('span');
+        linkIcon.className = 'copy-link';
+        linkIcon.innerHTML = `
         <svg viewBox="0 0 24 24" fill="none">
             <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
             <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
         </svg>
         `;
-    linkIcon.title = "Copy shareable link";
-    linkIcon.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const link = `${location.origin}${location.pathname}?m=${menu.q}`;
-        navigator.clipboard.writeText(link);
+        linkIcon.title = "Copy shareable link";
+        linkIcon.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const link = `${location.origin}${location.pathname}?m=${menu.q}`;
+            navigator.clipboard.writeText(link);
 
-        // visual + tooltip feedback
-        linkIcon.classList.add('copied');
-        linkIcon.title = "Copied!";
-        setTimeout(() => {
-            linkIcon.classList.remove('copied');
-            linkIcon.title = "Copy shareable link";
-        }, 1500);
-    });
-    contentTitle.appendChild(linkIcon);
+            // visual + tooltip feedback
+            linkIcon.classList.add('copied');
+            linkIcon.title = "Copied!";
+            setTimeout(() => {
+                linkIcon.classList.remove('copied');
+                linkIcon.title = "Copy shareable link";
+            }, 1500);
+        });
+        contentTitle.appendChild(linkIcon);
+    }
 
     // cardsContainer.className = `cards-grid max-cols-5`;
     cardsContainer.className = `cards-grid`;
@@ -491,6 +495,7 @@ function showContentFor(menu) {
         const single = menu.labels[0];
         const cardEl = cardsContainer.querySelector('.card');
         if (cardEl) {
+            if (single.unclickable) return;
             if (single.url) {
                 window.open(single.url, '_blank');
             } else {
@@ -511,9 +516,6 @@ function focusCard(cardEl, label, menu = null) {
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
-    /* const html = label.detail; 
-  ? label.detail.replace(/<img\s+([^>]*?)src\s*=\s*"(.*?)"/g, '<img class="lazy" $1data-src="$2"')
-  : '';*/
 
     const html = label.detail
         ? label.detail
@@ -618,6 +620,67 @@ function imgConHandler(detailArea) {
 
 
 
+/// -- SEARCH --
+const searchBox = document.getElementById("searchBox");
+const searchText = document.getElementById("searchText");
+const cancelSearch = document.getElementById("cancelSearch");
+
+function search() {
+    const q = searchText.value.trim().toLowerCase();
+    if (!q) return;
+
+    const results = [];
+
+    menuItems.forEach(menu => {
+        menu.labels.forEach(label => {
+            if (
+                (label.title && label.title.toLowerCase().includes(q)) ||
+                (label.excerpt && label.excerpt.toLowerCase().includes(q)) ||
+                (label.detail && label.detail.toLowerCase().includes(q))
+            ) {
+                results.push({ ...label, fromMenu: menu.q });
+            }
+        });
+    });
+
+    // make a temporary "search results" menu
+    const searchMenu = {
+        q: 'search',
+        name: `Search results for "${q}"`,
+        labels: results.length > 0 ? results : [{
+            title: 'No results found',
+            excerpt: '',
+        }],
+    };
+
+    openMenu(searchMenu);
+    searchText.value = '';
+}
+
+menuLogo.addEventListener('click', () => {
+    searchBox.showModal();
+});
+
+searchBox.addEventListener('close', () => {
+    if (searchText.value.trim() !== '') {
+        search();
+    }
+});
+
+searchText.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        searchBox.close();
+    }
+});
+
+cancelSearch.addEventListener('click', () => {
+    searchText.value = '';
+    searchBox.close();
+})
+
+
+
 
 /// -- OPEN MENU BY Q --
 function openMenuByQ(q, skipAnim = false) {
@@ -640,6 +703,7 @@ window.addEventListener('load', async () => {
     const cardKey = params.get('i'); // may be null or ""
 
     if (!menuCode) return;
+    if (menuCode === "search") return;
 
     const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) {
@@ -887,7 +951,7 @@ window.addEventListener('load', () => {
     splashTexts.forEach(el => {
         const type = el.dataset.info;
         if (type === 'info') {
-            el.textContent = "(drag to move around)"; // static label
+            el.textContent = "(drag to move, click logo to search)"; // static label
         }
         if (type === 'splash') {
             const text = splashLines[Math.floor(Math.random() * splashLines.length)];
