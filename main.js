@@ -267,6 +267,13 @@ function createMenuButtons() {
     startOrbitAnimation();
 }
 
+// move menu buttons
+let cursorX = 0, cursorY = 0;
+window.addEventListener('mousemove', e => {
+    cursorX = e.clientX;
+    cursorY = e.clientY;
+});
+
 let orbitAnimStarted = false;
 let orbitStartTs = performance.now();
 function startOrbitAnimation() {
@@ -287,11 +294,27 @@ function orbitFrame(ts) {
         const angle = a0 + w * elapsed;
         const x = Math.cos(angle) * r;
         const y = Math.sin(angle) * r;
-        el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s})`;
+
+        zoom = 1;
+        if (!(contentView.classList.contains('visible'))) {
+            const rect = el.getBoundingClientRect();
+            const btnX = rect.left + rect.width / 2;
+            const btnY = rect.top + rect.height / 2;
+
+            const dx = cursorX - btnX;
+            const dy = cursorY - btnY;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            const maxDist = 200;
+            zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.25;
+        }
+
+        el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
     }
     requestAnimationFrame(orbitFrame);
 }
 
+// menu button on resize
 let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
@@ -712,7 +735,7 @@ function search() {
             notFound = "Nothing found";
         } else {
             if (q === 'nothing') notFound = "Nothing found!";
-            if (q === 'content') {notFound = "Content found!"; notFoundDesc = "Yup, i am the content. You've found me heehee!<br>Aww you listened to what i said!<br>Who's a good boy~ :3"}
+            if (q === 'content') { notFound = "Content found!"; notFoundDesc = "Yup, i am the content. You've found me heehee!<br>Aww you listened to what i said!<br>Who's a good boy~ :3" }
             if (q === 'help') notFound = "help yourself.";
         }
         labelGroup.push({

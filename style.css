@@ -176,7 +176,7 @@ body {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-    transition: transform 400ms cubic-bezier(.2, .9, .2, 1), opacity 300ms, box-shadow 0.1s;
+    transition: transform 50ms, opacity 300ms, box-shadow 0.2s;
     user-select: none;
     font-weight: 700;
     color: #111;
@@ -187,7 +187,7 @@ body {
 }
 
 .menu-button:hover {
-    box-shadow: 0 0 25px var(--glow, rgba(255, 255, 255, 0.5));
+    box-shadow: 0 0 50px var(--glow, rgba(255, 255, 255, 0.75));
 }
 
 .menu-button .label-number {
