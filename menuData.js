@@ -1384,6 +1384,26 @@ menuItems = [
                 image: 'icons/nansenz.png'
             },
             {
+                cardId: 'cancerman',
+                title: 'Cancerman',
+                excerpt: '',
+                detail:
+                    `Species: Cigarette<br>
+                Pronouns: He<br>
+                Gender: Male<br>
+                Sexuality: Gay<br>
+                Nickname: Cigarman, Cigar<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
+                <hr>
+                <h2>Gallery:</h2>
+                <div class="imgContainer">
+                    <img src="images/c/cancerman-c.png"><br>
+                </div>
+                `,
+                image: 'images/i/cancerman-i.png'
+            },
+            {
                 cardId: 'mu',
                 title: 'Mu',
                 excerpt: '',
