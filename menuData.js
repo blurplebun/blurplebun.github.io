@@ -1582,7 +1582,7 @@ menuItems = [
                         <li>Shipping my characters with each other<br>
                             <small>Preferably canonical relationship but it isn't necessary</small></li><br>
                         <li>Suggestive content<br>
-                            <small>It will not be reposted or boosted by my account</small></li><br>
+                            <small>It will not be reposted or boosted by my profile</small></li><br>
                     </ul>
                     <h4>Not Allowed:</h4>
                     <ul>
@@ -1603,7 +1603,9 @@ menuItems = [
                     <details>
                         <summary>18+</summary>
                         <br>
-                        If you are creating adult content of my characters, please put proper warnings and filters. Do not tag me when you post your adult content.
+                        If you are creating adult content of my characters, please put proper warnings and filters.<br>
+                        <br>
+                        Adult contents will not be reposted or boosted to my profile. Do not tag me when you post your adult content. Although, feel free to notify me privately.
                         <ul>
                             <li>Do not draw my characters paired with your own character in NSFW settings</li><br>
                             <li>Do not draw fetish art of my characters</li><br>
