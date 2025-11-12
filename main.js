@@ -900,8 +900,8 @@ document.addEventListener('click', async function (e) {
     }
 
     if (!cardKey) {
-        // open the menu directly
         openMenuByQ(menuCode, true);
+        document.querySelector('.content-header')?.classList.remove('hidden');
         return;
     }
 

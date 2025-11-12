@@ -110,6 +110,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-teksui:articat">Articat</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/artibun-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -135,6 +137,8 @@ menuItems = [
                 Nickname: Arti, Kiki<br>
                 <br>
                 S/O: <a data-open-card="deltadim-teksui:artibun">Artibun</a><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -158,6 +162,8 @@ menuItems = [
                 Gender: Trans-male<br>
                 Sexuality: Bisexual<br>
                 Nickname: Arti, Fofo, Foxxo<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -183,6 +189,8 @@ menuItems = [
                 Nickname: Arti, Fifi<br>
                 <br>
                 S/O: <a data-open-card="deltadim-teksui:artilope">Artilope</a><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -208,6 +216,8 @@ menuItems = [
                 Nickname: Arti, Baba<br>
                 <br>
                 S/O: <a data-open-card="deltadim-teksui:artipup">Artipup</a><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -233,6 +243,8 @@ menuItems = [
                 Nickname: Arti, Lolo, Lope<br>
                 <br>
                 S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -258,6 +270,8 @@ menuItems = [
                 Nickname: Arti, Arfy<br>
                 <br>
                 S/O: <a data-open-card="deltadim-teksui:artigoat">Artigoat</a><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -281,6 +295,8 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Aroace<br>
                 Nickname: Arti, Nay, Neko<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -305,6 +321,8 @@ menuItems = [
                 Sexuality: Demisexual<br>
                 <br>
                 S/O: <a data-open-card="deltadim-teksui:sora">Sora</a><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -331,6 +349,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-teksui:eros">Eros</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/sora-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -349,6 +369,8 @@ menuItems = [
                 Pronouns: She<br>
                 Gender: Female<br>
                 Sexuality: Lesbian<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -374,6 +396,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-teksui:gift">Gift</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/card-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -398,6 +422,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-teksui:card">Card</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/gift-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/gift-i.png'
             },
@@ -410,6 +436,8 @@ menuItems = [
                 Pronouns: She/They<br>
                 Gender: Female<br>
                 Sexuality: Lesbian<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -429,6 +457,8 @@ menuItems = [
                 Sexuality: Heterosexual<br>
                 <br>
                 S/O: <a data-open-card="deltadim-teksui:rai">Rai</a><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -451,6 +481,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-teksui:fika">Fika</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/rai-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -488,6 +520,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-chromasia:rose">Rose</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/shirley-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -515,6 +549,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-chromasia:shirley">Shirley</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/rose-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -534,6 +570,8 @@ menuItems = [
                 Pronouns: She/They<br>
                 Gender: Demigirl<br>
                 Sexuality: Lesbian<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -562,6 +600,8 @@ menuItems = [
                 Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/caramella-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -589,6 +629,8 @@ menuItems = [
                 S/O: <a data-open-card="deltadim-chromasia:caramella">Caramella</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/azurey-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -609,6 +651,8 @@ menuItems = [
                 Gender: Female<br>
                 Sexuality: Pansexual<br>
                 Nickname: Meowdusa<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -631,6 +675,8 @@ menuItems = [
                 Adopted from <a href="https://x.com/naycookye" target="_blank">naycookye</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/lilac-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/lilac-i.png'
             },
@@ -645,6 +691,8 @@ menuItems = [
                 Sexuality: Bisexual<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/moka-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/moka-i.png'
             },
@@ -659,6 +707,8 @@ menuItems = [
                 Sexuality: Gay<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/nameless-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -678,6 +728,8 @@ menuItems = [
                 Sexuality: Asexual<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/nuki-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -698,6 +750,8 @@ menuItems = [
                 Sexuality: Probably Gay<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/sawo-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/sawo-i.png'
             },
@@ -729,6 +783,8 @@ menuItems = [
                 Adopted from <a href="https://x.com/C0denameDelta" target="_blank">C0denameDelta</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/skitty-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -751,6 +807,8 @@ menuItems = [
                 Pronouns: She<br>
                 Gender: Female<br>
                 Sexuality: Bisexual<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -771,6 +829,8 @@ menuItems = [
                 Pronouns: They<br>
                 Gender: Non-Binary<br>
                 Sexuality: Omnisexual<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -797,6 +857,8 @@ menuItems = [
                 Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/articani-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -819,6 +881,8 @@ menuItems = [
                 Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/ryon-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -914,6 +978,8 @@ menuItems = [
                     <img src="images/flories/uncat/Acidzer.png" data-caption="Acidzer" data-subcaption="Acid tulip - Genderless"><br>
                     <img src="images/flories/uncat/Mia.png" data-caption="Mia" data-subcaption="Potted plant - Female"><br>
                     </div>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                     `,
                 image: 'images/flories/strawlineko-pfp.png'
             },
@@ -944,6 +1010,8 @@ menuItems = [
                     <img src="images/flories/fv-mincha.png" data-caption="Mincha" data-subcaption="Jasmine - Female"><br>
                     <img src="images/flories/fv-lan.png" data-caption="Lan" data-subcaption="Lemon - Male"><br>
                     </div>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                     `,
                 image: 'images/fv-i.png'
             },
@@ -995,6 +1063,8 @@ menuItems = [
                     <img src="images/flories/fvd-fyzer.png" data-caption="Fyzer" data-subcaption="Florifyber - Genderless"><br>
                     <img src="images/flories/fvd-kloroforo.png" data-caption="Kloroforo" data-subcaption="Robot flower - Male"><br>
                     </div>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                     `,
                 image: 'images/fvd-i.png'
             },
@@ -1063,6 +1133,8 @@ menuItems = [
                     <img src="images/flories/fve-xyxiv.png" data-caption="Xyxiv" data-subcaption="Angel - Genderless"><br>
                     <img src="images/flories/fve-nau.png" data-caption="Nau" data-subcaption="Flower - Female"><br>
                     </div>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                     `,
                 image: 'images/fve-i.png'
             },
@@ -1109,6 +1181,8 @@ menuItems = [
                 Nickname: Foam<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/soap-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1131,6 +1205,8 @@ menuItems = [
                 Nickname: CMYK, D43DK177Y.exe<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/semyk-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1150,6 +1226,8 @@ menuItems = [
                 Pronouns: Any Pronouns<br>
                 Gender: Female<br>
                 Sexuality: Pansexual<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1167,6 +1245,8 @@ menuItems = [
                 Pronouns: He/They<br>
                 Gender: Demiboy<br>
                 Sexuality: Asexual<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1184,6 +1264,8 @@ menuItems = [
                 Pronouns: She/They<br>
                 Gender: Demigirl<br>
                 Sexuality: Bisexual<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1204,6 +1286,8 @@ menuItems = [
                 Sexuality: Bisexual<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/ebta-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1222,6 +1306,8 @@ menuItems = [
                 Pronouns: Any Pronouns<br>
                 Gender: None<br>
                 Sexuality: None<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1241,6 +1327,8 @@ menuItems = [
                 Pronouns: She/They<br>
                 Gender: Female<br>
                 Sexuality: Lesbian<br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1260,6 +1348,8 @@ menuItems = [
                 Sexuality: Pansexual<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/quanta-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/quanta-i.png'
             },
@@ -1305,6 +1395,8 @@ menuItems = [
                 Nickname: μ<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/mu-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/mu-i.png'
             },
@@ -1343,6 +1435,8 @@ menuItems = [
                 Nickname: Polyne<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/lyne-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 <hr>
                 <h2>Gallery:</h2>
                 <div class="imgContainer">
@@ -1386,6 +1480,8 @@ menuItems = [
                 Nickname: ∞<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/infineko-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/infineko-i.png'
             },
@@ -1400,6 +1496,8 @@ menuItems = [
                 Sexuality: Gay<br>
                 <h2>Reference Art:</h2><br>
                 <img src="images/r/ugo-r.png"><br>
+                <br>
+                <a data-open-card="info:ocrules">Character rules</a>
                 `,
                 image: 'images/i/ugo-i.png'
             },
@@ -1466,6 +1564,59 @@ menuItems = [
                     <img src="images/fyberhappy.png"">
 `,
                 image: 'images/temp3.png'
+            },
+            {
+                cardId: 'ocrules',
+                title: 'Character Rules',
+                excerpt: `Rules regarding Artifyber's characters`,
+                detail:
+                    `
+                    Last updated: November 12th, 2025<br>
+                    Feel free to reach out to me for anything else not listed.
+                    <h2>Fanart Policy</h2>
+                    <h4>Allowed:</h4>
+                    <ul>
+                        <li>Single-character</li><br>
+                        <li>Paired with another Artifyber character</li><br>
+                        <li>Paired with your own character</li><br>
+                        <li>Shipping my characters with each other<br>
+                            <small>Preferably canonical relationship but it isn't necessary</small></li><br>
+                        <li>Suggestive content<br>
+                            <small>It will not be reposted or boosted by my account</small></li><br>
+                    </ul>
+                    <h4>Not Allowed:</h4>
+                    <ul>
+                        <li>Modifying the design of my characters</li><br>
+                        <li>Creating all kinds of hateful or political content</li><br>
+                        <li>Using my characters in a commercial setting unless i gave permission to do so</li><br>
+                        <li>Using generative AI to create a fanart</li><br>
+                    </ul>
+                    <hr>
+                    <h2>Character Derivatives</h2>
+                    You are allowed to create a new character that is a derivative of the following as long as your character is not too similar to one of mine:
+                    <ul>
+                        <li>All kinds of florie in <a data-open-card="floriverse">Floriverse</a></li><br>
+                        <li>All kinds of object-heads or object characters in <a data-open-card="nansenz">Nansenz</a></li><br>
+                        <li>Polygon species of <a data-open-card="hizen">Hizen</a></li><br>
+                    </ul>
+                    <hr>
+                    <details>
+                        <summary>18+</summary>
+                        <br>
+                        If you are creating adult content of my characters, please put proper warnings and filters. Do not tag me when you post your adult content.
+                        <ul>
+                            <li>Do not draw my characters paired with your own character in NSFW settings</li><br>
+                            <li>Do not draw fetish art of my characters</li><br>
+                            <li>Do not draw my characters with exotic / animal-like genitalia<br>
+                                <small>There are a few exceptions to this with aquatic characters and flories. Please ask me beforehand</small></li><br>
+                            <li>Do not create adult content out of these characters:</li><br>
+                            <ul>
+                                <li>Artineko, Artimouse, Articani, Singularikitty, Gamma</li><br>
+                                <li>Everything from <a data-open-card="hizen">Hizen</a></li><br>
+                            </ul>
+                    </details>
+                    `,
+                image: 'icons/oc-rules.png'
             },
             /*
             {

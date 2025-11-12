@@ -570,8 +570,15 @@ body {
 }
 
 /* Detail area for text n stuff*/
-#detailArea {
+#detailArea,
+#detailArea small,
+#detailArea details {
     color: color-mix(in srgb, var(--accentl) 75%, transparent);
+}
+
+details[open] {
+    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    padding: 12px;
 }
 
 #detailArea * {
