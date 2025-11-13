@@ -168,7 +168,7 @@ function createOrbitVisuals() {
     document.querySelectorAll('.orbit-visual').forEach(el => el.remove());
 
     // collect unique orbit layers
-    const uniqueOrbits = [...new Set(menuItems.map(m => m.orbit || 1))];
+    const uniqueOrbits = [...new Set(menuItems.filter(m => !m.hidden).map(m => m.orbit || 1))];
 
     uniqueOrbits.forEach(orbit => {
         const orbitRing = document.createElement('div');
@@ -418,14 +418,6 @@ function showContentFor(menu) {
 
     contentView.dataset.singleCardMenu = menu.labels.length === 1 ? 'true' : 'false';
 
-    /*
-    const hr = document.createElement('hr');
-    hr.style.border = "none";
-    hr.style.borderTop = `3px solid color-mix(in srgb, var(--accent) 50%, transparent)`;
-    hr.style.margin = "12px 0"
-    contentView.appendChild(hr);
-    */
-
     cardsContainer.innerHTML = "";
 
     // Create the first section grid
@@ -481,6 +473,7 @@ function showContentFor(menu) {
             if (linkedMenu) {
                 c.dataset.link = "true";
                 c.style.border = `3px solid ${linkedMenu.color}`;
+                c.style.boxShadow = `inset 0 0 30px color-mix(in srgb, ${linkedMenu.color} 30%, transparent)`;
                 c.innerHTML = `
                 <div class="card-text">
                     <strong>${linkedMenu.name}</strong>
@@ -562,6 +555,7 @@ function showContentFor(menu) {
     }
 
     initLazyLoad();
+    contentView.scrollTop = 0;
 }
 
 
@@ -684,6 +678,10 @@ const searchBox = document.getElementById("searchBox");
 const searchText = document.getElementById("searchText");
 const cancelSearch = document.getElementById("cancelSearch");
 
+function stripHTML(html) {
+    return html.replace(/<[^>]+>/g, ''); // removes anything between < and >
+}
+
 function search() {
     contentView.scrollTop = 0;
     const query = searchText.value;
@@ -694,11 +692,12 @@ function search() {
 
     // find cards
     menuItems.forEach(menu => {
+        if (menu.noFocus) return false;
         matches = menu.labels.filter(label => {
             return (
-                (label.title && label.title.toLowerCase().includes(q)) ||
-                (label.excerpt && label.excerpt.toLowerCase().includes(q)) ||
-                (label.detail && label.detail.toLowerCase().includes(q))
+                (label.title && stripHTML(label.title).toLowerCase().includes(q)) ||
+                (label.excerpt && stripHTML(label.excerpt).toLowerCase().includes(q)) ||
+                (label.detail && stripHTML(label.detail).toLowerCase().includes(q))
             );
         });
 

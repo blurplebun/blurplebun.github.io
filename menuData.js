@@ -2,54 +2,97 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'November 10th, 2025';
-const version = '0.1.7';
-
-/*
-facts = [
-    "Artibun was a faulty clone of Articat. She was meant to have the same color as Articat and a shorter tail, but due to genetic errors ended up being the Artibun we know.",
-    "Teksui and Chromasia are two major cities in Terra, Deltadim. Most of the characters depicted in Daily Art+ live in these cities.",
-    `Nansenz was originally called "The Nonsense Galaxy".`,
-]
-*/
+const lastUpdated = 'November 13th, 2025';
+const version = '0.1.8';
 
 menuItems = [
-    /* TEMPLATE
+    // Menu Template
     {
-        q: 'menu',
-        name: 'Menu',
-        showName: true,
-        subtitle: '',
-        image: '',
-        color: 'var(--color-1)',
-        orbit: 3,
-        scale: 1.5,
-        hidden: false,
+        q: 'menuTemplate', // REQUIRED, ALPHANUMERIC ONLY, NO SPACING - unique identifier of each menu that is used to work with links
+        name: 'Menu Template Example', // the name of the menu + it's title
+        showName: false, // Show the name at the orbit?
+        subtitle: 'This is a menu example', // A short description about the menu
+        image: 'images/temp2.png', // Image for orbit thumbnail - can also be empty
+        color: 'var(--color-15)', // The color of the menu - can be filled with hex code or even left blank (transparent)
+        orbit: 3, // INTEGER - which layer of orbit to place the menu in
+        scale: 1, // the size of the menu in orbit
+        hidden: true, // if set to true, menu will not be shown in orbit. It'll only be accessible through links
+        noFocus: true, // if set to true, menu won't be selected when using the tab key, and it will not shown on search
         labels: [
+            // with thumb
             {
-                cardId: 'card',
-                title: 'Card',
-                excerpt: '',
+                // normal, clickable cards
+                cardId: 'normalCard', // REQUIRED, ALPHANUMERIC ONLY, NO SPACING - each card in the same menu must have a unique identifier
+                title: 'Normal Card',
+                excerpt: 'With thumbnail',
                 detail:
                     `
-                    This is a template
+                    This is a template for a normal card.<br>
+                    You can fill these with whatever you want in raw HTML.
                     `,
-                image: 'images/temp.png'
+                image: 'images/temp2.png'
             },
+            {
+                // cards that redirect to external websites when clicked
+                cardId: 'urlCard',
+                title: 'URL Card',
+                excerpt: 'With thumbnail',
+                url: 'https://x.com/artifyber',
+                image: 'images/temp2.png'
+            },
+            {
+                // cards that can't be clicked. useful to show info
+                cardId: 'unclickableCard',
+                title: 'Unclickable Card',
+                excerpt: 'With thumbnail',
+                unclickable: true,
+                image: 'images/temp2.png'
+            },
+            // without thumb
+            {
+                cardId: 'normalCardPlain',
+                title: 'Normal Card',
+                excerpt: 'Without thumbnail',
+                detail:
+                    `
+                    This is a template for a normal card.<br>
+                    You can fill these with whatever you want in raw HTML.
+                    `
+            },
+            {
+                cardId: 'urlCardPlain',
+                title: 'URL Card',
+                excerpt: 'With thumbnail',
+                url: 'https://x.com/artifyber'
+            },
+            {
+                cardId: 'unclickableCardPlain',
+                title: 'Unclickable Card',
+                excerpt: 'With thumbnail',
+                unclickable: true
+            },
+            // menu-linked card
+            {
+                // if a label doesn't have a cardId, it becomes a separator
+                title: 'Menu-Link examples',
+                excerpt: 'Cards that open another menu',
+            },
+            {
+                cardId: 'menuLinkCard1',
+                linkId: 'deltadim' // fill this with the 'q' property of a menu
+                // the color of a menu-linked card's border uses it's linked menu 'color' property
+            },
+            {
+                cardId: 'menuLinkCard2',
+                linkId: 'floriverse'
+            }
         ]
     },
-    */
-    {
-        // Search
-        name: 'Search result',
-        q: 'search',
-        subtitle: '',
-        image: '',
-        orbit: 1,
-        hidden: true,
-        noFocus: true,
-        labels: []
-    },
+
+
+
+
+    // actual website menu data
     {
         // Orbit 1
         // Deltadim
@@ -1640,22 +1683,6 @@ menuItems = [
                     `,
                 image: 'icons/oc-rules.png'
             },
-            /*
-            {
-                cardId: 'didyouknow',
-                title: `
-                    <h2 style='margin-bottom: -12px'>Did you know:</h2><br>
-                    <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent)'>
-                        ${facts[Math.floor(Math.random() * facts.length)]}
-                    </p>
-                    `,
-                excerpt: ``,
-                unclickable: true,
-                detail:
-                    ``,
-                image: ''
-            },
-            */
             {
                 cardId: 'webinfo',
                 title: `
@@ -1693,6 +1720,17 @@ menuItems = [
                     ``,
                 image: ''
             },
+            {
+                title: 'Developer Section'
+            },
+            {
+                cardId: 'menuTemplate',
+                linkId: 'menuTemplate',
+            },
+            {
+                cardId: 'loopTest',
+                linkId: 'loopTest',
+            }
         ]
     },
 
@@ -2021,16 +2059,11 @@ menuItems = [
             },
         ]
     },
-    /*
     {
-        name: 'Test',
-        showName: true,
-        q: 'test',
-        subtitle: '',
-        image: '',
-        color: 'var(--color-10)',
-        orbit: 3,
-        scale: 1,
+        q: 'loopTest',
+        name: 'loopTest',
+        color: 'var(--color-15)',
+        hidden: true,
         noFocus: true,
         labels: [
             {
@@ -2038,7 +2071,7 @@ menuItems = [
                 title: 'testloop1',
                 excerpt: '',
                 detail:
-                    `<a data-open-card="test:2">testloop2</a>`,
+                    `<a data-open-card="loopTest:testloop2">testloop2</a>`,
                 image: 'images/temp2.png'
             },
             {
@@ -2046,12 +2079,11 @@ menuItems = [
                 title: 'testloop2',
                 excerpt: '',
                 detail:
-                    `<a data-open-card="test:1">testloop1</a>`,
+                    `<a data-open-card="loopTest:testloop1">testloop1</a>`,
                 image: 'images/temp.png'
             },
         ]
     },
-    */
     {
         name: 'Whitespace',
         q: 'yolkspocketdimension',
