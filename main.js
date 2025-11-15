@@ -688,17 +688,22 @@ function search() {
     if (!q) return;
 
     const results = [];
+    specialCase = ['nothing', 'content', 'help', 'all'];
 
     // find cards
     menuItems.forEach(menu => {
         if (menu.noFocus) return false;
-        matches = menu.labels.filter(label => {
-            return (
-                (label.title && stripHTML(label.title).toLowerCase().includes(q)) ||
-                (label.excerpt && stripHTML(label.excerpt).toLowerCase().includes(q)) ||
-                (label.detail && stripHTML(label.detail).toLowerCase().includes(q))
-            );
-        });
+        if (q === 'all') {
+            matches = menu.labels;
+        } else {
+            matches = menu.labels.filter(label => {
+                return (
+                    (label.title && stripHTML(label.title).toLowerCase().includes(q)) ||
+                    (label.excerpt && stripHTML(label.excerpt).toLowerCase().includes(q)) ||
+                    (label.detail && stripHTML(label.detail).toLowerCase().includes(q))
+                );
+            });
+        }
 
         if (matches.length > 0) {
             results[menu.q] = {
@@ -709,22 +714,27 @@ function search() {
     });
 
     // find menus
-    const menuMatches = menuItems.filter(menu => {
-        if (menu.noFocus) return false;
-        return (
-            (menu.name && menu.name.toLowerCase().includes(q)) ||
-            (menu.subtitle && menu.subtitle.toLowerCase().includes(q))
-        );
-    });
+    if (q === 'all') {
+        menuMatches = menuItems.filter(menu => (!menu.noFocus));
+    } else {
+        menuMatches = menuItems.filter(menu => {
+            if (menu.noFocus) return false;
+            return (
+                (menu.name && menu.name.toLowerCase().includes(q)) ||
+                (menu.subtitle && menu.subtitle.toLowerCase().includes(q))
+            );
+        });
+    }
 
     const labelGroup = [];
     menusFound = Object.values(results);
 
     specialQuery = false;
-    specialCase = ['nothing', 'content', 'help'];
     if (specialCase.includes(q)) {
-        menusFound = [];
-        specialQuery = true;
+        if (!(q === 'all')) {
+            menusFound = [];
+            specialQuery = true;
+        }
     }
 
     if (menusFound.length === 0) {
@@ -1154,7 +1164,7 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             backBtn.classList.remove('visible');
             contentView.setAttribute('aria-hidden', 'true');
             backBtn.setAttribute('aria-hidden', 'true');
-            
+
             menuStage.classList.remove('blur')
             starfield.classList.remove('blur')
         }
