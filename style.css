@@ -359,12 +359,13 @@ body {
 
 /* Cards */
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(calc(250px * var(--card-scale)), 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
     gap: var(--card-gap);
-    align-items: start;
     margin-bottom: 80px;
-    justify-content: center; /* Add this */
+    flex: 0 0 auto;
 }
 
 .card {
@@ -374,7 +375,7 @@ body {
     cursor: pointer;
     width: calc(250px * var(--card-scale));
     height: calc(310px * var(--card-scale));
-    margin: 0 auto;
+    margin: 0;
     display: flex;
     flex-direction: column;
     transition: transform 150ms, opacity 100ms, filter 100ms;
@@ -385,6 +386,7 @@ body {
     position: relative;
     backdrop-filter: blur(2rem);
     box-shadow: inset 0 0 30px color-mix(in srgb, var(--accent2) 50%, transparent);
+    flex-shrink: 0;
 }
 
 .card:hover {

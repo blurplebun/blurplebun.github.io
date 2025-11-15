@@ -2,8 +2,8 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'November 13th, 2025';
-const version = '0.1.8';
+const lastUpdated = 'November 15th, 2025';
+const version = '0.1.9';
 
 menuItems = [
     // Menu Template
