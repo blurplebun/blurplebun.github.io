@@ -20,6 +20,7 @@ const menuStage = document.querySelector('.menu-stage');
 menuStage.style.transition = 'none';
 menuStage.style.transform = `translate(0px, 0px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
 
+const starfield = document.querySelector('.starfield');
 
 /// -- DRAGGING --
 // Camera pan vars
@@ -381,10 +382,8 @@ function showContentFor(menu) {
     // contentView.querySelectorAll('hr').forEach(h => h.remove());
     contentTitle.textContent = menu.name;
     contentSubtitle.textContent = menu.subtitle;
-    focusedLayout.style.display = 'none';
-    contentView.classList.add('visible');
-    backBtn.classList.add('visible');
-    backBtn.setAttribute('aria-hidden', 'false');
+    toggleView({ focused: true, show: false });
+    toggleView({ content: true, show: true });
     backBtn.querySelector('span').textContent = 'Menu';
 
     // Add copy link icon to menu title
@@ -941,7 +940,7 @@ function goBack() {
         cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => {
             el.classList.remove('hidden');
         });
-        focusedLayout.style.display = 'none';
+        toggleView({ focused: true, show: false });
         document.querySelector('.content-header')?.classList.remove('hidden');
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;
         contentView.style.overflow = '';
@@ -952,10 +951,8 @@ function goBack() {
     if (menuCode) {
         // Currently in a menu → go back to main stage
         history.pushState({}, '', location.pathname);
-        contentView.classList.remove('visible');
         document.querySelector('.content-header')?.classList.remove('hidden');
-        backBtn.classList.remove('visible');
-        backBtn.setAttribute('aria-hidden', 'true');
+        toggleView({ content: true, show: false });
         contentView.style.overflow = '';
         return;
     }
@@ -1072,7 +1069,7 @@ window.addEventListener('load', () => {
 
 /// -- STARS --
 function createStarfield(layerCount = 3, starsPerLayer = 40) {
-    const container = document.querySelector('.starfield');
+    const container = starfield;
     for (let l = 0; l < layerCount; l++) {
         const layer = document.createElement('div');
         layer.classList.add('star-layer');
@@ -1120,9 +1117,7 @@ window.addEventListener('popstate', (event) => {
     } else {
         // Go back to main menu
         goBack();
-        contentView.classList.remove('visible');
-        backBtn.classList.remove('visible');
-        backBtn.setAttribute('aria-hidden', 'true');
+        toggleView({ content: true, show: false });
         return;
     }
 
@@ -1142,6 +1137,39 @@ window.addEventListener('popstate', (event) => {
         }
     }
 });
+
+// -- TOGGLE VIEW --
+function toggleView({ content = false, focused = false, show = true } = {}) {
+    if (content) {
+        if (show) {
+            contentView.classList.add('visible');
+            backBtn.classList.add('visible');
+            contentView.setAttribute('aria-hidden', 'false');
+            backBtn.setAttribute('aria-hidden', 'false');
+
+            menuStage.classList.add('blur')
+            starfield.classList.add('blur')
+        } else {
+            contentView.classList.remove('visible');
+            backBtn.classList.remove('visible');
+            contentView.setAttribute('aria-hidden', 'true');
+            backBtn.setAttribute('aria-hidden', 'true');
+            
+            menuStage.classList.remove('blur')
+            starfield.classList.remove('blur')
+        }
+    }
+
+    if (focused) {
+        if (show) {
+            focusedLayout.classList.add('visible');
+            focusedLayout.style.display = '';
+        } else {
+            focusedLayout.classList.remove('visible');
+            focusedLayout.style.display = 'none';
+        }
+    }
+}
 
 
 

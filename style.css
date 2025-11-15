@@ -83,7 +83,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 0;
-    transition: transform 0.5s cubic-bezier(.2, .9, .2, 1);
+    transition: filter 0.5s, transform 0.5s cubic-bezier(.2, .9, .2, 1);
 }
 
 .menu-stage,
@@ -104,6 +104,11 @@ body {
     user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
+}
+
+
+.menu-stage.blur {
+    filter: blur(0.5rem);
 }
 
 /* Scrollbar */
