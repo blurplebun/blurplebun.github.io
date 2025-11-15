@@ -306,8 +306,8 @@ function orbitFrame(ts) {
             const dy = cursorY - btnY;
             const dist = Math.sqrt(dx * dx + dy * dy);
 
-            const maxDist = 200;
-            zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.25;
+            const maxDist = 250;
+            zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
         }
 
         el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
@@ -472,7 +472,7 @@ function showContentFor(menu) {
             if (linkedMenu) {
                 c.dataset.link = "true";
                 c.style.border = `3px solid ${linkedMenu.color}`;
-                c.style.boxShadow = `inset 0 0 30px color-mix(in srgb, ${linkedMenu.color} 30%, transparent)`;
+                c.style.boxShadow = `inset 0 0 30px color-mix(in srgb, ${linkedMenu.color} 50%, transparent)`;
                 c.innerHTML = `
                 <div class="card-text">
                     <strong>${linkedMenu.name}</strong>

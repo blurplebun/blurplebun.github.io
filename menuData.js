@@ -79,13 +79,17 @@ menuItems = [
             },
             {
                 cardId: 'menuLinkCard1',
-                linkId: 'deltadim' // fill this with the 'q' property of a menu
+                linkId: 'deltadim' // fill this with the 'q' property of the menu
                 // the color of a menu-linked card's border uses it's linked menu 'color' property
             },
             {
                 cardId: 'menuLinkCard2',
                 linkId: 'floriverse'
-            }
+            },
+            {
+                cardId: 'menuLinkCard3',
+                linkId: 'info'
+            },
         ]
     },
 
@@ -1625,7 +1629,7 @@ menuItems = [
                     <hr>
                     All done. Thank you for enjoying what I make :3<br>
                     <img src="images/fyberhappy.png"">
-`,
+                    `,
                 image: 'images/temp3.png'
             },
             {
@@ -1654,17 +1658,8 @@ menuItems = [
                         <li>Using my characters in a commercial setting unless i gave permission to do so</li><br>
                         <li>Using generative AI to create a fanart</li><br>
                     </ul>
-                    <hr>
-                    <h2>Character Derivatives</h2>
-                    You are allowed to create a new character that is a derivative of the following as long as your character is not too similar to one of mine:
-                    <ul>
-                        <li>All kinds of florie in <a data-open-card="floriverse">Floriverse</a></li><br>
-                        <li>All kinds of object-heads or object characters in <a data-open-card="nansenz">Nansenz</a></li><br>
-                        <li>Polygon species of <a data-open-card="hizen">Hizen</a></li><br>
-                    </ul>
-                    <hr>
                     <details>
-                        <summary>18+</summary>
+                        <summary>About 18+ fanarts</summary>
                         <br>
                         If you are creating adult content of my characters, please put proper warnings and filters.<br>
                         <br>
@@ -1680,6 +1675,14 @@ menuItems = [
                                 <li>Everything from <a data-open-card="hizen">Hizen</a></li><br>
                             </ul>
                     </details>
+                    <hr>
+                    <h2>Character Derivatives</h2>
+                    You are allowed to create a new character that is a derivative of the following as long as your character is not too similar to one of mine:
+                    <ul>
+                        <li>All kinds of florie in <a data-open-card="floriverse">Floriverse</a></li><br>
+                        <li>All kinds of object-heads or object characters in <a data-open-card="nansenz">Nansenz</a></li><br>
+                        <li>Polygon species of <a data-open-card="hizen">Hizen</a></li><br>
+                    </ul>
                     `,
                 image: 'icons/oc-rules.png'
             },
@@ -1721,7 +1724,7 @@ menuItems = [
                 image: ''
             },
             {
-                title: 'Developer Section'
+                title: 'Developer Section',
             },
             {
                 cardId: 'menuTemplate',

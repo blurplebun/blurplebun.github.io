@@ -364,6 +364,7 @@ body {
     gap: var(--card-gap);
     align-items: start;
     margin-bottom: 80px;
+    justify-content: center; /* Add this */
 }
 
 .card {
@@ -454,7 +455,7 @@ body {
 }
 
 .card[data-link="true"]::after {
-    content: "↗";
+    content: url("data:image/svg+xml,%3Csvg fill='%23ffffff' width='20px' height='20px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3.293,20.707a1,1,0,0,1,0-1.414L17.586,5H12a1,1,0,0,1,0-2h8a1,1,0,0,1,1,1v8a1,1,0,0,1-2,0V6.414L4.707,20.707a1,1,0,0,1-1.414,0Z'/%3E%3C/svg%3E%0A");
     position: absolute;
     top: 6px;
     right: 16px;
