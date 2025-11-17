@@ -1206,6 +1206,11 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
     }
 }
 
+// -- SERVICE WORKER REGISTRATION --
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js")
+        .catch(err => console.error("SW registration failed:", err));
+}
 
 
 /* Expose some helpers for quick editing in console */

@@ -1,0 +1,22 @@
+{
+  "name": "Artifyber : Fyberverse",
+  "short_name": "Artifyber",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0d1120",
+  "theme_color": "#C894F9",
+
+  "icons": [
+    {
+      "src": "icons/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
