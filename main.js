@@ -338,7 +338,7 @@ window.addEventListener('resize', () => {
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
-        if (!menu.name === "search") history.pushState({}, '', `?m=${menu.q}`);
+        if (menu.q !== "search") history.pushState({}, '', `?m=${menu.q}`);
         return;
     }
     // compute center position of button for expander origin
