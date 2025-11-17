@@ -2,7 +2,7 @@
     WEBSITE MENU DATA
     -------------------------- */
 
-const lastUpdated = 'November 15th, 2025';
+const lastUpdated = 'November 17th, 2025';
 const version = '0.1.9';
 
 menuItems = [

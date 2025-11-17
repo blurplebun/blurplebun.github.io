@@ -338,7 +338,7 @@ window.addEventListener('resize', () => {
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
-        history.pushState({}, '', `?m=${menu.q}`);
+        if (!menu.name === "search") history.pushState({}, '', `?m=${menu.q}`);
         return;
     }
     // compute center position of button for expander origin
@@ -530,9 +530,17 @@ function showContentFor(menu) {
 
         c.addEventListener("click", () => {
             if (lbl.unclickable) return;
-            if (lbl.url) window.open(lbl.url, "_blank");
-            else focusCard(c, lbl, menu);
+            if (lbl.url) return window.open(lbl.url, "_blank");
+
+            // If this card came from search results, use its original menu
+            const realMenu =
+                menu.q === "search" && lbl.fromMenu
+                    ? menuItems.find(m => m.q === lbl.fromMenu)
+                    : menu;
+
+            focusCard(c, lbl, realMenu);
         });
+
 
         section.appendChild(c);
     });
@@ -575,7 +583,8 @@ function focusCard(cardEl, label, menu = null) {
 
     if (menu) {
         // fill details
-        const shareURL = `${location.origin}${location.pathname}?m=${menu.q}&i=${label.cardId}`;
+        const realMenuQ = label.fromMenu || menu.q;
+        const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
         detailArea.innerHTML = `
             <h1>
                 ${label.title}
@@ -600,7 +609,7 @@ function focusCard(cardEl, label, menu = null) {
                 icon.title = "Copy shareable link";
             }, 1500);
         });
-        history.pushState({}, '', `?m=${menu.q}&i=${label.cardId}`);
+        history.pushState({}, '', `?m=${realMenuQ}&i=${label.cardId}`);
         initLazyLoad();
 
     } else {
