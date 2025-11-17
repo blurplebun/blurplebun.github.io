@@ -978,6 +978,18 @@ function goBack() {
 }
 
 
+function disableZoom() {
+    let vp = document.querySelector('meta[name=viewport]');
+    if (!vp) return;
+    vp.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
+}
+
+function enableZoom() {
+    let vp = document.querySelector('meta[name=viewport]');
+    if (!vp) return;
+    vp.setAttribute('content', 'width=device-width, initial-scale=1');
+}
+
 
 /// -- IMAGE PREVIEW HANDLER --
 document.addEventListener('click', function (e) {
@@ -1012,9 +1024,13 @@ document.addEventListener('click', function (e) {
         }
 
         overlay.classList.add('visible');
+        disableZoom();
 
         // close on click
-        overlay.addEventListener('click', () => overlay.classList.remove('visible'), { once: true });
+        overlay.addEventListener('click', () => {
+            overlay.classList.remove('visible');
+            enableZoom();
+        }, { once: true });
     }
 });
 
