@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'November 17th, 2025';
-const version = '0.1.9';
+const version = '0.2.0';
 
 menuItems = [
     // Menu Template
