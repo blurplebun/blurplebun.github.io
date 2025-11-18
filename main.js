@@ -15,6 +15,7 @@ const menuLogo = document.querySelector('.menu-logo');
 const backBtn = document.getElementById('backBtn');
 const centerBtn = document.getElementById('centerBtn');
 centerBtn.classList.add('hide');
+const rerollBtn = document.getElementById('rerollBtn');
 
 const menuStage = document.querySelector('.menu-stage');
 menuStage.style.transition = 'none';
@@ -333,14 +334,95 @@ window.addEventListener('resize', () => {
 });
 
 
+/// -- CHARACTER --
+// is character?
+function isCharacter(label) {
+    return label.isCharacter;
+}
+
+// get all characters
+let characters = [];
+let nextCharacter = null;
+function getAllCharacters() {
+    characters = [];
+    menuItems.forEach(menu => {
+        if (!menu.labels) return;
+        if (menu.q === "random") return;
+
+        menu.labels.forEach(label => {
+            if (label.cardId && isCharacter(label)) {
+                characters.push({ menu, label });
+            }
+        });
+    });
+
+    nextCharacter = randomNoRepeats(characters);
+    return characters;
+}
+
+
+// get random character
+function randomNoRepeats(array) {
+    let copy = array.slice();
+    return function () {
+        if (copy.length === 0) copy = array.slice();
+        const index = Math.floor(Math.random() * copy.length);
+        const item = copy.splice(index, 1)[0];
+        return item;
+    };
+}
+
+function randomCharacter() {
+    if (!nextCharacter) getAllCharacters();
+    return nextCharacter();
+}
+
+
+rerollBtn.addEventListener("click", () => {
+    const pick = randomCharacter();
+    if (!pick) return;
+
+    openMenuByQ(pick.menu.q, true);
+
+    const cardEl = document.querySelector(`[data-card-id="${pick.label.cardId}"]`);
+    if (cardEl) focusCard(cardEl, pick.label, pick.menu);
+});
+
+
 
 /// -- OPEN MAIN MENU BUTTONS --
+let openFromRandom = false;
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
-        if (menu.q !== "search") history.pushState({}, '', `?m=${menu.q}`);
+        history.pushState({}, '', `?m=${menu.q}`);
         return;
     }
+
+    // random character?
+    if (menu.q === "random") {
+        const list = getAllCharacters();
+        if (list.length === 0) {
+            alert("No character cards found.");
+            return;
+        }
+
+        const pick = list[Math.floor(Math.random() * list.length)];
+        const targetMenu = pick.menu;
+        const targetLabel = pick.label;
+
+        openMenuByQ(targetMenu.q, true);
+
+        const cardEl = document.querySelector(`[data-card-id="${targetLabel.cardId}"]`);
+        if (cardEl) {
+            focusCard(cardEl, targetLabel, targetMenu);
+            rerollBtn.classList.add("visible");
+            rerollBtn.setAttribute("aria-hidden", "false");
+        }
+        openFromRandom = true;
+        return;
+    }
+
     // compute center position of button for expander origin
     const rect = buttonEl.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
@@ -523,6 +605,10 @@ function showContentFor(menu) {
         if (totalMenusCounter) {
             totalMenusCounter.textContent = `totalMenus: ${totalMenus}`;
         }
+        const totalCharacterCounter = c.querySelector('#totalCharacterCounter');
+        if (totalCharacterCounter) {
+            totalCharacterCounter.textContent = `totalCharacters: ${totalCharacters}`;
+        }
         const totalSplashCounter = c.querySelector('#totalSplashCounter');
         if (totalSplashCounter) {
             totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
@@ -628,7 +714,8 @@ function focusCard(cardEl, label, menu = null) {
     contentView.insertBefore(cardsContainer, focusedLayout);
 
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
-    backBtn.querySelector('span').textContent = 'Card Selector'; initLazyLoad();
+    backBtn.querySelector('span').textContent = 'Card Selector';
+    initLazyLoad();
 
     detailArea.scrollTop = 0;
 }
@@ -953,7 +1040,7 @@ function goBack() {
     const menuCode = params.get('m');
     const itemId = params.get('i');
 
-    if (itemId) {
+    if (itemId && !openFromRandom) {
         // Currently viewing a card → go back to menu grid
         history.pushState({}, '', `?m=${menuCode}`);
         cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => {
@@ -967,17 +1054,25 @@ function goBack() {
         return;
     }
 
-    if (menuCode) {
+    if (menuCode || openFromRandom) {
         // Currently in a menu → go back to main stage
         history.pushState({}, '', location.pathname);
         document.querySelector('.content-header')?.classList.remove('hidden');
         toggleView({ content: true, show: false });
         contentView.style.overflow = '';
+        if (openFromRandom) {
+            openFromRandom = false;
+            rerollBtn.classList.remove("visible");
+            rerollBtn.setAttribute("aria-hidden", "true");
+        }
         return;
     }
 }
 
 
+/// -- IMAGE PREVIEW --
+
+// prevent zoom on mobile
 function disableZoom() {
     let vp = document.querySelector('meta[name=viewport]');
     if (!vp) return;
@@ -990,8 +1085,7 @@ function enableZoom() {
     vp.setAttribute('content', 'width=device-width, initial-scale=1');
 }
 
-
-/// -- IMAGE PREVIEW HANDLER --
+// handler
 document.addEventListener('click', function (e) {
     const img = e.target.closest('#detailArea img');
     if (img) {
@@ -1139,6 +1233,11 @@ createStarfield();
 createOrbitVisuals();
 createMenuButtons();
 
+// reset url if coming from search
+const params = new URLSearchParams(location.search);
+if (params.get('m') === "search") {
+    history.pushState({}, '', location.pathname);
+}
 
 
 // --- HISTORY STATE HANDLING ---

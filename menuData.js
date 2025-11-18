@@ -3,7 +3,7 @@
     -------------------------- */
 
 const lastUpdated = 'November 17th, 2025';
-const version = '0.2.0';
+const version = '0.2.1';
 
 menuItems = [
     // Menu Template
@@ -170,7 +170,8 @@ menuItems = [
                     <img src="images/c/artibun-c6.png">
                 </div>
                 `,
-                image: 'images/i/artibun-i.png'
+                image: 'images/i/artibun-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'articat',
@@ -197,7 +198,8 @@ menuItems = [
                     <img src="images/c/articat-c6.png">
                 </div>
                 `,
-                image: 'images/i/articat-i.png'
+                image: 'images/i/articat-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'artifox',
@@ -222,7 +224,8 @@ menuItems = [
                     <img src="images/c/artifox-c6.png">
                 </div>
                 `,
-                image: 'images/i/artifox-i.png'
+                image: 'images/i/artifox-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'artifish',
@@ -249,7 +252,8 @@ menuItems = [
                     <img src="images/c/artifish-c6.png">
                 </div>
                 `,
-                image: 'images/i/artifish-i.png'
+                image: 'images/i/artifish-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'artigoat',
@@ -276,7 +280,8 @@ menuItems = [
                     <img src="images/c/artigoat-c6.png">
                 </div>
                 `,
-                image: 'images/i/artigoat-i.png'
+                image: 'images/i/artigoat-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'artilope',
@@ -303,7 +308,8 @@ menuItems = [
                     <img src="images/c/artilope-c6.png">
                 </div>
                 `,
-                image: 'images/i/artilope-i.png'
+                image: 'images/i/artilope-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'artipup',
@@ -330,7 +336,8 @@ menuItems = [
                     <img src="images/c/artipup-c6.png">
                 </div>
                 `,
-                image: 'images/i/artipup-i.png'
+                image: 'images/i/artipup-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'artineko',
@@ -355,7 +362,8 @@ menuItems = [
                     <img src="images/c/artineko-c6.png">
                 </div>
                 `,
-                image: 'images/i/artineko-i.png'
+                image: 'images/i/artineko-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'eros',
@@ -381,7 +389,8 @@ menuItems = [
                     <img src="images/c/eros-c6.png"><br>
                 </div>
                 `,
-                image: 'images/i/eros-i.png'
+                image: 'images/i/eros-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'sora',
@@ -405,7 +414,8 @@ menuItems = [
                     <img src="images/c/sora-c2.png"><br>
                 </div>
                 `,
-                image: 'images/i/sora-i.png'
+                image: 'images/i/sora-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'furfy',
@@ -428,7 +438,8 @@ menuItems = [
                     <img src="images/c/furfy-c5.png"><br>
                 </div>
                 `,
-                image: 'images/i/furfy-i.png'
+                image: 'images/i/furfy-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'card',
@@ -454,7 +465,8 @@ menuItems = [
                     <img src="images/c/card-c4.png"><br>
                 </div>
                 `,
-                image: 'images/i/card-i.png'
+                image: 'images/i/card-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'gift',
@@ -472,7 +484,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/gift-i.png'
+                image: 'images/i/gift-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'elise',
@@ -491,7 +504,8 @@ menuItems = [
                     <img src="images/c/elise-c.png"><br>
                 </div>
                 `,
-                image: 'images/i/elise-i.png'
+                image: 'images/i/elise-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'fika',
@@ -513,7 +527,8 @@ menuItems = [
                     <img src="images/c/fika-c2.png"><br>
                 </div>
                 `,
-                image: 'images/i/fika-i.png'
+                image: 'images/i/fika-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'rai',
@@ -537,7 +552,8 @@ menuItems = [
                     <img src="images/c/rai-c2.png"><br>
                 </div>
                 `,
-                image: 'images/i/rai-i.png'
+                image: 'images/i/rai-i.png',
+                isCharacter: true
             },
         ]
     },
@@ -580,7 +596,8 @@ menuItems = [
                     <img src="images/c/shirley-c6.png"><br>
                 </div>
                 `,
-                image: 'images/i/shirley-i.png'
+                image: 'images/i/shirley-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'rose',
@@ -606,7 +623,8 @@ menuItems = [
                     <img src="images/c/rose-c3.png"><br>
                 </div>
                 `,
-                image: 'images/i/rose-i.png'
+                image: 'images/i/rose-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'hana',
@@ -629,7 +647,8 @@ menuItems = [
                     <img src="images/c/hana-c5.png"><br>
                 </div>
                 `,
-                image: 'images/i/hana-i.png'
+                image: 'images/i/hana-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'caramella',
@@ -660,7 +679,8 @@ menuItems = [
                     <img src="images/c/caramella-c6.png"><br>
                 </div>
                 `,
-                image: 'images/i/caramella-i.png'
+                image: 'images/i/caramella-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'azurey',
@@ -686,7 +706,8 @@ menuItems = [
                     <img src="images/c/azurey-c3.png"><br>
                 </div>
                 `,
-                image: 'images/i/azurey-i.png'
+                image: 'images/i/azurey-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'mida',
@@ -707,7 +728,8 @@ menuItems = [
                     <img src="images/c/mida-c2.png"><br>
                 </div>
                 `,
-                image: 'images/i/mida-i.png'
+                image: 'images/i/mida-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'lilac',
@@ -725,7 +747,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/lilac-i.png'
+                image: 'images/i/lilac-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'moka',
@@ -741,7 +764,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/moka-i.png'
+                image: 'images/i/moka-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'nameless',
@@ -762,7 +786,8 @@ menuItems = [
                     <img src="images/c/nameless-c.png"><br>
                 </div>
                 `,
-                image: 'images/i/nameless-i.png'
+                image: 'images/i/nameless-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'nuki',
@@ -784,7 +809,8 @@ menuItems = [
                     <img src="images/c/nuki-c2.png"><br>
                 </div>
                 `,
-                image: 'images/i/nuki-i.png'
+                image: 'images/i/nuki-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'sawo',
@@ -800,7 +826,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/sawo-i.png'
+                image: 'images/i/sawo-i.png',
+                isCharacter: true
             },
         ]
     },
@@ -843,7 +870,8 @@ menuItems = [
                     <img src="images/c/skitty-c6.png"><br>
                 </div>
                 `,
-                image: 'images/i/skitty-i.png'
+                image: 'images/i/skitty-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'gamma',
@@ -865,7 +893,8 @@ menuItems = [
                     <img src="images/c/gamma-c4.png"><br>
                 </div>
                 `,
-                image: 'images/i/gamma-i.png'
+                image: 'images/i/gamma-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'micro',
@@ -888,7 +917,8 @@ menuItems = [
                     <img src="images/c/micro-c5.png"><br>
                 </div>
                 `,
-                image: 'images/i/micro-i.png'
+                image: 'images/i/micro-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'articani',
@@ -912,7 +942,8 @@ menuItems = [
                     <img src="images/c/articani-c.png"><br>
                 </div>
                 `,
-                image: 'images/i/articani-i.png'
+                image: 'images/i/articani-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'ryon',
@@ -936,7 +967,8 @@ menuItems = [
                     <img src="images/c/ryon-c.png"><br>
                 </div>
                 `,
-                image: 'images/i/ryon-i.png'
+                image: 'images/i/ryon-i.png',
+                isCharacter: true
             },
         ]
     },
@@ -1238,7 +1270,8 @@ menuItems = [
                     <img src="images/c/soap-c3.png">
                 </div>
                 `,
-                image: 'images/i/soap-i.png'
+                image: 'images/i/soap-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'semyk',
@@ -1262,7 +1295,8 @@ menuItems = [
                     <img src="images/c/semyk-c3.png">
                 </div>
                 `,
-                image: 'images/i/semyk-i.png'
+                image: 'images/i/semyk-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'artifolder',
@@ -1281,7 +1315,8 @@ menuItems = [
                     <img src="images/c/artifolder-c.png">
                 </div>
                 `,
-                image: 'images/i/artifolder-i.png'
+                image: 'images/i/artifolder-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'byte',
@@ -1300,7 +1335,8 @@ menuItems = [
                     <img src="images/c/byte-c.png">
                 </div>
                 `,
-                image: 'images/i/byte-i.png'
+                image: 'images/i/byte-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'cherry',
@@ -1320,7 +1356,8 @@ menuItems = [
                     <img src="images/c/cherry-c2.png">
                 </div>
                 `,
-                image: 'images/i/cherry-i.png'
+                image: 'images/i/cherry-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'ebta',
@@ -1342,7 +1379,8 @@ menuItems = [
                     <img src="images/c/ebta-c2.png">
                 </div>
                 `,
-                image: 'images/i/ebta-i.png'
+                image: 'images/i/ebta-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'placeholder',
@@ -1363,7 +1401,8 @@ menuItems = [
                     <img src="images/c/placeholder-c3.png">
                 </div>
                 `,
-                image: 'images/i/placeholder-i.png'
+                image: 'images/i/placeholder-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'sakura',
@@ -1382,7 +1421,8 @@ menuItems = [
                     <img src="images/c/sakura-c.png">
                 </div>
                 `,
-                image: 'images/i/sakura-i.png'
+                image: 'images/i/sakura-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'quanta',
@@ -1398,7 +1438,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/quanta-i.png'
+                image: 'images/i/quanta-i.png',
+                isCharacter: true
             },
         ]
     },
@@ -1448,7 +1489,8 @@ menuItems = [
                     <img src="images/c/cancerman-c.png"><br>
                 </div>
                 `,
-                image: 'images/i/cancerman-i.png'
+                image: 'images/i/cancerman-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'mu',
@@ -1465,7 +1507,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/mu-i.png'
+                image: 'images/i/mu-i.png',
+                isCharacter: true
             },
         ]
     },
@@ -1510,7 +1553,8 @@ menuItems = [
                     <img src="images/c/lyne-c.png"><br>
                 </div>
                 `,
-                image: 'images/i/lyne-i.png'
+                image: 'images/i/lyne-i.png',
+                isCharacter: true
             },
         ]
     },
@@ -1550,7 +1594,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/infineko-i.png'
+                image: 'images/i/infineko-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'ugo',
@@ -1566,7 +1611,8 @@ menuItems = [
                 <br>
                 <a data-open-card="info:ocrules">Character rules</a>
                 `,
-                image: 'images/i/ugo-i.png'
+                image: 'images/i/ugo-i.png',
+                isCharacter: true
             },
             {
                 cardId: 'unknown',
@@ -1584,15 +1630,63 @@ menuItems = [
                     <img src="images/c/Δ-c2.png">
                 </div>
                 `,
-                image: 'images/i/Δ-i.png'
+                image: 'images/i/Δ-i.png',
+                isCharacter: true
             },
         ]
     },
 
 
-
-
     // Orbit 2
+    // Random
+    {
+        name: 'Random Character',
+        q: 'random',
+        showName: true,
+        image: 'icons/oc-random.png',
+        color: 'var(--color-12)',
+        orbit: 2,
+        scale: 1.5,
+        labels: [
+            {
+                cardId: 'random',
+            }
+        ],
+    },
+    {
+        name: 'Daily Art+',
+        showName: true,
+        q: 'dailyartplus',
+        subtitle: '',
+        image: 'icons/dailyartplus.png',
+        color: 'var(--color-8)',
+        orbit: 2,
+        scale: 1.5,
+        labels: [
+            {
+                cardId: 'dailyartplus',
+                title: 'Daily Art+',
+                excerpt: '',
+                detail:
+                    `
+                    Showing latest posts from my Instagram.<br><br>
+                    <div id="instaCard">
+                        <iframe
+                            src="https://cdn.lightwidget.com/widgets/ce1b2c5863eb58798710d296e980a26c.html"
+                            scrolling="no"
+                            allowtransparency="true"
+                            class="lightwidget-widget"
+                            style="width:100%;border:0;overflow:hidden;">
+                        </iframe>
+                    </div>
+                    `,
+                image: 'icons/l-instagram.png'
+            },
+        ]
+    },
+
+
+    // Orbit 4
     // Information
     {
         name: 'Information',
@@ -1601,7 +1695,7 @@ menuItems = [
         showName: true,
         image: 'icons/info.png',
         color: 'var(--color-3)',
-        orbit: 2,
+        orbit: 4,
         scale: 1.5,
         labels: [
             {
@@ -1695,6 +1789,7 @@ menuItems = [
                         Version: ${version}<br>
                         <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCardsCounter"></div>
                         <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalMenusCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCharacterCounter"></div>
                         <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalSplashCounter"></div>
                     </p>
                     `,
@@ -1746,7 +1841,7 @@ menuItems = [
         showName: true,
         image: 'icons/earth.png',
         color: 'var(--color-9)',
-        orbit: 2,
+        orbit: 4,
         scale: 1.5,
         labels: [
             {
@@ -1852,7 +1947,7 @@ menuItems = [
         showName: true,
         image: 'icons/dollar.png',
         color: 'var(--color-11)',
-        orbit: 2,
+        orbit: 4,
         scale: 1.5,
         labels: [
             {
@@ -2026,42 +2121,7 @@ menuItems = [
         ]
     },
 
-
-
-
-    // Orbit 4
     // Daily Art+
-    {
-        name: 'Daily Art+',
-        showName: true,
-        q: 'dailyartplus',
-        subtitle: '',
-        image: 'icons/dailyartplus.png',
-        color: 'var(--color-8)',
-        orbit: 4,
-        scale: 2,
-        labels: [
-            {
-                cardId: 'dailyartplus',
-                title: 'Daily Art+',
-                excerpt: '',
-                detail:
-                    `
-                    Showing latest posts from my Instagram.<br><br>
-                    <div id="instaCard">
-                        <iframe
-                            src="https://cdn.lightwidget.com/widgets/ce1b2c5863eb58798710d296e980a26c.html"
-                            scrolling="no"
-                            allowtransparency="true"
-                            class="lightwidget-widget"
-                            style="width:100%;border:0;overflow:hidden;">
-                        </iframe>
-                    </div>
-                    `,
-                image: 'icons/l-instagram.png'
-            },
-        ]
-    },
     {
         q: 'loopTest',
         name: 'loopTest',
@@ -2157,4 +2217,5 @@ function generateLabels(n, prefix) {
 }
 
 totalCards = menuItems.reduce((sum, item) => sum + item.labels.length, 0);
+totalCharacters = menuItems.reduce((sum, item) => sum + item.labels.filter(label => label.isCharacter).length, 0);
 totalMenus = menuItems.length;
