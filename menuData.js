@@ -1647,6 +1647,7 @@ menuItems = [
         color: 'var(--color-12)',
         orbit: 2,
         scale: 1.5,
+        noFocus: true,
         labels: [
             {
                 cardId: 'random',
