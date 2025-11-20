@@ -2157,7 +2157,7 @@ menuItems = [
 ];
 
 
-// Easter Egg: Beecat
+// Beecat
 if (Math.floor(Math.random() * 333) == 0) {
     menuItems.forEach(menu => {
         if (menu.name == "Information") {
@@ -2191,6 +2191,35 @@ function generateLabels(n, prefix) {
         image: 'images/temp.png'
     }));
 }
+
+// Special search responses
+specialSearch = {
+    all: { special: true },
+    nothing: {
+        title: 'Nothing found!',
+        excerpt: ''
+    },
+    something: {
+        title: 'Something found!',
+        excerpt: `...It's just me LOL<br>
+        My name is omniLens btw! You've probably met my brother omniTracer! He's such a powerful guy...<br>
+        Lowkey i'm kinda jealous of him. I wish to be as powerful as him one day :(`
+    },
+    content: {
+        title: 'Content found!',
+        excerpt: `Yup, i am the content. You've found me heehee!<br>
+        Aww you listened to what i said!<br>
+        Good boy :)`
+    },
+    help: {
+        title: 'help yourself bro LOLXD',
+        excerpt: ''
+    },
+    hi: {
+        title: 'HAII HIIII HELLLOOO!!!! :DD',
+        excerpt: ''
+    },
+};
 
 // Calculate totals for statistics
 totalCards = menuItems.reduce((sum, item) => sum + item.labels.length, 0);

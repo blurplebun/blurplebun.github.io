@@ -880,7 +880,7 @@ function search() {
 
     const results = {};
     // special cases for easter eggs
-    const specialCase = ['nothing', 'something', 'content', 'help', 'hi', 'all'];
+    const specialCase = Object.keys(specialSearch);
 
     // find cards
     menuItems.forEach(menu => {
@@ -925,18 +925,22 @@ function search() {
     }
 
     if (menusFound.length === 0 && menuMatches.length === 0) {
-        let notFound = '';
-        let notFoundDesc = '';
-        if (!specialQuery) notFound = 'Nothing found';
-        else {
-            // easter egg responses
-            if (q === 'hi') notFound = 'HAII HIIII HELLLOOO!!!! :DD';
-            if (q === 'nothing') notFound = 'Nothing found!';
-            if (q === 'something') {notFound = 'Something found!'; notFoundDesc = "...It's just me LOL<br>My name is omniLens btw! You've probably met my brother omniTracer! He's such a powerful guy...<br>Lowkey i'm kinda jealous of him. I wish to be as powerful as him one day :(";}
-            if (q === 'content') { notFound = 'Content found!'; notFoundDesc = "Yup, i am the content. You've found me heehee!<br>Aww you listened to what i said!<br>Good boy :)"; }
-            if (q === 'help') notFound = 'help yourself bro LOLXD';
+        if (!specialQuery) {
+            labelGroup.push({
+                title: 'Nothing found',
+                excerpt: ''
+            });
+
+        } else {
+            const data = specialSearch[q];
+            if (data && !data.special) {
+                labelGroup.push({
+                    title: data.title,
+                    excerpt: data.excerpt || ''
+                });
+            }
         }
-        labelGroup.push({ title: notFound, excerpt: notFoundDesc });
+
     } else {
         // add cards from found menus
         menusFound.forEach(({ menu, labels }) => {
