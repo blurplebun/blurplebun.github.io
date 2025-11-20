@@ -582,7 +582,7 @@ function showContentFor(menu) {
         if (lbl.url) c.dataset.link = "true";
         if (lbl.unclickable) c.dataset.noclick = "true";
 
-        // optional webinfo counters (preserve original behavior)
+        // optional webinfo counters
         const totalCardsCounter = c.querySelector('#totalCardsCounter');
         if (totalCardsCounter) totalCardsCounter.textContent = `totalCards: ${totalCards}`;
         const totalMenusCounter = c.querySelector('#totalMenusCounter');
@@ -879,6 +879,7 @@ function search() {
     if (!q) return;
 
     const results = {};
+    // special cases for easter eggs
     const specialCase = ['nothing', 'something', 'content', 'help', 'hi', 'all'];
 
     // find cards
@@ -928,6 +929,7 @@ function search() {
         let notFoundDesc = '';
         if (!specialQuery) notFound = 'Nothing found';
         else {
+            // easter egg responses
             if (q === 'hi') notFound = 'HAII HIIII HELLLOOO!!!! :DD';
             if (q === 'nothing') notFound = 'Nothing found!';
             if (q === 'something') {notFound = 'Something found!'; notFoundDesc = "...It's just me LOL<br>My name is omniLens btw! You've probably met my brother omniTracer! He's such a powerful guy...<br>Lowkey i'm kinda jealous of him. I wish to be as powerful as him one day :(";}
