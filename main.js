@@ -1,8 +1,30 @@
-/* --------------------------
-    RENDERING + INTERACTIONS
-    -------------------------- */
+// main.js - Refactored
 
-const ring = document.querySelector('.ring');
+/* --------------------------
+   Helpers / Config
+   -------------------------- */
+
+// === Utility helpers
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+
+function getCSSVar(name, parse = 'string') {
+    const val = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    if (parse === 'int') return parseInt(val) || 0;
+    if (parse === 'float') return parseFloat(val) || 0;
+    return val;
+}
+
+// Lazy loader base path
+const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
+
+
+
+/* --------------------------
+    DOM Elements (cached)
+    -------------------------- */
+const ring = $('.ring');
 const expander = document.getElementById('expander');
 const contentView = document.getElementById('contentView');
 const cardsContainer = document.getElementById('cardsContainer');
@@ -11,170 +33,156 @@ const contentSubtitle = document.getElementById('contentSubtitle');
 const focusedLayout = document.getElementById('focusedLayout');
 const focusedCardArea = document.getElementById('focusedCardArea');
 const detailArea = document.getElementById('detailArea');
-const menuLogo = document.querySelector('.menu-logo');
 const backBtn = document.getElementById('backBtn');
 const centerBtn = document.getElementById('centerBtn');
-centerBtn.classList.add('hide');
 const rerollBtn = document.getElementById('rerollBtn');
+const menuLogo = $('.menu-logo');
+const menuStage = $('.menu-stage');
+const starfield = $('.starfield');
 
-const menuStage = document.querySelector('.menu-stage');
+// Keep centerBtn hidden initially
+centerBtn.classList.add('hide');
+
+// Make sure menuStage initial transform uses CSS var scale
 menuStage.style.transition = 'none';
-menuStage.style.transform = `translate(0px, 0px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
+menuStage.style.transform = `translate(0px, 0px) scale(${getCSSVar('--menu-stage-scale')})`;
 
-const starfield = document.querySelector('.starfield');
 
-/// -- DRAGGING --
-// Camera pan vars
+
+/* --------------------------
+    Camera / Drag / Parallax
+    -------------------------- */
+
+// State for panning / parallax
 let isDragging = false;
 let startX = 0, startY = 0;
 let currentX = 0, currentY = 0;
-let parallaxX = 0, parallaxY = 0;
 const parallaxFactor = -0.1;
 
-// Mouse drag to pan
-menuStage.addEventListener('mousedown', function (e) {
+// Shared function used by mouse/touch/wheel to update transforms
+function setMenuStageTransform(x, y, options = {}) {
+    const scale = getCSSVar('--menu-stage-scale');
+    menuStage.style.transition = options.transition || menuStage.style.transition;
+    menuStage.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+
+    // Update starfield parallax if present
+    if (starfield) {
+        const layers = starfield.querySelectorAll('.star-layer');
+        layers.forEach(layer => {
+            const depth = parseFloat(layer.dataset.depth) || 1;
+            const px = -x * parallaxFactor * depth;
+            const py = -y * parallaxFactor * depth;
+            // keep a smooth transition when panning
+            layer.style.transition = options.layerTransition || 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
+            layer.style.transform = `translate(${px}px, ${py}px)`;
+        });
+    }
+}
+
+// Begin drag (mouse or touch)
+function beginDrag(clientX, clientY) {
     isDragging = true;
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
+    startX = clientX - currentX;
+    startY = clientY - currentY;
     menuStage.style.cursor = 'grab';
     menuStage.style.transition = 'none';
-});
+}
 
-window.addEventListener('mousemove', function (e) {
+// Move during drag (mouse or touch)
+function dragTo(clientX, clientY) {
     if (!isDragging) return;
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
-    menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
-    menuStage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
+    currentX = clientX - startX;
+    currentY = clientY - startY;
+    setMenuStageTransform(currentX, currentY, { transition: 'transform 0.2s cubic-bezier(.2, .9, .2, 1)' });
+}
 
-    const starfield = document.querySelector('.starfield');
-    if (starfield) {
-        const layers = starfield.querySelectorAll('.star-layer');
-        layers.forEach(layer => {
-            const depth = parseFloat(layer.dataset.depth);
-            const x = -currentX * parallaxFactor * depth;
-            const y = -currentY * parallaxFactor * depth;
-            layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
-            layer.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    }
-});
-
-window.addEventListener('mouseup', function (e) {
+// End drag
+function endDrag() {
     isDragging = false;
     menuStage.style.cursor = 'default';
-});
+}
 
-// Touch support
-menuStage.addEventListener('touchstart', function (e) {
+// Mouse events
+menuStage.addEventListener('mousedown', (e) => {
+    beginDrag(e.clientX, e.clientY);
+});
+window.addEventListener('mousemove', (e) => {
+    dragTo(e.clientX, e.clientY);
+});
+window.addEventListener('mouseup', endDrag);
+
+// Touch events (single-finger only)
+menuStage.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return;
-    isDragging = true;
-    startX = e.touches[0].clientX - currentX;
-    startY = e.touches[0].clientY - currentY;
-    menuStage.style.transition = 'none';
-});
-
-window.addEventListener('touchmove', function (e) {
+    beginDrag(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: true });
+window.addEventListener('touchmove', (e) => {
     if (!isDragging || e.touches.length !== 1) return;
-    currentX = e.touches[0].clientX - startX;
-    currentY = e.touches[0].clientY - startY;
-    menuStage.style.transition = 'transform 0.2s cubic-bezier(.2, .9, .2, 1)';
-    menuStage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
+    dragTo(e.touches[0].clientX, e.touches[0].clientY);
+}, { passive: true });
+window.addEventListener('touchend', endDrag);
 
-    const starfield = document.querySelector('.starfield');
-    if (starfield) {
-        const layers = starfield.querySelectorAll('.star-layer');
-        layers.forEach(layer => {
-            const depth = parseFloat(layer.dataset.depth);
-            const x = -currentX * parallaxFactor * depth;
-            const y = -currentY * parallaxFactor * depth;
-            layer.style.transition = 'transform 0.3s cubic-bezier(0, 0, .5, 1)';
-            layer.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    }
-});
-
-window.addEventListener('touchend', function (e) {
-    isDragging = false;
-});
-
-// two-finger trackpad gesture
+// Two-finger trackpad-like gesture (wheel) - keep original thresholds
 menuStage.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
         currentX -= e.deltaX * 1.5;
         currentY -= e.deltaY * 1.5;
-        menuStage.style.transform = `translate(${currentX}px, ${currentY}px) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
-        const starfield = document.querySelector('.starfield');
-        if (starfield) {
-            const layers = starfield.querySelectorAll('.star-layer');
-            layers.forEach(layer => {
-                const depth = parseFloat(layer.dataset.depth);
-                const x = -currentX * parallaxFactor * depth;
-                const y = -currentY * parallaxFactor * depth;
-                layer.style.transform = `translate(${x}px, ${y}px)`;
-            });
-        }
+        setMenuStageTransform(currentX, currentY);
     }
 }, { passive: false });
 
-// Snap back to center when a button is clicked
+// Snap camera back to center (used by center button & resize)
 function snapCameraToCenter() {
-    currentX = 0;
-    currentY = 0;
-    menuStage.style.transition = 'transform 0.5s cubic-bezier(.2, .9, .2, 1)';
-    menuStage.style.transform = `translate(0, 0) scale(${getComputedStyle(document.documentElement).getPropertyValue('--menu-stage-scale')})`;
-
-    const starfield = document.querySelector('.starfield');
-    if (starfield) {
-        const layers = starfield.querySelectorAll('.star-layer');
-        layers.forEach(layer => {
-            // Smoothly animate each layer back to origin
-            layer.style.transition = 'transform 0.8s ease-out';
-            layer.style.transform = 'translate(0, 0)';
-            setTimeout(() => {
-                layer.style.transition = '';
-            }, 900);
-        });
-    }
+    currentX = 0; currentY = 0;
+    setMenuStageTransform(0, 0, { transition: 'transform 0.5s cubic-bezier(.2, .9, .2, 1)', layerTransition: 'transform 0.8s ease-out' });
+    // Clear layer transitions after animation finishes to avoid stuttering later
+    setTimeout(() => {
+        starfield?.querySelectorAll('.star-layer').forEach(layer => layer.style.transition = '');
+    }, 900);
 }
 
-function showCenterBtn() {
+// center button visibility loop
+function showCenterBtnLoop() {
     centerBtn.classList.add('hide');
-    if (!(currentX == 0 && currentY == 0) && !(contentView.classList.contains('visible'))) {
+    if (!(currentX === 0 && currentY === 0) && !contentView.classList.contains('visible')) {
         centerBtn.classList.remove('hide');
-        document.querySelector('.splash-text-info').style.opacity = 0;
+        const splashInfo = $('.splash-text-info');
+        if (splashInfo) splashInfo.style.opacity = 0;
     }
-    requestAnimationFrame(showCenterBtn);
+    requestAnimationFrame(showCenterBtnLoop);
 }
-showCenterBtn();
+showCenterBtnLoop();
+
+window.addEventListener('resize', snapCameraToCenter);
+
+centerBtn.addEventListener('click', snapCameraToCenter);
+document.addEventListener('keydown', (e) => { if (e.key === 'c' && !searchBox.open) snapCameraToCenter(); });
 
 
-window.addEventListener('resize', () => {
-    snapCameraToCenter();
-});
 
+/* --------------------------
+    Orbits + Buttons
+    -------------------------- */
 
+// Orbit configuration (read from CSS custom properties)
+let orbitRadius = getCSSVar('--menu-radius', 'int') || 180;
+let orbitDuration = getCSSVar('--ring-rotation-duration', 'float') || 60;
+if (ring) ring.style.animationDuration = getCSSVar('--ring-rotation-duration') || '60s';
 
-/// -- ORBITS --
-orbitRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
-orbitDuration = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ring-rotation-duration')) || 60;
-//orbitRadius = 180;
-//orbitDuration = 10;
-ring.style.animationDuration = getComputedStyle(document.documentElement).getPropertyValue('--ring-rotation-duration') || '60s';
+// Visual orbit rings (regeneratable)
 function createOrbitVisuals() {
-    const menuStage = document.querySelector('.menu-stage');
-    const baseRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
+    // remove existing visuals
+    $$('.orbit-visual').forEach(el => el.remove());
 
-    // remove existing orbit visuals first (if regenerating)
-    document.querySelectorAll('.orbit-visual').forEach(el => el.remove());
-
-    // collect unique orbit layers
+    const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
+    // collect unique orbit layers - menuItems assumed global from original file
     const uniqueOrbits = [...new Set(menuItems.filter(m => !m.hidden).map(m => m.orbit || 1))];
 
     uniqueOrbits.forEach(orbit => {
         const orbitRing = document.createElement('div');
         orbitRing.className = 'orbit-visual pulse';
+
         const diameter = (baseRadius * orbit * 1.2 + 60) * 2;
         orbitRing.style.width = `${diameter}px`;
         orbitRing.style.height = `${diameter}px`;
@@ -190,23 +198,24 @@ function createOrbitVisuals() {
     });
 }
 
-
-/// -- ORBITS: BUTTONS --
+// orbit buttons array
 const orbitButtons = [];
 function createMenuButtons() {
-    // group menu items by orbit layer
+    // Clear existing rings and orbit buttons
+    $$('.ring').forEach(r => r.remove());
+    orbitButtons.length = 0;
+
     const grouped = {};
     menuItems.forEach(m => {
         if (m.hidden) return;
-        const orbit = m.orbit;
+        const orbit = m.orbit || 1;
         if (!grouped[orbit]) grouped[orbit] = [];
         grouped[orbit].push(m);
     });
 
-    // create one ring per orbit layer
-    Object.keys(grouped).forEach(layer => {
-        const items = grouped[layer];
-        const orbit = parseInt(layer);
+    Object.keys(grouped).forEach(layerKey => {
+        const items = grouped[layerKey];
+        const orbit = parseInt(layerKey, 10);
 
         const ringLayer = document.createElement('div');
         ringLayer.className = 'ring';
@@ -222,30 +231,27 @@ function createMenuButtons() {
 
             const btn = document.createElement('button');
             btn.className = 'menu-button';
-            btn.dataset.angle0 = angleRad; // initial angle in radians
+            btn.dataset.angle0 = angleRad; // initial radians
             btn.dataset.orbit = orbit;
             btn.dataset.menuQ = m.q;
             btn.setAttribute('aria-label', m.name);
             btn.style.setProperty('--glow', m.color);
-            btn.style.background = m.color;
+            btn.style.background = m.color || 'transparent';
             btn.innerHTML = `
                 <div class="inner">
-                <div class="menu-thumb-square lazy-bg" data-bg='${m.image || ''}'></div>
-                ${m.showName && m.name ? `<div class="menu-subtitle">${m.name}</div>` : ''}
+                    <div class="menu-thumb-square lazy-bg" data-bg='${m.image || ''}'></div>
+                    ${m.showName && m.name ? `<div class="menu-subtitle">${m.name}</div>` : ''}
                 </div>
             `;
 
-            // compute pixel radius
-            const baseRadius = orbitRadius;
+            // compute radius & motion params
+            const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
             const r = baseRadius * orbit * 1.2 + 60;
-
-            // store motion params on the element
             btn.dataset.radius = r;
-            // period = baseDuration * orbit
+
             const baseDuration = orbitDuration;
             const periodSec = Math.max(0.01, baseDuration * orbit); // seconds per revolution
             const omega = (2 * Math.PI) / periodSec * direction; // radians/sec
-
             btn.dataset.omega = omega;
             btn.dataset.scale = m.scale || 1;
 
@@ -254,27 +260,26 @@ function createMenuButtons() {
             btn.style.left = '50%';
             btn.style.top = '50%';
             btn.style.transform = `translate3d(${x0}px, ${y0}px, 0) scale(${m.scale || 1})`;
+
             if (m.noFocus) {
                 btn.tabIndex = -1;
                 btn.setAttribute('aria-hidden', 'true');
             }
 
             btn.addEventListener('click', () => openMenu(m, btn));
-            /*btn.addEventListener('click', snapCameraToCenter);*/
             ringLayer.appendChild(btn);
             orbitButtons.push(btn);
         });
-        document.querySelector('.menu-stage').appendChild(ringLayer);
+
+        menuStage.appendChild(ringLayer);
     });
+
     startOrbitAnimation();
 }
 
-// move menu buttons
+// Orbit animation loop
 let cursorX = 0, cursorY = 0;
-window.addEventListener('mousemove', e => {
-    cursorX = e.clientX;
-    cursorY = e.clientY;
-});
+window.addEventListener('mousemove', e => { cursorX = e.clientX; cursorY = e.clientY; });
 
 let orbitAnimStarted = false;
 let orbitStartTs = performance.now();
@@ -297,16 +302,15 @@ function orbitFrame(ts) {
         const x = Math.cos(angle) * r;
         const y = Math.sin(angle) * r;
 
-        zoom = 1;
-        if (!(contentView.classList.contains('visible'))) {
+        // hover/zoom effect only when content view is NOT visible
+        let zoom = 1;
+        if (!contentView.classList.contains('visible')) {
             const rect = el.getBoundingClientRect();
             const btnX = rect.left + rect.width / 2;
             const btnY = rect.top + rect.height / 2;
-
             const dx = cursorX - btnX;
             const dy = cursorY - btnY;
             const dist = Math.sqrt(dx * dx + dy * dy);
-
             const maxDist = 250;
             zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
         }
@@ -316,59 +320,55 @@ function orbitFrame(ts) {
     requestAnimationFrame(orbitFrame);
 }
 
-// menu button on resize
+// Update orbit radii on resize (debounced)
 let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
     resizeTimeout = setTimeout(() => {
-        const baseRadius = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--menu-radius')) || 180;
-
+        const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
         orbitButtons.forEach(el => {
             const orbit = parseInt(el.dataset.orbit) || 1;
             const r = baseRadius * orbit * 1.2 + 60;
             el.dataset.radius = r;
         });
-
         createOrbitVisuals();
     }, 300);
 });
 
 
-/// -- CHARACTER --
-// is character?
+
+/* --------------------------
+    Character helpers & reroll
+    -------------------------- */
+
+// Check if label is character (preserve original function)
 function isCharacter(label) {
     return label.isCharacter;
 }
 
-// get all characters
+// Get all characters (returns array of {menu,label})
 let characters = [];
 let nextCharacter = null;
 function getAllCharacters() {
     characters = [];
     menuItems.forEach(menu => {
         if (!menu.labels) return;
-        if (menu.q === "random") return;
-
+        if (menu.q === 'random') return;
         menu.labels.forEach(label => {
-            if (label.cardId && isCharacter(label)) {
-                characters.push({ menu, label });
-            }
+            if (label.cardId && isCharacter(label)) characters.push({ menu, label });
         });
     });
-
     nextCharacter = randomNoRepeats(characters);
     return characters;
 }
 
-
-// get random character
+// Random no-repeats helper
 function randomNoRepeats(array) {
     let copy = array.slice();
     return function () {
         if (copy.length === 0) copy = array.slice();
         const index = Math.floor(Math.random() * copy.length);
-        const item = copy.splice(index, 1)[0];
-        return item;
+        return copy.splice(index, 1)[0];
     };
 }
 
@@ -377,20 +377,21 @@ function randomCharacter() {
     return nextCharacter();
 }
 
-
-rerollBtn.addEventListener("click", () => {
+rerollBtn.addEventListener('click', () => {
     const pick = randomCharacter();
     if (!pick) return;
-
     openMenuByQ(pick.menu.q, true);
 
-    const cardEl = document.querySelector(`[data-card-id="${pick.label.cardId}"]`);
+    const cardEl = $(`[data-card-id="${pick.label.cardId}"]`);
     if (cardEl) focusCard(cardEl, pick.label, pick.menu);
 });
 
 
 
-/// -- OPEN MAIN MENU BUTTONS --
+/* --------------------------
+    Open Menu / Show Content
+    -------------------------- */
+
 let openFromRandom = false;
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (menu.hidden || !buttonEl || skipAnimation) {
@@ -399,35 +400,33 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
         return;
     }
 
-    // random character?
-    if (menu.q === "random") {
+    // special-case "random" menu (preserve previous logic)
+    if (menu.q === 'random') {
         const list = getAllCharacters();
         if (list.length === 0) {
-            alert("No character cards found.");
+            alert('No character cards found.');
             return;
         }
-
         const pick = list[Math.floor(Math.random() * list.length)];
         const targetMenu = pick.menu;
         const targetLabel = pick.label;
-
         openMenuByQ(targetMenu.q, true);
-
-        const cardEl = document.querySelector(`[data-card-id="${targetLabel.cardId}"]`);
+        const cardEl = $(`[data-card-id="${targetLabel.cardId}"]`);
         if (cardEl) {
             focusCard(cardEl, targetLabel, targetMenu);
-            rerollBtn.classList.add("visible");
-            rerollBtn.setAttribute("aria-hidden", "false");
+            rerollBtn.classList.add('visible');
+            rerollBtn.setAttribute('aria-hidden', 'false');
         }
         openFromRandom = true;
         return;
     }
 
-    // compute center position of button for expander origin
+    // compute center for expander origin
     const rect = buttonEl.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
 
+    // style expander
     expander.style.left = cx + 'px';
     expander.style.top = cy + 'px';
     expander.style.width = rect.width + 'px';
@@ -436,7 +435,6 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     expander.style.background = getComputedStyle(buttonEl).backgroundColor || menu.color;
     expander.style.opacity = '1';
 
-    // force reflow then expand
     requestAnimationFrame(() => {
         const maxDim = Math.max(window.innerWidth, window.innerHeight) * 2.2;
         const scale = maxDim / rect.width;
@@ -457,193 +455,169 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     });
 }
 
-
-
-/// -- SHOW CONTENT FROM MENU --
 function showContentFor(menu) {
-    // contentView.querySelectorAll('hr').forEach(h => h.remove());
     contentTitle.textContent = menu.name;
     contentSubtitle.textContent = menu.subtitle;
     toggleView({ focused: true, show: false });
     toggleView({ content: true, show: true });
     backBtn.querySelector('span').textContent = 'Menu';
 
-    // Add copy link icon to menu title
-    if (!(menu.q === "search")) {
+    // Add copy link icon to menu title (except for search)
+    if (menu.q !== 'search') {
+        // remove old copy-link if present
+        const existing = contentTitle.querySelector('.copy-link');
+        if (existing) existing.remove();
+
         const linkIcon = document.createElement('span');
         linkIcon.className = 'copy-link';
         linkIcon.innerHTML = `
-        <svg viewBox="0 0 24 24" fill="none">
-            <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
-            <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
-        </svg>
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
+                <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
+            </svg>
         `;
-        linkIcon.title = "Copy shareable link";
+        linkIcon.title = 'Copy shareable link';
         linkIcon.addEventListener('click', (e) => {
             e.stopPropagation();
             const link = `${location.origin}${location.pathname}?m=${menu.q}`;
             navigator.clipboard.writeText(link);
-
-            // visual + tooltip feedback
             linkIcon.classList.add('copied');
-            linkIcon.title = "Copied!";
+            linkIcon.title = 'Copied!';
             setTimeout(() => {
                 linkIcon.classList.remove('copied');
-                linkIcon.title = "Copy shareable link";
+                linkIcon.title = 'Copy shareable link';
             }, 1500);
         });
         contentTitle.appendChild(linkIcon);
     }
 
-    // cardsContainer.className = `cards-grid max-cols-5`;
-
     contentView.dataset.singleCardMenu = menu.labels.length === 1 ? 'true' : 'false';
+    cardsContainer.innerHTML = '';
 
-    cardsContainer.innerHTML = "";
-
-    // Create the first section grid
-    let section = document.createElement("div");
-    section.className = "cards-grid";
+    // Create new section grid and render labels
+    let section = document.createElement('div');
+    section.className = 'cards-grid';
     cardsContainer.appendChild(section);
 
-    menu.labels.forEach((lbl, i) => {
-        // Check for separator (no cardId)
+    menu.labels.forEach((lbl) => {
+        // Separator / header (no cardId)
         if (!lbl.cardId) {
-            const header = document.createElement("div");
-            header.className = "content-header section-header";
+            const header = document.createElement('div');
+            header.className = 'content-header section-header';
 
             if (lbl.title) {
-                const h1 = document.createElement("div");
-                h1.className = "content-title separator";
+                const h1 = document.createElement('div');
+                h1.className = 'content-title separator';
                 h1.textContent = lbl.title;
                 header.appendChild(h1);
             }
-
             if (lbl.excerpt) {
-                const h2 = document.createElement("div");
-                h2.className = "content-sub separator";
+                const h2 = document.createElement('div');
+                h2.className = 'content-sub separator';
                 h2.innerHTML = lbl.excerpt;
                 header.appendChild(h2);
             }
 
-            // Add the header if there was any text
-            if (lbl.title || lbl.excerpt) {
-                cardsContainer.appendChild(header);
-            }
+            if (lbl.title || lbl.excerpt) cardsContainer.appendChild(header);
 
-            // Add the separator line (optional visual)
-            const hr = document.createElement("hr");
-            hr.className = "card-separator";
+            const hr = document.createElement('hr');
+            hr.className = 'card-separator';
             cardsContainer.appendChild(hr);
 
-            // Start new grid section
-            section = document.createElement("div");
-            section.className = "cards-grid";
+            // start new grid section
+            section = document.createElement('div');
+            section.className = 'cards-grid';
             cardsContainer.appendChild(section);
             return;
         }
 
-        // --- CARD CREATION ---
-        const c = document.createElement("div");
-        c.className = "card";
+        // Create card element
+        const c = document.createElement('div');
+        c.className = 'card';
         c.dataset.cardId = lbl.cardId;
 
         // Linked menu card
         if (lbl.linkId) {
             const linkedMenu = menuItems.find(m => m.q === lbl.linkId);
             if (linkedMenu) {
-                c.dataset.link = "true";
+                c.dataset.link = 'true';
                 c.style.border = `3px solid ${linkedMenu.color}`;
                 c.style.boxShadow = `inset 0 0 30px color-mix(in srgb, ${linkedMenu.color} 50%, transparent)`;
                 c.innerHTML = `
-                <div class="card-text">
-                    <strong>${linkedMenu.name}</strong>
-                    <div class="excerpt">${linkedMenu.subtitle || ""}</div>
-                </div>
-                <div class="menu-button bubble" style="background:${linkedMenu.color || "transparent"}">
-                    <div class="inner">
-                        <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ""}'></div>
+                    <div class="card-text">
+                        <strong>${linkedMenu.name}</strong>
+                        <div class="excerpt">${linkedMenu.subtitle || ''}</div>
                     </div>
-                </div>
-            `;
-                c.addEventListener("click", e => {
-                    e.stopPropagation();
-                    openMenuByQ(lbl.linkId, true);
-                });
+                    <div class="menu-button bubble" style="background:${linkedMenu.color || 'transparent'}">
+                        <div class="inner">
+                            <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ''}'></div>
+                        </div>
+                    </div>
+                `;
+                c.addEventListener('click', (e) => { e.stopPropagation(); openMenuByQ(lbl.linkId, true); });
             }
             section.appendChild(c);
             return;
         }
 
-        // Standard card
+        // Standard card markup (image vs no-image)
+        if (lbl.image) {
+            c.innerHTML = `
+                <div class="thumb lazy-bg" data-bg="${lbl.image}"></div>
+                <div class="card-text">
+                    <strong>${lbl.title}</strong>
+                    <div class="excerpt">${lbl.excerpt || ''}</div>
+                </div>
+            `;
+        } else {
+            c.innerHTML = `
+                <div class="card-text full">
+                    <strong>${lbl.title}</strong>
+                    <div class="excerpt">${lbl.excerpt || ''}</div>
+                </div>
+            `;
+        }
+
+        // Special cards
         if (lbl.url) c.dataset.link = "true";
         if (lbl.unclickable) c.dataset.noclick = "true";
 
-        if (lbl.image) {
-            c.innerHTML = `
-            <div class="thumb lazy-bg" data-bg="${lbl.image}"></div>
-            <div class="card-text">
-                <strong>${lbl.title}</strong>
-                <div class="excerpt">${lbl.excerpt || ""}</div>
-            </div>
-        `;
-        } else {
-            c.innerHTML = `
-            <div class="card-text full">
-                <strong>${lbl.title}</strong>
-                <div class="excerpt">${lbl.excerpt || ""}</div>
-            </div>
-        `;
-        }
-
-        // webinfo
+        // optional webinfo counters (preserve original behavior)
         const totalCardsCounter = c.querySelector('#totalCardsCounter');
-        if (totalCardsCounter) {
-            totalCardsCounter.textContent = `totalCards: ${totalCards}`;
-        }
+        if (totalCardsCounter) totalCardsCounter.textContent = `totalCards: ${totalCards}`;
         const totalMenusCounter = c.querySelector('#totalMenusCounter');
-        if (totalMenusCounter) {
-            totalMenusCounter.textContent = `totalMenus: ${totalMenus}`;
-        }
+        if (totalMenusCounter) totalMenusCounter.textContent = `totalMenus: ${totalMenus}`;
         const totalCharacterCounter = c.querySelector('#totalCharacterCounter');
-        if (totalCharacterCounter) {
-            totalCharacterCounter.textContent = `totalCharacters: ${totalCharacters}`;
-        }
+        if (totalCharacterCounter) totalCharacterCounter.textContent = `totalCharacters: ${totalCharacters}`;
         const totalSplashCounter = c.querySelector('#totalSplashCounter');
-        if (totalSplashCounter) {
-            totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
-        }
+        if (totalSplashCounter) totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
 
-        c.addEventListener("click", () => {
-            if (lbl.unclickable) return;
-            if (lbl.url) return window.open(lbl.url, "_blank");
+        // click handling (links/external/unclikable)
+        if (!lbl.unclickable) {
+            c.addEventListener('click', () => {
+                if (lbl.url) return window.open(lbl.url, '_blank');
 
-            // If this card came from search results, use its original menu
-            const realMenu =
-                menu.q === "search" && lbl.fromMenu
+                const realMenu = (menu.q === 'search' && lbl.fromMenu)
                     ? menuItems.find(m => m.q === lbl.fromMenu)
                     : menu;
 
-            focusCard(c, lbl, realMenu);
-        });
-
+                focusCard(c, lbl, realMenu);
+            });
+        }
 
         section.appendChild(c);
     });
 
     contentView.setAttribute('aria-hidden', 'false');
 
-    // only one card?
+    // If only one card in menu, open/focus it automatically
     if (menu.labels.length === 1) {
         const single = menu.labels[0];
         const cardEl = cardsContainer.querySelector('.card');
         if (cardEl) {
             if (single.unclickable) return;
-            if (single.url) {
-                window.open(single.url, '_blank');
-            } else {
-                focusCard(cardEl, single, menu);
-            }
+            if (single.url) window.open(single.url, '_blank');
+            else focusCard(cardEl, single, menu);
         }
     }
 
@@ -653,47 +627,46 @@ function showContentFor(menu) {
 
 
 
-/// -- CARD DETAIL HANDLER --
+/* --------------------------
+    Card detail / focus
+    -------------------------- */
+
 function focusCard(cardEl, label, menu = null) {
-    // clone card into left panel for appearance
+    // clear previous focused area and clone the card
     focusedCardArea.innerHTML = '';
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
 
+    // Add lazy classes to any <img> in label.detail and convert src->data-src
     const html = label.detail
         ? label.detail
-            .replace(/<img\b(?![^>]*\bclass=)/g, '<img class="lazy"') // add class if not present
-            .replace(/(<img[^>]*?)\s+src=/g, '$1 data-src=') // replace only inside <img> tags
+            .replace(/<img\b(?![^>]*\bclass=)/g, '<img class="lazy"') // add lazy class if missing
+            .replace(/(<img[^>]*?)\s+src=/g, '$1 data-src=') // replace src with data-src for lazy loading
         : '';
 
     if (menu) {
-        // fill details
         const realMenuQ = label.fromMenu || menu.q;
         const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
         detailArea.innerHTML = `
             <h1>
                 ${label.title}
                 <span class="copy-link" title="Copy shareable link">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
-                    <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
-                </svg>
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
+                        <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
+                    </svg>
                 </span>
             </h1>
             <hr>${html}
-            `;
+        `;
         detailArea.querySelector('.copy-link').addEventListener('click', (e) => {
             e.stopPropagation();
             navigator.clipboard.writeText(shareURL);
-
             const icon = e.currentTarget;
             icon.classList.add('copied');
-            icon.title = "Copied!";
-            setTimeout(() => {
-                icon.classList.remove('copied');
-                icon.title = "Copy shareable link";
-            }, 1500);
+            icon.title = 'Copied!';
+            setTimeout(() => { icon.classList.remove('copied'); icon.title = 'Copy shareable link'; }, 1500);
         });
         history.pushState({}, '', `?m=${realMenuQ}&i=${label.cardId}`);
         initLazyLoad();
@@ -702,28 +675,31 @@ function focusCard(cardEl, label, menu = null) {
         detailArea.innerHTML = `<h1>${label.title}</h1><hr>${html}`;
         initLazyLoad();
     }
+
+    // set up image handlers inside detailArea
     imgConHandler(detailArea);
 
-    // hide grid cards except the one we moved
-    cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => {
-        el.classList.add('hidden');
-    });
+    // hide cards grid and show focused layout
+    cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => el.classList.add('hidden'));
     focusedLayout.style.display = 'flex';
-    document.querySelector('.content-header')?.classList.add('hidden');
+    $('.content-header')?.classList.add('hidden');
     contentView.style.overflow = 'hidden';
     contentView.insertBefore(cardsContainer, focusedLayout);
 
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
     backBtn.querySelector('span').textContent = 'Card Selector';
     initLazyLoad();
-
     detailArea.scrollTop = 0;
 }
 
 
-/// -- IMG CONTAINER --
+
+/* --------------------------
+    Image detail handlers
+    -------------------------- */
+
 function detailAreaImgHandler(img) {
-    // before load
+    // BEFORE load: set placeholder aspect and style
     if (!img.classList.contains('loaded')) {
         img.style.aspectRatio = '4 / 5';
         img.style.width = '90%';
@@ -732,49 +708,168 @@ function detailAreaImgHandler(img) {
         img.style.opacity = 0.5;
     }
 
-    // when it loads
-    img.addEventListener('load', () => {
+    // ON load
+    function onLoad() {
         img.style.width = '';
         img.style.aspectRatio = '';
         img.style.backgroundColor = '';
         img.style.opacity = 1;
         img.classList.add('loaded');
-    }, { once: true });
+    }
 
-    // when it fails
-    img.addEventListener('error', () => {
+    // ON error
+    function onError() {
         img.style.width = '90%';
         img.style.aspectRatio = '4 / 5';
         img.style.backgroundColor = 'var(--bg)';
         img.style.opacity = 0.5;
+    }
+
+    img.addEventListener('load', onLoad, { once: true });
+    img.addEventListener('error', onError, { once: true });
+}
+
+function imgConHandler(container) {
+    const contentImgs = container.querySelectorAll('img');
+    contentImgs.forEach(img => detailAreaImgHandler(img));
+    const containers = container.querySelectorAll('.imgContainer');
+    containers.forEach(c => {
+        const imgs = c.querySelectorAll('img');
+        imgs.forEach(img => detailAreaImgHandler(img));
+    });
+}
+
+// Image preview overlay (click on detailArea images)
+document.addEventListener('click', (e) => {
+    const img = e.target.closest('#detailArea img');
+    if (!img) return;
+
+    // create overlay if missing
+    let overlay = $('.img-preview-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'img-preview-overlay';
+        document.body.appendChild(overlay);
+    }
+
+    const caption = img.dataset.caption ? `<h1 style="margin-top: 12px; margin-bottom: -10px;">${img.dataset.caption}</h1>` : '';
+    const subcaption = caption && img.dataset.subcaption ? `<p style="color: color-mix(in srgb, var(--accentl) 75%, transparent)">${img.dataset.subcaption}</p>` : '';
+
+    overlay.innerHTML = `<img src="${img.src}" alt="preview" ${caption ? 'data-hasCaption=true' : ''}>${caption}${subcaption}`;
+    overlay.classList.add('visible');
+    disableZoom();
+
+    overlay.addEventListener('click', () => {
+        overlay.classList.remove('visible');
+        enableZoom();
     }, { once: true });
+});
 
-}
-function imgConHandler(detailArea) {
-    const contentImgs = detailArea.querySelectorAll('img');
-    contentImgs.forEach(img => {
-        detailAreaImgHandler(img);
+
+
+/* --------------------------
+    Lazy loader (IntersectionObserver)
+    -------------------------- */
+
+const lazyObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+
+        if (el.tagName === 'IMG') {
+            const src = el.dataset.src;
+            if (src) {
+                el.src = LAZY_BASE + src;
+                el.onload = () => el.classList.add('loaded');
+            }
+        } else if (el.classList.contains('lazy-bg')) {
+            const bgUrl = el.dataset.bg;
+            if (bgUrl) {
+                const img = new Image();
+                img.src = LAZY_BASE + bgUrl;
+                img.onload = () => {
+                    el.style.backgroundImage = `url('${LAZY_BASE + bgUrl}')`;
+                    el.classList.add('loaded');
+                };
+            }
+        }
+
+        obs.unobserve(el);
     });
+}, { rootMargin: '0px 0px 300px 0px' });
 
-    const containers = detailArea.querySelectorAll('.imgContainer');
-    containers.forEach(container => {
-        const imgs = container.querySelectorAll('img');
+function initLazyLoad() {
+    const lazyImages = $$('img.lazy:not(.loaded)');
+    const lazyBackgrounds = $$('.lazy-bg:not(.loaded)');
+    lazyImages.forEach(el => lazyObserver.observe(el));
+    lazyBackgrounds.forEach(el => lazyObserver.observe(el));
+}
 
-        imgs.forEach(img => {
-            detailAreaImgHandler(img);
-        });
+document.addEventListener('DOMContentLoaded', initLazyLoad);
+
+
+
+/* --------------------------
+    Splash texts
+    -------------------------- */
+window.addEventListener('load', () => {
+    const splashTexts = $$('.splash-text');
+    splashTexts.forEach(el => {
+        const type = el.dataset.info;
+        if (type === 'info') {
+            el.textContent = '(drag to move, click logo to search)';
+        }
+        if (type === 'splash') {
+            const text = splashLines[Math.floor(Math.random() * splashLines.length)];
+            el.innerHTML = text;
+            const baseSize = 20;
+            const minSize = 12;
+            const maxLen = 45;
+            let size = baseSize - (text.length / maxLen) * (baseSize - minSize);
+            size = clamp(size, minSize, baseSize);
+            el.style.fontSize = `${size}px`;
+        }
     });
+});
+
+
+
+/* --------------------------
+    Starfield generation
+    -------------------------- */
+function createStarfield(layerCount = 3, starsPerLayer = 40) {
+    if (!starfield) return;
+    for (let l = 0; l < layerCount; l++) {
+        const layer = document.createElement('div');
+        layer.classList.add('star-layer');
+        layer.dataset.depth = 0.5 + Math.random() * 1;
+        for (let i = 0; i < starsPerLayer; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 2 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `-${Math.random() * 5}s`;
+            layer.appendChild(star);
+        }
+        starfield.appendChild(layer);
+    }
 }
 
 
 
-/// -- SEARCH --
-const searchBox = document.getElementById("searchBox");
-const searchText = document.getElementById("searchText");
-const cancelSearch = document.getElementById("cancelSearch");
+/* --------------------------
+    Search
+    -------------------------- */
+
+const searchBox = document.getElementById('searchBox');
+const searchText = document.getElementById('searchText');
+const cancelSearch = document.getElementById('cancelSearch');
 
 function stripHTML(html) {
-    return html.replace(/<[^>]+>/g, ''); // removes anything between < and >
+    return html.replace(/<[^>]+>/g, '');
 }
 
 function search() {
@@ -783,106 +878,88 @@ function search() {
     const q = query.trim().toLowerCase();
     if (!q) return;
 
-    const results = [];
-    specialCase = ['nothing', 'content', 'help', 'all'];
+    const results = {};
+    const specialCase = ['nothing', 'something', 'content', 'help', 'hi', 'all'];
 
     // find cards
     menuItems.forEach(menu => {
         if (menu.noFocus) return false;
+        let matches;
         if (q === 'all') {
             matches = menu.labels;
         } else {
             matches = menu.labels.filter(label => {
-                return (
-                    (label.title && stripHTML(label.title).toLowerCase().includes(q)) ||
+                return (label.title && stripHTML(label.title).toLowerCase().includes(q)) ||
                     (label.excerpt && stripHTML(label.excerpt).toLowerCase().includes(q)) ||
-                    (label.detail && stripHTML(label.detail).toLowerCase().includes(q))
-                );
+                    (label.detail && stripHTML(label.detail).toLowerCase().includes(q));
             });
         }
 
         if (matches.length > 0) {
-            results[menu.q] = {
-                menu,
-                labels: matches
-            };
-        };
+            results[menu.q] = { menu, labels: matches };
+        }
     });
 
     // find menus
+    let menuMatches;
     if (q === 'all') {
         menuMatches = menuItems.filter(menu => (!menu.noFocus));
     } else {
         menuMatches = menuItems.filter(menu => {
             if (menu.noFocus) return false;
-            return (
-                (menu.name && menu.name.toLowerCase().includes(q)) ||
-                (menu.subtitle && menu.subtitle.toLowerCase().includes(q))
-            );
+            return (menu.name && menu.name.toLowerCase().includes(q)) || (menu.subtitle && menu.subtitle.toLowerCase().includes(q));
         });
     }
 
     const labelGroup = [];
-    menusFound = Object.values(results);
+    let menusFound = Object.values(results);
 
-    specialQuery = false;
+    let specialQuery = false;
     if (specialCase.includes(q)) {
         if (!(q === 'all')) {
             menusFound = [];
+            menuMatches = [];
             specialQuery = true;
         }
     }
 
-    if (menusFound.length === 0) {
-        notFoundDesc = "";
-        if (!specialQuery) {
-            notFound = "Nothing found";
-        } else {
-            if (q === 'nothing') notFound = "Nothing found!";
-            if (q === 'content') { notFound = "Content found!"; notFoundDesc = "Yup, i am the content. You've found me heehee!<br>Aww you listened to what i said!<br>Who's a good boy~ :3" }
-            if (q === 'help') notFound = "help yourself.";
+    if (menusFound.length === 0 && menuMatches.length === 0) {
+        let notFound = '';
+        let notFoundDesc = '';
+        if (!specialQuery) notFound = 'Nothing found';
+        else {
+            if (q === 'hi') notFound = 'HAII HIIII HELLLOOO!!!! :DD';
+            if (q === 'nothing') notFound = 'Nothing found!';
+            if (q === 'something') {notFound = 'Something found!'; notFoundDesc = "...It's just me LOL<br>My name is omniLens btw! You've probably met my brother omniTracer! He's such a powerful guy...<br>Lowkey i'm kinda jealous of him. I wish to be as powerful as him one day :(";}
+            if (q === 'content') { notFound = 'Content found!'; notFoundDesc = "Yup, i am the content. You've found me heehee!<br>Aww you listened to what i said!<br>Good boy :)"; }
+            if (q === 'help') notFound = 'help yourself bro LOLXD';
         }
-        labelGroup.push({
-            title: notFound,
-            excerpt: notFoundDesc,
-        });
-
+        labelGroup.push({ title: notFound, excerpt: notFoundDesc });
     } else {
-        // add cards
+        // add cards from found menus
         menusFound.forEach(({ menu, labels }) => {
             labelGroup.push({
                 title: menu.name,
                 excerpt: `Results from <a data-open-card="${menu.q}">${menu.name}</a>`,
             });
+            labels.forEach(label => labelGroup.push({ ...label, fromMenu: menu.q }));
+        });
 
-            labels.forEach(label => {
-                labelGroup.push({
-                    ...label,
-                    fromMenu: menu.q,
-                })
-            })
-        })
-        // add menus
+        // add matching menus as linked cards
         if (menuMatches.length > 0) {
-            labelGroup.push({
-                title: "Menus",
-                excerpt: "Matching menus found",
-            });
-
+            labelGroup.push({ title: 'Menus', excerpt: 'Matching menus found' });
             menuMatches.forEach(menu => {
                 labelGroup.push({
                     cardId: `menu-${menu.q}`,
                     title: menu.name,
-                    excerpt: menu.subtitle || "",
-                    image: menu.image || "",
-                    linkId: menu.q, // this makes it render as a linked menu card
+                    excerpt: menu.subtitle || '',
+                    image: menu.image || '',
+                    linkId: menu.q,
                 });
             });
-        };
-
+        }
     }
 
-    // make a temporary "search results" menu
     const searchMenu = {
         q: 'search',
         name: `Search results for "${query}"`,
@@ -898,48 +975,39 @@ menuLogo.addEventListener('click', () => {
 });
 
 searchBox.addEventListener('close', () => {
-    if (searchText.value.trim() !== '') {
-        search();
-    }
+    if (searchText.value.trim() !== '') search();
 });
 
 searchText.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        e.preventDefault();
-        searchBox.close();
-    }
+    if (e.key === 'Enter') { e.preventDefault(); searchBox.close(); }
 });
 
 cancelSearch.addEventListener('click', () => {
     searchText.value = '';
     searchBox.close();
-})
+});
 
 
 
+/* --------------------------
+    Open menu by q / internal links / URL handler
+    -------------------------- */
 
-/// -- OPEN MENU BY Q --
 function openMenuByQ(q, skipAnim = false) {
     if (!q) return;
     const menu = menuItems.find(m => m.q === q);
     if (!menu) return;
-
     const btn = orbitButtons.find(b => b.dataset.menuQ === q);
     openMenu(menu, btn || null, { skipAnimation: skipAnim || !btn });
 }
 
-
-
-
-
-/// -- URL QUERY HANDLER ?m=<menu>&i=<card-id> --
+// URL params on load - open menu/card if present
 window.addEventListener('load', async () => {
     const params = new URLSearchParams(window.location.search);
     const menuCode = params.get('m');
-    const cardKey = params.get('i'); // may be null or ""
-
+    const cardKey = params.get('i');
     if (!menuCode) return;
-    if (menuCode === "search") return;
+    if (menuCode === 'search') return;
 
     const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) {
@@ -947,49 +1015,40 @@ window.addEventListener('load', async () => {
         return;
     }
 
-    // Open menu - visible or hidden
-    if (typeof openMenuByQ === 'function') {
-        openMenuByQ(menuCode, true)
-    } else {
+    if (typeof openMenuByQ === 'function') openMenuByQ(menuCode, true);
+    else {
         showContentFor(targetMenu);
         history.pushState({}, '', `?m=${targetMenu.q}`);
     }
 
-    // helper: wait for card DOM element to appear
+    // waitForCard helper
     async function waitForCard(cardId, timeout = 2000, interval = 50) {
         const start = performance.now();
         while (performance.now() - start < timeout) {
-            const el = document.querySelector(`[data-card-id="${cardId}"]`);
+            const el = $(`[data-card-id="${cardId}"]`);
             if (el) return el;
             await new Promise(r => setTimeout(r, interval));
         }
         return null;
     }
 
-    // if ?i= exists, focus that card
     if (cardKey) {
         const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
         if (!targetLabel) {
             console.warn('Card not found in', menuCode, cardKey);
             return;
         }
-
         const cardEl = await waitForCard(cardKey, 2000, 40);
         if (cardEl) {
-            if (!(cardEl.dataset.link || cardEl.dataset.noclick)) {
-                focusCard(cardEl, targetLabel, targetMenu);
-            }
+            if (!(cardEl.dataset.link || cardEl.dataset.noclick)) focusCard(cardEl, targetLabel, targetMenu);
         } else {
             console.warn('Timed out waiting for card', cardKey);
         }
     }
 });
 
-
-
-
-/// -- INTERNAL LINK HANDLER <a data-open-card="q:id"> --
-document.addEventListener('click', async function (e) {
+// Internal link handler: <a data-open-card="q:id">
+document.addEventListener('click', (e) => {
     const link = e.target.closest('a[data-open-card]');
     if (!link) return;
     e.preventDefault();
@@ -1005,11 +1064,10 @@ document.addEventListener('click', async function (e) {
 
     if (!cardKey) {
         openMenuByQ(menuCode, true);
-        document.querySelector('.content-header')?.classList.remove('hidden');
+        $('.content-header')?.classList.remove('hidden');
         return;
     }
 
-    // open specific card inside that menu
     const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
     if (!targetLabel) {
         console.warn('Card not found in', menuCode, cardKey);
@@ -1017,262 +1075,80 @@ document.addEventListener('click', async function (e) {
         return;
     }
 
-    // Open the menu (skip anim)
-    const isCurrentlyOpen =
-        contentTitle.textContent &&
+    const isCurrentlyOpen = contentTitle.textContent &&
         contentTitle.textContent.toLowerCase() === targetMenu.name.toLowerCase();
 
-    if (!isCurrentlyOpen) {
-        openMenuByQ(menuCode, true);
-    }
+    if (!isCurrentlyOpen) openMenuByQ(menuCode, true);
 
-    const targetCard = document.querySelector(`[data-card-id="${cardKey}"]`);
+    const targetCard = $(`[data-card-id="${cardKey}"]`);
     if (targetCard) focusCard(targetCard, targetLabel, targetMenu);
 });
 
 
 
+/* --------------------------
+    Back navigation
+    -------------------------- */
 
-
-/// -- BACK NAVIGATION HANDLER --
 function goBack() {
     const params = new URLSearchParams(location.search);
     const menuCode = params.get('m');
     const itemId = params.get('i');
 
+    // if viewing a card, go back to menu grid
     if (itemId && !openFromRandom) {
-        // Currently viewing a card → go back to menu grid
         history.pushState({}, '', `?m=${menuCode}`);
-        cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => {
-            el.classList.remove('hidden');
-        });
+        cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => el.classList.remove('hidden'));
         toggleView({ focused: true, show: false });
-        document.querySelector('.content-header')?.classList.remove('hidden');
+        $('.content-header')?.classList.remove('hidden');
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;
         contentView.style.overflow = '';
         backBtn.querySelector('span').textContent = 'Menu';
         return;
     }
 
+    // if in a menu, go back to main stage
     if (menuCode || openFromRandom) {
-        // Currently in a menu → go back to main stage
         history.pushState({}, '', location.pathname);
-        document.querySelector('.content-header')?.classList.remove('hidden');
+        $('.content-header')?.classList.remove('hidden');
         toggleView({ content: true, show: false });
         contentView.style.overflow = '';
         if (openFromRandom) {
             openFromRandom = false;
-            rerollBtn.classList.remove("visible");
-            rerollBtn.setAttribute("aria-hidden", "true");
+            rerollBtn.classList.remove('visible');
+            rerollBtn.setAttribute('aria-hidden', 'true');
         }
         return;
     }
 }
 
+backBtn.addEventListener('click', goBack);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 
-/// -- IMAGE PREVIEW --
 
-// prevent zoom on mobile
+
+/* --------------------------
+    Image preview zoom helpers
+    -------------------------- */
+
 function disableZoom() {
-    let vp = document.querySelector('meta[name=viewport]');
+    const vp = $('meta[name=viewport]');
     if (!vp) return;
     vp.setAttribute('content', 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no');
 }
 
 function enableZoom() {
-    let vp = document.querySelector('meta[name=viewport]');
+    const vp = $('meta[name=viewport]');
     if (!vp) return;
     vp.setAttribute('content', 'width=device-width, initial-scale=1');
 }
 
-// handler
-document.addEventListener('click', function (e) {
-    const img = e.target.closest('#detailArea img');
-    if (img) {
-        // create overlay if it doesn't exist
-        let overlay = document.querySelector('.img-preview-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.className = 'img-preview-overlay';
-            document.body.appendChild(overlay);
-        }
-
-        // insert enlarged image
-        caption = img.dataset.caption ? `<h1 style="margin-top: 12px; margin-bottom: -10px;">${img.dataset.caption}</h1>` : '';
-        if (caption && img.dataset.subcaption) {
-            subcaption = `<p style="color: color-mix(in srgb, var(--accentl) 75%, transparent)">${img.dataset.subcaption}</p>`
-            overlay.innerHTML =
-                `
-                <img src="${img.src}" data-hasCaption=true alt="preview">
-                ${caption}
-                ${subcaption}
-                `;
-        } else if (caption) {
-            overlay.innerHTML =
-                `
-                <img src="${img.src}" data-hasCaption=true alt="preview">
-                ${caption}
-                `;
-        } else {
-            overlay.innerHTML = `<img src="${img.src}" alt="preview">`
-        }
-
-        overlay.classList.add('visible');
-        disableZoom();
-
-        // close on click
-        overlay.addEventListener('click', () => {
-            overlay.classList.remove('visible');
-            enableZoom();
-        }, { once: true });
-    }
-});
 
 
-/// -- LAZY LOADER --
-const lazyObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const el = entry.target;
+/* --------------------------
+    Toggle view helper
+    -------------------------- */
 
-            // <img>
-            if (el.tagName === "IMG") {
-                el.src = `https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/${el.dataset.src}`;
-                el.onload = () => el.classList.add("loaded");
-            }
-
-            // background-image
-            else if (el.classList.contains("lazy-bg")) {
-                const bgUrl = el.dataset.bg;
-                const img = new Image();
-                img.src = bgUrl;
-                img.onload = () => {
-                    el.style.backgroundImage = `url('https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/${bgUrl}')`;
-                    el.classList.add("loaded");
-                };
-            }
-
-            obs.unobserve(el);
-        }
-    });
-}, { rootMargin: "0px 0px 300px 0px" });
-
-function initLazyLoad() {
-    const lazyImages = document.querySelectorAll("img.lazy:not(.loaded)");
-    const lazyBackgrounds = document.querySelectorAll(".lazy-bg:not(.loaded)");
-
-    lazyImages.forEach(el => lazyObserver.observe(el));
-    lazyBackgrounds.forEach(el => lazyObserver.observe(el));
-}
-
-// Run once on load
-document.addEventListener("DOMContentLoaded", initLazyLoad);
-
-
-
-
-/// -- SPLASHTEXTS --
-window.addEventListener('load', () => {
-    const splashTexts = document.querySelectorAll('.splash-text');
-    splashTexts.forEach(el => {
-        const type = el.dataset.info;
-        if (type === 'info') {
-            el.textContent = "(drag to move, click logo to search)"; // static label
-        }
-        if (type === 'splash') {
-            const text = splashLines[Math.floor(Math.random() * splashLines.length)];
-            el.innerHTML = text;
-            const baseSize = 20; // max font size for short text
-            const minSize = 12;  // never go smaller than this
-            const maxLen = 45;   // expected longest splash length
-
-            let size = baseSize - (text.length / maxLen) * (baseSize - minSize);
-            size = Math.max(minSize, Math.min(size, baseSize)); // clamp
-
-            el.style.fontSize = `${size}px`;
-        }
-    });
-});
-
-
-
-/// -- STARS --
-function createStarfield(layerCount = 3, starsPerLayer = 40) {
-    const container = starfield;
-    for (let l = 0; l < layerCount; l++) {
-        const layer = document.createElement('div');
-        layer.classList.add('star-layer');
-        layer.dataset.depth = 0.5 + Math.random() * 1; // randomize layer parallax
-        for (let i = 0; i < starsPerLayer; i++) {
-            const star = document.createElement('div');
-            star.classList.add('star');
-
-            //random size
-            const size = Math.random() * 2 + 1;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.animationDelay = `-${Math.random() * 5}s`;
-            layer.appendChild(star);
-        }
-        container.appendChild(layer);
-    }
-}
-
-
-
-backBtn.addEventListener('click', goBack);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
-
-centerBtn.addEventListener('click', snapCameraToCenter);
-document.addEventListener('keydown', (e) => { if ((e.key === 'c') && (!searchBox.open)) snapCameraToCenter(); });
-
-// init
-createStarfield();
-createOrbitVisuals();
-createMenuButtons();
-
-// reset url if coming from search
-const params = new URLSearchParams(location.search);
-if (params.get('m') === "search") {
-    history.pushState({}, '', location.pathname);
-}
-
-
-// --- HISTORY STATE HANDLING ---
-window.addEventListener('popstate', (event) => {
-    const params = new URLSearchParams(location.search);
-    const menuCode = params.get('m');
-    const cardKey = params.get('i');
-
-    if (menuCode) {
-        openMenuByQ(menuCode);
-    } else {
-        // Go back to main menu
-        goBack();
-        toggleView({ content: true, show: false });
-        return;
-    }
-
-    const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
-    if (!targetMenu) return;
-    const button = Array.from(document.querySelectorAll('.menu-button'))
-        .find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
-    if (!button) return;
-    openMenu(targetMenu, button, { skipAnimation: true });
-
-    if (cardKey) {
-        const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
-        if (targetLabel) {
-            const cardEl = [...document.querySelectorAll('.card')]
-                .find(c => c.dataset.cardId === cardKey);
-            if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
-        }
-    }
-});
-
-// -- TOGGLE VIEW --
 function toggleView({ content = false, focused = false, show = true } = {}) {
     if (content) {
         if (show) {
@@ -1280,17 +1156,15 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             backBtn.classList.add('visible');
             contentView.setAttribute('aria-hidden', 'false');
             backBtn.setAttribute('aria-hidden', 'false');
-
-            menuStage.classList.add('blur')
-            starfield.classList.add('blur')
+            menuStage.classList.add('blur');
+            starfield?.classList.add('blur');
         } else {
             contentView.classList.remove('visible');
             backBtn.classList.remove('visible');
             contentView.setAttribute('aria-hidden', 'true');
             backBtn.setAttribute('aria-hidden', 'true');
-
-            menuStage.classList.remove('blur')
-            starfield.classList.remove('blur')
+            menuStage.classList.remove('blur');
+            starfield?.classList.remove('blur');
         }
     }
 
@@ -1305,12 +1179,61 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
     }
 }
 
-// -- SERVICE WORKER REGISTRATION --
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js")
-        .catch(err => console.error("SW registration failed:", err));
+
+
+/* --------------------------
+    Service worker registration
+    -------------------------- */
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(err => console.error('SW registration failed:', err));
 }
 
 
-/* Expose some helpers for quick editing in console */
+
+/* --------------------------
+    History popstate handling
+    -------------------------- */
+
+window.addEventListener('popstate', (event) => {
+    const params = new URLSearchParams(location.search);
+    const menuCode = params.get('m');
+    const cardKey = params.get('i');
+
+    if (!menuCode) {
+        goBack();
+        toggleView({ content: true, show: false });
+        return;
+    }
+
+    openMenuByQ(menuCode);
+    const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
+    if (!targetMenu) return;
+    const button = Array.from($$('.menu-button')).find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
+    if (!button) return;
+    openMenu(targetMenu, button, { skipAnimation: true });
+
+    if (cardKey) {
+        const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
+        if (targetLabel) {
+            const cardEl = [...$$('.card')].find(c => c.dataset.cardId === cardKey);
+            if (cardEl) focusCard(cardEl, targetLabel, targetMenu);
+        }
+    }
+});
+
+
+
+/* --------------------------
+    Initialization
+    -------------------------- */
+createStarfield();
+createOrbitVisuals();
+createMenuButtons();
+
+// Reset URL if coming from search (original behavior)
+const params = new URLSearchParams(location.search);
+if (params.get('m') === 'search') history.pushState({}, '', location.pathname);
+
+// Expose small console helpers (preserve original)
 window.prototypeMenu = { menuItems, openMenu, showContentFor, goBack };

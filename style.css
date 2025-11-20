@@ -1193,6 +1193,10 @@ a[data-open-card] {
     animation: twinkle 3s infinite ease-in-out;
 }
 
+.starfield.blur {
+    filter: blur(0.25rem);
+}
+
 
 @keyframes twinkle {
 
