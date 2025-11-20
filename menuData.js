@@ -2,62 +2,56 @@
     WEBSITE MENU DATA
     -------------------------- */
 
+// Metadata
 const lastUpdated = 'November 17th, 2025';
 const version = '0.2.1';
 
+// Main menu data array
 menuItems = [
-    // Menu Template
+    /* --------------------------
+    Menu Template
+    -------------------------- */
     {
-        q: 'menuTemplate', // REQUIRED, ALPHANUMERIC ONLY, NO SPACING - unique identifier of each menu that is used to work with links
-        name: 'Menu Template Example', // the name of the menu + it's title
-        showName: false, // Show the name at the orbit?
-        subtitle: 'This is a menu example', // A short description about the menu
-        image: 'images/temp2.png', // Image for orbit thumbnail - can also be empty
-        color: 'var(--color-15)', // The color of the menu - can be filled with hex code or even left blank (transparent)
-        orbit: 3, // INTEGER - which layer of orbit to place the menu in
-        scale: 1, // the size of the menu in orbit
-        hidden: true, // if set to true, menu will not be shown in orbit. It'll only be accessible through links
-        noFocus: true, // if set to true, menu won't be selected when using the tab key, and it will not shown on search
+        q: 'menuTemplate',                    // REQUIRED: Unique identifier (alphanumeric, no spaces)
+        name: 'Menu Template Example',        // Menu name and title
+        showName: false,                      // Show name in orbit
+        subtitle: 'This is a menu example',   // Short description
+        image: 'images/temp2.png',            // Orbit thumbnail image
+        color: 'var(--color-15)',             // Menu color (hex, CSS var, or blank)
+        orbit: 3,                             // INTEGER: Orbit layer placement
+        scale: 1,                             // Menu size in orbit
+        hidden: true,                         // Hide from orbit (accessible via links only)
+        noFocus: true,                        // Exclude from tab selection and search
         labels: [
-            // with thumb
+            // CARDS WITH THUMBNAILS
             {
-                // normal, clickable cards
-                cardId: 'normalCard', // REQUIRED, ALPHANUMERIC ONLY, NO SPACING - each card in the same menu must have a unique identifier
+                cardId: 'normalCard',         // REQUIRED: Unique card identifier
                 title: 'Normal Card',
                 excerpt: 'With thumbnail',
-                detail:
-                    `
-                    This is a template for a normal card.<br>
-                    You can fill these with whatever you want in raw HTML.
-                    `,
+                detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
                 image: 'images/temp2.png'
             },
             {
-                // cards that redirect to external websites when clicked
                 cardId: 'urlCard',
                 title: 'URL Card',
                 excerpt: 'With thumbnail',
-                url: 'https://x.com/artifyber',
+                url: 'https://x.com/artifyber',  // External URL redirect
                 image: 'images/temp2.png'
             },
             {
-                // cards that can't be clicked. useful to show info
                 cardId: 'unclickableCard',
                 title: 'Unclickable Card',
                 excerpt: 'With thumbnail',
-                unclickable: true,
+                unclickable: true,            // Non-clickable info card
                 image: 'images/temp2.png'
             },
-            // without thumb
+
+            // CARDS WITHOUT THUMBNAILS
             {
                 cardId: 'normalCardPlain',
                 title: 'Normal Card',
                 excerpt: 'Without thumbnail',
-                detail:
-                    `
-                    This is a template for a normal card.<br>
-                    You can fill these with whatever you want in raw HTML.
-                    `
+                detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.'
             },
             {
                 cardId: 'urlCardPlain',
@@ -71,16 +65,16 @@ menuItems = [
                 excerpt: 'With thumbnail',
                 unclickable: true
             },
-            // menu-linked card
+
+            // MENU-LINKED CARDS
             {
-                // if a label doesn't have a cardId, it becomes a separator
+                // Cards without cardId become separators
                 title: 'Menu-Link examples',
                 excerpt: 'Cards that open another menu',
             },
             {
                 cardId: 'menuLinkCard1',
-                linkId: 'deltadim' // fill this with the 'q' property of the menu
-                // the color of a menu-linked card's border uses it's linked menu 'color' property
+                linkId: 'deltadim'  // Links to menu with matching 'q' property
             },
             {
                 cardId: 'menuLinkCard2',
@@ -93,12 +87,12 @@ menuItems = [
         ]
     },
 
-
-
-
-    // actual website menu data
+    /* --------------------------
+    Actual Website Data
+    -------------------------- */
+    
+    // Orbit 1
     {
-        // Orbit 1
         // Deltadim
         name: 'Deltadim',
         q: 'deltadim',
@@ -973,9 +967,8 @@ menuItems = [
         ]
     },
 
-
-    // Floriverse
     {
+        // Floriverse
         name: 'Floriverse',
         q: 'floriverse',
         subtitle: 'Florie Universe',
@@ -1228,9 +1221,8 @@ menuItems = [
         ]
     },
 
-
-    // Digirel
     {
+        // Digirel
         name: 'Digirel',
         q: 'digirel',
         subtitle: 'Digital Realm',
@@ -1444,9 +1436,8 @@ menuItems = [
         ]
     },
 
-
-    // Nansenz
     {
+        // Nansenz
         name: 'Nansenz',
         q: 'nansenz',
         subtitle: 'World of Nonsense',
@@ -1513,9 +1504,8 @@ menuItems = [
         ]
     },
 
-
-    // Hizen
     {
+        // Hizen
         name: 'Hizen',
         q: 'hizen',
         subtitle: 'Hi-Zenith',
@@ -1559,9 +1549,8 @@ menuItems = [
         ]
     },
 
-
-    // Nadir
     {
+        // Nadir
         name: 'Nadir',
         q: 'nadir',
         subtitle: 'Void of Nadir',
@@ -1636,10 +1625,9 @@ menuItems = [
         ]
     },
 
-
     // Orbit 2
-    // Random
     {
+        // Random
         name: 'Random Character',
         q: 'random',
         showName: true,
@@ -1686,10 +1674,9 @@ menuItems = [
         ]
     },
 
-
     // Orbit 4
-    // Information
     {
+        // Information
         name: 'Information',
         q: 'info',
         subtitle: 'Information about Artifyber and this website',
@@ -1833,9 +1820,8 @@ menuItems = [
         ]
     },
 
-
-    // Links
     {
+        // Links
         name: 'Links',
         q: 'links',
         subtitle: 'All links to my social media',
@@ -1939,9 +1925,8 @@ menuItems = [
         ]
     },
 
-
-    // Commissions
     {
+        // Commissions
         name: 'Commissions',
         q: 'comms',
         subtitle: 'Information about art/music commissions',
@@ -2122,8 +2107,8 @@ menuItems = [
         ]
     },
 
-    // Daily Art+
     {
+        // Daily Art+
         q: 'loopTest',
         name: 'loopTest',
         color: 'var(--color-15)',
@@ -2172,41 +2157,31 @@ menuItems = [
 ];
 
 
+// Easter Egg: Beecat
 if (Math.floor(Math.random() * 333) == 0) {
     menuItems.forEach(menu => {
         if (menu.name == "Information") {
-            menu.labels.push(
-                {
-                    cardId: 'beecat',
-                    title: 'Beecat',
-                    excerpt: 'Beecat',
-                    detail:
-                        `
-                        It's a bee!<br>
-                        It's a cat!<br>
-                        It's a beecat!<br>
-                        And it's spinning!<br>
-                        But why is it spinning?<br>
-                        <br>
-                        Character by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
-                        <br>
-                        <img src="images/beecatspin.gif" data-caption="Beecat" data-subcaption="beecatspin.gif" style="width: 100%">
-                        `,
-                    image: 'images/beecatspin.gif'
-                }
-            )
+            menu.labels.push({
+                cardId: 'beecat',
+                title: 'Beecat',
+                excerpt: 'Beecat',
+                detail: `It's a bee!<br>It's a cat!<br>It's a beecat!<br>And it's spinning!<br>But why is it spinning?<br><br>
+                Character by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br><br>
+                <img src="images/beecatspin.gif" data-caption="Beecat" data-subcaption="beecatspin.gif" style="width: 100%">`,
+                image: 'images/beecatspin.gif'
+            });
         }
     });
 }
 
 
 
-
-
-
-
-
-// generate placeholder cards
+/**
+ * Generate placeholder cards for testing
+ * @param {number} n - Number of placeholder cards to generate
+ * @param {string} prefix - Prefix for card titles
+ * @returns {Array} Array of placeholder card objects
+ */
 function generateLabels(n, prefix) {
     return Array.from({ length: n }).map((_, i) => ({
         id: i + 1,
@@ -2214,9 +2189,10 @@ function generateLabels(n, prefix) {
         excerpt: `This is a short placeholder excerpt for ${prefix} item ${i + 1}.`,
         detail: `Detailed description for ${prefix} item ${i + 1}. You can replace this with whatever content you want. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut nulla sed velit malesuada fermentum.`,
         image: 'images/temp.png'
-    }))
+    }));
 }
 
+// Calculate totals for statistics
 totalCards = menuItems.reduce((sum, item) => sum + item.labels.length, 0);
 totalCharacters = menuItems.reduce((sum, item) => sum + item.labels.filter(label => label.isCharacter).length, 0);
 totalMenus = menuItems.length;
