@@ -499,8 +499,10 @@ function showContentFor(menu) {
     section.className = 'cards-grid';
     cardsContainer.appendChild(section);
 
+    let i = 0;
     menu.labels.forEach((lbl) => {
         // Separator / header (no cardId)
+        console.log(i);
         if (!lbl.cardId) {
             const header = document.createElement('div');
             header.className = 'content-header section-header';
@@ -528,6 +530,7 @@ function showContentFor(menu) {
             section = document.createElement('div');
             section.className = 'cards-grid';
             cardsContainer.appendChild(section);
+            i++;
             return;
         }
 
@@ -548,7 +551,7 @@ function showContentFor(menu) {
                         <strong>${linkedMenu.name}</strong>
                         <div class="excerpt">${linkedMenu.subtitle || ''}</div>
                     </div>
-                    <div class="menu-button bubble" style="background:${linkedMenu.color || 'transparent'}">
+                    <div class="menu-button bubble" style="background:${linkedMenu.color || 'transparent'}; animation-delay: ${i * -0.5}s; box-shadow: 0 0 10px ${linkedMenu.color}">
                         <div class="inner">
                             <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ''}'></div>
                         </div>
@@ -557,6 +560,7 @@ function showContentFor(menu) {
                 c.addEventListener('click', (e) => { e.stopPropagation(); openMenuByQ(lbl.linkId, true); });
             }
             section.appendChild(c);
+            i++;
             return;
         }
 
