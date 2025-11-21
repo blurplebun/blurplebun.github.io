@@ -502,7 +502,6 @@ function showContentFor(menu) {
     let i = 0;
     menu.labels.forEach((lbl) => {
         // Separator / header (no cardId)
-        console.log(i);
         if (!lbl.cardId) {
             const header = document.createElement('div');
             header.className = 'content-header section-header';
