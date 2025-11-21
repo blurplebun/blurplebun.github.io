@@ -920,7 +920,7 @@ function search() {
         let matches;
         if (q === 'all') {
             matches = menu.labels;
-        } else if (q === 'characters' || q === 'character') {
+        } else if (q === 'characters' || q === 'character' || q === 'oc') {
             matches = menu.labels.filter(label => isCharacter(label));
         } else {
             matches = menu.labels.filter(label => {
