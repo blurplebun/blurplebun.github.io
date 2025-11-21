@@ -2109,7 +2109,6 @@ function generateLabels(n, prefix) {
 
 // Special search responses
 specialSearch = {
-    all: { special: true },
     nothing: {
         title: 'Nothing found!',
         excerpt: ''

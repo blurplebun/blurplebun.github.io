@@ -920,11 +920,19 @@ function search() {
         let matches;
         if (q === 'all') {
             matches = menu.labels;
+        } else if (q === 'characters' || q === 'character') {
+            matches = menu.labels.filter(label => isCharacter(label));
         } else {
             matches = menu.labels.filter(label => {
                 return (label.title && stripHTML(label.title).toLowerCase().includes(q)) ||
                     (label.excerpt && stripHTML(label.excerpt).toLowerCase().includes(q)) ||
-                    (label.detail && stripHTML(label.detail).toLowerCase().includes(q));
+                    (label.detail && stripHTML(label.detail).toLowerCase().includes(q)) ||
+                    (label.cSpecies && stripHTML(label.cSpecies).toLowerCase().includes(q)) ||
+                    (label.cPronouns && stripHTML(label.cPronouns).toLowerCase().includes(q)) ||
+                    (label.cGender && stripHTML(label.cGender).toLowerCase().includes(q)) ||
+                    (label.cSexuality && stripHTML(label.cSexuality).toLowerCase().includes(q)) ||
+                    (label.cNicknames && stripHTML(label.cNicknames).toLowerCase().includes(q)) ||
+                    (label.cAddons && stripHTML(label.cAddons).toLowerCase().includes(q));
             });
         }
 
@@ -949,11 +957,9 @@ function search() {
 
     let specialQuery = false;
     if (specialCase.includes(q)) {
-        if (!(q === 'all')) {
-            menusFound = [];
-            menuMatches = [];
-            specialQuery = true;
-        }
+        menusFound = [];
+        menuMatches = [];
+        specialQuery = true;
     }
 
     if (menusFound.length === 0 && menuMatches.length === 0) {
