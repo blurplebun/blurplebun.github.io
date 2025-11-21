@@ -205,10 +205,6 @@ body {
     opacity: .85
 }
 
-.menu-button .inner {
-    transform: rotate(0deg)
-}
-
 .menu-button {
     position: absolute;
     left: 50%;
@@ -237,10 +233,11 @@ body {
 .menu-thumb-square {
     width: 100%;
     aspect-ratio: 1 / 1;
-    border-radius: 10px;
+    border-radius: 50%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    scale: 1.1375;
 }
 
 .menu-center-text {

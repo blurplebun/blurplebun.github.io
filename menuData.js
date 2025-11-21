@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'November 20th, 2025';
-const version = '0.2.2';
+const lastUpdated = 'November 21th, 2025';
+const version = '0.2.3';
 
 // Main menu data array
 menuItems = [
@@ -98,6 +98,7 @@ menuItems = [
         q: 'deltadim',
         subtitle: 'Delta Dimension',
         image: 'icons/deltadim.png',
+        scale: 1,
         color: 'var(--color-1)',
         orbit: 1,
         labels: [
@@ -141,413 +142,374 @@ menuItems = [
                 cardId: 'artibun',
                 title: 'Artibun',
                 excerpt: '',
-                detail:
-                    `Species: Rabbit<br>
-                Pronouns: She/Any<br>
-                Gender: Bigender<br>
-                Sexuality: Bisexual<br>
-                Nickname: Arti, Bunbun<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:articat">Articat</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/artibun-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artibun-c.png">
-                    <img src="images/c/artibun-c2.png">
-                    <img src="images/c/artibun-c3.png">
-                    <img src="images/c/artibun-c4.png">
-                    <img src="images/c/artibun-c5.png">
-                    <img src="images/c/artibun-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Rabbit',
+                cPronouns: 'She/Any',
+                cGender: 'Bigender',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Arti, Bunbun',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:articat">Articat</a>',
+                cReference: 'images/r/artibun-r.png',
+                cGallery: [
+                    'images/c/artibun-c.png',
+                    'images/c/artibun-c2.png',
+                    'images/c/artibun-c3.png',
+                    'images/c/artibun-c4.png',
+                    'images/c/artibun-c5.png',
+                    'images/c/artibun-c6.png',
+                ],
+
                 image: 'images/i/artibun-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'articat',
                 title: 'Articat',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: He/Any<br>
-                Gender: Male<br>
-                Sexuality: Bisexual<br>
-                Nickname: Arti, Kiki<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:artibun">Artibun</a><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/articat-c.png">
-                    <img src="images/c/articat-c2.png">
-                    <img src="images/c/articat-c3.png">
-                    <img src="images/c/articat-c4.png">
-                    <img src="images/c/articat-c5.png">
-                    <img src="images/c/articat-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'He/Any',
+                cGender: 'Male',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Arti, Kiki',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artibun">Artibun</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/articat-c.png',
+                    'images/c/articat-c2.png',
+                    'images/c/articat-c3.png',
+                    'images/c/articat-c4.png',
+                    'images/c/articat-c5.png',
+                    'images/c/articat-c6.png',
+                ],
+                
                 image: 'images/i/articat-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'artifox',
                 title: 'Artifox',
                 excerpt: '',
-                detail:
-                    `Species: Fox<br>
-                Pronouns: He/They<br>
-                Gender: Trans-male<br>
-                Sexuality: Bisexual<br>
-                Nickname: Arti, Fofo, Foxxo<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artifox-c.png">
-                    <img src="images/c/artifox-c2.png">
-                    <img src="images/c/artifox-c3.png">
-                    <img src="images/c/artifox-c4.png">
-                    <img src="images/c/artifox-c5.png">
-                    <img src="images/c/artifox-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Fox',
+                cPronouns: 'He/They',
+                cGender: 'Trans-male',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Arti, Fofo, Foxxo',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artifox-c.png',
+                    'images/c/artifox-c2.png',
+                    'images/c/artifox-c3.png',
+                    'images/c/artifox-c4.png',
+                    'images/c/artifox-c5.png',
+                    'images/c/artifox-c6.png',
+                ],
+
                 image: 'images/i/artifox-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'artifish',
                 title: 'Artifish',
                 excerpt: '',
-                detail:
-                    `Species: Cat + Shark<br>
-                Pronouns: They<br>
-                Gender: Non-Binary<br>
-                Sexuality: Demisexual<br>
-                Nickname: Arti, Fifi<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:artilope">Artilope</a><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artifish-c.png">
-                    <img src="images/c/artifish-c2.png">
-                    <img src="images/c/artifish-c3.png">
-                    <img src="images/c/artifish-c4.png">
-                    <img src="images/c/artifish-c5.png">
-                    <img src="images/c/artifish-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat + Shark',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cSexuality: 'Demisexual',
+                cNicknames: 'Arti, Fifi',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artifish-c.png',
+                    'images/c/artifish-c2.png',
+                    'images/c/artifish-c3.png',
+                    'images/c/artifish-c4.png',
+                    'images/c/artifish-c5.png',
+                    'images/c/artifish-c6.png',
+                ],
+                
                 image: 'images/i/artifish-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'artigoat',
                 title: 'Artigoat',
                 excerpt: '',
-                detail:
-                    `Species: Goat<br>
-                Pronouns: He<br>
-                Gender: Male<br>
-                Sexuality: Gay<br>
-                Nickname: Arti, Baba<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:artipup">Artipup</a><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artigoat-c.png">
-                    <img src="images/c/artigoat-c2.png">
-                    <img src="images/c/artigoat-c3.png">
-                    <img src="images/c/artigoat-c4.png">
-                    <img src="images/c/artigoat-c5.png">
-                    <img src="images/c/artigoat-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Goat',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cSexuality: 'Gay',
+                cNicknames: 'Arti, Baba, Goat',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artipup">Artipup</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/artigoat-c.png',
+                    'images/c/artigoat-c2.png',
+                    'images/c/artigoat-c3.png',
+                    'images/c/artigoat-c4.png',
+                    'images/c/artigoat-c5.png',
+                    'images/c/artigoat-c6.png',
+                ],
+                
                 image: 'images/i/artigoat-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'artilope',
                 title: 'Artilope',
                 excerpt: '',
-                detail:
-                    `Species: Jackalope<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Demisexual<br>
-                Nickname: Arti, Lolo, Lope<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artilope-c.png">
-                    <img src="images/c/artilope-c2.png">
-                    <img src="images/c/artilope-c3.png">
-                    <img src="images/c/artilope-c4.png">
-                    <img src="images/c/artilope-c5.png">
-                    <img src="images/c/artilope-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Jackalope',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Demisexual',
+                cNicknames: 'Arti, Lolo, Jacquie, Jacqueline',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artilope-c.png',
+                    'images/c/artilope-c2.png',
+                    'images/c/artilope-c3.png',
+                    'images/c/artilope-c4.png',
+                    'images/c/artilope-c5.png',
+                    'images/c/artilope-c6.png',
+                ],
+                
                 image: 'images/i/artilope-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'artipup',
                 title: 'Artipup',
                 excerpt: '',
-                detail:
-                    `Species: Dog<br>
-                Pronouns: He/They<br>
-                Gender: Male<br>
-                Sexuality: Gay<br>
-                Nickname: Arti, Arfy<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:artigoat">Artigoat</a><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artipup-c.png">
-                    <img src="images/c/artipup-c2.png">
-                    <img src="images/c/artipup-c3.png">
-                    <img src="images/c/artipup-c4.png">
-                    <img src="images/c/artipup-c5.png">
-                    <img src="images/c/artipup-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Dog',
+                cPronouns: 'He/They',
+                cGender: 'Male',
+                cSexuality: 'Gay',
+                cNicknames: 'Arti, Arfy, Puppy',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artigoat">Artigoat</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/artipup-c.png',
+                    'images/c/artipup-c2.png',
+                    'images/c/artipup-c3.png',
+                    'images/c/artipup-c4.png',
+                    'images/c/artipup-c5.png',
+                    'images/c/artipup-c6.png',
+                ],
+                
                 image: 'images/i/artipup-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'artineko',
                 title: 'Artineko',
                 excerpt: '',
-                detail:
-                    `Species: Human (cat cosplay)<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Aroace<br>
-                Nickname: Arti, Nay, Neko<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artineko-c.png">
-                    <img src="images/c/artineko-c2.png">
-                    <img src="images/c/artineko-c3.png">
-                    <img src="images/c/artineko-c4.png">
-                    <img src="images/c/artineko-c5.png">
-                    <img src="images/c/artineko-c6.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Human (cat cosplay)',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Aroace',
+                cNicknames: 'Arti, Nay, Neko',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artineko-c.png',
+                    'images/c/artineko-c2.png',
+                    'images/c/artineko-c3.png',
+                    'images/c/artineko-c4.png',
+                    'images/c/artineko-c5.png',
+                    'images/c/artineko-c6.png',
+                ],
+                
                 image: 'images/i/artineko-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'eros',
                 title: 'Eros',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: She/They<br>
-                Gender: Trans-female<br>
-                Sexuality: Demisexual<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:sora">Sora</a><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/eros-c.png"><br>
-                    <img src="images/c/eros-c2.png"><br>
-                    <img src="images/c/eros-c3.png"><br>
-                    <img src="images/c/eros-c4.png"><br>
-                    <img src="images/c/eros-c5.png"><br>
-                    <img src="images/c/eros-c6.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'She/They',
+                cGender: 'Trans-female',
+                cSexuality: 'Demisexual',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:sora">Sora</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/eros-c.png',
+                    'images/c/eros-c2.png',
+                    'images/c/eros-c3.png',
+                    'images/c/eros-c4.png',
+                    'images/c/eros-c5.png',
+                    'images/c/eros-c6.png',
+                ],
+                
                 image: 'images/i/eros-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'sora',
                 title: 'Sora',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: She/They<br>
-                Gender: Trans-female<br>
-                Sexuality: Bisexual<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:eros">Eros</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/sora-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/sora-c.png"><br>
-                    <img src="images/c/sora-c2.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'She/They',
+                cGender: 'Trans-female',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:eros">Eros</a>',
+                cReference: 'images/r/sora-r.png',
+                cGallery: [
+                    'images/c/sora-c.png',
+                    'images/c/sora-c2.png',
+                ],
+                
                 image: 'images/i/sora-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'furfy',
                 title: 'Furfy',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Lesbian<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/furfy-c.png"><br>
-                    <img src="images/c/furfy-c2.png"><br>
-                    <img src="images/c/furfy-c3.png"><br>
-                    <img src="images/c/furfy-c4.png"><br>
-                    <img src="images/c/furfy-c5.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/furfy-c.png',
+                    'images/c/furfy-c2.png',
+                    'images/c/furfy-c3.png',
+                    'images/c/furfy-c4.png',
+                    'images/c/furfy-c5.png',
+                ],
+                
                 image: 'images/i/furfy-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'card',
                 title: 'Card',
                 excerpt: '',
-                detail:
-                    `Species: Cardboard<br>
-                Pronouns: She/Any<br>
-                Gender: Female<br>
-                Sexuality: Bisexual<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:gift">Gift</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/card-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/card-c.png"><br>
-                    <img src="images/c/card-c2.png"><br>
-                    <img src="images/c/card-c3.png"><br>
-                    <img src="images/c/card-c4.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cardboard Cat',
+                cPronouns: 'She/Any',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:gift">Gift</a>',
+                cReference: 'images/r/card-r.png',
+                cGallery: [
+                    'images/c/card-c.png',
+                    'images/c/card-c2.png',
+                    'images/c/card-c3.png',
+                    'images/c/card-c4.png',
+                ],
+                
                 image: 'images/i/card-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'gift',
                 title: 'Gift',
                 excerpt: '',
-                detail:
-                    `Species: Giftbox<br>
-                Pronouns: She/Any<br>
-                Gender: Female<br>
-                Sexuality: Bisexual<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:card">Card</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/gift-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Giftbox Rabbit',
+                cPronouns: 'She/Any',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:card">Card</a>',
+                cReference: 'images/r/gift-r.png',
+                cGallery: [],
+                
                 image: 'images/i/gift-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'elise',
                 title: 'Elise',
                 excerpt: '',
-                detail:
-                    `Species: Sea Bunny<br>
-                Pronouns: She/They<br>
-                Gender: Female<br>
-                Sexuality: Lesbian<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/elise-c.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Sea Bunny',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/elise-c.png',
+                ],
+                
                 image: 'images/i/elise-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'fika',
                 title: 'Fika',
                 excerpt: '',
-                detail:
-                    `Species: Fox<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Heterosexual<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:rai">Rai</a><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/fika-c.png"><br>
-                    <img src="images/c/fika-c2.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Fox',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Heterosexual',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:rai">Rai</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/fika-c.png',
+                    'images/c/fika-c2.png',
+                ],
+                
                 image: 'images/i/fika-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'rai',
                 title: 'Rai',
                 excerpt: '',
-                detail:
-                    `Species: Fox<br>
-                Pronouns: He<br>
-                Gender: Male<br>
-                Sexuality: Heterosexual<br>
-                <br>
-                S/O: <a data-open-card="deltadim-teksui:fika">Fika</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/rai-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/rai-c.png"><br>
-                    <img src="images/c/rai-c2.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Fox',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cSexuality: 'Heterosexual',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:fika">Fika</a>',
+                cReference: 'images/r/rai-r.png',
+                cGallery: [
+                    'images/c/rai-c.png',
+                    'images/c/rai-c2.png',
+                ],
+                
                 image: 'images/i/rai-i.png',
-                isCharacter: true
             },
         ]
     },
@@ -567,261 +529,237 @@ menuItems = [
                 cardId: 'shirley',
                 title: 'Shirley',
                 excerpt: '',
-                detail:
-                    `Species: Cat + Fox<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Heterosexual<br>
-                Nickname: Manda, Alamanda<br>
-                <br>
-                S/O: <a data-open-card="deltadim-chromasia:rose">Rose</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/shirley-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/shirley-c.png"><br>
-                    <img src="images/c/shirley-c2.png"><br>
-                    <img src="images/c/shirley-c3.png"><br>
-                    <img src="images/c/shirley-c4.png"><br>
-                    <img src="images/c/shirley-c5.png"><br>
-                    <img src="images/c/shirley-c6.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat + Fox',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Heterosexual',
+                cNicknames: 'Manda, Alamanda',
+                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:rose">Rose</a>',
+                cReference: 'images/r/shirley-r.png',
+                cGallery: [
+                    'images/c/shirley-c.png',
+                    'images/c/shirley-c2.png',
+                    'images/c/shirley-c3.png',
+                    'images/c/shirley-c4.png',
+                    'images/c/shirley-c5.png',
+                    'images/c/shirley-c6.png',
+                ],
+                
                 image: 'images/i/shirley-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'rose',
                 title: 'Rose',
                 excerpt: '',
-                detail:
-                    `Species: Fox<br>
-                Pronouns: He/Any<br>
-                Gender: Male<br>
-                Sexuality: Heterosexual<br>
-                Nickname: Rosey<br>
-                <br>
-                S/O: <a data-open-card="deltadim-chromasia:shirley">Shirley</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/rose-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/rose-c.png"><br>
-                    <img src="images/c/rose-c2.png"><br>
-                    <img src="images/c/rose-c3.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Fox',
+                cPronouns: 'He/Any',
+                cGender: 'Male',
+                cSexuality: 'Heterosexual',
+                cNicknames: 'Rosey',
+                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:shirley">Shirley</a>',
+                cReference: 'images/r/rose-r.png',
+                cGallery: [
+                    'images/c/rose-c.png',
+                    'images/c/rose-c2.png',
+                    'images/c/rose-c3.png',
+                ],
+                
                 image: 'images/i/rose-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'hana',
                 title: 'Hana',
                 excerpt: '',
-                detail:
-                    `Species: Bee<br>
-                Pronouns: She/They<br>
-                Gender: Demigirl<br>
-                Sexuality: Lesbian<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/hana-c.png"><br>
-                    <img src="images/c/hana-c2.png"><br>
-                    <img src="images/c/hana-c3.png"><br>
-                    <img src="images/c/hana-c4.png"><br>
-                    <img src="images/c/hana-c5.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Bee',
+                cPronouns: 'She/They',
+                cGender: 'Demigirl',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/hana-c.png',
+                    'images/c/hana-c2.png',
+                    'images/c/hana-c3.png',
+                    'images/c/hana-c4.png',
+                    'images/c/hana-c5.png',
+                ],
+                
                 image: 'images/i/hana-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'caramella',
                 title: 'Caramella',
                 excerpt: '',
-                detail:
-                    `Species: Cat + Shrimp<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Bisexual<br>
-                Nickname: Mella<br>
-                <br>
-                S/O: <a data-open-card="deltadim-chromasia:azurey">Azurey</a><br>
-                <br>
-                Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/caramella-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/caramella-c.png"><br>
-                    <img src="images/c/caramella-c2.png"><br>
-                    <img src="images/c/caramella-c3.png"><br>
-                    <img src="images/c/caramella-c4.png"><br>
-                    <img src="images/c/caramella-c5.png"><br>
-                    <img src="images/c/caramella-c6.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat + Shrimp',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Mella',
+                cAddOns:
+                    `S/O: <a data-open-card="deltadim-chromasia:azurey">Azurey</a><br>
+                    Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a>`,
+                cReference: 'images/r/caramella-r.png',
+                cGallery: [
+                    'images/c/caramella-c.png',
+                    'images/c/caramella-c2.png',
+                    'images/c/caramella-c3.png',
+                    'images/c/caramella-c4.png',
+                    'images/c/caramella-c5.png',
+                    'images/c/caramella-c6.png',
+                ],
+                
                 image: 'images/i/caramella-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'azurey',
                 title: 'Azurey',
                 excerpt: '',
-                detail:
-                    `Species: Cat + Shark<br>
-                Pronouns: He/They<br>
-                Gender: Demiboy<br>
-                Sexuality: Pansexual<br>
-                Nickname: Azu<br>
-                <br>
-                S/O: <a data-open-card="deltadim-chromasia:caramella">Caramella</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/azurey-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/azurey-c.png"><br>
-                    <img src="images/c/azurey-c2.png"><br>
-                    <img src="images/c/azurey-c3.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat + Shark',
+                cPronouns: 'He/They',
+                cGender: 'Demiboy',
+                cSexuality: 'Pansexual',
+                cNicknames: 'Azu',
+                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:caramella">Caramella</a>',
+                cReference: 'images/r/azurey-r.png',
+                cGallery: [
+                    'images/c/azurey-c.png',
+                    'images/c/azurey-c2.png',
+                    'images/c/azurey-c3.png',
+                ],
+                
                 image: 'images/i/azurey-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'mida',
                 title: 'Mida',
                 excerpt: '',
-                detail:
-                    `Species: Medusa Cat<br>
-                Pronouns: She/They<br>
-                Gender: Female<br>
-                Sexuality: Pansexual<br>
-                Nickname: Meowdusa<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/mida-c.png"><br>
-                    <img src="images/c/mida-c2.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Medusa + Cat',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Pansexual',
+                cNicknames: 'Meowdusa',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/mida-c.png',
+                    'images/c/mida-c2.png',
+                ],
+                
                 image: 'images/i/mida-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'lilac',
                 title: 'Lilac',
                 excerpt: '',
-                detail:
-                    `Species: Angel-Demon Kitty Thing<br>
-                Pronouns: She/Any<br>
-                Gender: Female<br>
-                Sexuality: Pansexual<br>
-                <br>
-                Adopted from <a href="https://x.com/naycookye" target="_blank">naycookye</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/lilac-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Angel-Demon Cat',
+                cPronouns: 'She/Any',
+                cGender: 'Female',
+                cSexuality: 'Pansexual',
+                cNicknames: '',
+                cAddOns: 'Adopted from <a href="https://x.com/naycookye" target="_blank">naycookye</a>',
+                cReference: 'images/r/lilac-r.png',
+                cGallery: [],
+                
                 image: 'images/i/lilac-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'moka',
                 title: 'Moka',
                 excerpt: '',
-                detail:
-                    `Species: Dog<br>
-                Pronouns: He/They<br>
-                Gender: Trans-Male<br>
-                Sexuality: Bisexual<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/moka-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Dog',
+                cPronouns: 'He/They',
+                cGender: 'Trans-male',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/moka-r.png',
+                cGallery: [],
+                
                 image: 'images/i/moka-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'nameless',
                 title: 'Nameless',
                 excerpt: '',
-                detail:
-                    `Species: Fennec + Cat<br>
-                Pronouns: He/They<br>
-                Gender: Male<br>
-                Sexuality: Gay<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/nameless-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/nameless-c.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Fennec + Cat',
+                cPronouns: 'He/They',
+                cGender: 'Male',
+                cSexuality: 'Gay',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/nameless-r.png',
+                cGallery: [
+                    'images/c/nameless-c.png',
+                ],
+                
                 image: 'images/i/nameless-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'nuki',
                 title: 'Nuki',
                 excerpt: '',
-                detail:
-                    `Species: Tanuki<br>
-                Pronouns: She/Any<br>
-                Gender: Female<br>
-                Sexuality: Asexual<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/nuki-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/nuki-c.png"><br>
-                    <img src="images/c/nuki-c2.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Tanuki',
+                cPronouns: 'She/Any',
+                cGender: 'Female',
+                cSexuality: 'Asexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/nuki-r.png',
+                cGallery: [
+                    'images/c/nuki-c.png',
+                    'images/c/nuki-c2.png',
+                ],
+                
                 image: 'images/i/nuki-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'sawo',
                 title: 'Sawo',
                 excerpt: '',
-                detail:
-                    `Species: Bunny<br>
-                Pronouns: He/They<br>
-                Gender: Male<br>
-                Sexuality: Probably Gay<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/sawo-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Rabbit',
+                cPronouns: 'He/They',
+                cGender: 'Male',
+                cSexuality: 'Probably Gay',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/sawo-r.png',
+                cGallery: [],
+                
                 image: 'images/i/sawo-i.png',
-                isCharacter: true
             },
         ]
     },
@@ -841,128 +779,113 @@ menuItems = [
                 cardId: 'skitty',
                 title: 'Singularikitty',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: Any Pronouns<br>
-                Gender: Pangender<br>
-                Sexuality: Aroace<br>
-                Nickname: Skitty<br>
-                <br>
-                Adopted from <a href="https://x.com/C0denameDelta" target="_blank">C0denameDelta</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/skitty-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/skitty-c.png"><br>
-                    <img src="images/c/skitty-c2.png"><br>
-                    <img src="images/c/skitty-c3.png"><br>
-                    <img src="images/c/skitty-c4.png"><br>
-                    <img src="images/c/skitty-c5.png"><br>
-                    <img src="images/c/skitty-c6.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'Any Pronouns',
+                cGender: 'Pangender',
+                cSexuality: 'Aroace',
+                cNicknames: 'Skitty',
+                cAddOns: 'Adopted from <a href="https://x.com/C0denameDelta" target="_blank">C0denameDelta</a>',
+                cReference: 'images/r/skitty-r.png',
+                cGallery: [
+                    'images/c/skitty-c.png',
+                    'images/c/skitty-c2.png',
+                    'images/c/skitty-c3.png',
+                    'images/c/skitty-c4.png',
+                    'images/c/skitty-c5.png',
+                    'images/c/skitty-c6.png',
+                ],
+                
                 image: 'images/i/skitty-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'gamma',
                 title: 'Gamma',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: She<br>
-                Gender: Female<br>
-                Sexuality: Bisexual<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/gamma-c.png"><br>
-                    <img src="images/c/gamma-c2.png"><br>
-                    <img src="images/c/gamma-c3.png"><br>
-                    <img src="images/c/gamma-c4.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/gamma-c.png',
+                    'images/c/gamma-c2.png',
+                    'images/c/gamma-c3.png',
+                    'images/c/gamma-c4.png',
+                ],
+                
                 image: 'images/i/gamma-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'micro',
                 title: 'Micro',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: They<br>
-                Gender: Non-Binary<br>
-                Sexuality: Omnisexual<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/micro-c.png"><br>
-                    <img src="images/c/micro-c2.png"><br>
-                    <img src="images/c/micro-c3.png"><br>
-                    <img src="images/c/micro-c4.png"><br>
-                    <img src="images/c/micro-c5.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cSexuality: 'Omnisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/micro-c.png',
+                    'images/c/micro-c2.png',
+                    'images/c/micro-c3.png',
+                    'images/c/micro-c4.png',
+                    'images/c/micro-c5.png',
+                ],
+                
                 image: 'images/i/micro-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'articani',
                 title: 'Articani',
                 excerpt: '',
-                detail:
-                    `Species: Lucani<br>
-                Pronouns: He/They<br>
-                Gender: Male<br>
-                Sexuality: Heterosexual<br>
-                Nickname: Cani<br>
-                <br>
-                Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/articani-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/articani-c.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Lucani',
+                cPronouns: 'He/They',
+                cGender: 'Male',
+                cSexuality: 'Heterosexual',
+                cNicknames: 'Cani',
+                cAddOns: 'Lucani is an open-species created by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a>',
+                cReference: 'images/r/articani-r.png',
+                cGallery: [
+                    'images/c/articani-c.png',
+                ],
+                
                 image: 'images/i/articani-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'ryon',
                 title: 'Ryon',
                 excerpt: '',
-                detail:
-                    `Species: Lucani<br>
-                Pronouns: Any Pronouns<br>
-                Gender: Non-Binary<br>
-                Sexuality: Asexual<br>
-                Nickname: Baryon<br>
-                <br>
-                Lucani open-species by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/ryon-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/ryon-c.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Lucani',
+                cPronouns: 'Any Pronouns',
+                cGender: 'Non-binary',
+                cSexuality: 'Asexual',
+                cNicknames: 'Baryon',
+                cAddOns: 'Lucani is an open-species created by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a>',
+                cReference: 'images/r/ryon-r.png',
+                cGallery: [
+                    'images/c/ryon-c.png',
+                ],
+                
                 image: 'images/i/ryon-i.png',
-                isCharacter: true
             },
         ]
     },
@@ -1244,194 +1167,187 @@ menuItems = [
                 cardId: 'soap',
                 title: 'Soap',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: They/Any<br>
-                Gender: Non-Binary<br>
-                Sexuality: Asexual<br>
-                Nickname: Foam<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/soap-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/soap-c.png">
-                    <img src="images/c/soap-c2.png">
-                    <img src="images/c/soap-c3.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'They/Any',
+                cGender: 'Non-binary',
+                cSexuality: 'Asexual',
+                cNicknames: 'Foam',
+                cAddOns: '',
+                cReference: 'images/r/soap-r.png',
+                cGallery: [
+                    'images/c/soap-c.png',
+                    'images/c/soap-c2.png',
+                    'images/c/soap-c3.png',
+                ],
+                
                 image: 'images/i/soap-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'semyk',
                 title: 'Semyk',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: Any Pronouns<br>
-                Gender: Any Gender<br>
-                Sexuality: who cares bro<br>
-                Nickname: CMYK, D43DK177Y.exe<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/semyk-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/semyk-c.png">
-                    <img src="images/c/semyk-c2.png">
-                    <img src="images/c/semyk-c3.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'Any Pronouns',
+                cGender: 'Any Gender',
+                cSexuality: 'who cares bro',
+                cNicknames: 'CMYK, D43DK177Y.exe',
+                cAddOns: '',
+                cReference: 'images/r/semyk-r.png',
+                cGallery: [
+                    'images/c/semyk-c.png',
+                    'images/c/semyk-c2.png',
+                    'images/c/semyk-c3.png',
+                ],
+                
                 image: 'images/i/semyk-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'artifolder',
                 title: 'Artifolder',
                 excerpt: '',
-                detail:
-                    `Species: Folder Bee<br>
-                Pronouns: Any Pronouns<br>
-                Gender: Female<br>
-                Sexuality: Pansexual<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/artifolder-c.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Folder Bee',
+                cPronouns: 'Any Pronouns',
+                cGender: 'Female',
+                cSexuality: 'Pansexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artifolder-c.png',
+                ],
+                
                 image: 'images/i/artifolder-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'byte',
                 title: 'Byte',
                 excerpt: '',
-                detail:
-                    `Species: Folder Cat<br>
-                Pronouns: He/They<br>
-                Gender: Demiboy<br>
-                Sexuality: Asexual<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/byte-c.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Folder Cat',
+                cPronouns: 'He/They',
+                cGender: 'Demiboy',
+                cSexuality: 'Asexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/byte-c.png',
+                ],
+                
                 image: 'images/i/byte-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'cherry',
                 title: 'Cherry',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: She/They<br>
-                Gender: Demigirl<br>
-                Sexuality: Bisexual<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/cherry-c.png">
-                    <img src="images/c/cherry-c2.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'She/They',
+                cGender: 'Demigirl',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/cherry-c.png',
+                    'images/c/cherry-c2.png',
+                ],
+                
                 image: 'images/i/cherry-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'ebta',
                 title: 'Ebta',
                 excerpt: '',
-                detail:
-                    `Species: Slime Bunny<br>
-                Pronouns: She/They/Any<br>
-                Gender: Pangender<br>
-                Sexuality: Bisexual<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/ebta-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/ebta-c.png">
-                    <img src="images/c/ebta-c2.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Slime Rabbit',
+                cPronouns: 'She/They/Any',
+                cGender: 'Pangender',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/ebta-r.png',
+                cGallery: [
+                    'images/c/ebta-c.png',
+                    'images/c/ebta-c2.png',
+                ],
+                
                 image: 'images/i/ebta-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'placeholder',
                 title: '&lt;placeholder&gt;',
                 excerpt: '',
-                detail:
-                    `Species: Cat<br>
-                Pronouns: Any Pronouns<br>
-                Gender: None<br>
-                Sexuality: None<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/placeholder-c.png">
-                    <img src="images/c/placeholder-c2.png">
-                    <img src="images/c/placeholder-c3.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'Any Pronouns',
+                cGender: 'None',
+                cSexuality: 'None',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/placeholder-c.png',
+                    'images/c/placeholder-c2.png',
+                    'images/c/placeholder-c3.png',
+                ],
+                
                 image: 'images/i/placeholder-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'sakura',
                 title: 'Sakura',
                 excerpt: '',
-                detail:
-                    `Species: Digitalia<br>
-                Pronouns: She/They<br>
-                Gender: Female<br>
-                Sexuality: Lesbian<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/sakura-c.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Digitalia',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/sakura-c.png',
+                ],
+                
                 image: 'images/i/sakura-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'quanta',
                 title: 'Quanta',
                 excerpt: '',
-                detail:
-                    `Species: Hologram Cat<br>
-                Pronouns: They<br>
-                Gender: Non-Binary<br>
-                Sexuality: Pansexual<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/quanta-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Hologram Cat',
+                cPronouns: 'They',
+                cGender: 'Non-Binary',
+                cSexuality: 'Pansexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/quanta-r.png',
+                cGallery: [],
+                
                 image: 'images/i/quanta-i.png',
-                isCharacter: true
             },
         ]
     },
@@ -1466,40 +1382,39 @@ menuItems = [
                 cardId: 'cancerman',
                 title: 'Cancerman',
                 excerpt: '',
-                detail:
-                    `Species: Cigarette<br>
-                Pronouns: He<br>
-                Gender: Male<br>
-                Sexuality: Gay<br>
-                Nickname: Cigarman, Cigar<br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/cancerman-c.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cigarette',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cSexuality: 'Gay',
+                cNicknames: 'Cigarman, Cigar',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/cancerman-c.png',
+                ],
+                
                 image: 'images/i/cancerman-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'mu',
                 title: 'Mu',
                 excerpt: '',
-                detail:
-                    `Species: "Cabbit"<br>
-                Pronouns: She/Any<br>
-                Gender: Genderless<br>
-                Sexuality: Aroace<br>
-                Nickname: μ<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/mu-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: '"Cabbit"',
+                cPronouns: 'She/Any',
+                cGender: 'Genderless',
+                cSexuality: 'Aroace',
+                cNicknames: 'μ',
+                cAddOns: '',
+                cReference: 'images/r/mu-r.png',
+                cGallery: [],
+                
                 image: 'images/i/mu-i.png',
-                isCharacter: true
             },
         ]
     },
@@ -1527,24 +1442,21 @@ menuItems = [
                 cardId: 'lyne',
                 title: 'Lyne',
                 excerpt: '',
-                detail:
-                    `Species: Polygon<br>
-                Pronouns: They<br>
-                Gender: Non-Binary<br>
-                Sexuality: Bisexual<br>
-                Nickname: Polyne<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/lyne-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/lyne-c.png"><br>
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Lyne',
+                cPronouns: 'They',
+                cGender: 'Non-Binary',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Polyne',
+                cAddOns: '',
+                cReference: 'images/r/lyne-r.png',
+                cGallery: [
+                    'images/c/lyne-c.png',
+                ],
+                
                 image: 'images/i/lyne-i.png',
-                isCharacter: true
             },
         ]
     },
@@ -1572,55 +1484,58 @@ menuItems = [
                 cardId: 'infineko',
                 title: 'Infineko',
                 excerpt: '',
-                detail:
-                    `Species: Infinity Symbol<br>
-                Pronouns: He/Any<br>
-                Gender: None<br>
-                Sexuality: None<br>
-                Nickname: ∞<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/infineko-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Infinity Symbol',
+                cPronouns: 'He/Any',
+                cGender: 'None',
+                cSexuality: 'None',
+                cNicknames: '∞',
+                cAddOns: '',
+                cReference: 'images/r/infineko-r.png',
+                cGallery: [],
+                
                 image: 'images/i/infineko-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'ugo',
                 title: 'Ugo',
                 excerpt: '',
-                detail:
-                    `Species: Vortex<br>
-                Pronouns: He<br>
-                Gender: Male<br>
-                Sexuality: Gay<br>
-                <h2>Reference Art:</h2><br>
-                <img src="images/r/ugo-r.png"><br>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Vortex',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cSexuality: 'Gay',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/ugo-r.png',
+                cGallery: [],
+                
                 image: 'images/i/ugo-i.png',
-                isCharacter: true
             },
             {
                 cardId: 'unknown',
                 title: '???',
                 excerpt: '',
-                detail:
-                    `Species: ???<br>
-                Pronouns: ???<br>
-                Gender: ???<br>
-                Sexuality: ???<br>
-                <hr>
-                <h2>Gallery:</h2>
-                <div class="imgContainer">
-                    <img src="images/c/Δ-c.png">
-                    <img src="images/c/Δ-c2.png">
-                </div>
-                `,
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: '???',
+                cPronouns: '???',
+                cGender: '???',
+                cSexuality: '???',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/Δ-c.png',
+                    'images/c/Δ-c2.png',
+                ],
+                
                 image: 'images/i/Δ-i.png',
-                isCharacter: true
             },
         ]
     },
@@ -2107,8 +2022,8 @@ menuItems = [
         ]
     },
 
+    // Misc
     {
-        // Daily Art+
         q: 'loopTest',
         name: 'loopTest',
         color: 'var(--color-15)',

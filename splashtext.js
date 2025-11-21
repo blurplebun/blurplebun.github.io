@@ -132,6 +132,7 @@ splashLines = [
     "Also listen to Disphing!",
     "Also listen to YonKaGor!",
     "Also listen to Tanger!",
+    "Also try Fancade!",
     "i don't think",
     "you're just gonna click that refresh button again aren't you?",
     "why are you looking at splashtexts anyway?",
@@ -198,7 +199,7 @@ splashLines = [
     "Powered by Omniverse™",
     `<div style="font-size:20px; filter: blur(0.12rem)">got your glasses</div>`,
     "seriousartifybernews",
-    "A mish-mash of whatever!"
+    "A mish-mash of whatever!",
 ];
 
 totalSplash = splashLines.length;

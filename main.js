@@ -582,6 +582,9 @@ function showContentFor(menu) {
         if (lbl.url) c.dataset.link = "true";
         if (lbl.unclickable) c.dataset.noclick = "true";
 
+        // Character cards
+        if (isCharacter(lbl)) c.dataset.character = 'true';
+
         // optional webinfo counters
         const totalCardsCounter = c.querySelector('#totalCardsCounter');
         if (totalCardsCounter) totalCardsCounter.textContent = `totalCards: ${totalCards}`;
@@ -639,13 +642,38 @@ function focusCard(cardEl, label, menu = null) {
     focusedCardArea.appendChild(clone);
 
     // Add lazy classes to any <img> in label.detail and convert src->data-src
-    const html = label.detail
+    let html = label.detail
         ? label.detail
             .replace(/<img\b(?![^>]*\bclass=)/g, '<img class="lazy"') // add lazy class if missing
             .replace(/(<img[^>]*?)\s+src=/g, '$1 data-src=') // replace src with data-src for lazy loading
         : '';
 
     if (menu) {
+        if (isCharacter(label)) {
+            const cSpecies = label.cSpecies ? `Species: ${label.cSpecies}<br>` : '';
+            const cPronouns = label.cPronouns ? `Pronouns: ${label.cPronouns}<br>` : '';
+            const cGender = label.cGender ? `Gender: ${label.cGender}<br>` : '';
+            const cSexuality = label.cSexuality ? `Sexuality: ${label.cSexuality}<br>` : '';
+            const cNicknames = label.cNicknames ? `Nickname: ${label.cNicknames}<br>` : '';
+            const cReference = label.cReference ? `<br><h2>Reference Art:</h2><br><img src="${label.cReference}"><br><br>` : '';
+            const cGallery = label.cGallery ? label.cGallery.length != 0 ? `<hr><h2>Gallery:</h2><div class="imgContainer">` + label.cGallery.map(imgSrc => `<img src="${imgSrc}">`).join('') + `</div><br>` : '' : '';
+            const cAddOns = label.cAddOns ? `<br>${label.cAddOns}<br>` : '';
+            const details = label.detail ? `<hr>${html}<br>` : '';
+
+            html = `
+                <a data-open-card="info:ocrules">Character rules</a><br>
+                <br>
+                ${cSpecies}
+                ${cPronouns}
+                ${cGender}
+                ${cSexuality}
+                ${cNicknames}
+                ${cAddOns}
+                ${cReference}
+                ${details}
+                ${cGallery}
+            `;
+        }
         const realMenuQ = label.fromMenu || menu.q;
         const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
         detailArea.innerHTML = `
@@ -672,7 +700,7 @@ function focusCard(cardEl, label, menu = null) {
         initLazyLoad();
 
     } else {
-        detailArea.innerHTML = `<h1>${label.title}</h1><hr>${html}`;
+        detailArea.innerHTML = `<h1>${label.title} test</h1><hr>${html}`;
         initLazyLoad();
     }
 
