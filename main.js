@@ -261,7 +261,7 @@ function createMenuButtons() {
             btn.style.top = '50%';
             btn.style.transform = `translate3d(${x0}px, ${y0}px, 0) scale(${m.scale || 1})`;
 
-            if (m.noFocus) {
+            if (m.invisible) {
                 btn.tabIndex = -1;
                 btn.setAttribute('aria-hidden', 'true');
             }
@@ -915,7 +915,7 @@ function search() {
 
     // find cards
     menuItems.forEach(menu => {
-        if (menu.noFocus) return false;
+        if (menu.invisible) return false;
         let matches;
         if (q === 'all') {
             matches = menu.labels;
@@ -943,10 +943,10 @@ function search() {
     // find menus
     let menuMatches;
     if (q === 'all') {
-        menuMatches = menuItems.filter(menu => (!menu.noFocus));
+        menuMatches = menuItems.filter(menu => (!menu.invisible));
     } else {
         menuMatches = menuItems.filter(menu => {
-            if (menu.noFocus) return false;
+            if (menu.invisible) return false;
             return (menu.name && menu.name.toLowerCase().includes(q)) || (menu.subtitle && menu.subtitle.toLowerCase().includes(q));
         });
     }

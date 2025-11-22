@@ -21,7 +21,7 @@ menuItems = [
         orbit: 3,                             // INTEGER: Orbit layer placement
         scale: 1,                             // Menu size in orbit
         hidden: true,                         // Hide from orbit (accessible via links only)
-        noFocus: true,                        // Exclude from tab selection and search
+        invisible: true,                      // Exclude from search
         labels: [
             // CARDS WITH THUMBNAILS
             {
@@ -1550,7 +1550,7 @@ menuItems = [
         color: 'var(--color-12)',
         orbit: 2,
         scale: 1.5,
-        noFocus: true,
+        invisible: true,
         labels: [
             {
                 cardId: 'random',
@@ -2028,7 +2028,7 @@ menuItems = [
         name: 'loopTest',
         color: 'var(--color-15)',
         hidden: true,
-        noFocus: true,
+        invisible: true,
         labels: [
             {
                 cardId: 'testloop1',
@@ -2056,7 +2056,7 @@ menuItems = [
         color: 'var(--color-10)',
         orbit: 127,
         scale: 0.5,
-        noFocus: true,
+        invisible: true,
         labels: [
             {
                 id: 1,
