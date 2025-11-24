@@ -1722,6 +1722,10 @@ menuItems = [
             {
                 cardId: 'loopTest',
                 linkId: 'loopTest',
+            },
+            {
+                cardId: 'infiniteTest1',
+                linkId: 'infiniteTest1',
             }
         ]
     },
@@ -2036,6 +2040,50 @@ menuItems = [
                 detail:
                     `<a data-open-card="loopTest:testloop1">testloop1</a>`,
                 image: 'images/temp.png'
+            },
+        ]
+    },
+    {
+        q: 'infiniteTest1',
+        name: 'Softlock!!!',
+        color: 'var(--color-4)',
+        hidden: true,
+        invisible: true,
+        parent: 'infiniteTest2',
+        labels: [
+            {
+                cardId: 'urstucklol',
+                title: 'ur stuck lol',
+                excerpt: '',
+                detail: `lol`,
+            },
+            {
+                cardId: 'urstucklol2',
+                title: '<h1 style="font-size:100px">:3</h1>',
+                excerpt: '',
+                detail: `lol`,
+            },
+        ]
+    },
+    {
+        q: 'infiniteTest2',
+        name: 'Softlock!!!',
+        color: 'var(--color-4)',
+        hidden: true,
+        invisible: true,
+        parent: 'infiniteTest1',
+        labels: [
+            {
+                cardId: 'urstucklol',
+                title: '<h1 style="font-size:100px">:3</h1>',
+                excerpt: '',
+                detail: `lol`,
+            },
+            {
+                cardId: 'urstucklol2',
+                title: 'ur stuck lol',
+                excerpt: '',
+                detail: `lol`,
             },
         ]
     },

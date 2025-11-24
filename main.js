@@ -261,11 +261,9 @@ function createMenuButtons() {
             btn.style.top = '50%';
             btn.style.transform = `translate3d(${x0}px, ${y0}px, 0) scale(${m.scale || 1})`;
 
-            if (m.invisible) {
-                btn.tabIndex = -1;
-                btn.setAttribute('aria-hidden', 'true');
-            }
-
+            btn.tabIndex = -1;
+            btn.setAttribute('aria-hidden', 'true');
+            
             btn.addEventListener('click', () => openMenu(m, btn));
             ringLayer.appendChild(btn);
             orbitButtons.push(btn);
