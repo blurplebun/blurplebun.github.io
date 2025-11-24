@@ -222,7 +222,7 @@ menuItems = [
                 cGender: 'Non-binary',
                 cSexuality: 'Demisexual',
                 cNicknames: 'Arti, Fifi',
-                cAddOns: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artilope">Artilope</a>',
                 cReference: '',
                 cGallery: [
                     'images/c/artifish-c.png',
@@ -272,7 +272,7 @@ menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Demisexual',
                 cNicknames: 'Arti, Lolo, Jacquie, Jacqueline',
-                cAddOns: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a>',
                 cReference: '',
                 cGallery: [
                     'images/c/artilope-c.png',
