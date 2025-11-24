@@ -906,6 +906,7 @@ function stripHTML(html) {
     return html.replace(/<[^>]+>/g, '');
 }
 
+let openFromSearch = false;
 function search() {
     contentView.scrollTop = 0;
     const query = searchText.value;
@@ -1013,6 +1014,7 @@ function search() {
     };
 
     openMenu(searchMenu);
+    openFromSearch = true;
     searchText.value = '';
 }
 
@@ -1152,7 +1154,7 @@ function goBack() {
         
         // Update back button text to show parent menu name if exists
         const currentMenu = menuItems.find(m => m.q === menuCode);
-        if (currentMenu && currentMenu.parent) {
+        if (currentMenu && currentMenu.parent && !openFromSearch) {
             const parentMenu = menuItems.find(m => m.q === currentMenu.parent);
             backBtn.querySelector('span').textContent = parentMenu ? parentMenu.name : 'Menu';
         } else {
@@ -1166,9 +1168,14 @@ function goBack() {
         const currentMenu = menuItems.find(m => m.q === menuCode);
 
         // If current menu has a parent, navigate to parent instead of closing
-        if (currentMenu && currentMenu.parent && !openFromRandom) {
+        if (currentMenu && currentMenu.parent && !openFromRandom && !openFromSearch) {
             openMenuByQ(currentMenu.parent, true);
             return;
+        }
+
+        if (openFromSearch) {
+            openFromSearch = false;
+            history.pushState({}, '', location.pathname);
         }
         
         // otherwise, go back to main menu
