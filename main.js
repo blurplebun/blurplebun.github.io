@@ -460,7 +460,10 @@ function showContentFor(menu) {
     contentSubtitle.textContent = menu.subtitle;
     toggleView({ focused: true, show: false });
     toggleView({ content: true, show: true });
-    backBtn.querySelector('span').textContent = 'Menu';
+    const parentMenu = menuItems.find(m => m.q === menu.parent);
+    if (parentMenu) {
+        backBtn.querySelector('span').textContent = parentMenu.name || 'Parent Menu';
+    } else backBtn.querySelector('span').textContent = 'Menu';
 
     // Add copy link icon to menu title (except for search)
     if (menu.q !== 'search') {
@@ -1146,12 +1149,29 @@ function goBack() {
         $('.content-header')?.classList.remove('hidden');
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;
         contentView.style.overflow = '';
-        backBtn.querySelector('span').textContent = 'Menu';
+        
+        // Update back button text to show parent menu name if exists
+        const currentMenu = menuItems.find(m => m.q === menuCode);
+        if (currentMenu && currentMenu.parent) {
+            const parentMenu = menuItems.find(m => m.q === currentMenu.parent);
+            backBtn.querySelector('span').textContent = parentMenu ? parentMenu.name : 'Menu';
+        } else {
+            backBtn.querySelector('span').textContent = 'Menu';
+        }
         return;
     }
 
-    // if in a menu, go back to main stage
+    // if in a menu
     if (menuCode || openFromRandom) {
+        const currentMenu = menuItems.find(m => m.q === menuCode);
+
+        // If current menu has a parent, navigate to parent instead of closing
+        if (currentMenu && currentMenu.parent && !openFromRandom) {
+            openMenuByQ(currentMenu.parent, true);
+            return;
+        }
+        
+        // otherwise, go back to main menu
         history.pushState({}, '', location.pathname);
         $('.content-header')?.classList.remove('hidden');
         toggleView({ content: true, show: false });

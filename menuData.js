@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'November 21th, 2025';
-const version = '0.2.3';
+const lastUpdated = 'November 24th, 2025';
+const version = '0.2.4';
 
 // Main menu data array
 menuItems = [
@@ -132,12 +132,9 @@ menuItems = [
         subtitle: 'Terra',
         image: 'images/deltadim-teksui.png',
         color: 'var(--color-9)',
+        parent: 'deltadim',
         hidden: true,
         labels: [
-            {
-                cardId: 'deltadim',
-                linkId: 'deltadim',
-            },
             {
                 cardId: 'artibun',
                 title: 'Artibun',
@@ -519,12 +516,9 @@ menuItems = [
         subtitle: 'Terra',
         image: 'images/deltadim-chromasia.png',
         color: 'var(--color-14)',
+        parent: 'deltadim',
         hidden: true,
         labels: [
-            {
-                cardId: 'deltadim',
-                linkId: 'deltadim',
-            },
             {
                 cardId: 'shirley',
                 title: 'Shirley',
@@ -769,12 +763,9 @@ menuItems = [
         subtitle: 'Somewhere in space',
         image: 'images/deltadim-deltaspace.png',
         color: 'var(--color-15)',
+        parent: 'deltadim',
         hidden: true,
         labels: [
-            {
-                cardId: 'deltadim',
-                linkId: 'deltadim',
-            },
             {
                 cardId: 'skitty',
                 title: 'Singularikitty',
