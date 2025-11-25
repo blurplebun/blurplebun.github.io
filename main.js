@@ -155,10 +155,22 @@ function showCenterBtnLoop() {
 showCenterBtnLoop();
 
 window.addEventListener('resize', snapCameraToCenter);
-
 centerBtn.addEventListener('click', snapCameraToCenter);
-document.addEventListener('keydown', (e) => { if (e.key === 'c' && !searchBox.open) snapCameraToCenter(); });
+document.addEventListener('keydown', (e) => { 
+    if (e.key === 'c' && !isInputFocused()) {
+        snapCameraToCenter(); 
+    }
+});
 
+// Helper function to check if any input element is focused
+function isInputFocused() {
+    const activeElement = document.activeElement;
+    return (
+        activeElement.tagName === 'INPUT' ||
+        activeElement.tagName === 'TEXTAREA' ||
+        activeElement.isContentEditable
+    );
+}
 
 
 /* --------------------------
