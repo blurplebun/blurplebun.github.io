@@ -156,9 +156,9 @@ showCenterBtnLoop();
 
 window.addEventListener('resize', snapCameraToCenter);
 centerBtn.addEventListener('click', snapCameraToCenter);
-document.addEventListener('keydown', (e) => { 
+document.addEventListener('keydown', (e) => {
     if (e.key === 'c' && !isInputFocused()) {
-        snapCameraToCenter(); 
+        snapCameraToCenter();
     }
 });
 
@@ -645,6 +645,29 @@ function showContentFor(menu) {
 }
 
 
+// for genotheta converter: convert base10 to base32
+function decimalToBase32(num) {
+    // Base-32 digits using the box drawing characters from U+2500 to U+2515
+    const base32Digits = [
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',  // 0-9
+        '─', '━', '│', '┃', '┄', '┅', '┆', '┇', '┈', '┉', // 10-19
+        '┊', '┋', '┌', '┍', '┎', '┏', '┐', '┑', '┒', '┓', // 20-29
+        '└', '┕'                                           // 30-31
+    ];
+
+    if (num === 0) return '0';
+
+    let result = '';
+    let number = Math.abs(num);
+
+    while (number > 0) {
+        const remainder = number % 32;
+        result = base32Digits[remainder] + result;
+        number = Math.floor(number / 32);
+    }
+
+    return num < 0 ? '-' + result : result;
+}
 
 /* --------------------------
     Card detail / focus
@@ -731,19 +754,36 @@ function focusCard(cardEl, label, menu = null) {
     if (label.cardId === 'genotheta') {
         const genothetaInput = document.getElementById('genothetaInput');
         const genothetaOutput = document.getElementById('genothetaOutput');
+        const genothetaOutputEx = document.getElementById('genothetaOutputEx');
         const genothetaOutputRaw = document.getElementById('genothetaOutputRaw');
         genothetaInput.addEventListener('input', () => {
-            const input = genothetaInput.value;
-            const output = input
-                .replace(/th/g, "[")
-                .replace(/gh/g, "&")
-                .replace(/sh/g, "-")
-                .replace(/ng/g, "!")
-                .replace(/ny/g, "]")
-                .replace(/ts/g, "#")
-                .replace(/wh/g, "\\");
+            let input = genothetaInput.value;
+
+            // Convert numbers to base-32
+            inputBase32 = input.replace(/\d+/g, match => {
+                const num = parseInt(match, 10);
+                return decimalToBase32(num);
+            });
+
+            const output = input;
+            const outputEx = inputBase32
+                .replace(/th/g, "þ")
+                .replace(/gh/g, "ɣ")
+                .replace(/sh/g, "Ʃ")
+                .replace(/ng/g, "ŋ")
+                .replace(/ny/g, "ñ")
+                .replace(/ts/g, "ƺ")
+                .replace(/wh/g, "ʍ")
+                .replace(/ch/g, "ʧ")
+                .replace(/ph/g, "φ")
+                .replace(/ck/g, "ĸ")
+                .replace(/qu/g, "ȹ")
+                .replace(/wr/g, "ɹ")
+                .replace(/kn/g, "ƙ")
+                .replace(/ps/g, "ψ");
             genothetaOutput.value = output;
-            genothetaOutputRaw.value = output;
+            genothetaOutputEx.value = outputEx;
+            genothetaOutputRaw.value = outputEx;
         });
     }
 

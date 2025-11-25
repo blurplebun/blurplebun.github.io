@@ -51,7 +51,7 @@
     font-family: 'Genotheta';
     font-weight: 800;
     font-display: swap;
-    src: url(fonts/GENOTHETA.ttf) format('truetype');
+    src: url(fonts/GENOTHETAEX.ttf) format('truetype');
 }
 
 @font-face {
@@ -963,7 +963,7 @@ textarea {
     resize: vertical;
 }
 
-textarea#genothetaOutput {
+textarea#genothetaOutput, textarea#genothetaOutputEx {
     font-family: 'Genotheta', 'Ubuntu', verdana, sans-serif;
     font-size: 2rem;
 }

@@ -1595,20 +1595,25 @@ menuItems = [
                 excerpt: 'Convert Latin to Genotheta',
                 detail:
                     `
-                    <a href="https://artifyber.xyz/fonts/GENOTHETA.ttf" target="_blank">Download Genotheta Font</a><br><br>
+                    <a href="https://artifyber.xyz/fonts/GENOTHETAEX.ttf" target="_blank">Download Genotheta Font</a><br><br>
                     Latin input
                     <div style="margin-top:10px;">
-                        <textarea id="genothetaInput" rows="4" style="width:100%;"></textarea>
+                        <textarea id="genothetaInput" rows="2" style="width:100%;"></textarea>
+                    </div>
+                    <br>
+                    Genotheta output (Latin)
+                    <div style="margin-top:10px;">
+                        <textarea id="genothetaOutput" rows="2" style="width:100%;" readonly></textarea>
                     </div>
                     <br>
                     Genotheta output
                     <div style="margin-top:10px;">
-                        <textarea id="genothetaOutput" rows="4" style="width:100%;" readonly></textarea>
+                        <textarea id="genothetaOutputEx" rows="2" style="width:100%;" readonly></textarea>
                     </div>
                     <br>
-                    Raw output (to use with the Genotheta font)
+                    Raw output (ASCII'ed Genotheta to use with the font)
                     <div style="margin-top:10px;">
-                        <textarea id="genothetaOutputRaw" rows="4" style="width:100%;"></textarea>
+                        <textarea id="genothetaOutputRaw" rows="2" style="width:100%;"></textarea>
                     </div>
                     `,
                 image: 'icons/genotheta.png'
