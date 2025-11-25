@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'November 24th, 2025';
-const version = '0.2.4';
+const lastUpdated = 'November 25th, 2025';
+const version = '0.2.5';
 
 // Main menu data array
 menuItems = [
@@ -1619,7 +1619,7 @@ menuItems = [
                 excerpt: 'Convert Latin to Starstroke',
                 detail:
                     `
-                    <a href="https://artifyber.xyz/fonts/GENOTHETA.ttf" target="_blank">Download Starstroke Font</a><br><br>
+                    <a href="https://artifyber.xyz/fonts/starstroke.ttf" target="_blank">Download Starstroke Font</a><br><br>
                     Latin input
                     <div style="margin-top:10px;">
                         <textarea id="starstrokeInput" rows="4" style="width:100%;"></textarea>
