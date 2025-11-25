@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="starfield"></div>
+        <div class="menu-stage">
+            <div class="menu-center-text">
+                <img class="menu-logo notFound" src="icons/404.png" draggable="false">
+                <br>
+                <small style="font-size:large">There's nothing here...</small>
+                <br>
+                <a href="index.html" style="font-size:large"><small>Go back to Fyberverse</small></a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+    function createStarfield(layerCount = 3, starsPerLayer = 40) {
+        const starfield = document.querySelector('.starfield');
+        if (!starfield) return;
+        for (let l = 0; l < layerCount; l++) {
+            const layer = document.createElement('div');
+            layer.classList.add('star-layer');
+            layer.dataset.depth = 0.5 + Math.random() * 1;
+            for (let i = 0; i < starsPerLayer; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                const size = Math.random() * 2 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `-${Math.random() * 5}s`;
+                layer.appendChild(star);
+            }
+            starfield.appendChild(layer);
+        }
+    }
+    createStarfield();
+    </script>
+
+
+</body>
+</html>
