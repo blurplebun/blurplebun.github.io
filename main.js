@@ -756,33 +756,40 @@ function focusCard(cardEl, label, menu = null) {
         const genothetaOutput = document.getElementById('genothetaOutput');
         const genothetaOutputEx = document.getElementById('genothetaOutputEx');
         const genothetaOutputRaw = document.getElementById('genothetaOutputRaw');
+
+        const genothetaInputRev = document.getElementById('genothetaInputRev');
+        const genothetaOutputRev = document.getElementById('genothetaOutputRev');
         
         // Copy to clipboard function
-        copyGenothetaBtn.addEventListener('click', async () => {
+        async function copyToClipboard(button, textbox) {
             try {
-                await navigator.clipboard.writeText(genothetaOutputRaw.value);
+                await navigator.clipboard.writeText(textbox.value);
 
-                const originalText = copyGenothetaBtn.textContent;
-                copyGenothetaBtn.textContent = 'Copied!';
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
 
                 setTimeout(() => {
-                    copyGenothetaBtn.textContent = originalText;
-                    copyGenothetaBtn.style.backgroundColor = '';
+                    button.textContent = originalText;
+                    button.style.backgroundColor = '';
                 }, 2000);
 
             } catch (err) {
                 console.error('Failed to copy: ', err);
-                genothetaOutputRaw.select();
+                textbox.select();
                 document.execCommand('copy');
 
-                const originalText = copyGenothetaBtn.textContent;
-                copyGenothetaBtn.textContent = 'Copied!';
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
                 setTimeout(() => {
-                    copyGenothetaBtn.textContent = originalText;
+                    button.textContent = originalText;
                 }, 2000);
             }
-        });
+        }
 
+        copyGenothetaBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaBtn, genothetaOutputRaw);});
+        copyGenothetaRevBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaRevBtn, genothetaOutputRev);});
+        
+        // latin to genotheta
         genothetaInput.addEventListener('input', () => {
             let input = genothetaInput.value;
 
@@ -811,6 +818,48 @@ function focusCard(cardEl, label, menu = null) {
             genothetaOutput.value = output;
             genothetaOutputEx.value = outputEx;
             genothetaOutputRaw.value = outputEx;
+        });
+
+        // genotheta to latin
+        genothetaInputRev.addEventListener('input', () => {
+            let input = genothetaInputRev.value;
+
+            const output = input
+                .replace("þ", "TH")
+                .replace("ɣ", "GH")
+                .replace("Ʃ", "SH")
+                .replace("ŋ", "NG")
+                .replace("ñ", "NY")
+                .replace("ƺ", "TS")
+                .replace("ʍ", "WH")
+                .replace("ʧ", "CH")
+                .replace("φ", "PH")
+                .replace("ĸ", "CK")
+                .replace("ȹ", "QU")
+                .replace("ɹ", "WR")
+                .replace("ƙ", "KN")
+                .replace("ψ", "PS");
+            genothetaOutputRev.value = output;
+        });
+
+        // genotheta keyboard
+        const genothetaKeys = document.querySelectorAll('.genothetaKeys');
+        genothetaKeys.forEach(key => {
+            key.addEventListener('click', () => {
+                const char = key.dataset.key;
+                if (char === 'DEL') {
+                    genothetaInputRev.value = genothetaInputRev.value.slice(0, -1);
+                    genothetaInputRev.dispatchEvent(new Event('input'));
+                    return;
+                }
+                if (char === 'CLR') {
+                    genothetaInputRev.value = '';
+                    genothetaInputRev.dispatchEvent(new Event('input'));
+                    return;
+                }
+                genothetaInputRev.value += char;
+                genothetaInputRev.dispatchEvent(new Event('input'));
+            });
         });
     }
 

@@ -968,7 +968,60 @@ textarea {
     resize: vertical;
 }
 
-textarea#genothetaOutput, textarea#genothetaOutputEx {
+
+/* Keyboard Layout Styles */
+.keyboardLayout {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    gap: 5px;
+    margin-top: 10px;
+    padding: 12px;
+    background: color-mix(in srgb, var(--accent2) 30%, transparent);
+    border-radius: 12px;
+    backdrop-filter: blur(1rem);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#detailArea .keycap {
+    background: var(--accent3);
+    border: 2px solid var(--accent2);
+    border-radius: 10%;
+    color: var(--white);
+    padding: 12px 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    min-width: 35px;
+    user-select: none;
+}
+
+#detailArea .keycap:hover {
+    background: color-mix(in srgb, var(--accent2) 60%, transparent);
+    transform: translateY(2px);
+}
+
+#detailArea .keycap:active {
+    transform: translateY(5px);
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.3),
+        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Genotheta font styling */
+#detailArea .genotheta {
+    font-family: 'Genotheta', 'Ubuntu', verdana, sans-serif;
+    font-size: 2rem;
+}
+
+textarea#genothetaOutput,
+textarea#genothetaOutputEx {
     font-family: 'Genotheta', 'Ubuntu', verdana, sans-serif;
     font-size: 2rem;
 }
@@ -1323,6 +1376,7 @@ textarea#starstrokeOutput {
 }
 
 @keyframes shakeV {
+
     0%,
     100% {
         transform: translateY(0);

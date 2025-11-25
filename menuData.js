@@ -1595,7 +1595,8 @@ menuItems = [
                 excerpt: 'Convert Latin to Genotheta',
                 detail:
                     `
-                    <a href="https://artifyber.xyz/fonts/GENOTHETAEX.ttf" target="_blank">Download Genotheta Font</a><br><br>
+                    <a href="https://artifyber.xyz/fonts/GENOTHETAEX.ttf" target="_blank">Download Genotheta Font</a><br>
+                    <h2>Latin to Genotheta</h2>
                     Latin input
                     <div style="margin-top:10px;">
                         <textarea id="genothetaInput" rows="2" style="width:100%;"></textarea>
@@ -1614,6 +1615,75 @@ menuItems = [
                     <button id="copyGenothetaBtn" type="button">Copy raw output</button> - for use with Genotheta font<br>
                     <div style="margin-top:10px;">
                         <textarea id="genothetaOutputRaw" rows="2" style="width:100%;"></textarea> 
+                    </div>
+
+                    <br><br><hr>
+                    
+                    <h2>Genotheta to Latin</h2>
+                    Genotheta input
+                    <div style="margin-top:10px;">
+                        <textarea id="genothetaInputRev" class="genotheta" rows="2" style="width:100%;" readonly></textarea>
+                    </div>
+                    <br>
+                    <button id="copyGenothetaRevBtn" type="button">Copy</button> -  latin output<br>
+                    <div style="margin-top:10px;">
+                        <textarea id="genothetaOutputRev" rows="2" style="width:100%;" readonly></textarea>
+                    </div>
+                    <br>
+                    <div class="keyboardLayout" style="margin-top:10px;">
+                        <button type="button" class="keycap genothetaKeys" data-key="DEL">DEL</button>
+                        <button type="button" class="keycap genothetaKeys" data-key="CLR">CLR</button>
+                        <button type="button" class="keycap genothetaKeys" data-key=" ">SPACE</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="A">A</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="B">B</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="C">C</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="D">D</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="E">E</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="F">F</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="G">G</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="H">H</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="I">I</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="J">J</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="K">K</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="L">L</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="M">M</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="N">N</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="O">O</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="P">P</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="Q">Q</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="R">R</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="S">S</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="T">T</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="U">U</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="V">V</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="W">W</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="X">X</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="Y">Y</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="Z">Z</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="þ">þ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="Ʃ">Ʃ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ʧ">ʧ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="φ">φ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ɣ">ɣ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ŋ">ŋ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ĸ">ĸ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ȹ">ȹ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ʍ">ʍ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ɹ">ɹ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ƙ">ƙ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ñ">ñ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ƺ">ƺ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="ψ">ψ</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="!">!</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="?">?</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key=".">.</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key=",">,</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="(">(</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key=")">)</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="+">+</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="-">-</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="=">=</button>
+                        <button type="button" class="keycap genotheta genothetaKeys" data-key="/">/</button>
                     </div>
                     `,
                 image: 'icons/genotheta.png'
