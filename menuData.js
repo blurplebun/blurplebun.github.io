@@ -1579,6 +1579,61 @@ menuItems = [
             },
         ]
     },
+    {
+        name: 'Converters',
+        showName: true,
+        q: 'converters',
+        subtitle: '',
+        image: 'icons/converters.png',
+        color: 'var(--color-13)',
+        orbit: 2,
+        scale: 1.5,
+        labels: [
+            {
+                cardId: 'genotheta',
+                title: 'Genotheta',
+                excerpt: 'Convert Latin to Genotheta',
+                detail:
+                    `
+                    <a href="https://artifyber.xyz/fonts/GENOTHETA.ttf" target="_blank">Download Genotheta Font</a><br><br>
+                    Latin input
+                    <div style="margin-top:10px;">
+                        <textarea id="genothetaInput" rows="4" style="width:100%;"></textarea>
+                    </div>
+                    <br>
+                    Genotheta output
+                    <div style="margin-top:10px;">
+                        <textarea id="genothetaOutput" rows="4" style="width:100%;" readonly></textarea>
+                    </div>
+                    <br>
+                    Raw output (to use with the Genotheta font)
+                    <div style="margin-top:10px;">
+                        <textarea id="genothetaOutputRaw" rows="4" style="width:100%;"></textarea>
+                    </div>
+                    `,
+                image: 'icons/genotheta.png'
+            },
+            {
+                cardId: 'starstroke',
+                title: 'Starstroke',
+                excerpt: 'Convert Latin to Starstroke',
+                detail:
+                    `
+                    <a href="https://artifyber.xyz/fonts/GENOTHETA.ttf" target="_blank">Download Starstroke Font</a><br><br>
+                    Latin input
+                    <div style="margin-top:10px;">
+                        <textarea id="starstrokeInput" rows="4" style="width:100%;"></textarea>
+                    </div>
+                    <br>
+                    Starstroke output
+                    <div style="margin-top:10px;">
+                        <textarea id="starstrokeOutput" rows="4" style="width:100%;" readonly></textarea>
+                    </div>
+                    `,
+                image: 'icons/starstroke.png'
+            },
+        ]
+    },
 
     // Orbit 4
     {

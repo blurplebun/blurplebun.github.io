@@ -263,7 +263,7 @@ function createMenuButtons() {
 
             btn.tabIndex = -1;
             btn.setAttribute('aria-hidden', 'true');
-            
+
             btn.addEventListener('click', () => openMenu(m, btn));
             ringLayer.appendChild(btn);
             orbitButtons.push(btn);
@@ -711,6 +711,41 @@ function focusCard(cardEl, label, menu = null) {
     // set up image handlers inside detailArea
     imgConHandler(detailArea);
 
+    /* --------------------------
+        Converters
+        -------------------------- */
+
+    // Genotheta
+    if (label.cardId === 'genotheta') {
+        const genothetaInput = document.getElementById('genothetaInput');
+        const genothetaOutput = document.getElementById('genothetaOutput');
+        const genothetaOutputRaw = document.getElementById('genothetaOutputRaw');
+        genothetaInput.addEventListener('input', () => {
+            const input = genothetaInput.value;
+            const output = input
+                .replace(/th/g, "[")
+                .replace(/gh/g, "&")
+                .replace(/sh/g, "-")
+                .replace(/ng/g, "!")
+                .replace(/ny/g, "]")
+                .replace(/ts/g, "#")
+                .replace(/wh/g, "\\");
+            genothetaOutput.value = output;
+            genothetaOutputRaw.value = output;
+        });
+    }
+
+    // Starstroke
+    if (label.cardId === 'starstroke') {
+        const starstrokeInput = document.getElementById('starstrokeInput');
+        const starstrokeOutput = document.getElementById('starstrokeOutput');
+        starstrokeInput.addEventListener('input', () => {
+            const input = starstrokeInput.value;
+            const output = input;
+            starstrokeOutput.value = output;
+        });
+    }
+
     // hide cards grid and show focused layout
     cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => el.classList.add('hidden'));
     focusedLayout.style.display = 'flex';
@@ -1149,7 +1184,7 @@ function goBack() {
         $('.content-header')?.classList.remove('hidden');
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;
         contentView.style.overflow = '';
-        
+
         // Update back button text to show parent menu name if exists
         const currentMenu = menuItems.find(m => m.q === menuCode);
         if (currentMenu && currentMenu.parent && !openFromSearch) {
@@ -1175,7 +1210,7 @@ function goBack() {
             openFromSearch = false;
             history.pushState({}, '', location.pathname);
         }
-        
+
         // otherwise, go back to main menu
         history.pushState({}, '', location.pathname);
         $('.content-header')?.classList.remove('hidden');

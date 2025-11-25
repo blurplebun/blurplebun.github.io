@@ -44,7 +44,21 @@
     font-family: 'Baloo 2';
     font-weight: 800;
     font-display: swap;
-    src: url(Righteous-Regular.woff) format('woff');
+    src: url(fonts/Righteous-Regular.woff) format('woff');
+}
+
+@font-face {
+    font-family: 'Genotheta';
+    font-weight: 800;
+    font-display: swap;
+    src: url(fonts/GENOTHETA.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'starstroke';
+    font-weight: 800;
+    font-display: swap;
+    src: url(fonts/starstroke.ttf) format('truetype');
 }
 
 
@@ -930,6 +944,33 @@ a[data-open-card] {
 .reroll-btn-top.visible {
     opacity: 1;
     pointer-events: auto;
+}
+
+
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    border: 2px solid var(--accent2);
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: 'Baloo 2', 'Ubuntu', verdana, sans-serif;
+    resize: vertical;
+}
+
+textarea#genothetaOutput {
+    font-family: 'Genotheta', 'Ubuntu', verdana, sans-serif;
+    font-size: 2rem;
+}
+
+textarea#starstrokeOutput {
+    font-family: 'starstroke', 'Ubuntu', verdana, sans-serif;
+    font-size: 1.5rem;
 }
 
 
