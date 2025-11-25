@@ -826,12 +826,13 @@ a[data-open-card] {
     margin-top: 8px;
 }
 
-#searchForm button {
+#searchForm button,
+#detailArea button {
     background: var(--accent);
     color: var(--white);
     border: none;
     border-radius: 999px;
-    padding: 10px 20px;
+    padding: 8px 16px;
     font-size: 1rem;
     font-family: 'Baloo 2', 'Ubuntu', verdana, sans-serif;
     cursor: pointer;
@@ -842,6 +843,10 @@ a[data-open-card] {
 #searchForm button:hover {
     background: var(--accent);
     transform: translateY(-2px);
+}
+
+#detailArea button:hover {
+    transform: scale(1.05);
 }
 
 #searchForm button[type="button"] {

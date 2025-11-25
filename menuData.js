@@ -1611,9 +1611,9 @@ menuItems = [
                         <textarea id="genothetaOutputEx" rows="2" style="width:100%;" readonly></textarea>
                     </div>
                     <br>
-                    Raw output (ASCII'ed Genotheta to use with the font)
+                    <button id="copyGenothetaBtn" type="button">Copy raw output</button> - for use with Genotheta font<br>
                     <div style="margin-top:10px;">
-                        <textarea id="genothetaOutputRaw" rows="2" style="width:100%;"></textarea>
+                        <textarea id="genothetaOutputRaw" rows="2" style="width:100%;"></textarea> 
                     </div>
                     `,
                 image: 'icons/genotheta.png'

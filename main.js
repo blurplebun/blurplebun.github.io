@@ -756,6 +756,33 @@ function focusCard(cardEl, label, menu = null) {
         const genothetaOutput = document.getElementById('genothetaOutput');
         const genothetaOutputEx = document.getElementById('genothetaOutputEx');
         const genothetaOutputRaw = document.getElementById('genothetaOutputRaw');
+        
+        // Copy to clipboard function
+        copyGenothetaBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(genothetaOutputRaw.value);
+
+                const originalText = copyGenothetaBtn.textContent;
+                copyGenothetaBtn.textContent = 'Copied!';
+
+                setTimeout(() => {
+                    copyGenothetaBtn.textContent = originalText;
+                    copyGenothetaBtn.style.backgroundColor = '';
+                }, 2000);
+
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                genothetaOutputRaw.select();
+                document.execCommand('copy');
+
+                const originalText = copyGenothetaBtn.textContent;
+                copyGenothetaBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyGenothetaBtn.textContent = originalText;
+                }, 2000);
+            }
+        });
+
         genothetaInput.addEventListener('input', () => {
             let input = genothetaInput.value;
 
@@ -767,20 +794,20 @@ function focusCard(cardEl, label, menu = null) {
 
             const output = input;
             const outputEx = inputBase32
-                .replace(/th/g, "þ")
-                .replace(/gh/g, "ɣ")
-                .replace(/sh/g, "Ʃ")
-                .replace(/ng/g, "ŋ")
-                .replace(/ny/g, "ñ")
-                .replace(/ts/g, "ƺ")
-                .replace(/wh/g, "ʍ")
-                .replace(/ch/g, "ʧ")
-                .replace(/ph/g, "φ")
-                .replace(/ck/g, "ĸ")
-                .replace(/qu/g, "ȹ")
-                .replace(/wr/g, "ɹ")
-                .replace(/kn/g, "ƙ")
-                .replace(/ps/g, "ψ");
+                .replace(/th/gi, "þ")
+                .replace(/gh/gi, "ɣ")
+                .replace(/sh/gi, "Ʃ")
+                .replace(/ng/gi, "ŋ")
+                .replace(/ny/gi, "ñ")
+                .replace(/ts/gi, "ƺ")
+                .replace(/wh/gi, "ʍ")
+                .replace(/ch/gi, "ʧ")
+                .replace(/ph/gi, "φ")
+                .replace(/ck/gi, "ĸ")
+                .replace(/qu/gi, "ȹ")
+                .replace(/wr/gi, "ɹ")
+                .replace(/kn/gi, "ƙ")
+                .replace(/ps/gi, "ψ");
             genothetaOutput.value = output;
             genothetaOutputEx.value = outputEx;
             genothetaOutputRaw.value = outputEx;
