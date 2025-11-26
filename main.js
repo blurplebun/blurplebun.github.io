@@ -825,20 +825,20 @@ function focusCard(cardEl, label, menu = null) {
             let input = genothetaInputRev.value;
 
             const output = input
-                .replace("þ", "TH")
-                .replace("ɣ", "GH")
-                .replace("Ʃ", "SH")
-                .replace("ŋ", "NG")
-                .replace("ñ", "NY")
-                .replace("ƺ", "TS")
-                .replace("ʍ", "WH")
-                .replace("ʧ", "CH")
-                .replace("φ", "PH")
-                .replace("ĸ", "CK")
-                .replace("ȹ", "QU")
-                .replace("ɹ", "WR")
-                .replace("ƙ", "KN")
-                .replace("ψ", "PS");
+                .replaceAll("þ", "TH")
+                .replaceAll("ɣ", "GH")
+                .replaceAll("Ʃ", "SH")
+                .replaceAll("ŋ", "NG")
+                .replaceAll("ñ", "NY")
+                .replaceAll("ƺ", "TS")
+                .replaceAll("ʍ", "WH")
+                .replaceAll("ʧ", "CH")
+                .replaceAll("φ", "PH")
+                .replaceAll("ĸ", "CK")
+                .replaceAll("ȹ", "QU")
+                .replaceAll("ɹ", "WR")
+                .replaceAll("ƙ", "KN")
+                .replaceAll("ψ", "PS");
             genothetaOutputRev.value = output;
         });
 
