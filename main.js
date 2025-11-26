@@ -669,6 +669,33 @@ function decimalToBase32(num) {
     return num < 0 ? '-' + result : result;
 }
 
+
+// Copy to clipboard button function
+async function copyToClipboard(button, textbox) {
+    try {
+        await navigator.clipboard.writeText(textbox.value);
+
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.backgroundColor = '';
+        }, 2000);
+
+    } catch (err) {
+        console.error('Failed to copy: ', err);
+        textbox.select();
+        document.execCommand('copy');
+
+        const originalText = button.textContent;
+        button.textContent = 'Copied!';
+        setTimeout(() => {
+            button.textContent = originalText;
+        }, 2000);
+    }
+}
+
 /* --------------------------
     Card detail / focus
     -------------------------- */
@@ -746,10 +773,29 @@ function focusCard(cardEl, label, menu = null) {
     // set up image handlers inside detailArea
     imgConHandler(detailArea);
 
-    /* --------------------------
-        Converters
-        -------------------------- */
+    // handle script converters if applicable
+    converterHandler(label);
 
+    // hide cards grid and show focused layout
+    cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => el.classList.add('hidden'));
+    focusedLayout.style.display = 'flex';
+    $('.content-header')?.classList.add('hidden');
+    contentView.style.overflow = 'hidden';
+    contentView.insertBefore(cardsContainer, focusedLayout);
+
+    focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
+    backBtn.querySelector('span').textContent = 'Card Selector';
+    initLazyLoad();
+    detailArea.scrollTop = 0;
+}
+
+
+
+/* --------------------------
+    Converters
+    -------------------------- */
+
+function converterHandler(label) {
     // Genotheta
     if (label.cardId === 'genotheta') {
         const genothetaInput = document.getElementById('genothetaInput');
@@ -759,36 +805,10 @@ function focusCard(cardEl, label, menu = null) {
 
         const genothetaInputRev = document.getElementById('genothetaInputRev');
         const genothetaOutputRev = document.getElementById('genothetaOutputRev');
-        
-        // Copy to clipboard function
-        async function copyToClipboard(button, textbox) {
-            try {
-                await navigator.clipboard.writeText(textbox.value);
 
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
+        copyGenothetaBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaBtn, genothetaOutputRaw); });
+        copyGenothetaRevBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaRevBtn, genothetaOutputRev); });
 
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.backgroundColor = '';
-                }, 2000);
-
-            } catch (err) {
-                console.error('Failed to copy: ', err);
-                textbox.select();
-                document.execCommand('copy');
-
-                const originalText = button.textContent;
-                button.textContent = 'Copied!';
-                setTimeout(() => {
-                    button.textContent = originalText;
-                }, 2000);
-            }
-        }
-
-        copyGenothetaBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaBtn, genothetaOutputRaw);});
-        copyGenothetaRevBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaRevBtn, genothetaOutputRev);});
-        
         // latin to genotheta
         genothetaInput.addEventListener('input', () => {
             let input = genothetaInput.value;
@@ -844,47 +864,60 @@ function focusCard(cardEl, label, menu = null) {
 
         // genotheta keyboard
         const genothetaKeys = document.querySelectorAll('.genothetaKeys');
-        genothetaKeys.forEach(key => {
-            key.addEventListener('click', () => {
-                const char = key.dataset.key;
-                if (char === 'DEL') {
-                    genothetaInputRev.value = genothetaInputRev.value.slice(0, -1);
-                    genothetaInputRev.dispatchEvent(new Event('input'));
-                    return;
-                }
-                if (char === 'CLR') {
-                    genothetaInputRev.value = '';
-                    genothetaInputRev.dispatchEvent(new Event('input'));
-                    return;
-                }
-                genothetaInputRev.value += char;
-                genothetaInputRev.dispatchEvent(new Event('input'));
-            });
-        });
+        createKeyboard(genothetaKeys, genothetaInputRev);
     }
 
     // Starstroke
     if (label.cardId === 'starstroke') {
         const starstrokeInput = document.getElementById('starstrokeInput');
         const starstrokeOutput = document.getElementById('starstrokeOutput');
+
+        const starstrokeInputRev = document.getElementById('starstrokeInputRev');
+        const starstrokeOutputRev = document.getElementById('starstrokeOutputRev');
+
+        copyStarstrokeRevBtn.addEventListener('click', async () => { copyToClipboard(copyStarstrokeRevBtn, starstrokeOutputRev); });
+
+        // latin to starstroke
         starstrokeInput.addEventListener('input', () => {
             const input = starstrokeInput.value;
             const output = input;
             starstrokeOutput.value = output;
         });
+
+        // starstroke to latin
+        starstrokeInputRev.addEventListener('input', () => {
+            const input = starstrokeInputRev.value;
+            const output = input;
+            starstrokeOutputRev.value = output;
+        });
+
+        // starstroke keyboard
+        const starstrokeKeys = document.querySelectorAll('.starstrokeKeys');
+        createKeyboard(starstrokeKeys, starstrokeInputRev);
     }
+}
 
-    // hide cards grid and show focused layout
-    cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => el.classList.add('hidden'));
-    focusedLayout.style.display = 'flex';
-    $('.content-header')?.classList.add('hidden');
-    contentView.style.overflow = 'hidden';
-    contentView.insertBefore(cardsContainer, focusedLayout);
-
-    focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
-    backBtn.querySelector('span').textContent = 'Card Selector';
-    initLazyLoad();
-    detailArea.scrollTop = 0;
+// Create keyboard
+function createKeyboard(keys, inputElement) {
+    const k = keys;
+    const i = inputElement;
+    k.forEach(key => {
+        key.addEventListener('click', () => {
+            const char = key.dataset.key;
+            if (char === 'DEL') {
+                i.value = i.value.slice(0, -1);
+                i.dispatchEvent(new Event('input'));
+                return;
+            }
+            if (char === 'CLR') {
+                i.value = '';
+                i.dispatchEvent(new Event('input'));
+                return;
+            }
+            i.value += char;
+            i.dispatchEvent(new Event('input'));
+        });
+    });
 }
 
 
