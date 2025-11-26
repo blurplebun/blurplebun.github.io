@@ -863,7 +863,7 @@ function converterHandler(label) {
         });
 
         // genotheta keyboard
-        const genothetaKeys = document.querySelectorAll('.genothetaKeys');
+        const genothetaKeys = $$('.genothetaKeys');
         createKeyboard(genothetaKeys, genothetaInputRev);
     }
 
@@ -892,7 +892,7 @@ function converterHandler(label) {
         });
 
         // starstroke keyboard
-        const starstrokeKeys = document.querySelectorAll('.starstrokeKeys');
+        const starstrokeKeys = $$('.starstrokeKeys');
         createKeyboard(starstrokeKeys, starstrokeInputRev);
     }
 }
