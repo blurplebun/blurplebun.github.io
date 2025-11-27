@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'November 26th, 2025';
-const version = '0.2.5';
+const lastUpdated = 'November 27th, 2025';
+const version = '0.2.7';
 
 // Main menu data array
 menuItems = [
