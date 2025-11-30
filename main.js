@@ -18,6 +18,7 @@ function getCSSVar(name, parse = 'string') {
 
 // Lazy loader base path
 const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
+const LOCAL_MODE = 1;
 
 
 
@@ -706,6 +707,7 @@ function focusCard(cardEl, label, menu = null) {
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
+    console.log(menu);
 
     // Add lazy classes to any <img> in label.detail and convert src->data-src
     let html = label.detail
@@ -744,6 +746,7 @@ function focusCard(cardEl, label, menu = null) {
         const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
         detailArea.innerHTML = `
             <h1>
+                <div style="font-size: 20px;"><small>${menu.name} /</small></div>
                 ${label.title}
                 <span class="copy-link" title="Copy shareable link">
                     <svg viewBox="0 0 24 24" fill="none">
@@ -1007,16 +1010,20 @@ const lazyObserver = new IntersectionObserver((entries, obs) => {
         if (el.tagName === 'IMG') {
             const src = el.dataset.src;
             if (src) {
-                el.src = LAZY_BASE + src;
+                // Use local image if LOCAL_MODE is true, otherwise use LAZY_BASE
+                const imageUrl = LOCAL_MODE ? src : LAZY_BASE + src;
+                el.src = imageUrl;
                 el.onload = () => el.classList.add('loaded');
             }
         } else if (el.classList.contains('lazy-bg')) {
             const bgUrl = el.dataset.bg;
             if (bgUrl) {
+                // Use local image if LOCAL_MODE is true, otherwise use LAZY_BASE
+                const imageUrl = LOCAL_MODE ? bgUrl : LAZY_BASE + bgUrl;
                 const img = new Image();
-                img.src = LAZY_BASE + bgUrl;
+                img.src = imageUrl;
                 img.onload = () => {
-                    el.style.backgroundImage = `url('${LAZY_BASE + bgUrl}')`;
+                    el.style.backgroundImage = `url('${imageUrl}')`;
                     el.classList.add('loaded');
                 };
             }
@@ -1027,10 +1034,33 @@ const lazyObserver = new IntersectionObserver((entries, obs) => {
 }, { rootMargin: '0px 0px 300px 0px' });
 
 function initLazyLoad() {
-    const lazyImages = $$('img.lazy:not(.loaded)');
-    const lazyBackgrounds = $$('.lazy-bg:not(.loaded)');
-    lazyImages.forEach(el => lazyObserver.observe(el));
-    lazyBackgrounds.forEach(el => lazyObserver.observe(el));
+    // If in local mode, load all images immediately without lazy loading
+    if (LOCAL_MODE) {
+        const lazyImages = $$('img.lazy:not(.loaded)');
+        const lazyBackgrounds = $$('.lazy-bg:not(.loaded)');
+        
+        lazyImages.forEach(el => {
+            const src = el.dataset.src;
+            if (src) {
+                el.src = src;
+                el.classList.add('loaded');
+            }
+        });
+        
+        lazyBackgrounds.forEach(el => {
+            const bgUrl = el.dataset.bg;
+            if (bgUrl) {
+                el.style.backgroundImage = `url('${bgUrl}')`;
+                el.classList.add('loaded');
+            }
+        });
+    } else {
+        // Normal lazy loading behavior
+        const lazyImages = $$('img.lazy:not(.loaded)');
+        const lazyBackgrounds = $$('.lazy-bg:not(.loaded)');
+        lazyImages.forEach(el => lazyObserver.observe(el));
+        lazyBackgrounds.forEach(el => lazyObserver.observe(el));
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initLazyLoad);
@@ -1142,6 +1172,8 @@ function search() {
     let menuMatches;
     if (q === 'all') {
         menuMatches = menuItems.filter(menu => (!menu.invisible));
+    } else if (q === 'characters' || q === 'character' || q === 'oc') {
+        menuMatches = [];
     } else {
         menuMatches = menuItems.filter(menu => {
             if (menu.invisible) return false;

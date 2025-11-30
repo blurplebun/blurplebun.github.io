@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'November 27th, 2025';
-const version = '0.2.7';
+const lastUpdated = 'November 30th, 2025';
+const version = '0.3.0';
 
 // Main menu data array
 menuItems = [
@@ -119,6 +119,10 @@ menuItems = [
             {
                 cardId: 'deltadim-chromasia',
                 linkId: 'deltadim-chromasia',
+            },
+            {
+                cardId: 'deltadim-aakik',
+                linkId: 'deltadim-aakik',
             },
             {
                 cardId: 'deltadim-deltaspace',
@@ -322,7 +326,7 @@ menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Aroace',
                 cNicknames: 'Arti, Nay, Neko',
-                cAddOns: '',
+                cAddOns: 'Sibling: <a data-open-card="deltadim-chromasia:artimouse">Artimouse</a>',
                 cReference: '',
                 cGallery: [
                     'images/c/artineko-c.png',
@@ -393,9 +397,10 @@ menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:mist">Mist</a>',
                 cReference: '',
                 cGallery: [
+                    'images/c/furfy-c6.png',
                     'images/c/furfy-c.png',
                     'images/c/furfy-c2.png',
                     'images/c/furfy-c3.png',
@@ -404,6 +409,27 @@ menuItems = [
                 ],
                 
                 image: 'images/i/furfy-i.png',
+            },
+            {
+                cardId: 'mist',
+                title: 'Mist',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:furfy">Furfy</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/mist-c.png',
+                    'images/c/mist-c2.png',
+                ],
+                
+                image: 'images/i/mist-i.png',
             },
             {
                 cardId: 'card',
@@ -420,6 +446,7 @@ menuItems = [
                 cAddOns: 'S/O: <a data-open-card="deltadim-teksui:gift">Gift</a>',
                 cReference: 'images/r/card-r.png',
                 cGallery: [
+                    'images/c/card-c5.png',
                     'images/c/card-c.png',
                     'images/c/card-c2.png',
                     'images/c/card-c3.png',
@@ -508,6 +535,24 @@ menuItems = [
                 
                 image: 'images/i/rai-i.png',
             },
+            {
+                cardId: 'remy',
+                title: 'Remy',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Robunny',
+                cPronouns: 'She/They/It',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/remy-r.png',
+                cGallery: [],
+                
+                image: 'images/i/remy-i.png',
+            },
         ]
     },
     {
@@ -519,6 +564,166 @@ menuItems = [
         parent: 'deltadim',
         hidden: true,
         labels: [
+            {
+                cardId: 'artibon',
+                title: 'Artibon',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Rabbit',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: 'Arti, Ribbon, Bonbon, Sylvy',
+                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:artishade">Artishade</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/artibon-c.png',
+                    'images/c/artibon-c2.png',
+                    'images/c/artibon-c3.png',
+                    'images/c/artibon-c4.png',
+                    'images/c/artibon-c5.png',
+                    'images/c/artibon-c6.png',
+                ],
+                
+                image: 'images/i/artibon-i.png',
+            },
+            {
+                cardId: 'artimouse',
+                title: 'Artimouse',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Mousegirl',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Arti, Mimi',
+                cAddOns: 'Sibling: <a data-open-card="deltadim-teksui:artineko">Artineko</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/artimouse-c.png',
+                    'images/c/artimouse-c1.png',
+                    'images/c/artimouse-c2.png',
+                    'images/c/artimouse-c3.png',
+                ],
+                
+                image: 'images/i/artimouse-i.png',
+            },
+            {
+                cardId: 'artiferret',
+                title: 'Artiferret',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Ferret',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Arti, Fer',
+                cAddOns: 'Partner: <a data-open-card="deltadim-aakik:ellie">Ellie</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/artiferret-c.png',
+                    'images/c/artiferret-c2.png',
+                    'images/c/artiferret-c3.png',
+                ],
+                
+                image: 'images/i/artiferret-i.png',
+            },
+            {
+                cardId: 'artitri',
+                title: 'Artitri',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Sign',
+                cPronouns: 'She/Them',
+                cGender: 'None',
+                cSexuality: '',
+                cNicknames: 'Arti, 3',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artitri-c.png',
+                    'images/c/artitri-c2.png',
+                ],
+                
+                image: 'images/i/artitri-i.png',
+            },
+            {
+                cardId: 'artibot',
+                title: 'Artibot',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Robocat',
+                cPronouns: 'He/It',
+                cGender: 'None',
+                cSexuality: '',
+                cNicknames: 'Arti, B.B',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artibot-c.png',
+                    'images/c/artibot-c2.png',
+                    'images/c/artibot-c3.png',
+                ],
+                
+                image: 'images/i/artibot-i.png',
+            },
+            {
+                cardId: 'artishade',
+                title: 'Artishade',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Fennec',
+                cPronouns: 'She/He/They',
+                cGender: 'Intersex Bigender',
+                cSexuality: 'Lesbian',
+                cNicknames: 'Arti, Sasha',
+                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:artibon">Artibon</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/artishade-c.png',
+                    'images/c/artishade-c2.png',
+                    'images/c/artishade-c3.png',
+                    'images/c/artishade-c4.png',
+                    'images/c/artishade-c5.png',
+                ],
+                
+                image: 'images/i/artishade-i.png',
+            },
+            {
+                cardId: 'artidragon',
+                title: 'Artidragon',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Dragon',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Arti, Rara',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artidragon-c.png',
+                    'images/c/artidragon-c2.png',
+                    'images/c/artidragon-c3.png',
+                    'images/c/artidragon-c4.png',
+                ],
+                
+                image: 'images/i/artidragon-i.png',
+            },
             {
                 cardId: 'shirley',
                 title: 'Shirley',
@@ -562,6 +767,7 @@ menuItems = [
                     'images/c/rose-c.png',
                     'images/c/rose-c2.png',
                     'images/c/rose-c3.png',
+                    'images/c/rose-c4.png',
                 ],
                 
                 image: 'images/i/rose-i.png',
@@ -578,7 +784,7 @@ menuItems = [
                 cGender: 'Demigirl',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: '',
+                cAddOns: 'S/O: <a data-open-card="floriverse:aurelia">Aurelia</a>',
                 cReference: '',
                 cGallery: [
                     'images/c/hana-c.png',
@@ -586,6 +792,7 @@ menuItems = [
                     'images/c/hana-c3.png',
                     'images/c/hana-c4.png',
                     'images/c/hana-c5.png',
+                    'images/c/hana-c6.png',
                 ],
                 
                 image: 'images/i/hana-i.png',
@@ -635,6 +842,7 @@ menuItems = [
                     'images/c/azurey-c.png',
                     'images/c/azurey-c2.png',
                     'images/c/azurey-c3.png',
+                    'images/c/azurey-c4.png',
                 ],
                 
                 image: 'images/i/azurey-i.png',
@@ -656,6 +864,7 @@ menuItems = [
                 cGallery: [
                     'images/c/mida-c.png',
                     'images/c/mida-c2.png',
+                    'images/c/mida-c3.png',
                 ],
                 
                 image: 'images/i/mida-i.png',
@@ -755,6 +964,120 @@ menuItems = [
                 
                 image: 'images/i/sawo-i.png',
             },
+            {
+                cardId: 'nytro',
+                title: 'Nytro',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Mouse',
+                cPronouns: 'He/They',
+                cGender: 'Male',
+                cSexuality: 'Aromantic',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/nytro-c.png',
+                    'images/c/nytro-c2.png',
+                ],
+                
+                image: 'images/i/nytro-i.png',
+            },
+        ]
+    },
+    {
+        q: 'deltadim-aakik',
+        name: 'Aakik',
+        subtitle: 'Terra',
+        image: 'images/deltadim-aakik.png',
+        color: 'var(--color-3)',
+        parent: 'deltadim',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'artiusagi',
+                title: 'Sukie',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Human (Bunny cosplay)',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Usagi, Sukie',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artiusagi-c.png',
+                ],
+                
+                image: 'images/i/artiusagi-i.png',
+            },
+            {
+                cardId: 'ellie',
+                title: 'Ellie',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Catgirl',
+                cPronouns: 'She/It',
+                cGender: 'Trans-female',
+                cSexuality: 'Demisexual',
+                cNicknames: '',
+                cAddOns: 'Partner: <a data-open-card="deltadim-chromasia:artiferret">Artiferret</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/ellie-c.png',
+                    'images/c/ellie-c2.png',
+                ],
+                
+                image: 'images/i/ellie-i.png',
+            },
+            {
+                cardId: 'amber',
+                title: 'Amber',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Human',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Heterosexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/amber-c.png',
+                    'images/c/amber-c2.png',
+                ],
+                
+                image: 'images/i/amber-i.png',
+            },
+            {
+                cardId: 'hazel',
+                title: 'Hazel',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Goat',
+                cPronouns: 'She/Any',
+                cGender: 'Genderfluid',
+                cSexuality: 'Demisexual',
+                cNicknames: '',
+                cAddOns: 'Adopted from <a href="https://x.com/fixy_cookies" target="_blank">Fixy Cookies</a>',
+                cReference: 'images/r/hazel-r.png',
+                cGallery: [
+                    'images/c/hazel-c.png',
+                ],
+                
+                image: 'images/i/hazel-i.png',
+            },
         ]
     },
     {
@@ -806,6 +1129,7 @@ menuItems = [
                 cAddOns: '',
                 cReference: '',
                 cGallery: [
+                    'images/c/gamma-c5.png',
                     'images/c/gamma-c.png',
                     'images/c/gamma-c2.png',
                     'images/c/gamma-c3.png',
@@ -834,9 +1158,35 @@ menuItems = [
                     'images/c/micro-c3.png',
                     'images/c/micro-c4.png',
                     'images/c/micro-c5.png',
+                    'images/c/micro-c6.png',
                 ],
                 
                 image: 'images/i/micro-i.png',
+            },
+            {
+                cardId: 'artilotl',
+                title: 'Artilotl',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Axolotl',
+                cPronouns: 'They/It',
+                cGender: 'Genderless',
+                cSexuality: 'Aromantic',
+                cNicknames: 'Arti, Xio',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artilotl-c.png',
+                    'images/c/artilotl-c2.png',
+                    'images/c/artilotl-c3.png',
+                    'images/c/artilotl-c4.png',
+                    'images/c/artilotl-c5.png',
+                    'images/c/artilotl-c6.png',
+                ],
+                
+                image: 'images/i/artilotl-i.png',
             },
             {
                 cardId: 'articani',
@@ -854,6 +1204,7 @@ menuItems = [
                 cReference: 'images/r/articani-r.png',
                 cGallery: [
                     'images/c/articani-c.png',
+                    'images/c/articani-c2.png',
                 ],
                 
                 image: 'images/i/articani-i.png',
@@ -877,6 +1228,26 @@ menuItems = [
                 ],
                 
                 image: 'images/i/ryon-i.png',
+            },
+            {
+                cardId: 'klora',
+                title: 'Klora',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Mantis',
+                cPronouns: 'She/He/It',
+                cGender: 'Non-binary',
+                cSexuality: 'Aromantic',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/klora-c.png',
+                ],
+                
+                image: 'images/i/klora-i.png',
             },
         ]
     },
@@ -1132,6 +1503,99 @@ menuItems = [
                     ``,
                 image: 'images/fvz-i.png'
             },
+            {
+                title: 'Characters',
+                excerpt: 'People of the Floriverse',
+            },
+            {
+                cardId: 'aurelia',
+                title: 'Aurelia',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Zinnia',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:hana">Hana</a>',
+                cReference: 'images/r/aurelia-r.png',
+                cGallery: [
+                    'images/flories/fve-aurelia.png',
+                    'images/c/aurelia-c.png',
+                    'images/c/aurelia-c2.png',
+                    'images/c/aurelia-c3.png',
+                    'images/c/aurelia-c4.png',
+                ],
+                
+                image: 'images/i/aurelia-i.png',
+            },
+            {
+                cardId: 'furflow',
+                title: 'Furflow',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="floriverse:misty">Misty</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/furflow-c.png',
+                    'images/c/furflow-c2.png',
+                    'images/c/furflow-c3.png',
+                    'images/c/furflow-c4.png',
+                ],
+                
+                image: 'images/i/furflow-i.png',
+            },
+            {
+                cardId: 'misty',
+                title: 'Misty',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="floriverse:furflow">Furflow</a>',
+                cReference: '',
+                cGallery: [
+                    'images/flories/fve-misty.png',
+                    'images/c/misty-c.png',
+                ],
+                
+                image: 'images/i/misty-i.png',
+            },
+            {
+                cardId: 'teknia',
+                title: 'Teknia',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Roboflorie',
+                cPronouns: 'She/It',
+                cGender: 'Female',
+                cSexuality: 'Asexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/flories/uncat/teknia.png',
+                    'images/c/teknia-c.png',
+                ],
+                
+                image: 'images/c/teknia-c.png',
+            },
         ]
     },
 
@@ -1172,6 +1636,7 @@ menuItems = [
                     'images/c/soap-c.png',
                     'images/c/soap-c2.png',
                     'images/c/soap-c3.png',
+                    'images/c/soap-c4.png',
                 ],
                 
                 image: 'images/i/soap-i.png',
@@ -1234,6 +1699,7 @@ menuItems = [
                 cReference: '',
                 cGallery: [
                     'images/c/byte-c.png',
+                    'images/c/byte-c2.png',
                 ],
                 
                 image: 'images/i/byte-i.png',
@@ -1279,6 +1745,27 @@ menuItems = [
                 ],
                 
                 image: 'images/i/ebta-i.png',
+            },
+            {
+                cardId: 'furryeah',
+                title: 'Furryeah',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cat',
+                cPronouns: 'Any',
+                cGender: 'Genderless',
+                cSexuality: '',
+                cNicknames: 'Yeah!',
+                cAddOns: '',
+                cReference: 'images/r/furryeah-r.png',
+                cGallery: [
+                    'images/c/furryeah-c.png',
+                    'images/c/furryeah-c2.png',
+                ],
+                
+                image: 'images/i/furryeah-i.png',
             },
             {
                 cardId: 'placeholder',
@@ -1336,7 +1823,9 @@ menuItems = [
                 cNicknames: '',
                 cAddOns: '',
                 cReference: 'images/r/quanta-r.png',
-                cGallery: [],
+                cGallery: [
+                    'images/c/quanta-c.png',
+                ],
                 
                 image: 'images/i/quanta-i.png',
             },
@@ -1368,6 +1857,68 @@ menuItems = [
                         <div class="ticker-text"></div>
                     </div>`,
                 image: 'icons/nansenz.png'
+            },
+            {
+                cardId: 'article',
+                title: 'Article',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Article (Object)',
+                cPronouns: 'She/He/It',
+                cGender: 'Non-binary',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/article-c.png',
+                ],
+                
+                image: 'images/i/article-i.png',
+            },
+            {
+                cardId: 'meowcaroon',
+                title: 'Meowcaroon',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Macaroon (Object)',
+                cPronouns: 'She/It',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="nansenz:oworeo">Oworeo</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/meowcaroon-c.png',
+                    'images/c/meowcaroon-c2.png',
+                ],
+                
+                image: 'images/i/meowcaroon-i.png',
+            },
+            {
+                cardId: 'oworeo',
+                title: 'Oworeo',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Sandwich Cookie (Object)',
+                cPronouns: 'They',
+                cGender: 'Non-Binary',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="nansenz:meowcaroon">Meowcaroon</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/oworeo-c.png',
+                    'images/c/oworeo-c2.png',
+                ],
+                
+                image: 'images/i/oworeo-i.png',
             },
             {
                 cardId: 'cancerman',
@@ -1407,6 +1958,24 @@ menuItems = [
                 
                 image: 'images/i/mu-i.png',
             },
+            {
+                cardId: 'gomboc',
+                title: 'THE GÖMBÖC',
+                excerpt: '',
+                detail: ``,
+
+                isCharacter: true,
+                cSpecies: '',
+                cPronouns: '',
+                cGender: '',
+                cSexuality: '',
+                cNicknames: '',
+                cAddOns: `<H1 style="font-size:50px; font-family: none; color: #e1b89c; text-align: center;">THE GÖMBÖC SIMPLY WANTS MORE.</H1>`,
+                cReference: '',
+                cGallery: [],
+                
+                image: 'images/gomboc.gif',
+            },
         ]
     },
 
@@ -1430,13 +1999,55 @@ menuItems = [
                 image: 'icons/hizen.png'
             },
             {
+                cardId: 'nim',
+                title: 'Nim',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cloud Rabbit',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Aroace',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/nim-c.png',
+                    'images/c/nim-c2.png',
+                ],
+                
+                image: 'images/i/nim-i.png',
+            },
+            {
+                cardId: 'awan',
+                title: 'Awan',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cloud Puppy',
+                cPronouns: 'He/They',
+                cGender: 'Male',
+                cSexuality: 'Gay',
+                cNicknames: '',
+                cAddOns: 'Adopted from <a href="https://x.com/yewm3w" target="_blank">yewm3w</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/awan-c.png',
+                    'images/c/awan-c2.png',
+                ],
+                
+                image: 'images/i/awan-i.png',
+            },
+            {
                 cardId: 'lyne',
                 title: 'Lyne',
                 excerpt: '',
                 detail: '',
 
                 isCharacter: true,
-                cSpecies: 'Lyne',
+                cSpecies: 'Polygon',
                 cPronouns: 'They',
                 cGender: 'Non-Binary',
                 cSexuality: 'Bisexual',
@@ -1472,6 +2083,27 @@ menuItems = [
                 image: 'icons/nadir.png'
             },
             {
+                cardId: 'artinihil',
+                title: 'Artinihil',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Unknown',
+                cPronouns: 'She/It',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Nihil',
+                cAddOns: 'S/O: <a data-open-card="nadir:ugo">Ugo</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/artinihil-c.png',
+                    'images/c/artinihil-c2.png',
+                ],
+                
+                image: 'images/i/artinihil-i.png',
+            },
+            {
                 cardId: 'infineko',
                 title: 'Infineko',
                 excerpt: '',
@@ -1501,7 +2133,7 @@ menuItems = [
                 cGender: 'Male',
                 cSexuality: 'Gay',
                 cNicknames: '',
-                cAddOns: '',
+                cAddOns: 'S/O: <a data-open-card="nadir:artinihil">Artinihil</a>',
                 cReference: 'images/r/ugo-r.png',
                 cGallery: [],
                 
@@ -1769,11 +2401,12 @@ menuItems = [
         scale: 1.5,
         labels: [
             {
-                cardId: 'about',
-                title: 'About Artifyber',
-                excerpt: 'artifyber@gmail.com',
+                cardId: 'artifyber',
+                title: 'Artifyber',
+                excerpt: '',
                 detail:
-                    `<h2>Hello!</h2> I'm Artifyber, an Indonesian furry artist who likes to draw and make music.<br>
+                    `
+                    <h2>Hello!</h2> I'm Artifyber, an Indonesian furry artist who likes to draw and make music.<br>
                     <br>
                     I taught myself how to draw since 2021 and produce music for even longer since 2019. Only in the late 2021 did I start to appear online under an old alias which I no longer use or associate with.<br>
                     <br>
@@ -1792,8 +2425,18 @@ menuItems = [
                     <br>
                     <hr>
                     All done. Thank you for enjoying what I make :3<br>
+                    <br>
                     <img src="images/fyberhappy.png"">
                     `,
+                isCharacter: true,
+                cSpecies: 'Fyber',
+                cPronouns: 'She/Any',
+                cGender: 'Bigender',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/artifyber-r.png',
+                cGallery: [],
                 image: 'images/temp3.png'
             },
             {
