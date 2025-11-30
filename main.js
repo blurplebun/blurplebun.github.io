@@ -18,7 +18,7 @@ function getCSSVar(name, parse = 'string') {
 
 // Lazy loader base path
 const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
-const LOCAL_MODE = 1;
+const LOCAL_MODE = 0;
 
 
 
