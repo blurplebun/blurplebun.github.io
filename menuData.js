@@ -1590,7 +1590,7 @@ menuItems = [
                 cAddOns: '',
                 cReference: '',
                 cGallery: [
-                    'images/flories/uncat/teknia.png',
+                    'images/flories/uncat/Teknia.png',
                     'images/c/teknia-c.png',
                 ],
                 
