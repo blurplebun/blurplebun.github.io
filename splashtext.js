@@ -217,8 +217,16 @@ splashLines = [
     `Half Life 3 Tomorrow for Sure`,
     "",
     `owowowmememeowmeowmemeowowmemeowowmeowmemeowmeow`,
+    "i called my dad a motherfucker and he agreed",
+    "[OK] CORE\\FYBERVERSE\\artifyber.xyz",
+    "╱╱╱╱",
+    "more like baitfryer",
+    `<b style="font-size:16px; color:var(--color-3)">#C894F9 FTW</b>`,
+    "You cannot ragebait me 💜🌼",
+    "+3030350% !!",
+    "2️⃣7️⃣6️⃣3️⃣",
 ];
 
 totalSplash = splashLines.length;
 
-// splashLines = [``]
+// splashLines = []
