@@ -42,7 +42,7 @@ const menuStage = $('.menu-stage');
 const starfield = $('.starfield');
 
 // Keep centerBtn hidden initially
-centerBtn.classList.add('hide');
+// centerBtn.classList.add('visible');
 
 // Make sure menuStage initial transform uses CSS var scale
 menuStage.style.transition = 'none';
@@ -145,9 +145,9 @@ function snapCameraToCenter() {
 
 // center button visibility loop
 function showCenterBtnLoop() {
-    centerBtn.classList.add('hide');
+    centerBtn.classList.remove('visible');
     if (!(currentX === 0 && currentY === 0) && !contentView.classList.contains('visible')) {
-        centerBtn.classList.remove('hide');
+        centerBtn.classList.add('visible');
         const splashInfo = $('.splash-text-info');
         if (splashInfo) splashInfo.style.opacity = 0;
     }
@@ -707,7 +707,6 @@ function focusCard(cardEl, label, menu = null) {
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
-    console.log(menu);
 
     // Add lazy classes to any <img> in label.detail and convert src->data-src
     let html = label.detail
@@ -746,7 +745,7 @@ function focusCard(cardEl, label, menu = null) {
         const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
         detailArea.innerHTML = `
             <h1>
-                <div style="font-size: 20px;"><small>${menu.name} /</small></div>
+                <div style="font-size: 20px;"><small><a data-open-card="${menu.q}">${menu.name}</a> /</small></div>
                 ${label.title}
                 <span class="copy-link" title="Copy shareable link">
                     <svg viewBox="0 0 24 24" fill="none">
@@ -1326,6 +1325,8 @@ document.addEventListener('click', (e) => {
     const link = e.target.closest('a[data-open-card]');
     if (!link) return;
     e.preventDefault();
+
+    rerollBtn?.classList.remove('visible');
 
     const ref = link.dataset.openCard.trim();
     const [menuCode, cardKey] = ref.split(':');

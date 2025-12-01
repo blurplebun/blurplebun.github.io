@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'November 30th, 2025';
-const version = '0.3.0';
+const lastUpdated = 'December 1st, 2025';
+const version = '0.3.1';
 
 // Main menu data array
 menuItems = [
@@ -1970,7 +1970,7 @@ menuItems = [
                 cGender: '',
                 cSexuality: '',
                 cNicknames: '',
-                cAddOns: `<H1 style="font-size:50px; font-family: none; color: #e1b89c; text-align: center;">THE GÖMBÖC SIMPLY WANTS MORE.</H1>`,
+                cAddOns: `<H1 style="font-size:50px; font-family: Times, serif; color: #e1b89c; text-align: center;">THE GÖMBÖC SIMPLY WANTS MORE.</H1>`,
                 cReference: '',
                 cGallery: [],
                 

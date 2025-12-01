@@ -596,12 +596,6 @@ body {
 }
 
 /* Detail area for text n stuff*/
-#detailArea,
-#detailArea small,
-#detailArea details {
-    color: color-mix(in srgb, var(--accentl) 75%, transparent);
-}
-
 details[open] {
     background: color-mix(in srgb, var(--bg) 60%, transparent);
     padding: 12px;
@@ -641,10 +635,17 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-    color: var(--white) !important;
+    color: var(--white);
     opacity: 1;
     text-decoration: underline;
     transition: color 0.2s, opacity 0.2s;
+}
+
+#detailArea,
+#detailArea small,
+#detailArea small a,
+#detailArea details {
+    color: color-mix(in srgb, var(--accentl) 75%, transparent);
 }
 
 a[data-open-card] {
@@ -905,49 +906,46 @@ a[data-open-card] {
 }
 
 .ui-btn:hover {
-    transform: scale(1.15);
+    transform: scale(1.1);
 }
-
-.back-btn {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.back-btn.visible {
-    opacity: 1;
-    pointer-events: auto;
+.ui-btn:active {
+    transform: scale(0.95);
 }
 
 .back-btn svg {
-    width: 18px;
-    height: 18px
+    width: 13px;
 }
 
-.center-btn {
+#uiPanel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 16px;
+    align-items: center;
+    padding: 24px;
     position: fixed;
-    right: 30px;
-    bottom: 30px;
-    opacity: 1;
+    bottom: 0px;
+    width: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    white-space: nowrap;
 }
 
-.center-btn.hide {
+#uiPanel *[id] {
+    padding: 12px 14px;
     opacity: 0;
+    display: block;
+    visibility: hidden;
+    max-height: 0;
+    position: fixed;
     pointer-events: none;
 }
 
-.reroll-btn-top {
-    position: fixed;
-    right: 190px;
-    bottom: 30px;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.reroll-btn-top.visible {
+#uiPanel *[id].visible {
     opacity: 1;
+    visibility: visible;
+    max-height: none;
+    position: static;
     pointer-events: auto;
 }
 

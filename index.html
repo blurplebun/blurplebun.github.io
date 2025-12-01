@@ -66,17 +66,45 @@
             </div>
         </div>
 
-        <button id="backBtn" class="back-btn ui-btn" aria-hidden="true" title="Back">
-            <svg viewBox="0 0 24 24" fill="none"
-                stroke="currentColor">
-                <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
-            </svg><span>Back</span></button>
+        <div id="uiPanel">
+            <!-- center view button -->
+            <button
+                id="centerBtn"
+                class="center-btn ui-btn"
+                aria-hidden="true"
+                title="Center">
+                <span>Center</span>
+            </button>
 
-        <button id="rerollBtn" class="reroll-btn-top ui-btn" aria-hidden="true" title="Reroll Character">
-            <span>Reroll</span>
-        </button>
+            <!-- reroll button -->
+            <button
+                id="rerollBtn"
+                class="reroll-btn ui-btn"
+                aria-hidden="true"
+                title="Reroll Character">
+                <span>Reroll</span>
+            </button>
+            
+            <!-- custom button -->
+            <button
+                id="customBtn"
+                class="custom-btn ui-btn"
+                aria-hidden="true"
+                title="Custom">
+                <span>Custom</span>
+            </button>
 
-        <button id="centerBtn" class="center-btn ui-btn" aria-hidden="true" title="Center"><span>Center</span></button>
+            <!-- back button -->
+            <button
+                id="backBtn"
+                class="back-btn ui-btn"
+                aria-hidden="true"
+                title="Back">
+
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor"><path stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" /></svg>
+                <span>Back</span>
+            </button>
+        </div>
     </div>
 
     <script src="menuData.js"></script>
