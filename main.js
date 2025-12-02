@@ -109,6 +109,7 @@ function dragTo(clientX, clientY) {
 function endDrag() {
     isDragging = false;
     menuStage.style.cursor = 'default';
+    updateCenterButtonVisibility();
 }
 
 // Mouse events
@@ -145,23 +146,25 @@ menuStage.addEventListener('wheel', (e) => {
 function snapCameraToCenter() {
     currentX = 0; currentY = 0;
     setMenuStageTransform(0, 0, { transition: 'transform 0.5s cubic-bezier(.2, .9, .2, 1)', layerTransition: 'transform 0.8s ease-out' });
+    vizRemove(centerBtn);
     // Clear layer transitions after animation finishes to avoid stuttering later
     setTimeout(() => {
         starfield?.querySelectorAll('.star-layer').forEach(layer => layer.style.transition = '');
     }, 900);
 }
 
-// center button visibility loop
-function showCenterBtnLoop() {
-    vizRemove(centerBtn);
-    if (!(currentX === 0 && currentY === 0) && !contentView.classList.contains('visible')) {
-        vizAdd(centerBtn);
-        const splashInfo = $('.splash-text-info');
-        if (splashInfo) splashInfo.style.opacity = 0;
+function updateCenterButtonVisibility() {
+    if (contentView.classList.contains('visible')) {
+        vizRemove(centerBtn);
+        return;
     }
-    requestAnimationFrame(showCenterBtnLoop);
+    
+    if (currentX !== 0 || currentY !== 0) {
+        vizAdd(centerBtn);
+    } else {
+        vizRemove(centerBtn);
+    }
 }
-showCenterBtnLoop();
 
 window.addEventListener('resize', snapCameraToCenter);
 centerBtn.addEventListener('click', snapCameraToCenter);
@@ -310,34 +313,50 @@ function orbitFrame(ts) {
     if (ts - lastFrame > 1000 / ORBIT_FPS) {
         lastFrame = ts;
         const elapsed = (ts - orbitStartTs) / 1000;
+        
+        const transforms = new Array(orbitButtons.length);
+        const needsHoverEffect = !contentView.classList.contains('visible');
+        const maxDist = 250;
+        
+        const cursorPos = { x: cursorX, y: cursorY };
+        
         for (let i = 0; i < orbitButtons.length; i++) {
             const el = orbitButtons[i];
-            const a0 = parseFloat(el.dataset.angle0) || 0;
-            const w = parseFloat(el.dataset.omega) || 0;
-            const r = parseFloat(el.dataset.radius) || 0;
-            const s = parseFloat(el.dataset.scale) || 1;
+            const dataset = el.dataset;
+            
+            const a0 = parseFloat(dataset.angle0) || 0;
+            const w = parseFloat(dataset.omega) || 0;
+            const r = parseFloat(dataset.radius) || 0;
+            const s = parseFloat(dataset.scale) || 1;
+            
             const angle = a0 + w * elapsed;
             const x = Math.cos(angle) * r;
             const y = Math.sin(angle) * r;
-
-            // hover/zoom effect only when content view is NOT visible
+            
+            // Calculate zoom for hover effect
             let zoom = 1;
-            if (!isDragging) {
-                if (!contentView.classList.contains('visible')) {
-                    const rect = el.getBoundingClientRect();
-                    const btnX = rect.left + rect.width / 2;
-                    const btnY = rect.top + rect.height / 2;
-                    const dx = cursorX - btnX;
-                    const dy = cursorY - btnY;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    const maxDist = 250;
-                    zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
-                }
+            if (!isDragging && needsHoverEffect) {
+                const rect = el.getBoundingClientRect();
+                const btnX = rect.left + rect.width / 2;
+                const btnY = rect.top + rect.height / 2;
+                
+                const dx = cursorPos.x - btnX;
+                const dy = cursorPos.y - btnY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                
+                zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
             }
-
-            el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
+            
+            transforms[i] = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
         }
+        
+        requestAnimationFrame(() => {
+            for (let i = 0; i < orbitButtons.length; i++) {
+                orbitButtons[i].style.transform = transforms[i];
+            }
+        });
     }
+    
     requestAnimationFrame(orbitFrame);
 }
 
@@ -1218,16 +1237,16 @@ window.addEventListener('load', () => {
 /* --------------------------
     Starfield generation
     -------------------------- */
-function createStarfield(layerCount = 3, starsPerLayer = 40) {
+function createStarfield(layerCount = 3, starsPerLayer = 30) {
     if (!starfield) return;
     for (let l = 0; l < layerCount; l++) {
         const layer = document.createElement('div');
         layer.classList.add('star-layer');
-        layer.dataset.depth = 0.5 + Math.random() * 1;
+        layer.dataset.depth = 0.5 + (l / layerCount) * 1;
         for (let i = 0; i < starsPerLayer; i++) {
             const star = document.createElement('div');
             star.classList.add('star');
-            const size = Math.random() * 2 + 1;
+            const size = Math.random() * 5 + 1;
             star.style.width = `${size}px`;
             star.style.height = `${size}px`;
             star.style.left = `${Math.random() * 100}%`;
@@ -1714,6 +1733,7 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
 
             vizRemove(searchBtn);
             vizRemove(hideBtn);
+            vizRemove(centerBtn);
             menuStage.classList.add('blur');
             starfield?.classList.add('blur');
 
@@ -1727,6 +1747,7 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
 
             vizAdd(searchBtn);
             vizAdd(hideBtn);
+            updateCenterButtonVisibility();
             menuStage.classList.remove('blur');
             starfield?.classList.remove('blur');
 
