@@ -159,11 +159,6 @@ showCenterBtnLoop();
 
 window.addEventListener('resize', snapCameraToCenter);
 centerBtn.addEventListener('click', snapCameraToCenter);
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'c' && !isInputFocused()) {
-        snapCameraToCenter();
-    }
-});
 
 // Helper function to check if any input element is focused
 function isInputFocused() {
@@ -477,11 +472,25 @@ function initContent() {
         m.labels?.forEach(lbl => {
             if (lbl.linkId) {
                 const linkedMenu = menuItems.find(lm => lm.q === lbl.linkId);
-                lbl.cardId = lbl.linkId;
-                lbl.title = linkedMenu.name;
+                if (linkedMenu) {
+                    lbl.cardId = lbl.linkId;
+                    lbl.title = linkedMenu.name;
+                }
             }
         })
     })
+
+    // add faraway orbit just so the drag layout work (I GAVE UP ON ALTERNATIVES LOL)
+    faraway = {
+        q: 'farawaymenu',
+        name: 'faraway',
+        showName: false,
+        orbit: 999,
+        scale: 0.01,
+        invisible: true,
+        labels: []
+    }
+    menuItems.push(faraway);
 }
 initContent();
 
@@ -1367,6 +1376,7 @@ function search() {
     openMenu(searchMenu);
     openFromSearch = true;
     searchText.value = '';
+    contentView.style.overflow = '';
 }
 
 menuLogo.addEventListener('click', () => {
@@ -1375,9 +1385,13 @@ menuLogo.addEventListener('click', () => {
 
 const searchBtn = document.getElementById('searchBtn')
 searchBtn?.addEventListener('click', () => {
+    openSearchBox();
+});
+
+function openSearchBox() {
     searchBox.showModal();
     vizRemove(searchBtn);
-});
+}
 
 searchBox.addEventListener('close', () => {
     if (searchText.value.trim() !== '') search();
@@ -1437,14 +1451,16 @@ function showUIs() {
     uiHidden = false;
 }
 
-// Toggle function for the hide button
-hideBtn.addEventListener('click', () => {
+function toggleUIs() {
     if (!uiHidden) {
         hideUIs();
     } else {
         showUIs();
     }
-});
+}
+
+// Toggle function for the hide button
+hideBtn.addEventListener('click', toggleUIs);
 
 // Function to check if UI is hidden and show it when needed
 function vizUI() {
@@ -1531,7 +1547,7 @@ document.addEventListener('click', (e) => {
 });
 
 // Open card by Q
-function openCardByQ (menuCode, cardKey, single=false) {
+function openCardByQ(menuCode, cardKey, single = false) {
     if (single) openSingle = true;
     const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) {
@@ -1622,8 +1638,15 @@ function goBack() {
 }
 
 backBtn.addEventListener('click', goBack);
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 
+// keyboard control
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
+document.addEventListener('keydown', (e) => {
+    if (isInputFocused()) return;
+    if (e.key === 'c') snapCameraToCenter();
+    if (e.key === 'h') toggleUIs();
+    if (e.key === ' ') openSearchBox();
+});
 
 
 /* --------------------------

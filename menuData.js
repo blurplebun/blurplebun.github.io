@@ -2520,7 +2520,9 @@ menuItems = [
                     <h2 style='margin-bottom: -12px'>Keyboard Shortcut</h2><br>
                     <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent); font-size: 14px'>
                         ESC = Go back<br>
+                        SPACE = Open search<br>
                         C = Center view<br>
+                        H = Hide UIs<br>
                     </p>
                     `,
                 excerpt: `
@@ -2928,6 +2930,87 @@ menuItems = [
         ]
     },
 ];
+
+
+/*
+menuItems = [
+    {
+        q: 'menuTemplate',                    // REQUIRED: Unique identifier (alphanumeric, no spaces)
+        name: 'Menu Template Example',        // Menu name and title
+        showName: false,                      // Show name in orbit
+        subtitle: 'This is a menu example',   // Short description
+        image: 'images/temp2.png',            // Orbit thumbnail image
+        color: 'var(--color-15)',             // Menu color (hex, CSS var, or blank)
+        orbit: 1,                             // INTEGER: Orbit layer placement
+        scale: 1,                             // Menu size in orbit
+        hidden: false,                         // Hide from orbit (accessible via links only)
+        invisible: true,                      // Exclude from search
+        labels: [
+            // CARDS WITH THUMBNAILS
+            {
+                cardId: 'normalCard',         // REQUIRED: Unique card identifier
+                title: 'Normal Card',
+                excerpt: 'With thumbnail',
+                detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
+                image: 'images/temp2.png'
+            },
+            {
+                cardId: 'urlCard',
+                title: 'URL Card',
+                excerpt: 'With thumbnail',
+                url: 'https://x.com/artifyber',  // External URL redirect
+                image: 'images/temp2.png'
+            },
+            {
+                cardId: 'unclickableCard',
+                title: 'Unclickable Card',
+                excerpt: 'With thumbnail',
+                unclickable: true,            // Non-clickable info card
+                image: 'images/temp2.png'
+            },
+
+            // CARDS WITHOUT THUMBNAILS
+            {
+                cardId: 'normalCardPlain',
+                title: 'Normal Card',
+                excerpt: 'Without thumbnail',
+                detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.'
+            },
+            {
+                cardId: 'urlCardPlain',
+                title: 'URL Card',
+                excerpt: 'With thumbnail',
+                url: 'https://x.com/artifyber'
+            },
+            {
+                cardId: 'unclickableCardPlain',
+                title: 'Unclickable Card',
+                excerpt: 'With thumbnail',
+                unclickable: true
+            },
+
+            // MENU-LINKED CARDS
+            {
+                // Cards without cardId become separators
+                title: 'Menu-Link examples',
+                excerpt: 'Cards that open another menu',
+            },
+            {
+                cardId: 'menuLinkCard1',
+                linkId: 'deltadim'  // Links to menu with matching 'q' property
+            },
+            {
+                cardId: 'menuLinkCard2',
+                linkId: 'floriverse'
+            },
+            {
+                cardId: 'menuLinkCard3',
+                linkId: 'info'
+            },
+        ]
+    },
+]
+*/
 
 
 // Beecat
