@@ -1672,9 +1672,9 @@ backBtn.addEventListener('click', goBack);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 document.addEventListener('keydown', (e) => {
     if (isInputFocused()) return;
-    if (e.key === 'c') snapCameraToCenter();
-    if (e.key === 'h') toggleUIs();
-    if (e.key === ' ') openSearchBox();
+    if (e.key === 'c') {e.preventDefault(); snapCameraToCenter();}
+    if (e.key === 'h') {e.preventDefault(); toggleUIs();}
+    if (e.key === ' ') {e.preventDefault(); openSearchBox();}
 });
 
 
