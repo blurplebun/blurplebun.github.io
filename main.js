@@ -105,9 +105,8 @@ function endDrag() {
     menuStage.style.cursor = 'default';
 }
 
-const dragLayer = document.getElementById('dragLayer');
 // Mouse events
-dragLayer.addEventListener('mousedown', (e) => {
+menuStage.addEventListener('mousedown', (e) => {
     beginDrag(e.clientX, e.clientY);
 });
 window.addEventListener('mousemove', (e) => {
@@ -116,7 +115,7 @@ window.addEventListener('mousemove', (e) => {
 window.addEventListener('mouseup', endDrag);
 
 // Touch events (single-finger only)
-dragLayer.addEventListener('touchstart', (e) => {
+menuStage.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return;
     beginDrag(e.touches[0].clientX, e.touches[0].clientY);
 }, { passive: true });
@@ -127,7 +126,7 @@ window.addEventListener('touchmove', (e) => {
 window.addEventListener('touchend', endDrag);
 
 // Two-finger trackpad-like gesture (wheel) - keep original thresholds
-dragLayer.addEventListener('wheel', (e) => {
+menuStage.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
         currentX -= e.deltaX * 1.5;
