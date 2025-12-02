@@ -1296,7 +1296,6 @@ function search() {
             matches = menu.labels.filter(label => {
                 return (label.title && stripHTML(label.title).toLowerCase().includes(q)) ||
                     (label.excerpt && stripHTML(label.excerpt).toLowerCase().includes(q)) ||
-                    (label.detail && stripHTML(label.detail).toLowerCase().includes(q)) ||
                     (label.cSpecies && stripHTML(label.cSpecies).toLowerCase().includes(q)) ||
                     (label.cPronouns && stripHTML(label.cPronouns).toLowerCase().includes(q)) ||
                     (label.cGender && stripHTML(label.cGender).toLowerCase().includes(q)) ||
@@ -1376,9 +1375,29 @@ function search() {
         }
     }
 
+    let searchId = 'search';
+    let searchName = `Search results for "${query}"`;
+    // only one card?
+    if (labelGroup.length == 2) {
+        labelGroup.shift();
+        const single = labelGroup[0]
+        if (!(single.linkId)) {
+            menuParent = menuItems.find(m => m.menuId == single.fromMenu);
+            searchId = menuParent.menuId;
+            searchName = menuParent.name;
+            openSingle = true;
+        } else {
+            openMenuById(single.linkId);
+            openFromSearch = true;
+            searchText.value = '';
+            contentView.style.overflow = '';
+            return;
+        }
+    }
+
     const searchMenu = {
-        menuId: 'search',
-        name: `Search results for "${query}"`,
+        menuId: searchId,
+        name: searchName,
         labels: labelGroup,
     };
 
