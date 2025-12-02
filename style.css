@@ -196,7 +196,7 @@ body {
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-    transition: transform 100ms, opacity 300ms, box-shadow 0.2s;
+    transition: transform 150ms, opacity 300ms, box-shadow 0.2s;
     user-select: none;
     font-weight: 700;
     color: #111;

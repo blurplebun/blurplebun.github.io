@@ -100,7 +100,9 @@ function dragTo(clientX, clientY) {
     if (!isDragging) return;
     currentX = clientX - startX;
     currentY = clientY - startY;
-    setMenuStageTransform(currentX, currentY, { transition: 'transform 0.2s cubic-bezier(.2, .9, .2, 1)' });
+    requestAnimationFrame(() => {
+        setMenuStageTransform(currentX, currentY, { transition: 'transform 0.2s cubic-bezier(.2, .9, .2, 1)' });
+    });
 }
 
 // End drag
@@ -303,7 +305,7 @@ function startOrbitAnimation() {
 }
 
 let lastFrame = 0;
-const ORBIT_FPS = 30;
+const ORBIT_FPS = 20;
 function orbitFrame(ts) {
     if (ts - lastFrame > 1000 / ORBIT_FPS) {
         lastFrame = ts;
@@ -320,15 +322,17 @@ function orbitFrame(ts) {
 
             // hover/zoom effect only when content view is NOT visible
             let zoom = 1;
-            if (!contentView.classList.contains('visible')) {
-                const rect = el.getBoundingClientRect();
-                const btnX = rect.left + rect.width / 2;
-                const btnY = rect.top + rect.height / 2;
-                const dx = cursorX - btnX;
-                const dy = cursorY - btnY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                const maxDist = 250;
-                zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
+            if (!isDragging) {
+                if (!contentView.classList.contains('visible')) {
+                    const rect = el.getBoundingClientRect();
+                    const btnX = rect.left + rect.width / 2;
+                    const btnY = rect.top + rect.height / 2;
+                    const dx = cursorX - btnX;
+                    const dy = cursorY - btnY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    const maxDist = 250;
+                    zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
+                }
             }
 
             el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
@@ -1672,9 +1676,9 @@ backBtn.addEventListener('click', goBack);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') goBack(); });
 document.addEventListener('keydown', (e) => {
     if (isInputFocused()) return;
-    if (e.key === 'c') {e.preventDefault(); snapCameraToCenter();}
-    if (e.key === 'h') {e.preventDefault(); toggleUIs();}
-    if (e.key === ' ') {e.preventDefault(); openSearchBox();}
+    if (e.key === 'c') { e.preventDefault(); snapCameraToCenter(); }
+    if (e.key === 'h') { e.preventDefault(); toggleUIs(); }
+    if (e.key === ' ') { e.preventDefault(); openSearchBox(); }
 });
 
 
