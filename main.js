@@ -92,7 +92,11 @@ function beginDrag(clientX, clientY) {
 }
 
 // Move during drag (mouse or touch)
+let lastDrag = 0;
 function dragTo(clientX, clientY) {
+    const now = performance.now();
+    if (now - lastDrag < 16) return;
+    lastDrag = now;
     if (!isDragging) return;
     currentX = clientX - startX;
     currentY = clientY - startY;
@@ -298,32 +302,37 @@ function startOrbitAnimation() {
     requestAnimationFrame(orbitFrame);
 }
 
+let lastFrame = 0;
+const ORBIT_FPS = 30;
 function orbitFrame(ts) {
-    const elapsed = (ts - orbitStartTs) / 1000;
-    for (let i = 0; i < orbitButtons.length; i++) {
-        const el = orbitButtons[i];
-        const a0 = parseFloat(el.dataset.angle0) || 0;
-        const w = parseFloat(el.dataset.omega) || 0;
-        const r = parseFloat(el.dataset.radius) || 0;
-        const s = parseFloat(el.dataset.scale) || 1;
-        const angle = a0 + w * elapsed;
-        const x = Math.cos(angle) * r;
-        const y = Math.sin(angle) * r;
+    if (ts - lastFrame > 1000 / ORBIT_FPS) {
+        lastFrame = ts;
+        const elapsed = (ts - orbitStartTs) / 1000;
+        for (let i = 0; i < orbitButtons.length; i++) {
+            const el = orbitButtons[i];
+            const a0 = parseFloat(el.dataset.angle0) || 0;
+            const w = parseFloat(el.dataset.omega) || 0;
+            const r = parseFloat(el.dataset.radius) || 0;
+            const s = parseFloat(el.dataset.scale) || 1;
+            const angle = a0 + w * elapsed;
+            const x = Math.cos(angle) * r;
+            const y = Math.sin(angle) * r;
 
-        // hover/zoom effect only when content view is NOT visible
-        let zoom = 1;
-        if (!contentView.classList.contains('visible')) {
-            const rect = el.getBoundingClientRect();
-            const btnX = rect.left + rect.width / 2;
-            const btnY = rect.top + rect.height / 2;
-            const dx = cursorX - btnX;
-            const dy = cursorY - btnY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const maxDist = 250;
-            zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
+            // hover/zoom effect only when content view is NOT visible
+            let zoom = 1;
+            if (!contentView.classList.contains('visible')) {
+                const rect = el.getBoundingClientRect();
+                const btnX = rect.left + rect.width / 2;
+                const btnY = rect.top + rect.height / 2;
+                const dx = cursorX - btnX;
+                const dy = cursorY - btnY;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                const maxDist = 250;
+                zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
+            }
+
+            el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
         }
-
-        el.style.transform = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
     }
     requestAnimationFrame(orbitFrame);
 }
