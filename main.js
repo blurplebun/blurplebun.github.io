@@ -1389,7 +1389,8 @@ function search() {
 }
 
 menuLogo.addEventListener('click', () => {
-    openCardByQ('info', 'artifyber', true);
+    const [menuQ, cardQ] = menuLogoRedirect.split(':');
+    if (cardQ) openCardByQ(menuQ, cardQ, true); else openMenuByQ(menuQ, true);
 });
 
 const searchBtn = document.getElementById('searchBtn')
