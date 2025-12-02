@@ -12,7 +12,7 @@ menuItems = [
     Menu Template
     -------------------------- */
     {
-        q: 'menuTemplate',                    // REQUIRED: Unique identifier (alphanumeric, no spaces)
+        menuId: 'menuTemplate',                    // REQUIRED: Unique identifier (alphanumeric, no spaces)
         name: 'Menu Template Example',        // Menu name and title
         showName: false,                      // Show name in orbit
         subtitle: 'This is a menu example',   // Short description
@@ -95,7 +95,7 @@ menuItems = [
     {
         // Deltadim
         name: 'Deltadim',
-        q: 'deltadim',
+        menuId: 'deltadim',
         subtitle: 'Delta Dimension',
         image: 'icons/deltadim.png',
         scale: 1,
@@ -131,7 +131,7 @@ menuItems = [
         ]
     },
     {
-        q: 'deltadim-teksui',
+        menuId: 'deltadim-teksui',
         name: 'Teksui',
         subtitle: 'Terra',
         image: 'images/deltadim-teksui.png',
@@ -556,7 +556,7 @@ menuItems = [
         ]
     },
     {
-        q: 'deltadim-chromasia',
+        menuId: 'deltadim-chromasia',
         name: 'Chromasia',
         subtitle: 'Terra',
         image: 'images/deltadim-chromasia.png',
@@ -988,7 +988,7 @@ menuItems = [
         ]
     },
     {
-        q: 'deltadim-aakik',
+        menuId: 'deltadim-aakik',
         name: 'Aakik',
         subtitle: 'Terra',
         image: 'images/deltadim-aakik.png',
@@ -1081,7 +1081,7 @@ menuItems = [
         ]
     },
     {
-        q: 'deltadim-deltaspace',
+        menuId: 'deltadim-deltaspace',
         name: 'Deltaspace',
         subtitle: 'Somewhere in space',
         image: 'images/deltadim-deltaspace.png',
@@ -1255,7 +1255,7 @@ menuItems = [
     {
         // Floriverse
         name: 'Floriverse',
-        q: 'floriverse',
+        menuId: 'floriverse',
         subtitle: 'Florie Universe',
         image: 'icons/floriverse.png',
         color: 'var(--color-2)',
@@ -1602,7 +1602,7 @@ menuItems = [
     {
         // Digirel
         name: 'Digirel',
-        q: 'digirel',
+        menuId: 'digirel',
         subtitle: 'Digital Realm',
         image: 'icons/digirel.png',
         color: 'var(--color-3)',
@@ -1835,7 +1835,7 @@ menuItems = [
     {
         // Nansenz
         name: 'Nansenz',
-        q: 'nansenz',
+        menuId: 'nansenz',
         subtitle: 'World of Nonsense',
         image: 'icons/nansenz.png',
         color: 'var(--color-4)',
@@ -1982,7 +1982,7 @@ menuItems = [
     {
         // Hizen
         name: 'Hizen',
-        q: 'hizen',
+        menuId: 'hizen',
         subtitle: 'Hi-Zenith',
         image: 'icons/hizen.png',
         color: 'var(--color-5)',
@@ -2066,7 +2066,7 @@ menuItems = [
     {
         // Nadir
         name: 'Nadir',
-        q: 'nadir',
+        menuId: 'nadir',
         subtitle: 'Void of Nadir',
         image: 'icons/nadir.png',
         color: 'var(--color-6)',
@@ -2167,7 +2167,7 @@ menuItems = [
     {
         // Random
         name: 'Random Character',
-        q: 'random',
+        menuId: 'random',
         showName: true,
         image: 'icons/oc-random.png',
         color: 'var(--color-12)',
@@ -2183,7 +2183,7 @@ menuItems = [
     {
         name: 'Daily Art+',
         showName: true,
-        q: 'dailyartplus',
+        menuId: 'dailyartplus',
         subtitle: '',
         image: 'icons/dailyartplus.png',
         color: 'var(--color-8)',
@@ -2214,7 +2214,7 @@ menuItems = [
     {
         name: 'Converters',
         showName: true,
-        q: 'converters',
+        menuId: 'converters',
         subtitle: '',
         image: 'icons/converters.png',
         color: 'var(--color-13)',
@@ -2392,7 +2392,7 @@ menuItems = [
     {
         // Information
         name: 'Information',
-        q: 'info',
+        menuId: 'info',
         subtitle: 'Information about Artifyber and this website',
         showName: true,
         image: 'icons/info.png',
@@ -2478,7 +2478,7 @@ menuItems = [
                                 <small>There are a few exceptions to this with aquatic characters and flories. Please ask me beforehand</small></li><br>
                             <li>Do not create adult content out of these characters:</li><br>
                             <ul>
-                                <li>Artineko, Artimouse, Articani, Singularikitty, Gamma</li><br>
+                                <li>Artineko, Artimouse, Articani, Singularikitty, Gamma, Sukie</li><br>
                                 <li>Everything from <a data-open-card="hizen">Hizen</a></li><br>
                             </ul>
                     </details>
@@ -2554,7 +2554,7 @@ menuItems = [
     {
         // Links
         name: 'Links',
-        q: 'links',
+        menuId: 'links',
         subtitle: 'All links to my social media',
         showName: true,
         image: 'icons/earth.png',
@@ -2659,7 +2659,7 @@ menuItems = [
     {
         // Commissions
         name: 'Commissions',
-        q: 'comms',
+        menuId: 'comms',
         subtitle: 'Information about art/music commissions',
         showName: true,
         image: 'icons/dollar.png',
@@ -2840,7 +2840,7 @@ menuItems = [
 
     // Misc
     {
-        q: 'loopTest',
+        menuId: 'loopTest',
         name: 'loopTest',
         color: 'var(--color-15)',
         hidden: true,
@@ -2865,7 +2865,7 @@ menuItems = [
         ]
     },
     {
-        q: 'infiniteTest1',
+        menuId: 'infiniteTest1',
         name: 'Softlock!!!',
         color: 'var(--color-4)',
         hidden: true,
@@ -2887,7 +2887,7 @@ menuItems = [
         ]
     },
     {
-        q: 'infiniteTest2',
+        menuId: 'infiniteTest2',
         name: 'Softlock!!!',
         color: 'var(--color-4)',
         hidden: true,
@@ -2910,7 +2910,7 @@ menuItems = [
     },
     {
         name: 'Whitespace',
-        q: 'yolkspocketdimension',
+        menuId: 'yolkspocketdimension',
         subtitle: '',
         image: '',
         color: 'var(--color-10)',
@@ -2937,7 +2937,7 @@ const menuLogoRedirect = 'info:artifyber';
 /*
 menuItems = [
     {
-        q: 'menuTemplate',                    // REQUIRED: Unique identifier (alphanumeric, no spaces)
+        menuId: 'menuTemplate',                    // REQUIRED: Unique identifier (alphanumeric, no spaces)
         name: 'Menu Template Example',        // Menu name and title
         showName: false,                      // Show name in orbit
         subtitle: 'This is a menu example',   // Short description

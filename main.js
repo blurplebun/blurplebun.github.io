@@ -247,7 +247,7 @@ function createMenuButtons() {
             btn.className = 'menu-button';
             btn.dataset.angle0 = angleRad; // initial radians
             btn.dataset.orbit = orbit;
-            btn.dataset.menuQ = m.q;
+            btn.dataset.menuQ = m.menuId;
             btn.setAttribute('aria-label', m.name);
             btn.style.setProperty('--glow', m.color);
             btn.style.background = m.color || 'transparent';
@@ -370,7 +370,7 @@ function getAllCharacters() {
     characters = [];
     menuItems.forEach(menu => {
         if (!menu.labels) return;
-        if (menu.q === 'random') return;
+        if (menu.menuId === 'random') return;
         menu.labels.forEach(label => {
             if (label.cardId && isCharacter(label)) characters.push({ menu, label });
         });
@@ -397,7 +397,7 @@ function randomCharacter() {
 rerollBtn.addEventListener('click', () => {
     const pick = randomCharacter();
     if (!pick) return;
-    openMenuByQ(pick.menu.q, true);
+    openMenuById(pick.menu.menuId, true);
 
     const cardEl = $(`[data-card-id="${pick.label.cardId}"]`);
     if (cardEl) focusCard(cardEl, pick.label, pick.menu);
@@ -413,12 +413,12 @@ let openSingle = false;
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
-        history.pushState({}, '', `?m=${menu.q}`);
+        history.pushState({}, '', `?m=${menu.menuId}`);
         return;
     }
 
     // special-case "random" menu (preserve previous logic)
-    if (menu.q === 'random') {
+    if (menu.menuId === 'random') {
         const list = getAllCharacters();
         if (list.length === 0) {
             alert('No character cards found.');
@@ -428,14 +428,14 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
         const targetMenu = pick.menu;
         const targetLabel = pick.label;
         /*
-        openMenuByQ(targetMenu.q, true);
+        openMenuById(targetMenu.menuId, true);
         const cardEl = $(`[data-card-id="${targetLabel.cardId}"]`);
         if (cardEl) {
             focusCard(cardEl, targetLabel, targetMenu);
             vizAdd(rerollBtn);
         }
             */
-        openCardByQ(targetMenu.q, targetLabel.cardId, true)
+        openCardById(targetMenu.menuId, targetLabel.cardId, true)
         vizAdd(rerollBtn);
         return;
     }
@@ -469,7 +469,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
             expander.style.height = '1px';
             expander.style.transform = 'translate(-50%,-50%) scale(1)';
             showContentFor(menu);
-            history.pushState({}, '', `?m=${menu.q}`);
+            history.pushState({}, '', `?m=${menu.menuId}`);
         }, 700);
     });
 }
@@ -480,7 +480,7 @@ function initContent() {
     menuItems.forEach(m => {
         m.labels?.forEach(lbl => {
             if (lbl.linkId) {
-                const linkedMenu = menuItems.find(lm => lm.q === lbl.linkId);
+                const linkedMenu = menuItems.find(lm => lm.menuId === lbl.linkId);
                 if (linkedMenu) {
                     lbl.cardId = lbl.linkId;
                     lbl.title = linkedMenu.name;
@@ -491,7 +491,7 @@ function initContent() {
 
     // add faraway orbit just so the drag layout work (I GAVE UP ON ALTERNATIVES LOL)
     faraway = {
-        q: 'farawaymenu',
+        menuId: 'farawaymenu',
         name: 'faraway',
         showName: false,
         orbit: 999,
@@ -511,13 +511,13 @@ function showContentFor(menu, sort = null) {
     contentSubtitle.textContent = menu.subtitle;
     toggleView({ focused: true, show: false });
     toggleView({ content: true, show: true });
-    const parentMenu = menuItems.find(m => m.q === menu.parent);
+    const parentMenu = menuItems.find(m => m.menuId === menu.parent);
     if (parentMenu) {
         backBtn.querySelector('span').textContent = parentMenu.name || 'Parent Menu';
     } else backBtn.querySelector('span').textContent = 'Menu';
 
     // Add copy link icon to menu title (except for search)
-    if (menu.q !== 'search') {
+    if (menu.menuId !== 'search') {
         // remove old copy-link if present
         const existing = contentTitle.querySelector('.copy-link');
         if (existing) existing.remove();
@@ -533,7 +533,7 @@ function showContentFor(menu, sort = null) {
         linkIcon.title = 'Copy shareable link';
         linkIcon.addEventListener('click', (e) => {
             e.stopPropagation();
-            const link = `${location.origin}${location.pathname}?m=${menu.q}`;
+            const link = `${location.origin}${location.pathname}?m=${menu.menuId}`;
             navigator.clipboard.writeText(link);
             linkIcon.classList.add('copied');
             linkIcon.title = 'Copied!';
@@ -660,7 +660,7 @@ function renderContent(menu, sort = null) {
 
                 // Linked menu card
                 if (lbl.linkId) {
-                    const linkedMenu = menuItems.find(m => m.q === lbl.linkId);
+                    const linkedMenu = menuItems.find(m => m.menuId === lbl.linkId);
                     if (linkedMenu) {
                         c.dataset.link = 'true';
                         c.style.border = `3px solid ${linkedMenu.color}`;
@@ -678,7 +678,7 @@ function renderContent(menu, sort = null) {
                         `;
                         c.addEventListener('click', (e) => {
                             e.stopPropagation();
-                            openMenuByQ(lbl.linkId, true);
+                            openMenuById(lbl.linkId, true);
                             playSfx('sfxClick', SFX_CLICK_VOL);
                         });
                     }
@@ -727,8 +727,8 @@ function renderContent(menu, sort = null) {
                     c.addEventListener('click', () => {
                         if (lbl.url) return window.open(lbl.url, '_blank');
 
-                        const realMenu = (menu.q === 'search' && lbl.fromMenu)
-                            ? menuItems.find(m => m.q === lbl.fromMenu)
+                        const realMenu = (menu.menuId === 'search' && lbl.fromMenu)
+                            ? menuItems.find(m => m.menuId === lbl.fromMenu)
                             : menu;
 
                         focusCard(c, lbl, realMenu);
@@ -860,11 +860,11 @@ function focusCard(cardEl, label, menu = null) {
                 ${cGallery}
             `;
         }
-        const realMenuQ = label.fromMenu || menu.q;
+        const realMenuQ = label.fromMenu || menu.menuId;
         const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
         detailArea.innerHTML = `
             <h1>
-                <div style="font-size: 20px;"><small><a data-open-card="${menu.q}">${menu.name}</a> /</small></div>
+                <div style="font-size: 20px;"><small><a data-open-card="${menu.menuId}">${menu.name}</a> /</small></div>
                 ${label.title}
                 <span class="copy-link" title="Copy shareable link">
                     <svg viewBox="0 0 24 24" fill="none">
@@ -1307,7 +1307,7 @@ function search() {
         }
 
         if (matches.length > 0) {
-            results[menu.q] = { menu, labels: matches };
+            results[menu.menuId] = { menu, labels: matches };
         }
     });
 
@@ -1356,9 +1356,9 @@ function search() {
         menusFound.forEach(({ menu, labels }) => {
             labelGroup.push({
                 title: menu.name,
-                excerpt: `Results from <a data-open-card="${menu.q}">${menu.name}</a>`,
+                excerpt: `Results from <a data-open-card="${menu.menuId}">${menu.name}</a>`,
             });
-            labels.forEach(label => labelGroup.push({ ...label, fromMenu: menu.q }));
+            labels.forEach(label => labelGroup.push({ ...label, fromMenu: menu.menuId }));
         });
 
         // add matching menus as linked cards
@@ -1366,18 +1366,18 @@ function search() {
             labelGroup.push({ title: 'Menus', excerpt: 'Matching menus found' });
             menuMatches.forEach(menu => {
                 labelGroup.push({
-                    cardId: `menu-${menu.q}`,
+                    cardId: `menu-${menu.menuId}`,
                     title: menu.name,
                     excerpt: menu.subtitle || '',
                     image: menu.image || '',
-                    linkId: menu.q,
+                    linkId: menu.menuId,
                 });
             });
         }
     }
 
     const searchMenu = {
-        q: 'search',
+        menuId: 'search',
         name: `Search results for "${query}"`,
         labels: labelGroup,
     };
@@ -1390,7 +1390,7 @@ function search() {
 
 menuLogo.addEventListener('click', () => {
     const [menuQ, cardQ] = menuLogoRedirect.split(':');
-    if (cardQ) openCardByQ(menuQ, cardQ, true); else openMenuByQ(menuQ, true);
+    if (cardQ) openCardById(menuQ, cardQ, true); else openMenuById(menuQ, true);
 });
 
 const searchBtn = document.getElementById('searchBtn')
@@ -1487,9 +1487,9 @@ function vizUI() {
     -------------------------- */
 
 // Open menu by Q
-function openMenuByQ(q, skipAnim = false) {
+function openMenuById(q, skipAnim = false) {
     if (!q) return;
-    const menu = menuItems.find(m => m.q === q);
+    const menu = menuItems.find(m => m.menuId === q);
     if (!menu) return;
     const btn = orbitButtons.find(b => b.dataset.menuQ === q);
     contentView.style.overflow = '';
@@ -1504,16 +1504,16 @@ window.addEventListener('load', async () => {
     if (!menuCode) return;
     if (menuCode === 'search') return;
 
-    const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
+    const targetMenu = menuItems.find(m => m.menuId && m.menuId.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) {
         console.warn('Menu not found for', menuCode);
         return;
     }
 
-    if (typeof openMenuByQ === 'function') openMenuByQ(menuCode, true);
+    if (typeof openMenuById === 'function') openMenuById(menuCode, true);
     else {
         showContentFor(targetMenu);
-        history.pushState({}, '', `?m=${targetMenu.q}`);
+        history.pushState({}, '', `?m=${targetMenu.menuId}`);
     }
 
     // waitForCard helper
@@ -1552,21 +1552,21 @@ document.addEventListener('click', (e) => {
 
     const ref = link.dataset.openCard.trim();
     const [menuCode, cardKey] = ref.split(':');
-    openCardByQ(menuCode, cardKey);
+    openCardById(menuCode, cardKey);
     openSingle = false;
 });
 
 // Open card by Q
-function openCardByQ(menuCode, cardKey, single = false) {
+function openCardById(menuCode, cardKey, single = false) {
     if (single) openSingle = true;
-    const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
+    const targetMenu = menuItems.find(m => m.menuId && m.menuId.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) {
         console.warn('Menu not found for', menuCode);
         return;
     }
 
     if (!cardKey) {
-        openMenuByQ(menuCode, true);
+        openMenuById(menuCode, true);
         $('.content-header')?.classList.remove('hidden');
         return;
     }
@@ -1574,14 +1574,14 @@ function openCardByQ(menuCode, cardKey, single = false) {
     const targetLabel = targetMenu.labels.find(l => l.cardId === cardKey);
     if (!targetLabel) {
         console.warn('Card not found in', menuCode, cardKey);
-        openMenuByQ(menuCode, true);
+        openMenuById(menuCode, true);
         return;
     }
 
     const isCurrentlyOpen = contentTitle.textContent &&
         contentTitle.textContent.toLowerCase() === targetMenu.name.toLowerCase();
 
-    if (!isCurrentlyOpen) openMenuByQ(menuCode, true);
+    if (!isCurrentlyOpen) openMenuById(menuCode, true);
 
     const targetCard = $(`[data-card-id="${cardKey}"]`);
     if (targetCard) focusCard(targetCard, targetLabel, targetMenu);
@@ -1608,9 +1608,9 @@ function goBack() {
         contentView.style.overflow = '';
 
         // Update back button text to show parent menu name if exists
-        const currentMenu = menuItems.find(m => m.q === menuCode);
+        const currentMenu = menuItems.find(m => m.menuId === menuCode);
         if (currentMenu && currentMenu.parent && !openFromSearch) {
-            const parentMenu = menuItems.find(m => m.q === currentMenu.parent);
+            const parentMenu = menuItems.find(m => m.menuId === currentMenu.parent);
             backBtn.querySelector('span').textContent = parentMenu ? parentMenu.name : 'Menu';
         } else {
             backBtn.querySelector('span').textContent = 'Menu';
@@ -1620,11 +1620,11 @@ function goBack() {
 
     // if in a menu
     if (menuCode || openSingle) {
-        const currentMenu = menuItems.find(m => m.q === menuCode);
+        const currentMenu = menuItems.find(m => m.menuId === menuCode);
 
         // If current menu has a parent, navigate to parent instead of closing
         if (currentMenu && currentMenu.parent && !openSingle && !openFromSearch) {
-            openMenuByQ(currentMenu.parent, true);
+            openMenuById(currentMenu.parent, true);
             return;
         }
 
@@ -1766,8 +1766,8 @@ window.addEventListener('popstate', (event) => {
         return;
     }
 
-    openMenuByQ(menuCode);
-    const targetMenu = menuItems.find(m => m.q.toLowerCase() === menuCode.toLowerCase());
+    openMenuById(menuCode);
+    const targetMenu = menuItems.find(m => m.menuId.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) return;
     const button = Array.from($$('.menu-button')).find(b => b.getAttribute('aria-label').toLowerCase() === targetMenu.name.toLowerCase());
     if (!button) return;
