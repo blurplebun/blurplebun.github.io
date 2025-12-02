@@ -895,6 +895,7 @@ a[data-open-card] {
     color: var(--bg);
     padding: 12px 14px;
     border-radius: 999px;
+    min-height: 40px;
     border: 1px solid rgba(255, 255, 255, 0.06);
     cursor: pointer;
     z-index: 80;
@@ -958,6 +959,13 @@ a[data-open-card] {
     pointer-events: auto;
 }
 
+#hideBtn.hidden-mode {
+    background-color: transparent;
+    border: 3px solid var(--accent2);
+    opacity: 0.6;
+    height: 40px;
+    width: 40px;
+}
 
 
 textarea {

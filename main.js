@@ -147,9 +147,9 @@ function snapCameraToCenter() {
 
 // center button visibility loop
 function showCenterBtnLoop() {
-    centerBtn.classList.remove('visible');
+    vizRemove(centerBtn);
     if (!(currentX === 0 && currentY === 0) && !contentView.classList.contains('visible')) {
-        centerBtn.classList.add('visible');
+        vizAdd(centerBtn);
         const splashInfo = $('.splash-text-info');
         if (splashInfo) splashInfo.style.opacity = 0;
     }
@@ -405,7 +405,7 @@ rerollBtn.addEventListener('click', () => {
     Open Menu / Show Content
     -------------------------- */
 
-let openFromRandom = false;
+let openSingle = false;
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
@@ -423,14 +423,16 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
         const pick = list[Math.floor(Math.random() * list.length)];
         const targetMenu = pick.menu;
         const targetLabel = pick.label;
+        /*
         openMenuByQ(targetMenu.q, true);
         const cardEl = $(`[data-card-id="${targetLabel.cardId}"]`);
         if (cardEl) {
             focusCard(cardEl, targetLabel, targetMenu);
-            rerollBtn.classList.add('visible');
-            rerollBtn.setAttribute('aria-hidden', 'false');
+            vizAdd(rerollBtn);
         }
-        openFromRandom = true;
+            */
+        openCardByQ(targetMenu.q, targetLabel.cardId, true)
+        vizAdd(rerollBtn);
         return;
     }
 
@@ -540,6 +542,7 @@ function showContentFor(menu, sort = null) {
             if (single.unclickable) return;
             if (single.url) window.open(single.url, '_blank');
             else focusCard(cardEl, single, menu);
+            openSingle = true;
         }
     }
 
@@ -558,7 +561,7 @@ function renderContent(menu, sort = null) {
     const labels = [...menu.labels];
     const groups = [];
     let currentGroup = [];
-    
+
     labels.forEach((lbl) => {
         if (!lbl.cardId) {
             // separator
@@ -572,7 +575,7 @@ function renderContent(menu, sort = null) {
             currentGroup.push(lbl);
         }
     });
-    
+
     // last group
     if (currentGroup.length > 0) {
         groups.push({ type: 'cards', items: currentGroup });
@@ -613,7 +616,7 @@ function renderContent(menu, sort = null) {
         } else {
             // Render cards in this group
             let cardsToRender = group.items;
-            
+
             // Sort cards within this group if needed
             if (sort === 'asc' || sort === 'desc') {
                 cardsToRender = [...group.items].sort((a, b) => {
@@ -629,7 +632,7 @@ function renderContent(menu, sort = null) {
                     }
                 });
             }
-            
+
             // Render the sorted cards
             cardsToRender.forEach((lbl) => {
                 // Create card element
@@ -724,11 +727,9 @@ function renderContent(menu, sort = null) {
 
 // Update sort button text based on current mode
 function updateSortButtonText() {
-    if (!sortBtn) return;
-    
     const texts = ['Default', 'A-Z', 'Z-A'];
     sortBtn.textContent = texts[sortMode];
-    
+
     // Optional: Add title/tooltip for accessibility
     const titles = ['Original order', 'Sort A-Z', 'Sort Z-A'];
     sortBtn.title = titles[sortMode];
@@ -806,8 +807,7 @@ function focusCard(cardEl, label, menu = null) {
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
-    sortBtn?.classList.remove('visible');
-    sortBtn?.setAttribute('aria-hidden', 'true');
+    vizRemove(sortBtn);
 
     // Add lazy classes to any <img> in label.detail and convert src->data-src
     let html = label.detail
@@ -887,7 +887,8 @@ function focusCard(cardEl, label, menu = null) {
     contentView.insertBefore(cardsContainer, focusedLayout);
 
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
-    backBtn.querySelector('span').textContent = 'Card Selector';
+    if (openSingle) backBtn.querySelector('span').textContent = 'Menu';
+    else backBtn.querySelector('span').textContent = 'Card Selector';
     initLazyLoad();
     detailArea.scrollTop = 0;
 }
@@ -1087,11 +1088,11 @@ document.addEventListener('click', (e) => {
     const subcaption = caption && img.dataset.subcaption ? `<p style="color: color-mix(in srgb, var(--accentl) 75%, transparent)">${img.dataset.subcaption}</p>` : '';
 
     overlay.innerHTML = `<img src="${img.src}" alt="preview" ${caption ? 'data-hasCaption=true' : ''}>${caption}${subcaption}`;
-    overlay.classList.add('visible');
+    vizAdd(overlay);
     disableZoom();
 
     overlay.addEventListener('click', () => {
-        overlay.classList.remove('visible');
+        vizRemove(overlay);
         enableZoom();
     }, { once: true });
 });
@@ -1175,7 +1176,7 @@ window.addEventListener('load', () => {
     splashTexts.forEach(el => {
         const type = el.dataset.info;
         if (type === 'info') {
-            el.textContent = '(drag to move, click logo to search)';
+            el.textContent = el.dataset.infodesc;
         }
         if (type === 'splash') {
             const text = splashLines[Math.floor(Math.random() * splashLines.length)];
@@ -1369,12 +1370,13 @@ function search() {
 }
 
 menuLogo.addEventListener('click', () => {
-    searchBox.showModal();
+    openCardByQ('info', 'artifyber', true);
 });
 
 const searchBtn = document.getElementById('searchBtn')
 searchBtn?.addEventListener('click', () => {
     searchBox.showModal();
+    vizRemove(searchBtn);
 });
 
 searchBox.addEventListener('close', () => {
@@ -1388,7 +1390,69 @@ searchText.addEventListener('keydown', (e) => {
 cancelSearch.addEventListener('click', () => {
     searchText.value = '';
     searchBox.close();
+    vizAdd(searchBtn);
 });
+
+
+// button to hide ui elements
+const hideBtn = document.getElementById('hideBtn')
+
+let uiHidden = false;
+let hiddenElements = [];
+
+// Function to hide all UI elements
+function hideUIs() {
+    const panels = [
+        document.getElementById('uiPanelTop'),
+        document.getElementById('uiPanelBottom')
+    ].filter(panel => panel !== null);
+
+    panels.forEach(panel => {
+        const children = Array.from(panel.children);
+        children.forEach(child => {
+            if (child !== hideBtn && !child.classList.contains('always-visible')) {
+                hiddenElements.push({
+                    element: child,
+                    originalDisplay: child.style.display
+                });
+                child.style.display = 'none';
+            }
+        });
+    });
+
+    hideBtn.classList.add('hidden-mode');
+    hideBtn.querySelector('span').textContent = '';
+    uiHidden = true;
+}
+
+// Function to show all UI elements
+function showUIs() {
+    hiddenElements.forEach(item => {
+        item.element.style.display = item.originalDisplay || '';
+    });
+
+    hiddenElements = [];
+    hideBtn.classList.remove('hidden-mode');
+    hideBtn.querySelector('span').textContent = 'Hide';
+    uiHidden = false;
+}
+
+// Toggle function for the hide button
+hideBtn.addEventListener('click', () => {
+    if (!uiHidden) {
+        hideUIs();
+    } else {
+        showUIs();
+    }
+});
+
+// Function to check if UI is hidden and show it when needed
+function vizUI() {
+    if (uiHidden) {
+        showUIs();
+    }
+}
+
 
 
 
@@ -1396,6 +1460,7 @@ cancelSearch.addEventListener('click', () => {
     Open menu by q / internal links / URL handler
     -------------------------- */
 
+// Open menu by Q
 function openMenuByQ(q, skipAnim = false) {
     if (!q) return;
     const menu = menuItems.find(m => m.q === q);
@@ -1457,11 +1522,17 @@ document.addEventListener('click', (e) => {
     if (!link) return;
     e.preventDefault();
 
-    rerollBtn?.classList.remove('visible');
+    vizRemove(rerollBtn);
 
     const ref = link.dataset.openCard.trim();
     const [menuCode, cardKey] = ref.split(':');
+    openCardByQ(menuCode, cardKey);
+    openSingle = false;
+});
 
+// Open card by Q
+function openCardByQ (menuCode, cardKey, single=false) {
+    if (single) openSingle = true;
     const targetMenu = menuItems.find(m => m.q && m.q.toLowerCase() === menuCode.toLowerCase());
     if (!targetMenu) {
         console.warn('Menu not found for', menuCode);
@@ -1488,7 +1559,7 @@ document.addEventListener('click', (e) => {
 
     const targetCard = $(`[data-card-id="${cardKey}"]`);
     if (targetCard) focusCard(targetCard, targetLabel, targetMenu);
-});
+}
 
 
 
@@ -1502,7 +1573,7 @@ function goBack() {
     const itemId = params.get('i');
 
     // if viewing a card, go back to menu grid
-    if (itemId && !openFromRandom) {
+    if (itemId && !openSingle) {
         history.pushState({}, '', `?m=${menuCode}`);
         cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => el.classList.remove('hidden'));
         toggleView({ focused: true, show: false });
@@ -1522,11 +1593,11 @@ function goBack() {
     }
 
     // if in a menu
-    if (menuCode || openFromRandom) {
+    if (menuCode || openSingle) {
         const currentMenu = menuItems.find(m => m.q === menuCode);
 
         // If current menu has a parent, navigate to parent instead of closing
-        if (currentMenu && currentMenu.parent && !openFromRandom && !openFromSearch) {
+        if (currentMenu && currentMenu.parent && !openSingle && !openFromSearch) {
             openMenuByQ(currentMenu.parent, true);
             return;
         }
@@ -1542,10 +1613,9 @@ function goBack() {
         toggleView({ content: true, show: false });
         shownMenu = null;
         contentView.style.overflow = '';
-        if (openFromRandom) {
-            openFromRandom = false;
-            rerollBtn.classList.remove('visible');
-            rerollBtn.setAttribute('aria-hidden', 'true');
+        if (openSingle) {
+            openSingle = false;
+            vizRemove(rerollBtn);
         }
         return;
     }
@@ -1581,48 +1651,59 @@ function enableZoom() {
 function toggleView({ content = false, focused = false, show = true } = {}) {
     if (content) {
         if (show) {
-            contentView.classList.add('visible');
-            backBtn.classList.add('visible');
-            contentView.setAttribute('aria-hidden', 'false');
-            backBtn.setAttribute('aria-hidden', 'false');
+            vizUI();
+
+            vizAdd(contentView);
+            vizAdd(backBtn);
+
+            vizRemove(searchBtn);
+            vizRemove(hideBtn);
             menuStage.classList.add('blur');
             starfield?.classList.add('blur');
-            
+
             if (!focusedLayout.classList.contains('visible')) {
-                sortBtn?.classList.add('visible');
-                sortBtn?.setAttribute('aria-hidden', 'false');
+                vizAdd(sortBtn);
             }
             updateSortButtonText();
         } else {
-            contentView.classList.remove('visible');
-            backBtn.classList.remove('visible');
-            contentView.setAttribute('aria-hidden', 'true');
-            backBtn.setAttribute('aria-hidden', 'true');
+            vizRemove(contentView);
+            vizRemove(backBtn);
+
+            vizAdd(searchBtn);
+            vizAdd(hideBtn);
             menuStage.classList.remove('blur');
             starfield?.classList.remove('blur');
-            
-            sortBtn?.classList.remove('visible');
-            sortBtn?.setAttribute('aria-hidden', 'true');
+
+            vizRemove(sortBtn);
+            sortMode = 0;
         }
     }
 
     if (focused) {
         if (show) {
-            focusedLayout.classList.add('visible');
+            vizAdd(focusedLayout);
             focusedLayout.style.display = '';
-            
-            sortBtn?.classList.remove('visible');
-            sortBtn?.setAttribute('aria-hidden', 'true');
+
+            vizRemove(sortBtn);
         } else {
-            focusedLayout.classList.remove('visible');
+            vizRemove(focusedLayout);
             focusedLayout.style.display = 'none';
-            
+
             if (contentView.classList.contains('visible')) {
-                sortBtn?.classList.add('visible');
-                sortBtn?.setAttribute('aria-hidden', 'false');
+                vizAdd(sortBtn);
             }
         }
     }
+}
+
+function vizAdd(e) {
+    e.classList.add('visible');
+    e.setAttribute('aria-hidden', 'false');
+}
+
+function vizRemove(e) {
+    e.classList.remove('visible');
+    e.setAttribute('aria-hidden', 'true');
 }
 
 
