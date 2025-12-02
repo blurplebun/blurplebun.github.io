@@ -20,6 +20,8 @@ function getCSSVar(name, parse = 'string') {
 const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
 const LOCAL_MODE = 0;
 
+const SFX_MASTER_VOL = 1;
+const SFX_CLICK_VOL = 0.4;
 
 
 /* --------------------------
@@ -103,8 +105,9 @@ function endDrag() {
     menuStage.style.cursor = 'default';
 }
 
+const dragLayer = document.getElementById('dragLayer');
 // Mouse events
-menuStage.addEventListener('mousedown', (e) => {
+dragLayer.addEventListener('mousedown', (e) => {
     beginDrag(e.clientX, e.clientY);
 });
 window.addEventListener('mousemove', (e) => {
@@ -113,7 +116,7 @@ window.addEventListener('mousemove', (e) => {
 window.addEventListener('mouseup', endDrag);
 
 // Touch events (single-finger only)
-menuStage.addEventListener('touchstart', (e) => {
+dragLayer.addEventListener('touchstart', (e) => {
     if (e.touches.length !== 1) return;
     beginDrag(e.touches[0].clientX, e.touches[0].clientY);
 }, { passive: true });
@@ -124,7 +127,7 @@ window.addEventListener('touchmove', (e) => {
 window.addEventListener('touchend', endDrag);
 
 // Two-finger trackpad-like gesture (wheel) - keep original thresholds
-menuStage.addEventListener('wheel', (e) => {
+dragLayer.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
         currentX -= e.deltaX * 1.5;
@@ -466,7 +469,25 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     });
 }
 
-function showContentFor(menu) {
+
+// initialize content
+function initContent() {
+    menuItems.forEach(m => {
+        m.labels?.forEach(lbl => {
+            if (lbl.linkId) {
+                const linkedMenu = menuItems.find(lm => lm.q === lbl.linkId);
+                lbl.cardId = lbl.linkId;
+                lbl.title = linkedMenu.name;
+            }
+        })
+    })
+}
+initContent();
+
+// show content
+let shownMenu = null;
+function showContentFor(menu, sort = null) {
+    shownMenu = menu;
     contentTitle.textContent = menu.name;
     contentSubtitle.textContent = menu.subtitle;
     toggleView({ focused: true, show: false });
@@ -508,15 +529,61 @@ function showContentFor(menu) {
     contentView.dataset.singleCardMenu = menu.labels.length === 1 ? 'true' : 'false';
     cardsContainer.innerHTML = '';
 
+    renderContent(menu, sort);
+
+    contentView.setAttribute('aria-hidden', 'false');
+
+    // If only one card in menu, open/focus it automatically
+    if (menu.labels.length === 1) {
+        const single = menu.labels[0];
+        const cardEl = cardsContainer.querySelector('.card');
+        if (cardEl) {
+            if (single.unclickable) return;
+            if (single.url) window.open(single.url, '_blank');
+            else focusCard(cardEl, single, menu);
+        }
+    }
+
+    initLazyLoad();
+    contentView.scrollTop = 0;
+}
+
+// render content to grid
+function renderContent(menu, sort = null) {
     // Create new section grid and render labels
     let section = document.createElement('div');
     section.className = 'cards-grid';
     cardsContainer.appendChild(section);
 
     let i = 0;
-    menu.labels.forEach((lbl) => {
-        // Separator / header (no cardId)
+    const labels = [...menu.labels];
+    const groups = [];
+    let currentGroup = [];
+    
+    labels.forEach((lbl) => {
         if (!lbl.cardId) {
+            // separator
+            if (currentGroup.length > 0) {
+                groups.push({ type: 'cards', items: currentGroup });
+                currentGroup = [];
+            }
+            groups.push({ type: 'separator', item: lbl });
+        } else {
+            // card
+            currentGroup.push(lbl);
+        }
+    });
+    
+    // last group
+    if (currentGroup.length > 0) {
+        groups.push({ type: 'cards', items: currentGroup });
+    }
+
+    // Process each group
+    groups.forEach((group) => {
+        if (group.type === 'separator') {
+            // Render separator
+            const lbl = group.item;
             const header = document.createElement('div');
             header.className = 'content-header section-header';
 
@@ -544,106 +611,139 @@ function showContentFor(menu) {
             section.className = 'cards-grid';
             cardsContainer.appendChild(section);
             i++;
-            return;
-        }
-
-        // Create card element
-        const c = document.createElement('div');
-        c.className = 'card';
-        c.dataset.cardId = lbl.cardId;
-
-        // Linked menu card
-        if (lbl.linkId) {
-            const linkedMenu = menuItems.find(m => m.q === lbl.linkId);
-            if (linkedMenu) {
-                c.dataset.link = 'true';
-                c.style.border = `3px solid ${linkedMenu.color}`;
-                c.style.boxShadow = `inset 0 0 30px color-mix(in srgb, ${linkedMenu.color} 50%, transparent)`;
-                c.innerHTML = `
-                    <div class="card-text">
-                        <strong>${linkedMenu.name}</strong>
-                        <div class="excerpt">${linkedMenu.subtitle || ''}</div>
-                    </div>
-                    <div class="menu-button bubble" style="background:${linkedMenu.color || 'transparent'}; animation-delay: ${i * -0.5}s; box-shadow: 0 0 10px ${linkedMenu.color}">
-                        <div class="inner">
-                            <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ''}'></div>
-                        </div>
-                    </div>
-                `;
-                c.addEventListener('click', (e) => { e.stopPropagation(); openMenuByQ(lbl.linkId, true); });
-            }
-            section.appendChild(c);
-            i++;
-            return;
-        }
-
-        // Standard card markup (image vs no-image)
-        if (lbl.image) {
-            c.innerHTML = `
-                <div class="thumb lazy-bg" data-bg="${lbl.image}"></div>
-                <div class="card-text">
-                    <strong>${lbl.title}</strong>
-                    <div class="excerpt">${lbl.excerpt || ''}</div>
-                </div>
-            `;
         } else {
-            c.innerHTML = `
-                <div class="card-text full">
-                    <strong>${lbl.title}</strong>
-                    <div class="excerpt">${lbl.excerpt || ''}</div>
-                </div>
-            `;
-        }
+            // Render cards in this group
+            let cardsToRender = group.items;
+            
+            // Sort cards within this group if needed
+            if (sort === 'asc' || sort === 'desc') {
+                cardsToRender = [...group.items].sort((a, b) => {
+                    if (!a.title || !b.title) return 0;
 
-        // Special cards
-        if (lbl.url) c.dataset.link = "true";
-        if (lbl.unclickable) c.dataset.noclick = "true";
+                    const titleA = a.title.toLowerCase();
+                    const titleB = b.title.toLowerCase();
 
-        // Character cards
-        if (isCharacter(lbl)) c.dataset.character = 'true';
+                    if (sort === 'asc') {
+                        return titleA.localeCompare(titleB);
+                    } else {
+                        return titleB.localeCompare(titleA);
+                    }
+                });
+            }
+            
+            // Render the sorted cards
+            cardsToRender.forEach((lbl) => {
+                // Create card element
+                const c = document.createElement('div');
+                c.className = 'card';
+                c.dataset.cardId = lbl.cardId;
 
-        // optional webinfo counters
-        const totalCardsCounter = c.querySelector('#totalCardsCounter');
-        if (totalCardsCounter) totalCardsCounter.textContent = `totalCards: ${totalCards}`;
-        const totalMenusCounter = c.querySelector('#totalMenusCounter');
-        if (totalMenusCounter) totalMenusCounter.textContent = `totalMenus: ${totalMenus}`;
-        const totalCharacterCounter = c.querySelector('#totalCharacterCounter');
-        if (totalCharacterCounter) totalCharacterCounter.textContent = `totalCharacters: ${totalCharacters}`;
-        const totalSplashCounter = c.querySelector('#totalSplashCounter');
-        if (totalSplashCounter) totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
+                // Linked menu card
+                if (lbl.linkId) {
+                    const linkedMenu = menuItems.find(m => m.q === lbl.linkId);
+                    if (linkedMenu) {
+                        c.dataset.link = 'true';
+                        c.style.border = `3px solid ${linkedMenu.color}`;
+                        c.style.boxShadow = `inset 0 0 30px color-mix(in srgb, ${linkedMenu.color} 50%, transparent)`;
+                        c.innerHTML = `
+                            <div class="card-text">
+                                <strong>${linkedMenu.name}</strong>
+                                <div class="excerpt">${linkedMenu.subtitle || ''}</div>
+                            </div>
+                            <div class="menu-button bubble" style="background:${linkedMenu.color || 'transparent'}; animation-delay: ${i * -0.5}s; box-shadow: 0 0 10px ${linkedMenu.color}">
+                                <div class="inner">
+                                    <div class="menu-thumb lazy-bg" data-bg='${linkedMenu.image || ''}'></div>
+                                </div>
+                            </div>
+                        `;
+                        c.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            openMenuByQ(lbl.linkId, true);
+                            playSfx('sfxClick', SFX_CLICK_VOL);
+                        });
+                    }
+                    section.appendChild(c);
+                    i++;
+                    return;
+                }
 
-        // click handling (links/external/unclikable)
-        if (!lbl.unclickable) {
-            c.addEventListener('click', () => {
-                if (lbl.url) return window.open(lbl.url, '_blank');
+                // Standard card markup (image vs no-image)
+                if (lbl.image) {
+                    c.innerHTML = `
+                        <div class="thumb lazy-bg" data-bg="${lbl.image}"></div>
+                        <div class="card-text">
+                            <strong>${lbl.title}</strong>
+                            <div class="excerpt">${lbl.excerpt || ''}</div>
+                        </div>
+                    `;
+                } else {
+                    c.innerHTML = `
+                        <div class="card-text full">
+                            <strong>${lbl.title}</strong>
+                            <div class="excerpt">${lbl.excerpt || ''}</div>
+                        </div>
+                    `;
+                }
 
-                const realMenu = (menu.q === 'search' && lbl.fromMenu)
-                    ? menuItems.find(m => m.q === lbl.fromMenu)
-                    : menu;
+                // Special cards
+                if (lbl.url) c.dataset.link = "true";
+                if (lbl.unclickable) c.dataset.noclick = "true";
 
-                focusCard(c, lbl, realMenu);
+                // Character cards
+                if (isCharacter(lbl)) c.dataset.character = 'true';
+
+                // optional webinfo counters
+                const totalCardsCounter = c.querySelector('#totalCardsCounter');
+                if (totalCardsCounter) totalCardsCounter.textContent = `totalCards: ${totalCards}`;
+                const totalMenusCounter = c.querySelector('#totalMenusCounter');
+                if (totalMenusCounter) totalMenusCounter.textContent = `totalMenus: ${totalMenus}`;
+                const totalCharacterCounter = c.querySelector('#totalCharacterCounter');
+                if (totalCharacterCounter) totalCharacterCounter.textContent = `totalCharacters: ${totalCharacters}`;
+                const totalSplashCounter = c.querySelector('#totalSplashCounter');
+                if (totalSplashCounter) totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
+
+                // click handling (links/external/unclikable)
+                if (!lbl.unclickable) {
+                    c.addEventListener('click', () => {
+                        if (lbl.url) return window.open(lbl.url, '_blank');
+
+                        const realMenu = (menu.q === 'search' && lbl.fromMenu)
+                            ? menuItems.find(m => m.q === lbl.fromMenu)
+                            : menu;
+
+                        focusCard(c, lbl, realMenu);
+                        playSfx('sfxClick', SFX_CLICK_VOL);
+                    });
+                }
+
+                section.appendChild(c);
+                i++;
             });
         }
-
-        section.appendChild(c);
     });
-
-    contentView.setAttribute('aria-hidden', 'false');
-
-    // If only one card in menu, open/focus it automatically
-    if (menu.labels.length === 1) {
-        const single = menu.labels[0];
-        const cardEl = cardsContainer.querySelector('.card');
-        if (cardEl) {
-            if (single.unclickable) return;
-            if (single.url) window.open(single.url, '_blank');
-            else focusCard(cardEl, single, menu);
-        }
-    }
-
-    initLazyLoad();
-    contentView.scrollTop = 0;
 }
+
+// Update sort button text based on current mode
+function updateSortButtonText() {
+    if (!sortBtn) return;
+    
+    const texts = ['Default', 'A-Z', 'Z-A'];
+    sortBtn.textContent = texts[sortMode];
+    
+    // Optional: Add title/tooltip for accessibility
+    const titles = ['Original order', 'Sort A-Z', 'Sort Z-A'];
+    sortBtn.title = titles[sortMode];
+}
+
+// sort button click handler
+const sortBtn = document.getElementById('sortBtn')
+let sortMode = 0;
+sortBtn?.addEventListener('click', () => {
+    sortMode = (sortMode + 1) % 3;
+    if (sortMode == 0) showContentFor(shownMenu);
+    else if (sortMode == 1) showContentFor(shownMenu, 'asc');
+    else if (sortMode == 2) showContentFor(shownMenu, 'desc');
+});
 
 
 // for genotheta converter: convert base10 to base32
@@ -707,6 +807,8 @@ function focusCard(cardEl, label, menu = null) {
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
     focusedCardArea.appendChild(clone);
+    sortBtn?.classList.remove('visible');
+    sortBtn?.setAttribute('aria-hidden', 'true');
 
     // Add lazy classes to any <img> in label.detail and convert src->data-src
     let html = label.detail
@@ -1037,7 +1139,7 @@ function initLazyLoad() {
     if (LOCAL_MODE) {
         const lazyImages = $$('img.lazy:not(.loaded)');
         const lazyBackgrounds = $$('.lazy-bg:not(.loaded)');
-        
+
         lazyImages.forEach(el => {
             const src = el.dataset.src;
             if (src) {
@@ -1045,7 +1147,7 @@ function initLazyLoad() {
                 el.classList.add('loaded');
             }
         });
-        
+
         lazyBackgrounds.forEach(el => {
             const bgUrl = el.dataset.bg;
             if (bgUrl) {
@@ -1113,6 +1215,30 @@ function createStarfield(layerCount = 3, starsPerLayer = 40) {
         }
         starfield.appendChild(layer);
     }
+}
+
+
+
+/* --------------------------
+    Audios
+    --------------------------*/
+
+// ui button clicks
+document.addEventListener('DOMContentLoaded', (e) => {
+    const uiBtns = $$('.ui-btn').concat($$('.card'));
+    uiBtns.forEach(b => {
+        b.addEventListener('click', (e) => {
+            playSfx('sfxClick', SFX_CLICK_VOL);
+        })
+    })
+});
+
+// sfx: click
+function playSfx(soundId, volume = 1) {
+    sfx = document.getElementById(soundId);
+    if (!sfx) return;
+    sfx.volume = volume * SFX_MASTER_VOL;
+    sfx.play();
 }
 
 
@@ -1247,6 +1373,11 @@ menuLogo.addEventListener('click', () => {
     searchBox.showModal();
 });
 
+const searchBtn = document.getElementById('searchBtn')
+searchBtn?.addEventListener('click', () => {
+    searchBox.showModal();
+});
+
 searchBox.addEventListener('close', () => {
     if (searchText.value.trim() !== '') search();
 });
@@ -1271,6 +1402,7 @@ function openMenuByQ(q, skipAnim = false) {
     const menu = menuItems.find(m => m.q === q);
     if (!menu) return;
     const btn = orbitButtons.find(b => b.dataset.menuQ === q);
+    contentView.style.overflow = '';
     openMenu(menu, btn || null, { skipAnimation: skipAnim || !btn });
 }
 
@@ -1409,6 +1541,7 @@ function goBack() {
         history.pushState({}, '', location.pathname);
         $('.content-header')?.classList.remove('hidden');
         toggleView({ content: true, show: false });
+        shownMenu = null;
         contentView.style.overflow = '';
         if (openFromRandom) {
             openFromRandom = false;
@@ -1455,6 +1588,12 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             backBtn.setAttribute('aria-hidden', 'false');
             menuStage.classList.add('blur');
             starfield?.classList.add('blur');
+            
+            if (!focusedLayout.classList.contains('visible')) {
+                sortBtn?.classList.add('visible');
+                sortBtn?.setAttribute('aria-hidden', 'false');
+            }
+            updateSortButtonText();
         } else {
             contentView.classList.remove('visible');
             backBtn.classList.remove('visible');
@@ -1462,6 +1601,9 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             backBtn.setAttribute('aria-hidden', 'true');
             menuStage.classList.remove('blur');
             starfield?.classList.remove('blur');
+            
+            sortBtn?.classList.remove('visible');
+            sortBtn?.setAttribute('aria-hidden', 'true');
         }
     }
 
@@ -1469,9 +1611,17 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
         if (show) {
             focusedLayout.classList.add('visible');
             focusedLayout.style.display = '';
+            
+            sortBtn?.classList.remove('visible');
+            sortBtn?.setAttribute('aria-hidden', 'true');
         } else {
             focusedLayout.classList.remove('visible');
             focusedLayout.style.display = 'none';
+            
+            if (contentView.classList.contains('visible')) {
+                sortBtn?.classList.add('visible');
+                sortBtn?.setAttribute('aria-hidden', 'false');
+            }
         }
     }
 }

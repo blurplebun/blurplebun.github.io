@@ -3,21 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" id="vp">
     <link rel="icon" type="image" href="icons/fav-icon.png">
     <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" id="vp">
     <meta name="theme-color" content="#C894F9">
-    <meta content="Artifyber" property="og:title" />
-    <meta content="I like to draw and make music" property="og:description" />
-    <meta content="https://blurplebun.github.io/" property="og:url" />
+    <meta property="og:title" content="Artifyber">
+    <meta property="og:image" content="images/temp3.png">
+    <meta property="og:description" content="I like to draw and make music">
+    <meta property="og:url" content="https://blurplebun.github.io/">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
     <title>Artifyber</title>
 </head>
 
 <body>
+    <!-- App -->
     <div class="app">
         <div class="starfield"></div>
+        <div id="dragLayer"></div>
         <div class="menu-stage">
             <div class="menu-center-text">
                 <div class="splash-text splash-text-info" data-info="info"></div>
@@ -66,7 +69,7 @@
             </div>
         </div>
 
-        <div id="uiPanel">
+        <div id="uiPanelBottom">
             <!-- center view button -->
             <button
                 id="centerBtn"
@@ -105,8 +108,39 @@
                 <span>Back</span>
             </button>
         </div>
+
+        <div id="uiPanelTop">
+            <!--
+            <button
+                id="searchBtn"
+                class="search-btn ui-btn"
+                aria-hidden="true"
+                title="Search">
+                <span>Search</span>
+            </button>
+            
+            <button
+                id="hideBtn"
+                class="hide-btn ui-btn"
+                aria-hidden="true"
+                title="Hide UI elements">
+                <span>Hide</span>
+            </button>
+            -->
+            <button
+                id="sortBtn"
+                class="sort-btn ui-btn"
+                aria-hidden="true"
+                title="Toggle sorting">
+                <span>Sort: Default</span>
+            </button>
+
+        </div>
     </div>
 
+    <!-- Audios
+    <audio id="sfxClick" src="audios/click.wav" preload="auto"></audio>
+ -->
     <script src="menuData.js"></script>
     <script src="splashtext.js"></script>
     <script src="ticker.js"></script>

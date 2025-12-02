@@ -125,6 +125,14 @@ body {
     filter: blur(0.5rem);
 }
 
+#dragLayer {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: auto;
+}
+
+
 /* Scrollbar */
 ::-webkit-scrollbar {
     width: 10px;
@@ -916,7 +924,8 @@ a[data-open-card] {
     width: 13px;
 }
 
-#uiPanel {
+#uiPanelBottom,
+#uiPanelTop {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -931,7 +940,13 @@ a[data-open-card] {
     white-space: nowrap;
 }
 
-#uiPanel *[id] {
+#uiPanelTop {
+    bottom: auto;
+    top: 0px;
+}
+
+#uiPanelBottom *[id],
+#uiPanelTop *[id] {
     padding: 12px 14px;
     opacity: 0;
     display: block;
@@ -941,7 +956,8 @@ a[data-open-card] {
     pointer-events: none;
 }
 
-#uiPanel *[id].visible {
+#uiPanelBottom *[id].visible,
+#uiPanelTop *[id].visible {
     opacity: 1;
     visibility: visible;
     max-height: none;
