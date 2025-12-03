@@ -656,7 +656,7 @@ function renderContent(menu, sort = null) {
             if (lbl.title) {
                 const h1 = document.createElement('div');
                 h1.className = 'content-title separator';
-                h1.textContent = lbl.title;
+                h1.innerHTML = lbl.title;
                 header.appendChild(h1);
             }
             if (lbl.excerpt) {
@@ -1404,15 +1404,14 @@ function search() {
         // add cards from found menus
         menusFound.forEach(({ menu, labels }) => {
             labelGroup.push({
-                title: menu.name,
-                excerpt: `Results from <a data-open-card="${menu.menuId}">${menu.name}</a>`,
+                title: `<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>Results from <a data-open-card="${menu.menuId}">${menu.name}</a>`
             });
             labels.forEach(label => labelGroup.push({ ...label, fromMenu: menu.menuId }));
         });
 
         // add matching menus as linked cards
         if (menuMatches.length > 0) {
-            labelGroup.push({ title: 'Menus', excerpt: 'Matching menus found' });
+            labelGroup.push({ title: '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>Matching menus found'});
             menuMatches.forEach(menu => {
                 labelGroup.push({
                     cardId: `menu-${menu.menuId}`,
