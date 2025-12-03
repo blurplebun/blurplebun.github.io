@@ -48,19 +48,19 @@ menuItems = [
 
             // CARDS WITHOUT TEXT
             {
-                cardId: 'normalCardPlain',
+                cardId: 'normalCardBlank',
                 blank: true,    // set the card as blank / have no text
                 detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
                 image: 'images/temp.png'
             },
             {
-                cardId: 'urlCardPlain',
+                cardId: 'urlCardBlank',
                 blank: true,
                 url: 'https://x.com/artifyber',
                 image: 'images/temp.png'
             },
             {
-                cardId: 'unclickableCardPlain',
+                cardId: 'unclickableCardBlank',
                 blank: true,
                 image: 'images/temp.png',
                 unclickable: true

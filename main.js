@@ -286,7 +286,7 @@ function createMenuButtons() {
             btn.tabIndex = -1;
             btn.setAttribute('aria-hidden', 'true');
 
-            btn.addEventListener('click', () => openMenu(m, btn));
+            btn.addEventListener('click', () => {if (!isTransitioning) {openMenu(m, btn)}});
             ringLayer.appendChild(btn);
             orbitButtons.push(btn);
         });
@@ -436,7 +436,9 @@ rerollBtn.addEventListener('click', () => {
     -------------------------- */
 
 let openSingle = false;
+let isTransitioning = false;
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
+    isTransitioning = true;
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
         history.pushState({}, '', `?m=${menu.menuId}`);
@@ -467,6 +469,8 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     }
 
     // compute center for expander origin
+    const speed = getCSSVar('--overlay-transition');
+    console.log(speed)
     const rect = buttonEl.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
@@ -478,16 +482,17 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     expander.style.height = rect.height + 'px';
     expander.style.borderRadius = '50%';
     expander.style.background = getComputedStyle(buttonEl).backgroundColor || menu.color;
-    expander.style.opacity = '1';
+    expander.style.opacity = '0.3';
 
     requestAnimationFrame(() => {
         const maxDim = Math.max(window.innerWidth, window.innerHeight) * 2.2;
         const scale = maxDim / rect.width;
         expander.style.transform = `translate(-50%,-50%) scale(${scale})`;
-        expander.style.transition = `transform var(--overlay-transition) cubic-bezier(.2,.9,.2,1),opacity var(--overlay-transition)`;
+        expander.style.transition = `transform ${parseInt(speed) * 4}ms cubic-bezier(.2,.9,.2,1), opacity ${speed}`;
         buttonEl.style.transform += ' scale(1.02)';
 
         setTimeout(() => {
+            isTransitioning = false;
             expander.style.opacity = '0';
             expander.style.left = '0';
             expander.style.top = '0';
@@ -496,7 +501,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
             expander.style.transform = 'translate(-50%,-50%) scale(1)';
             showContentFor(menu);
             history.pushState({}, '', `?m=${menu.menuId}`);
-        }, 700);
+        }, parseInt(speed));
     });
 }
 
