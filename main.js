@@ -503,7 +503,6 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
         buttonEl.style.transform += ' scale(1.02)';
 
         setTimeout(() => {
-            isTransitioning = false;
             expander.style.opacity = '0';
             expander.style.left = '0';
             expander.style.top = '0';
@@ -552,6 +551,7 @@ initContent();
 // show content
 let shownMenu = null;
 function showContentFor(menu, sort = null) {
+    isTransitioning = false;
     shownMenu = menu;
     contentTitle.textContent = menu.name;
     contentSubtitle.textContent = menu.subtitle;
