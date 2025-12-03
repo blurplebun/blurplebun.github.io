@@ -1,4 +1,4 @@
-// main.js - Refactored
+// main.js
 
 /* --------------------------
    Helpers / Config
@@ -18,8 +18,12 @@ function getCSSVar(name, parse = 'string') {
 
 // Lazy loader base path
 const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
-const LOCAL_MODE = 0; // if you don't know what this is, just set it as 1
+const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to 1
 
+// If you only have one menuItem and prefer an orbit-less interface, set this to true
+const SIMPLE_MODE = false;
+
+// Sound control
 const SFX_MASTER_VOL = 1;
 const SFX_CLICK_VOL = 0.4;
 
@@ -193,7 +197,8 @@ let orbitDuration = getCSSVar('--ring-rotation-duration', 'float') || 60;
 if (ring) ring.style.animationDuration = getCSSVar('--ring-rotation-duration') || '60s';
 
 // Visual orbit rings (regeneratable)
-function createOrbitVisuals() {
+function initOrbitRings() {
+    if (SIMPLE_MODE) return;
     // remove existing visuals
     $$('.orbit-visual').forEach(el => el.remove());
 
@@ -222,10 +227,15 @@ function createOrbitVisuals() {
 
 // orbit buttons array
 const orbitButtons = [];
-function createMenuButtons() {
+function initMenu() {
     // Clear existing rings and orbit buttons
     $$('.ring').forEach(r => r.remove());
     orbitButtons.length = 0;
+
+    if (SIMPLE_MODE && menuItems.length === 1) {
+        openMenuById(menuItems[0].menuId);
+        return;
+    }
 
     const grouped = {};
     menuItems.forEach(m => {
@@ -286,7 +296,7 @@ function createMenuButtons() {
             btn.tabIndex = -1;
             btn.setAttribute('aria-hidden', 'true');
 
-            btn.addEventListener('click', () => {if (!isTransitioning) {openMenu(m, btn)}});
+            btn.addEventListener('click', () => { if (!isTransitioning) { openMenu(m, btn) } });
             ringLayer.appendChild(btn);
             orbitButtons.push(btn);
         });
@@ -295,6 +305,7 @@ function createMenuButtons() {
     });
 
     startOrbitAnimation();
+    initOrbitRings();
 }
 
 // Orbit animation loop
@@ -374,7 +385,7 @@ window.addEventListener('resize', () => {
             const r = baseRadius * orbit * 1.2 + 60;
             el.dataset.radius = r;
         });
-        createOrbitVisuals();
+        initOrbitRings();
     }, 300);
 });
 
@@ -508,6 +519,10 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
 
 // initialize content
 function initContent() {
+    if (SIMPLE_MODE && menuItems.length === 1) {
+        menuLogoRedirect = menuItems[0].menuId;
+        return;
+    }
     menuItems.forEach(m => {
         m.labels?.forEach(lbl => {
             if (lbl.linkId) {
@@ -1844,8 +1859,7 @@ window.addEventListener('popstate', (event) => {
     Initialization
     -------------------------- */
 createStarfield();
-createOrbitVisuals();
-createMenuButtons();
+initMenu();
 
 // Reset URL if coming from search (original behavior)
 const params = new URLSearchParams(location.search);

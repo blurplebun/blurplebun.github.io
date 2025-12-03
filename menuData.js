@@ -2951,8 +2951,7 @@ menuItems = [
     },
 ];
 
-const menuLogoRedirect = 'info:artifyber';
-
+menuLogoRedirect = 'info:artifyber';
 
 /*
 menuItems = [
