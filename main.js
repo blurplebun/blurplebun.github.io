@@ -18,7 +18,7 @@ function getCSSVar(name, parse = 'string') {
 
 // Lazy loader base path
 const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
-const LOCAL_MODE = 0;
+const LOCAL_MODE = 0; // if you don't know what this is, just set it as 1
 
 const SFX_MASTER_VOL = 1;
 const SFX_CLICK_VOL = 0.4;
@@ -103,6 +103,7 @@ function dragTo(clientX, clientY) {
     requestAnimationFrame(() => {
         setMenuStageTransform(currentX, currentY, { transition: 'transform 0.2s cubic-bezier(.2, .9, .2, 1)' });
     });
+    $('.splash-text-info').style.opacity = 0;
 }
 
 // End drag
@@ -139,6 +140,8 @@ menuStage.addEventListener('wheel', (e) => {
         currentX -= e.deltaX * 1.5;
         currentY -= e.deltaY * 1.5;
         setMenuStageTransform(currentX, currentY);
+        $('.splash-text-info').style.opacity = 0;
+        updateCenterButtonVisibility();
     }
 }, { passive: false });
 
@@ -158,7 +161,7 @@ function updateCenterButtonVisibility() {
         vizRemove(centerBtn);
         return;
     }
-    
+
     if (currentX !== 0 || currentY !== 0) {
         vizAdd(centerBtn);
     } else {
@@ -313,50 +316,50 @@ function orbitFrame(ts) {
     if (ts - lastFrame > 1000 / ORBIT_FPS) {
         lastFrame = ts;
         const elapsed = (ts - orbitStartTs) / 1000;
-        
+
         const transforms = new Array(orbitButtons.length);
         const needsHoverEffect = !contentView.classList.contains('visible');
         const maxDist = 250;
-        
+
         const cursorPos = { x: cursorX, y: cursorY };
-        
+
         for (let i = 0; i < orbitButtons.length; i++) {
             const el = orbitButtons[i];
             const dataset = el.dataset;
-            
+
             const a0 = parseFloat(dataset.angle0) || 0;
             const w = parseFloat(dataset.omega) || 0;
             const r = parseFloat(dataset.radius) || 0;
             const s = parseFloat(dataset.scale) || 1;
-            
+
             const angle = a0 + w * elapsed;
             const x = Math.cos(angle) * r;
             const y = Math.sin(angle) * r;
-            
+
             // Calculate zoom for hover effect
             let zoom = 1;
             if (!isDragging && needsHoverEffect) {
                 const rect = el.getBoundingClientRect();
                 const btnX = rect.left + rect.width / 2;
                 const btnY = rect.top + rect.height / 2;
-                
+
                 const dx = cursorPos.x - btnX;
                 const dy = cursorPos.y - btnY;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                
+
                 zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
             }
-            
+
             transforms[i] = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
         }
-        
+
         requestAnimationFrame(() => {
             for (let i = 0; i < orbitButtons.length; i++) {
                 orbitButtons[i].style.transform = transforms[i];
             }
         });
     }
-    
+
     requestAnimationFrame(orbitFrame);
 }
 
@@ -711,7 +714,7 @@ function renderContent(menu, sort = null) {
                 }
 
                 // Standard card markup (image vs no-image)
-                if (lbl.image) {
+                if (lbl.image && !lbl.blank) {
                     c.innerHTML = `
                         <div class="thumb lazy-bg" data-bg="${lbl.image}"></div>
                         <div class="card-text">
@@ -719,6 +722,11 @@ function renderContent(menu, sort = null) {
                             <div class="excerpt">${lbl.excerpt || ''}</div>
                         </div>
                     `;
+                } else if (lbl.blank) {
+                    c.innerHTML = `
+                        <div class="thumb lazy-bg" data-bg="${lbl.image}"></div>
+                    `;
+                    c.dataset.blank = "true";
                 } else {
                     c.innerHTML = `
                         <div class="card-text full">
@@ -887,8 +895,7 @@ function focusCard(cardEl, label, menu = null) {
         const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
         detailArea.innerHTML = `
             <h1>
-                <div style="font-size: 20px;"><small><a data-open-card="${menu.menuId}">${menu.name}</a> /</small></div>
-                ${label.title}
+                ${!label.blank ? `<div style="font-size: 20px;"><small><a data-open-card="${menu.menuId}">${menu.name}</a> /</small></div>${label.title}` : ''}
                 <span class="copy-link" title="Copy shareable link">
                     <svg viewBox="0 0 24 24" fill="none">
                         <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />

@@ -4,7 +4,7 @@
 
 // Metadata
 const lastUpdated = 'December 2nd, 2025';
-const version = '0.3.3';
+const version = '0.3.4';
 
 // Main menu data array
 menuItems = [
@@ -12,7 +12,7 @@ menuItems = [
     Menu Template
     -------------------------- */
     {
-        menuId: 'menuTemplate',                    // REQUIRED: Unique identifier (alphanumeric, no spaces)
+        menuId: 'menuTemplate',               // REQUIRED: Unique identifier (alphanumeric, no spaces)
         name: 'Menu Template Example',        // Menu name and title
         showName: false,                      // Show name in orbit
         subtitle: 'This is a menu example',   // Short description
@@ -29,21 +29,41 @@ menuItems = [
                 title: 'Normal Card',
                 excerpt: 'With thumbnail',
                 detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
-                image: 'images/temp2.png'
+                image: 'images/temp.png'
             },
             {
                 cardId: 'urlCard',
                 title: 'URL Card',
                 excerpt: 'With thumbnail',
                 url: 'https://x.com/artifyber',  // External URL redirect
-                image: 'images/temp2.png'
+                image: 'images/temp.png'
             },
             {
                 cardId: 'unclickableCard',
                 title: 'Unclickable Card',
                 excerpt: 'With thumbnail',
                 unclickable: true,            // Non-clickable info card
-                image: 'images/temp2.png'
+                image: 'images/temp.png'
+            },
+
+            // CARDS WITHOUT TEXT
+            {
+                cardId: 'normalCardPlain',
+                blank: true,    // set the card as blank / have no text
+                detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
+                image: 'images/temp.png'
+            },
+            {
+                cardId: 'urlCardPlain',
+                blank: true,
+                url: 'https://x.com/artifyber',
+                image: 'images/temp.png'
+            },
+            {
+                cardId: 'unclickableCardPlain',
+                blank: true,
+                image: 'images/temp.png',
+                unclickable: true
             },
 
             // CARDS WITHOUT THUMBNAILS

@@ -2,26 +2,23 @@
     GLOBAL STYLES
     -------------------------- */
 
+@font-face {
+    font-family: 'Main';
+    font-weight: 800;
+    font-display: swap;
+    src: url(fonts/Righteous-Regular.woff) format('woff');
+}
+
 :root {
+    /* Main colors */
     --bg: #0d1120;
     --accentl: #b6bbf5;
     --accent: #4b5499;
     --accent2: #303c6c;
     --accent3: #151b33;
     --white: #fff;
-    --ring: var(--accent2);
-    --menu-radius: 150px;
-    --menu-stage-scale: 1;
-
-    --button-size: 100px;
-    --button-gap: 20px;
-    --ring-rotation-duration: 60s;
-    --card-scale: 0.875;
-
-    --overlay-transition: 3000ms;
-    --card-gap: 12px;
-    --max-columns: 5;
-
+    
+    /* Base color palette */
     --color-0: #00000000;
     --color-1: #0BA0A7;
     --color-2: #6569FF;
@@ -38,13 +35,111 @@
     --color-13: #9fe551;
     --color-14: #ff8d57;
     --color-15: #432cae;
-}
+    
 
-@font-face {
-    font-family: 'Main';
-    font-weight: 800;
-    font-display: swap;
-    src: url(fonts/Righteous-Regular.woff) format('woff');
+    /* Layout variables */
+    --menu-radius: 150px;
+    --menu-stage-scale: 1;
+    --button-size: 100px;
+    --button-gap: 20px;
+    --ring-rotation-duration: 60s;
+    --card-scale: 0.875;
+    --overlay-transition: 3000ms;
+    --card-gap: 12px;
+    --max-columns: 5;
+
+    /* Menu specific variables */
+    --menu-button-sub: var(--white);
+    --menu-button-sub-shadow: rgba(0, 0, 0, 0.6);
+    --menu-button-color: #111;
+    --menu-button-shadow: rgba(0, 0, 0, 0.6);
+    --menu-button-thumb-inset-shadow: rgba(0, 0, 0, 0.4);
+    --menu-button-thumb-scale: 1.1375;
+    --menu-center-text-shadow: rgba(0, 0, 0, 0.5);
+    
+    /* Ring/orbit variables */
+    --ring: var(--accent2);
+    --ring-inset-shadow: var(--ring);
+        
+    /* Card variables */
+    --card-bg: color-mix(in srgb, var(--accent2) 40%, transparent);
+    --card-inset-shadow: color-mix(in srgb, var(--accent2) 50%, transparent);
+    --card-text-bg: color-mix(in srgb, var(--bg) 70%, transparent);
+    --card-excerpt-color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    --card-link-bg: color-mix(in srgb, var(--bg) 60%, transparent);
+    --card-link-border: color-mix(in srgb, var(--accent) 50%, transparent);
+    --card-link-text-bg: color-mix(in srgb, var(--accent2) 50%, transparent);
+    --card-noclick-border: color-mix(in srgb, var(--accent) 25%, transparent);
+    
+    /* Content view variables */
+    --content-view-bg: color-mix(in srgb, var(--bg) 50%, transparent);
+    --content-sub-color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    
+    /* Panel variables */
+    --panel-right-bg: color-mix(in srgb, var(--accent2) 30%, transparent);
+    --details-open-bg: color-mix(in srgb, var(--bg) 60%, transparent);
+    --hr-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    
+    /* Detail area variables */
+    --detail-text-color: var(--white);
+    --detail-li-color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    --detail-small-color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    --detail-img-hover-shadow: rgba(0, 0, 0, 0.5);
+    --detail-caption-color: var(--accentl);
+    
+    /* Focused layout variables */
+    --focused-layout-bg: color-mix(in srgb, var(--bg) 50%, transparent);
+    
+    /* Button variables */
+    --ui-btn-bg: var(--white);
+    --ui-btn-color: var(--bg);
+    --ui-btn-border: rgba(255, 255, 255, 0.06);
+    --hide-btn-border: var(--accent2);
+    
+    /* Form variables */
+    --searchbox-bg: color-mix(in srgb, var(--accent3) 50%, transparent);
+    --searchbox-shadow: rgba(0, 0, 0, 0.8);
+    --searchbox-backdrop: color-mix(in srgb, var(--bg) 50%, transparent);
+    --search-text-bg: color-mix(in srgb, var(--bg) 70%, transparent);
+    --search-text-border: var(--accent2);
+    --search-text-focus-border: var(--accent);
+    --form-button-bg: var(--accent);
+    --form-button-shadow: rgba(0, 0, 0, 0.3);
+    --form-button-alt-bg: color-mix(in srgb, var(--accent2) 50%, transparent);
+    
+    /* Textarea variables */
+    --textarea-bg: color-mix(in srgb, var(--bg) 70%, transparent);
+    --textarea-border: var(--accent2);
+    
+    /* Keyboard layout variables */
+    --keyboard-bg: color-mix(in srgb, var(--accent2) 30%, transparent);
+    --keycap-bg: var(--accent3);
+    --keycap-border: var(--accent2);
+    --keycap-hover-bg: color-mix(in srgb, var(--accent2) 60%, transparent);
+    --keycap-active-shadow: rgba(0, 0, 0, 0.3);
+    --keycap-active-inset-shadow: rgba(0, 0, 0, 0.2);
+    
+    /* Image preview variables */
+    --img-preview-bg: color-mix(in srgb, var(--bg) 90%, transparent);
+    --img-preview-shadow: rgba(0, 0, 0, 0.6);
+    
+    /* Lazy loading variables */
+    --lazy-placeholder-bg: rgba(21, 27, 51, 0.5);
+    
+    /* Starfield variables */
+    --star-bg: var(--accent2);
+    
+    /* Splash text variables */
+    --splash-text-shadow: var(--bg);
+    --info-text-color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    
+    /* Ticker variables */
+    --ticker-bg: color-mix(in srgb, var(--bg) 70%, transparent);
+    --ticker-color: var(--white);
+
+    /* Copy link variables */
+    --copy-link-stroke: var(--accentl);
+    --copy-link-copied-stroke: var(--color-5);
 }
 
 @font-face {
@@ -109,8 +204,8 @@ body {
         transform: translateX(-50%) rotate(0deg);
         white-space: nowrap;
         font-size: 16px;
-        color: var(--white);
-        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        color: var(--menu-button-sub);
+        text-shadow: 0 2px 8px var(--menu-button-sub-shadow);
         font-family: 'Main', 'Ubuntu', verdana, sans-serif;
         pointer-events: none;
     }
@@ -158,8 +253,7 @@ body {
     position: absolute;
     border-radius: 50%;
     border: 3px solid var(--ring);
-    box-shadow: 0 0 12px var(--ring) inset;
-    /* pointer-events: none; */
+    box-shadow: 0 0 12px var(--ring-inset-shadow) inset;
     pointer-events: auto;
     z-index: -1;
     transform-origin: center center;
@@ -195,11 +289,11 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 6px 18px var(--menu-button-shadow);
     transition: transform 150ms, opacity 300ms, box-shadow 0.2s;
     user-select: none;
     font-weight: 700;
-    color: #111;
+    color: var(--menu-button-color);
     margin: auto;
     border: 0px;
     z-index: 12;
@@ -234,7 +328,7 @@ body {
     background-size: cover;
     background-position: center;
     margin-bottom: 6px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4) inset;
+    box-shadow: 0 0 8px var(--menu-button-thumb-inset-shadow) inset;
 }
 
 .menu-button .inner {
@@ -252,7 +346,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    scale: 1.1375;
+    scale: var(--menu-button-thumb-scale);
 }
 
 .menu-center-text {
@@ -264,8 +358,7 @@ body {
     font-size: 28px;
     font-weight: 800;
     text-align: center;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    /* pointer-events: none; */
+    text-shadow: 0 2px 8px var(--menu-center-text-shadow);
     z-index: 20;
     font-family: 'Main', 'Ubuntu', verdana, sans-serif;
 }
@@ -325,8 +418,8 @@ body {
     pointer-events: none;
     overflow-y: auto;
     overscroll-behavior: contain;
-    background: color-mix(in srgb, var(--bg) 50%, transparent);
-    box-shadow: 30px color-mix(in srgb, var(--bg) 50%, transparent);
+    background: var(--content-view-bg);
+    box-shadow: 30px var(--content-view-bg);
     transform: scale(0);
     transition: opacity 200ms ease-in-out, box-shadow 200ms ease-in-out, transform 300ms;
 }
@@ -348,7 +441,7 @@ body {
 }
 
 .content-sub {
-    color: color-mix(in srgb, var(--accentl) 75%, transparent)
+    color: var(--content-sub-color)
 }
 
 .content-title.separator {
@@ -381,7 +474,7 @@ body {
 }
 
 .card {
-    background: color-mix(in srgb, var(--accent2) 40%, transparent);
+    background: var(--card-bg);
     padding: 12px;
     border-radius: 10px;
     cursor: pointer;
@@ -397,7 +490,7 @@ body {
     overflow: hidden;
     position: relative;
     backdrop-filter: blur(2rem);
-    box-shadow: inset 0 0 30px color-mix(in srgb, var(--accent2) 50%, transparent);
+    box-shadow: inset 0 0 30px var(--card-inset-shadow);
     flex-shrink: 0;
 }
 
@@ -412,13 +505,13 @@ body {
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
-    border-radius: 10px;
+    border-radius: 5px;
     margin: 0 auto 8px auto;
     display: block;
 }
 
 .card .card-text {
-    background: color-mix(in srgb, var(--bg) 70%, transparent);
+    background: var(--card-text-bg);
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
@@ -433,7 +526,6 @@ body {
 .card .card-text strong {
     display: block;
     font-size: calc(16px * var(--card-scale));
-    /* margin-bottom: calc(4px * var(--card-scale)); */
 }
 
 .card .card-text .excerpt,
@@ -442,7 +534,7 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    color: color-mix(in srgb, var(--accentl) 75%, transparent)
+    color: var(--card-excerpt-color)
 }
 
 .card .card-text.full {
@@ -458,12 +550,12 @@ body {
 }
 
 .card[data-link="true"] {
-    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    background: var(--card-link-bg);
     cursor: pointer;
-    border: 3px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    border: 3px solid var(--card-link-border);
 
     .card-text {
-        background: color-mix(in srgb, var(--accent2) 50%, transparent);
+        background: var(--card-link-text-bg);
         mix-blend-mode: screen;
     }
 }
@@ -478,9 +570,9 @@ body {
 }
 
 .card[data-noclick="true"] {
-    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    background: var(--card-link-bg);
     cursor: auto;
-    border: 3px solid color-mix(in srgb, var(--accent) 25%, transparent);
+    border: 3px solid var(--card-noclick-border);
 
     .card-text {
         background: transparent;
@@ -507,6 +599,13 @@ body {
 
 .card[data-noclick="true"]:hover {
     transform: scale(1)
+}
+
+.card[data-blank="true"] {
+    justify-content: center;
+    .thumb {
+        aspect-ratio: 1.6/2;
+    }
 }
 
 .card .menu-button {
@@ -571,7 +670,6 @@ body {
 
 
 
-
 /* Detail view */
 .panel {
     flex: 1;
@@ -587,7 +685,7 @@ body {
 
 .panel-right {
     flex: 1;
-    background: color-mix(in srgb, var(--accent2) 30%, transparent);
+    background: var(--panel-right-bg);
     border-radius: 10px;
     padding: 16px;
     max-width: 1100px;
@@ -598,16 +696,16 @@ body {
 
 /* Detail area for text n stuff*/
 details[open] {
-    background: color-mix(in srgb, var(--bg) 60%, transparent);
+    background: var(--details-open-bg);
     padding: 12px;
 }
 
 #detailArea * {
-    color: var(--white);
+    color: var(--detail-text-color);
 }
 
 #detailArea li {
-    color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    color: var(--detail-li-color);
 }
 
 #detailArea img {
@@ -622,12 +720,12 @@ details[open] {
 
 #detailArea img:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 10px var(--detail-img-hover-shadow);
 }
 
 hr {
     border: none;
-    border-top: 3px solid color-mix(in srgb, var(--accent) 50%, transparent);
+    border-top: 3px solid var(--hr-color);
     margin: 12px 0;
 }
 
@@ -646,7 +744,7 @@ a:active {
 #detailArea small,
 #detailArea small a,
 #detailArea details {
-    color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    color: var(--detail-small-color);
 }
 
 a[data-open-card] {
@@ -685,9 +783,8 @@ a[data-open-card] {
     left: 50%;
     transform: translateX(-50%);
     bottom: -18px;
-    /* adjust distance below image */
     font-size: 13px;
-    color: var(--accentl);
+    color: var(--detail-caption-color);
     text-align: center;
     white-space: nowrap;
     pointer-events: none;
@@ -711,6 +808,10 @@ a[data-open-card] {
     height: 100%;
     width: 100%;
     cursor: auto;
+    justify-content: flex-start;
+    .thumb {
+        aspect-ratio: 1/1;
+    }
 }
 
 .card.focused .card-text {
@@ -719,7 +820,6 @@ a[data-open-card] {
 
 .card.focused .card-text strong {
     font-size: 16px;
-    /* margin-bottom: 4px; */
 }
 
 .card.focused .card-text .excerpt,
@@ -757,13 +857,13 @@ a[data-open-card] {
 .copy-link svg {
     width: 16px;
     height: 16px;
-    stroke: var(--accentl);
+    stroke: var(--copy-link-stroke);
     stroke-width: 2;
     transition: stroke 0.3s ease, transform 0.2s ease;
 }
 
 .copy-link.copied svg {
-    stroke: var(--color-5);
+    stroke: var(--copy-link-copied-stroke);
     transform: scale(1.2) rotate(45deg);
 }
 
@@ -771,8 +871,8 @@ a[data-open-card] {
     border: none;
     border-radius: 20px;
     padding: 0;
-    background: color-mix(in srgb, var(--accent3) 50%, transparent);
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+    background: var(--searchbox-bg);
+    box-shadow: 0 0 40px var(--searchbox-shadow);
     backdrop-filter: blur(15px);
     color: var(--white);
     width: min(90%, 420px);
@@ -787,7 +887,7 @@ a[data-open-card] {
 }
 
 #searchBox::backdrop {
-    background: color-mix(in srgb, var(--bg) 50%, transparent);
+    background: var(--searchbox-backdrop);
 }
 
 #searchForm {
@@ -806,8 +906,8 @@ a[data-open-card] {
 }
 
 #searchText {
-    background: color-mix(in srgb, var(--bg) 70%, transparent);
-    border: 2px solid var(--accent2);
+    background: var(--search-text-bg);
+    border: 2px solid var(--search-text-border);
     border-radius: 12px;
     padding: 10px 14px;
     font-size: 1rem;
@@ -817,7 +917,7 @@ a[data-open-card] {
 }
 
 #searchText:focus {
-    border-color: var(--accent);
+    border-color: var(--search-text-focus-border);
 }
 
 /* Buttons */
@@ -830,7 +930,7 @@ a[data-open-card] {
 
 #searchForm button,
 #detailArea button {
-    background: var(--accent);
+    background: var(--form-button-bg);
     color: var(--white);
     border: none;
     border-radius: 999px;
@@ -839,7 +939,7 @@ a[data-open-card] {
     font-family: 'Main', 'Ubuntu', verdana, sans-serif;
     cursor: pointer;
     transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 12px var(--form-button-shadow);
 }
 
 #searchForm button:hover {
@@ -852,7 +952,7 @@ a[data-open-card] {
 }
 
 #searchForm button[type="button"] {
-    background: color-mix(in srgb, var(--accent2) 50%, transparent);
+    background: var(--form-button-alt-bg);
 }
 
 @keyframes fadeInDialog {
@@ -869,8 +969,6 @@ a[data-open-card] {
 
 
 .focused-layout {
-    /* height: 100%;
-    position: absolute; */
     height: 100vh;
     position: fixed;
     inset: 0;
@@ -882,7 +980,7 @@ a[data-open-card] {
     padding-left: 50px;
     padding-right: 50px;
     overflow-y: auto;
-    background: color-mix(in srgb, var(--bg) 50%, transparent);
+    background: var(--focused-layout-bg);
 }
 
 .focused-layout .panel-left {
@@ -891,12 +989,12 @@ a[data-open-card] {
 
 /* Back button */
 .ui-btn {
-    background: var(--white);
-    color: var(--bg);
+    background: var(--ui-btn-bg);
+    color: var(--ui-btn-color);
     padding: 12px 14px;
     border-radius: 999px;
     min-height: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--ui-btn-border);
     cursor: pointer;
     z-index: 80;
     display: flex;
@@ -961,7 +1059,7 @@ a[data-open-card] {
 
 #hideBtn.hidden-mode {
     background-color: transparent;
-    border: 3px solid var(--accent2);
+    border: 3px solid var(--hide-btn-border);
     opacity: 0.6;
     height: 40px;
     width: 40px;
@@ -971,8 +1069,8 @@ a[data-open-card] {
 textarea {
     width: 100%;
     min-height: 100px;
-    background: color-mix(in srgb, var(--bg) 70%, transparent);
-    border: 2px solid var(--accent2);
+    background: var(--textarea-bg);
+    border: 2px solid var(--textarea-border);
     border-radius: 12px;
     padding: 10px 14px;
     font-size: 1rem;
@@ -993,7 +1091,7 @@ textarea {
     gap: 5px;
     margin-top: 10px;
     padding: 12px;
-    background: color-mix(in srgb, var(--accent2) 30%, transparent);
+    background: var(--keyboard-bg);
     border-radius: 12px;
     backdrop-filter: blur(1rem);
     max-width: 700px;
@@ -1002,8 +1100,8 @@ textarea {
 }
 
 #detailArea .keycap {
-    background: var(--accent3);
-    border: 2px solid var(--accent2);
+    background: var(--keycap-bg);
+    border: 2px solid var(--keycap-border);
     border-radius: 10%;
     color: var(--white);
     padding: 12px 8px;
@@ -1018,15 +1116,15 @@ textarea {
 }
 
 #detailArea .keycap:hover {
-    background: color-mix(in srgb, var(--accent2) 60%, transparent);
+    background: var(--keycap-hover-bg);
     transform: translateY(2px);
 }
 
 #detailArea .keycap:active {
     transform: translateY(5px);
     box-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.3),
-        inset 0 2px 4px rgba(0, 0, 0, 0.2);
+        0 2px 4px var(--keycap-active-shadow),
+        inset 0 2px 4px var(--keycap-active-inset-shadow);
 }
 
 /* Genotheta font styling */
@@ -1058,7 +1156,7 @@ textarea#starstrokeOutput {
 .img-preview-overlay {
     position: fixed;
     inset: 0;
-    background: color-mix(in srgb, var(--bg) 90%, transparent);
+    background: var(--img-preview-bg);
     backdrop-filter: blur(4px);
     display: flex;
     align-items: center;
@@ -1079,7 +1177,7 @@ textarea#starstrokeOutput {
     max-width: 95%;
     max-height: 95%;
     border-radius: 5px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 30px var(--img-preview-shadow);
     cursor: zoom-out;
     transition: transform 0.3s ease;
 }
@@ -1109,7 +1207,7 @@ textarea#starstrokeOutput {
     opacity: 1;
 }
 
-/* Optional: size hints to prevent layout shift */
+/* Size hints to prevent layout shift */
 .lazy {
     display: block;
 }
@@ -1122,7 +1220,6 @@ textarea#starstrokeOutput {
     justify-content: center;
     color: white;
     overflow: hidden;
-    /* make ::before fit properly */
 }
 
 /* Placeholder overlay */
@@ -1130,8 +1227,7 @@ textarea#starstrokeOutput {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: rgba(21, 27, 51, 0.5);
-    /* <-- your solid placeholder */
+    background-color: var(--lazy-placeholder-bg);
     opacity: 1;
     transition: opacity 0.2s ease;
     z-index: 1;
@@ -1148,11 +1244,9 @@ textarea#starstrokeOutput {
 .menu-button.bubble .lazy-bg {
     position: absolute;
     inset: 0;
-    /* fills the entire bubble */
     width: 100%;
     height: 100%;
     border-radius: inherit;
-    /* keeps same corner shape as bubble */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1164,7 +1258,6 @@ textarea#starstrokeOutput {
 /* Ensure card detail images fade in properly */
 #detailArea img.lazy {
     opacity: 0;
-    /* start hidden */
     display: block;
 }
 
@@ -1182,10 +1275,6 @@ textarea#starstrokeOutput {
     }
 
     :root {
-        /*
-        --menu-radius: 100px;
-        --button-size: 80px;
-        */
         --menu-stage-scale: 0.75;
         --card-scale: 0.62;
         --card-gap: 10px;
@@ -1209,11 +1298,6 @@ textarea#starstrokeOutput {
         max-width: 100%;
         margin: 12px;
         margin-top: -50px;
-        /*
-        align-self: start;
-        margin-left: 30px;
-        margin-bottom: 12px;
-        */
     }
 
     .panel-right {
@@ -1303,9 +1387,8 @@ textarea#starstrokeOutput {
 
 .star {
     position: absolute;
-    background: var(--accent2);
+    background: var(--star-bg);
     rotate: 45deg;
-    opacity: 0.8;
     animation: twinkle 5s infinite ease-in-out;
 }
 
@@ -1334,14 +1417,14 @@ textarea#starstrokeOutput {
     font-size: 16px;
     font-weight: 800;
     color: var(--white);
-    text-shadow: 2px 2px 0 var(--bg);
+    text-shadow: 2px 2px 0 var(--splash-text-shadow);
     white-space: nowrap;
     z-index: 10;
     transition: opacity 1s;
 }
 
 .splash-text[data-info="info"] {
-    color: color-mix(in srgb, var(--accentl) 75%, transparent);
+    color: var(--info-text-color);
     position: absolute;
     top: 115%;
     left: 50%;
@@ -1372,8 +1455,8 @@ textarea#starstrokeOutput {
     overflow: hidden;
     width: 100%;
     height: 2em;
-    background: color-mix(in srgb, var(--bg) 70%, transparent);
-    color: var(--white);
+    background: var(--ticker-bg);
+    color: var(--ticker-color);
     font-size: 1.1em;
     white-space: nowrap;
     display: flex;
