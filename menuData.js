@@ -23,14 +23,12 @@ menuItems = [
         hidden: true,                         // Hide from orbit (accessible via links only)
         invisible: true,                      // Exclude from search
         labels: [
-            {
-                cardId: 'bannerCard',
-                title: 'Banner Card',
-                excerpt: 'A type of card that spans the entire width of the container<br><br>This type of card is currently unclickable and merely used to describe a section of the container',
-                banner: true,
-                image: 'images/temp3.png'
-            },
             // CARDS WITH THUMBNAILS
+            {
+                // Cards without cardId become separators
+                title: 'Card examples',
+                excerpt: 'Main card types to put your content in',
+            },
             {
                 cardId: 'normalCard',         // REQUIRED: Unique card identifier
                 title: 'Normal Card',
@@ -69,8 +67,8 @@ menuItems = [
             {
                 cardId: 'unclickableCardBlank',
                 blank: true,
+                unclickable: true,
                 image: 'images/temp.png',
-                unclickable: true
             },
 
             // CARDS WITHOUT THUMBNAILS
@@ -83,19 +81,70 @@ menuItems = [
             {
                 cardId: 'urlCardPlain',
                 title: 'URL Card',
-                excerpt: 'With thumbnail',
+                excerpt: 'Without thumbnail',
                 url: 'https://x.com/artifyber'
             },
             {
                 cardId: 'unclickableCardPlain',
                 title: 'Unclickable Card',
-                excerpt: 'With thumbnail',
+                excerpt: 'Without thumbnail',
                 unclickable: true
+            },
+
+            // BANNER CARDS
+            {
+                // Cards without cardId become separators
+                title: 'Banner examples',
+                excerpt: 'Useful for describing a section of card grid',
+            },
+            {
+                cardId: 'bannerCard',
+                title: 'Banner Card',
+                excerpt: 'A type of card that spans the entire width of the container',
+                detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
+                banner: true,
+                image: 'images/temp3.png'
+            },
+            {
+                cardId: 'bannerUrlCard',
+                title: 'Banner Card (URL)',
+                excerpt: 'A type of card that spans the entire width of the container',
+                banner: true,
+                url: 'https://x.com/artifyber',
+                image: 'images/temp3.png'
+            },
+            {
+                cardId: 'bannerUnclickableCard',
+                title: 'Banner Card (Unclickable)',
+                excerpt: 'A type of card that spans the entire width of the container',
+                banner: true,
+                unclickable: true,
+                image: 'images/temp3.png'
+            },
+            {
+                cardId: 'bannerCardBlank',
+                title: 'Banner Card - No Thumbnail',
+                excerpt: 'A type of card that spans the entire width of the container',
+                detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
+                banner: true,
+            },
+            {
+                cardId: 'bannerUrlCardBlank',
+                title: 'Banner Card - No Thumbnail (URL)',
+                excerpt: 'A type of card that spans the entire width of the container',
+                banner: true,
+                url: 'https://x.com/artifyber',
+            },
+            {
+                cardId: 'bannerUnclickableCardBlank',
+                title: 'Banner Card - No Thumbnail (Unclickable)',
+                excerpt: 'A type of card that spans the entire width of the container',
+                banner: true,
+                unclickable: true,
             },
 
             // MENU-LINKED CARDS
             {
-                // Cards without cardId become separators
                 title: 'Menu-Link examples',
                 excerpt: 'Cards that open another menu',
             },
@@ -133,6 +182,7 @@ menuItems = [
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Deltadim',
+                banner: true,
                 detail:
                     `Deltadim is the main universe portrayed in Daily Art+. Its characteristics are similar to our own universe. Terra is where the main plot takes place. It's an Earth-like planet inhabited by furries, humanoids, and other creatures.<br>
                     <h4>What's in this page</h4>
@@ -1292,6 +1342,7 @@ menuItems = [
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Floriverse',
+                banner: true,
                 detail:
                     `
                     Floriverse is a universe of flories, sentient floral creatures, with Klorofil as its main setting, a planet similar to Earth where the main characters live.<br>
@@ -1639,6 +1690,7 @@ menuItems = [
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Digirel',
+                banner: true,
                 detail:
                     `This universe does not exist independently but is derived from other universes where computers and servers can exist. It’s the result of multiversal intercommunication. “Digitalias” wander throughout Digirel and can interact with other universes through hardware connections.<br>
                     <h4>What's in this page</h4>
@@ -1872,6 +1924,7 @@ menuItems = [
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Nansenz',
+                banner: true,
                 detail:
                     `
                     A world beyond logical limits where anything can exist. It’s like a fever dream. Anything you imagine or could be imagined, objects with limbs, cube-shaped planets, galaxies made of spaghetti, there are no boundaries in Nansenz. The entire purpose of this universe is to contain everything that defy all sense of logic.<br>
@@ -2019,6 +2072,7 @@ menuItems = [
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Hizen',
+                banner: true,
                 detail:
                     `While this universe may represent a sort of heaven, it’s not just an “afterlife” (in fact, there are many realms beyond heaven and hell in the Fyberverse). This is where entities considered angelic (or derived from such origins) were born. The universe is depicted as infinite layers of floating islands.<br>
                     <h4>What's in this page</h4>
@@ -2103,6 +2157,7 @@ menuItems = [
                 cardId: 'info',
                 title: 'Info',
                 excerpt: 'About Nadir',
+                banner: true,
                 detail:
                     `Nadir can be seen as the inverse of Hizen. While often portrayed as hell, it isn’t fiery or chaotic. Instead, it’s quiet, dark, and dreadfully still, as though watched by an omnipresent gaze. Anything that enters this void slowly desaturates and decays as its essence of life fades away.<br>
                     <h4>What's in this page</h4>
@@ -2521,40 +2576,32 @@ menuItems = [
                 image: 'icons/oc-rules.png'
             },
             {
-                cardId: 'webinfo',
-                title: `
-                    <h2 style='margin-bottom: -12px'>Website Info</h2><br>
-                    <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent); font-size: 11px'>
-                        Updated: ${lastUpdated}<br>
-                        Version: ${version}<br>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCardsCounter"></div>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalMenusCounter"></div>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCharacterCounter"></div>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalSplashCounter"></div>
-                    </p>
-                    `,
+                cardId: 'keybinds',
+                title: `Keyboard Shortcut`,
                 excerpt: `
-                <br>
+                        ESC = Go back<br>
+                        SPACE = Open search<br>
+                        C = Center view<br>
+                        H = Hide UIs<br>
                 `,
+                banner: true,
                 unclickable: true,
                 detail:
                     ``,
                 image: ''
             },
             {
-                cardId: 'keybinds',
-                title: `
-                    <h2 style='margin-bottom: -12px'>Keyboard Shortcut</h2><br>
-                    <p style='color: color-mix(in srgb, var(--accentl) 75%, transparent); font-size: 14px'>
-                        ESC = Go back<br>
-                        SPACE = Open search<br>
-                        C = Center view<br>
-                        H = Hide UIs<br>
-                    </p>
-                    `,
-                excerpt: `
-                <br>
+                cardId: 'webinfo',
+                title: `Website Info`,
+                excerpt: `Updated: ${lastUpdated}<br>
+                        Version: ${version}<br>
+                        <br>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCardsCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalMenusCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCharacterCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalSplashCounter"></div>
                 `,
+                banner: true,
                 unclickable: true,
                 detail:
                     ``,

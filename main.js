@@ -775,7 +775,7 @@ function renderContent(menu, sort = null) {
                 if (totalSplashCounter) totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
 
                 // click handling (links/external/unclikable)
-                if (!(lbl.unclickable || lbl.banner)) {
+                if (!(lbl.unclickable)) {
                     c.addEventListener('click', () => {
                         if (lbl.url) return window.open(lbl.url, '_blank');
 
@@ -876,6 +876,10 @@ function focusCard(cardEl, label, menu = null) {
     focusedCardArea.innerHTML = '';
     const clone = cardEl.cloneNode(true);
     clone.classList.add('focused');
+    if (clone.hasAttribute('data-banner')) clone.querySelector('.card-text').querySelector('.excerpt').remove();
+    clone.removeAttribute('data-banner');
+    clone.removeAttribute('data-link');
+    clone.removeAttribute('data-noclick');
     focusedCardArea.appendChild(clone);
     vizRemove(sortBtn);
 

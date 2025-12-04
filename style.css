@@ -45,10 +45,10 @@
     --overlay-transition: 700ms;
     --card-scale: 0.875;
     --card-scale-mini: 0.6;
-    --card-scale-banner: 0.625;
+    --card-scale-banner: 0.5;
     --card-gap: 12px;
     --card-padding: 12px;
-    --grid-max-columns: 8;
+    --grid-max-columns: 6;
 
     /* Menu specific variables */
     --menu-button-sub: var(--white);
@@ -72,6 +72,8 @@
     --card-link-border: color-mix(in srgb, var(--accent) 50%, transparent);
     --card-link-text-bg: color-mix(in srgb, var(--accent2) 50%, transparent);
     --card-noclick-border: color-mix(in srgb, var(--accent) 25%, transparent);
+    --card-banner-hover: var(--accentl);
+    --card-banner-hover-mix: 95%;
 
     /* Content view variables */
     --content-view-bg: color-mix(in srgb, var(--bg) 50%, transparent);
@@ -489,7 +491,7 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-    transition: transform 150ms, opacity 100ms, filter 100ms;
+    transition: transform 150ms, opacity 100ms, filter 100ms, background 100ms;
     justify-content: flex-start;
     align-items: center;
     text-align: center;
@@ -577,8 +579,7 @@ body {
     scale: calc(1.5 * var(--card-scale));
 }
 
-.card[data-noclick="true"],
-.card[data-banner="true"] {
+.card[data-noclick="true"] {
     background: var(--card-link-bg);
     cursor: auto;
     border: calc(4px * var(--card-scale)) solid var(--card-noclick-border);
@@ -606,9 +607,8 @@ body {
     overflow-wrap: anywhere;
 }
 
-.card[data-noclick="true"]:hover,
-.card[data-banner="true"]:hover {
-    transform: scale(1)
+.card[data-noclick="true"]:hover {
+    transform: scale(1) !important;
 }
 
 .card[data-blank="true"] {
@@ -645,20 +645,28 @@ body {
         padding-left: 12px;
         background: transparent;
         flex: 1;
-        text-align: left;
         max-height: none;
     }
 
     .card-text strong {
-        font-size: calc(24px * var(--card-scale));
+        font-size: calc(52px * var(--card-scale-banner) * var(--card-scale));
+        margin-bottom: calc(12px * var(--card-scale-banner) * var(--card-scale));
     }
 
     .card-text .excerpt {
-        font-size: calc(16px * var(--card-scale));
+        font-size: calc(32px * var(--card-scale-banner) * var(--card-scale));
         white-space: normal;
     }
 }
 
+.card[data-banner="true"]:hover {
+    transform: scale(1);
+    background-color: color-mix(in srgb, var(--card-bg) var(--card-banner-hover-mix), var(--card-banner-hover));
+}
+
+.card[data-banner="true"][data-noclick="true"]:hover {
+    background: var(--card-link-bg) !important;
+}
 
 .card .menu-button {
     position: absolute;
