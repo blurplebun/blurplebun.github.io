@@ -1,7 +1,28 @@
-// main.js
+/* --------------------------
+   CONFIG
+   -------------------------- */
+
+// Lazy loader base path
+const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
+const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to 1
+
+// If you prefer an orbit-less interface, set this to true
+const SIMPLE_MODE = 0;
+const MAIN_MENU_TITLE = 'Main Menu';
+const MAIN_MENU_SUBTITLE = 'Welcome!';
+
+// Sound control
+const SFX_MASTER_VOL = 1;
+const SFX_CLICK_VOL = 0.4;
+
+
+
+
+
+
 
 /* --------------------------
-   Helpers / Config
+   Helpers
    -------------------------- */
 
 // === Utility helpers
@@ -15,18 +36,6 @@ function getCSSVar(name, parse = 'string') {
     if (parse === 'float') return parseFloat(val) || 0;
     return val;
 }
-
-// Lazy loader base path
-const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
-const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to 1
-
-// If you only have one menuItem and prefer an orbit-less interface, set this to true
-const SIMPLE_MODE = false;
-
-// Sound control
-const SFX_MASTER_VOL = 1;
-const SFX_CLICK_VOL = 0.4;
-
 
 /* --------------------------
     DOM Elements (cached)
@@ -60,6 +69,7 @@ menuStage.style.transform = `translate(0px, 0px) scale(${getCSSVar('--menu-stage
     Camera / Drag / Parallax
     -------------------------- */
 
+
 // State for panning / parallax
 let isDragging = false;
 let startX = 0, startY = 0;
@@ -88,6 +98,7 @@ function setMenuStageTransform(x, y, options = {}) {
 
 // Begin drag (mouse or touch)
 function beginDrag(clientX, clientY) {
+    if (SIMPLE_MODE) return;
     isDragging = true;
     startX = clientX - currentX;
     startY = clientY - currentY;
@@ -98,6 +109,7 @@ function beginDrag(clientX, clientY) {
 // Move during drag (mouse or touch)
 let lastDrag = 0;
 function dragTo(clientX, clientY) {
+    if (SIMPLE_MODE) return;
     const now = performance.now();
     if (now - lastDrag < 16) return;
     lastDrag = now;
@@ -112,6 +124,7 @@ function dragTo(clientX, clientY) {
 
 // End drag
 function endDrag() {
+    if (SIMPLE_MODE) return;
     isDragging = false;
     menuStage.style.cursor = 'default';
     updateCenterButtonVisibility();
@@ -140,6 +153,7 @@ window.addEventListener('touchend', endDrag);
 // Two-finger trackpad-like gesture (wheel) - keep original thresholds
 menuStage.addEventListener('wheel', (e) => {
     e.preventDefault();
+    if (SIMPLE_MODE) return;
     if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
         currentX -= e.deltaX * 1.5;
         currentY -= e.deltaY * 1.5;
@@ -232,10 +246,7 @@ function initMenu() {
     $$('.ring').forEach(r => r.remove());
     orbitButtons.length = 0;
 
-    if (SIMPLE_MODE && menuItems.length === 1) {
-        openMenuById(menuItems[0].menuId);
-        return;
-    }
+    if (SIMPLE_MODE) return;
 
     const grouped = {};
     menuItems.forEach(m => {
@@ -309,85 +320,87 @@ function initMenu() {
 }
 
 // Orbit animation loop
-let cursorX = 0, cursorY = 0;
-window.addEventListener('mousemove', e => { cursorX = e.clientX; cursorY = e.clientY; });
+if (!SIMPLE_MODE) {
+    let cursorX = 0, cursorY = 0;
+    window.addEventListener('mousemove', e => { cursorX = e.clientX; cursorY = e.clientY; });
 
-let orbitAnimStarted = false;
-let orbitStartTs = performance.now();
-function startOrbitAnimation() {
-    if (orbitAnimStarted) return;
-    orbitAnimStarted = true;
-    orbitStartTs = performance.now();
-    requestAnimationFrame(orbitFrame);
-}
-
-let lastFrame = 0;
-const ORBIT_FPS = 20;
-function orbitFrame(ts) {
-    if (ts - lastFrame > 1000 / ORBIT_FPS) {
-        lastFrame = ts;
-        const elapsed = (ts - orbitStartTs) / 1000;
-
-        const transforms = new Array(orbitButtons.length);
-        const needsHoverEffect = !contentView.classList.contains('visible');
-        const maxDist = 250;
-
-        const cursorPos = { x: cursorX, y: cursorY };
-
-        for (let i = 0; i < orbitButtons.length; i++) {
-            const el = orbitButtons[i];
-            const dataset = el.dataset;
-
-            const a0 = parseFloat(dataset.angle0) || 0;
-            const w = parseFloat(dataset.omega) || 0;
-            const r = parseFloat(dataset.radius) || 0;
-            const s = parseFloat(dataset.scale) || 1;
-
-            const angle = a0 + w * elapsed;
-            const x = Math.cos(angle) * r;
-            const y = Math.sin(angle) * r;
-
-            // Calculate zoom for hover effect
-            let zoom = 1;
-            if (!isDragging && needsHoverEffect) {
-                const rect = el.getBoundingClientRect();
-                const btnX = rect.left + rect.width / 2;
-                const btnY = rect.top + rect.height / 2;
-
-                const dx = cursorPos.x - btnX;
-                const dy = cursorPos.y - btnY;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-
-                zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
-            }
-
-            transforms[i] = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
-        }
-
-        requestAnimationFrame(() => {
-            for (let i = 0; i < orbitButtons.length; i++) {
-                orbitButtons[i].style.transform = transforms[i];
-            }
-        });
+    let orbitAnimStarted = false;
+    let orbitStartTs = performance.now();
+    function startOrbitAnimation() {
+        if (orbitAnimStarted) return;
+        orbitAnimStarted = true;
+        orbitStartTs = performance.now();
+        requestAnimationFrame(orbitFrame);
     }
 
-    requestAnimationFrame(orbitFrame);
-}
+    let lastFrame = 0;
+    const ORBIT_FPS = 20;
+    function orbitFrame(ts) {
+        if (ts - lastFrame > 1000 / ORBIT_FPS) {
+            lastFrame = ts;
+            const elapsed = (ts - orbitStartTs) / 1000;
 
-// Update orbit radii on resize (debounced)
-let resizeTimeout;
-window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-        const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
-        orbitButtons.forEach(el => {
-            const orbit = parseInt(el.dataset.orbit) || 1;
-            const r = baseRadius * orbit * 1.2 + 60;
-            el.dataset.radius = r;
-        });
-        initOrbitRings();
-    }, 300);
-});
+            const transforms = new Array(orbitButtons.length);
+            const needsHoverEffect = !contentView.classList.contains('visible');
+            const maxDist = 250;
+
+            const cursorPos = { x: cursorX, y: cursorY };
+
+            for (let i = 0; i < orbitButtons.length; i++) {
+                const el = orbitButtons[i];
+                const dataset = el.dataset;
+
+                const a0 = parseFloat(dataset.angle0) || 0;
+                const w = parseFloat(dataset.omega) || 0;
+                const r = parseFloat(dataset.radius) || 0;
+                const s = parseFloat(dataset.scale) || 1;
+
+                const angle = a0 + w * elapsed;
+                const x = Math.cos(angle) * r;
+                const y = Math.sin(angle) * r;
+
+                // Calculate zoom for hover effect
+                let zoom = 1;
+                if (!isDragging && needsHoverEffect) {
+                    const rect = el.getBoundingClientRect();
+                    const btnX = rect.left + rect.width / 2;
+                    const btnY = rect.top + rect.height / 2;
+
+                    const dx = cursorPos.x - btnX;
+                    const dy = cursorPos.y - btnY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    zoom = 1 + Math.max(0, (1 - dist / maxDist)) * 0.375;
+                }
+
+                transforms[i] = `translate3d(${x}px, ${y}px, 0) scale(${s * zoom})`;
+            }
+
+            requestAnimationFrame(() => {
+                for (let i = 0; i < orbitButtons.length; i++) {
+                    orbitButtons[i].style.transform = transforms[i];
+                }
+            });
+        }
+
+        requestAnimationFrame(orbitFrame);
+    }
+
+    // Update orbit radii on resize (debounced)
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
+            orbitButtons.forEach(el => {
+                const orbit = parseInt(el.dataset.orbit) || 1;
+                const r = baseRadius * orbit * 1.2 + 60;
+                el.dataset.radius = r;
+            });
+            initOrbitRings();
+        }, 300);
+    });
+}
 
 
 
@@ -518,10 +531,42 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
 
 // initialize content
 function initContent() {
-    if (SIMPLE_MODE && menuItems.length === 1) {
+    if (SIMPLE_MODE) {
+        // give parent data to each menu
+        menuItems.forEach(menu => {
+            menu.parent = 'index'
+        })
+
+        // make a main menu
+        let labelGroup = [];
+        let menuMatches = menuItems.filter(menu => (!(menu.invisible || menu.hidden)));
+
+        if (menuMatches.length > 0) {
+            menuMatches.forEach(menu => {
+                labelGroup.push({
+                    cardId: `menu-${menu.menuId}`,
+                    title: menu.name,
+                    excerpt: menu.subtitle || '',
+                    image: menu.image || '',
+                    linkId: menu.menuId,
+                    banner: true,
+                });
+            });
+        }
+
+        // main menu data
+        mainMenu = {
+            name: MAIN_MENU_TITLE,
+            menuId: 'index',
+            subtitle: MAIN_MENU_SUBTITLE,
+            labels: labelGroup,
+            invisible: true
+        }
+
+        menuItems = [mainMenu, ...menuItems];
         menuLogoRedirect = menuItems[0].menuId;
-        return;
     }
+    
     menuItems.forEach(m => {
         m.labels?.forEach(lbl => {
             if (lbl.linkId) {
@@ -535,16 +580,18 @@ function initContent() {
     })
 
     // add faraway orbit just so the drag layout work (I GAVE UP ON ALTERNATIVES LOL)
-    faraway = {
-        menuId: 'farawaymenu',
-        name: 'faraway',
-        showName: false,
-        orbit: 999,
-        scale: 0.01,
-        invisible: true,
-        labels: []
+    if (!SIMPLE_MODE) {
+        faraway = {
+            menuId: 'farawaymenu',
+            name: 'faraway',
+            showName: false,
+            orbit: 999,
+            scale: 0.01,
+            invisible: true,
+            labels: []
+        }
+        menuItems.push(faraway);
     }
-    menuItems.push(faraway);
 }
 initContent();
 
@@ -560,7 +607,7 @@ function showContentFor(menu, sort = null) {
     const parentMenu = menuItems.find(m => m.menuId === menu.parent);
     if (parentMenu) {
         backBtn.querySelector('span').textContent = parentMenu.name || 'Parent Menu';
-    } else backBtn.querySelector('span').textContent = 'Menu';
+    } else backBtn.querySelector('span').textContent = SIMPLE_MODE ? 'Close' : 'Menu';
 
     // Add copy link icon to menu title (except for search)
     if (menu.menuId !== 'search') {
@@ -713,6 +760,9 @@ function renderContent(menu, sort = null) {
                 c.className = 'card';
                 c.dataset.cardId = lbl.cardId;
 
+                // Banner type
+                if (lbl.banner) c.dataset.banner = 'true';
+
                 // Linked menu card
                 if (lbl.linkId) {
                     const linkedMenu = menuItems.find(m => m.menuId === lbl.linkId);
@@ -768,7 +818,6 @@ function renderContent(menu, sort = null) {
                 // Special cards
                 if (lbl.url) c.dataset.link = "true";
                 if (lbl.unclickable) c.dataset.noclick = "true";
-                if (lbl.banner) c.dataset.banner = 'true';
 
                 // Character cards
                 if (isCharacter(lbl)) c.dataset.character = 'true';
@@ -969,7 +1018,7 @@ function focusCard(cardEl, label, menu = null) {
     contentView.insertBefore(cardsContainer, focusedLayout);
 
     focusedLayout.scrollIntoView({ behavior: 'auto', block: 'center' });
-    if (openSingle) backBtn.querySelector('span').textContent = 'Menu';
+    if (openSingle) backBtn.querySelector('span').textContent = SIMPLE_MODE ? 'Close' : 'Menu';
     else backBtn.querySelector('span').textContent = 'Card Selector';
     initLazyLoad();
     detailArea.scrollTop = 0;
@@ -1693,9 +1742,9 @@ function goBack() {
         const currentMenu = menuItems.find(m => m.menuId === menuCode);
         if (currentMenu && currentMenu.parent && !openFromSearch) {
             const parentMenu = menuItems.find(m => m.menuId === currentMenu.parent);
-            backBtn.querySelector('span').textContent = parentMenu ? parentMenu.name : 'Menu';
+            backBtn.querySelector('span').textContent = parentMenu ? parentMenu.name : SIMPLE_MODE ? 'Close' : 'Menu';
         } else {
-            backBtn.querySelector('span').textContent = 'Menu';
+            backBtn.querySelector('span').textContent = SIMPLE_MODE ? 'Close' : 'Menu';
         }
         return;
     }

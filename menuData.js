@@ -149,16 +149,25 @@ menuItems = [
                 excerpt: 'Cards that open another menu',
             },
             {
-                cardId: 'menuLinkCard1',
                 linkId: 'deltadim'  // Links to menu with matching 'q' property
             },
             {
-                cardId: 'menuLinkCard2',
                 linkId: 'floriverse'
             },
             {
-                cardId: 'menuLinkCard3',
                 linkId: 'info'
+            },
+            {
+                linkId: 'deltadim',
+                banner: true
+            },
+            {
+                linkId: 'floriverse',
+                banner: true
+            },
+            {
+                linkId: 'info',
+                banner: true
             },
         ]
     },
@@ -190,19 +199,15 @@ menuItems = [
                 image: 'icons/deltadim.png'
             },
             {
-                cardId: 'deltadim-teksui',
                 linkId: 'deltadim-teksui',
             },
             {
-                cardId: 'deltadim-chromasia',
                 linkId: 'deltadim-chromasia',
             },
             {
-                cardId: 'deltadim-aakik',
                 linkId: 'deltadim-aakik',
             },
             {
-                cardId: 'deltadim-deltaspace',
                 linkId: 'deltadim-deltaspace',
             },
         ]
@@ -2611,15 +2616,12 @@ menuItems = [
                 title: 'Developer Section',
             },
             {
-                cardId: 'menuTemplate',
                 linkId: 'menuTemplate',
             },
             {
-                cardId: 'loopTest',
                 linkId: 'loopTest',
             },
             {
-                cardId: 'infiniteTest1',
                 linkId: 'infiniteTest1',
             }
         ]
@@ -3071,15 +3073,12 @@ menuItems = [
                 excerpt: 'Cards that open another menu',
             },
             {
-                cardId: 'menuLinkCard1',
                 linkId: 'deltadim'  // Links to menu with matching 'q' property
             },
             {
-                cardId: 'menuLinkCard2',
                 linkId: 'floriverse'
             },
             {
-                cardId: 'menuLinkCard3',
                 linkId: 'info'
             },
         ]
