@@ -451,7 +451,7 @@ body {
 
 .content-title.separator {
     font-size: 18px;
-    margin-top: -50px;
+    margin-top: calc(-50px * var(--card-scale));
 }
 
 .content-sub.separator {
@@ -459,7 +459,7 @@ body {
 }
 
 .card-separator {
-    margin-bottom: 50px;
+    margin-bottom: calc(50px * var(--card-scale));
 }
 
 .hidden {

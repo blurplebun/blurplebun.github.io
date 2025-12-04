@@ -6,17 +6,15 @@
 const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
 const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to true
 
-// If you prefer an orbit-less interface, set this to true
-const SIMPLE_MODE = 0;
-const MAIN_MENU_TITLE = 'Main Menu';
-const MAIN_MENU_SUBTITLE = 'Welcome!';
-
 // Sound control
 const SFX_MASTER_VOL = 1;
 const SFX_CLICK_VOL = 0.4;
 
-
-
+// If you prefer an orbit-less interface, set this to true
+let SIMPLE_MODE = getSimpleMode();
+// Simple mode index data
+const MAIN_MENU_TITLE = 'Main Menu';
+const MAIN_MENU_SUBTITLE = 'Welcome to the Fyberverse!';
 
 
 
@@ -479,7 +477,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
         const pick = list[Math.floor(Math.random() * list.length)];
         const targetMenu = pick.menu;
         const targetLabel = pick.label;
-        
+
         openCardById(targetMenu.menuId, targetLabel.cardId, true)
         vizAdd(rerollBtn);
         return;
@@ -527,7 +525,7 @@ function initContent() {
     if (SIMPLE_MODE) {
         // give parent data to each menu
         menuItems.forEach(menu => {
-            menu.parent = 'index'
+            if (!menu.parent) menu.parent = 'index'
         })
 
         // make a main menu
@@ -535,7 +533,13 @@ function initContent() {
         let menuMatches = menuItems.filter(menu => (!(menu.invisible || menu.hidden)));
 
         if (menuMatches.length > 0) {
+            let currOrbit = 1;
             menuMatches.forEach(menu => {
+                let separateOnce = false;
+                while (menu.orbit > currOrbit) {
+                    if (!separateOnce) {labelGroup.push({}); separateOnce = true;}
+                    currOrbit++;
+                }
                 labelGroup.push({
                     cardId: `menu-${menu.menuId}`,
                     title: menu.name,
@@ -559,7 +563,7 @@ function initContent() {
         menuItems = [mainMenu, ...menuItems];
         menuLogoRedirect = menuItems[0].menuId;
     }
-    
+
     menuItems.forEach(m => {
         m.labels?.forEach(lbl => {
             if (lbl.linkId) {
@@ -867,31 +871,6 @@ sortBtn?.addEventListener('click', () => {
 });
 
 
-// for genotheta converter: convert base10 to base32
-function decimalToBase32(num) {
-    // Base-32 digits using the box drawing characters from U+2500 to U+2515
-    const base32Digits = [
-        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',  // 0-9
-        '─', '━', '│', '┃', '┄', '┅', '┆', '┇', '┈', '┉', // 10-19
-        '┊', '┋', '┌', '┍', '┎', '┏', '┐', '┑', '┒', '┓', // 20-29
-        '└', '┕'                                           // 30-31
-    ];
-
-    if (num === 0) return '0';
-
-    let result = '';
-    let number = Math.abs(num);
-
-    while (number > 0) {
-        const remainder = number % 32;
-        result = base32Digits[remainder] + result;
-        number = Math.floor(number / 32);
-    }
-
-    return num < 0 ? '-' + result : result;
-}
-
-
 // Copy to clipboard button function
 async function copyToClipboard(button, textbox) {
     try {
@@ -941,67 +920,62 @@ function focusCard(cardEl, label, menu = null) {
             .replace(/(<img[^>]*?)\s+src=/g, '$1 data-src=') // replace src with data-src for lazy loading
         : '';
 
-    if (menu) {
-        if (isCharacter(label)) {
-            const cSpecies = label.cSpecies ? `Species: ${label.cSpecies}<br>` : '';
-            const cPronouns = label.cPronouns ? `Pronouns: ${label.cPronouns}<br>` : '';
-            const cGender = label.cGender ? `Gender: ${label.cGender}<br>` : '';
-            const cSexuality = label.cSexuality ? `Sexuality: ${label.cSexuality}<br>` : '';
-            const cNicknames = label.cNicknames ? `Nickname: ${label.cNicknames}<br>` : '';
-            const cReference = label.cReference ? `<br><h2>Reference Art:</h2><br><img src="${label.cReference}"><br><br>` : '';
-            const cGallery = label.cGallery ? label.cGallery.length != 0 ? `<hr><h2>Gallery:</h2><div class="imgContainer">` + label.cGallery.map(imgSrc => `<img src="${imgSrc}">`).join('') + `</div><br>` : '' : '';
-            const cAddOns = label.cAddOns ? `<br>${label.cAddOns}<br>` : '';
-            const details = label.detail ? `<hr>${html}<br>` : '';
 
-            html = `
-                <a data-open-card="info:ocrules">Character rules</a><br>
-                <br>
-                ${cSpecies}
-                ${cPronouns}
-                ${cGender}
-                ${cSexuality}
-                ${cNicknames}
-                ${cAddOns}
-                ${cReference}
-                ${details}
-                ${cGallery}
-            `;
-        }
-        const realMenuQ = label.fromMenu || menu.menuId;
-        const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
-        detailArea.innerHTML = `
-            <h1>
-                ${!label.blank ? `<div style="font-size: 20px;"><small><a data-open-card="${menu.menuId}">${menu.name}</a> /</small></div>${label.title}` : ''}
-                <span class="copy-link" title="Copy shareable link">
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
-                        <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
-                    </svg>
-                </span>
-            </h1>
-            <hr>${html}
+    if (isCharacter(label)) {
+        const cSpecies = label.cSpecies ? `Species: ${label.cSpecies}<br>` : '';
+        const cPronouns = label.cPronouns ? `Pronouns: ${label.cPronouns}<br>` : '';
+        const cGender = label.cGender ? `Gender: ${label.cGender}<br>` : '';
+        const cSexuality = label.cSexuality ? `Sexuality: ${label.cSexuality}<br>` : '';
+        const cNicknames = label.cNicknames ? `Nickname: ${label.cNicknames}<br>` : '';
+        const cReference = label.cReference ? `<br><h2>Reference Art:</h2><br><img src="${label.cReference}"><br><br>` : '';
+        const cGallery = label.cGallery ? label.cGallery.length != 0 ? `<hr><h2>Gallery:</h2><div class="imgContainer">` + label.cGallery.map(imgSrc => `<img src="${imgSrc}">`).join('') + `</div><br>` : '' : '';
+        const cAddOns = label.cAddOns ? `<br>${label.cAddOns}<br>` : '';
+        const details = label.detail ? `<hr>${html}<br>` : '';
+
+        html = `
+            <a data-open-card="info:ocrules">Character rules</a><br>
+            <br>
+            ${cSpecies}
+            ${cPronouns}
+            ${cGender}
+            ${cSexuality}
+            ${cNicknames}
+            ${cAddOns}
+            ${cReference}
+            ${details}
+            ${cGallery}
         `;
-        detailArea.querySelector('.copy-link').addEventListener('click', (e) => {
-            e.stopPropagation();
-            navigator.clipboard.writeText(shareURL);
-            const icon = e.currentTarget;
-            icon.classList.add('copied');
-            icon.title = 'Copied!';
-            setTimeout(() => { icon.classList.remove('copied'); icon.title = 'Copy shareable link'; }, 1500);
-        });
-        history.pushState({}, '', `?m=${realMenuQ}&i=${label.cardId}`);
-        initLazyLoad();
-
-    } else {
-        detailArea.innerHTML = `<h1>${label.title} test</h1><hr>${html}`;
-        initLazyLoad();
     }
+    const realMenuQ = label.fromMenu || menu.menuId;
+    const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
+    detailArea.innerHTML = `
+        <h1>
+            ${!label.blank ? `<div style="font-size: 20px;"><small><a data-open-card="${menu.menuId}">${menu.name}</a> /</small></div>${label.title}` : ''}
+            <span class="copy-link" title="Copy shareable link">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
+                    <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
+                </svg>
+            </span>
+        </h1>
+        <hr>${html}
+    `;
+    detailArea.querySelector('.copy-link').addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(shareURL);
+        const icon = e.currentTarget;
+        icon.classList.add('copied');
+        icon.title = 'Copied!';
+        setTimeout(() => { icon.classList.remove('copied'); icon.title = 'Copy shareable link'; }, 1500);
+    });
+    history.pushState({}, '', `?m=${realMenuQ}&i=${label.cardId}`);
+    initLazyLoad();
 
     // set up image handlers inside detailArea
     imgConHandler(detailArea);
 
     // handle script converters if applicable
-    converterHandler(label);
+    focusCardScriptHandler(label);
 
     // hide cards grid and show focused layout
     cardsContainer.querySelectorAll('.cards-grid, .card-separator, .section-header').forEach(el => el.classList.add('hidden'));
@@ -1018,135 +992,6 @@ function focusCard(cardEl, label, menu = null) {
 }
 
 
-
-/* --------------------------
-    Converters
-    -------------------------- */
-
-function converterHandler(label) {
-    // Genotheta
-    if (label.cardId === 'genotheta') {
-        const genothetaInput = document.getElementById('genothetaInput');
-        const genothetaOutput = document.getElementById('genothetaOutput');
-        const genothetaOutputEx = document.getElementById('genothetaOutputEx');
-        const genothetaOutputRaw = document.getElementById('genothetaOutputRaw');
-
-        const genothetaInputRev = document.getElementById('genothetaInputRev');
-        const genothetaOutputRev = document.getElementById('genothetaOutputRev');
-
-        copyGenothetaBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaBtn, genothetaOutputRaw); });
-        copyGenothetaRevBtn.addEventListener('click', async () => { copyToClipboard(copyGenothetaRevBtn, genothetaOutputRev); });
-
-        // latin to genotheta
-        genothetaInput.addEventListener('input', () => {
-            let input = genothetaInput.value;
-
-            // Convert numbers to base-32
-            inputBase32 = input.replace(/\d+/g, match => {
-                const num = parseInt(match, 10);
-                return decimalToBase32(num);
-            });
-
-            const output = input;
-            const outputEx = inputBase32
-                .replace(/th/gi, "þ")
-                .replace(/gh/gi, "ɣ")
-                .replace(/sh/gi, "Ʃ")
-                .replace(/ng/gi, "ŋ")
-                .replace(/ny/gi, "ñ")
-                .replace(/ts/gi, "ƺ")
-                .replace(/wh/gi, "ʍ")
-                .replace(/ch/gi, "ʧ")
-                .replace(/ph/gi, "φ")
-                .replace(/ck/gi, "ĸ")
-                .replace(/qu/gi, "ȹ")
-                .replace(/wr/gi, "ɹ")
-                .replace(/kn/gi, "ƙ")
-                .replace(/ps/gi, "ψ");
-            genothetaOutput.value = output;
-            genothetaOutputEx.value = outputEx;
-            genothetaOutputRaw.value = outputEx;
-        });
-
-        // genotheta to latin
-        genothetaInputRev.addEventListener('input', () => {
-            let input = genothetaInputRev.value;
-
-            const output = input
-                .replaceAll("þ", "TH")
-                .replaceAll("ɣ", "GH")
-                .replaceAll("Ʃ", "SH")
-                .replaceAll("ŋ", "NG")
-                .replaceAll("ñ", "NY")
-                .replaceAll("ƺ", "TS")
-                .replaceAll("ʍ", "WH")
-                .replaceAll("ʧ", "CH")
-                .replaceAll("φ", "PH")
-                .replaceAll("ĸ", "CK")
-                .replaceAll("ȹ", "QU")
-                .replaceAll("ɹ", "WR")
-                .replaceAll("ƙ", "KN")
-                .replaceAll("ψ", "PS");
-            genothetaOutputRev.value = output;
-        });
-
-        // genotheta keyboard
-        const genothetaKeys = $$('.genothetaKeys');
-        createKeyboard(genothetaKeys, genothetaInputRev);
-    }
-
-    // Starstroke
-    if (label.cardId === 'starstroke') {
-        const starstrokeInput = document.getElementById('starstrokeInput');
-        const starstrokeOutput = document.getElementById('starstrokeOutput');
-
-        const starstrokeInputRev = document.getElementById('starstrokeInputRev');
-        const starstrokeOutputRev = document.getElementById('starstrokeOutputRev');
-
-        copyStarstrokeRevBtn.addEventListener('click', async () => { copyToClipboard(copyStarstrokeRevBtn, starstrokeOutputRev); });
-
-        // latin to starstroke
-        starstrokeInput.addEventListener('input', () => {
-            const input = starstrokeInput.value;
-            const output = input;
-            starstrokeOutput.value = output;
-        });
-
-        // starstroke to latin
-        starstrokeInputRev.addEventListener('input', () => {
-            const input = starstrokeInputRev.value;
-            const output = input;
-            starstrokeOutputRev.value = output;
-        });
-
-        // starstroke keyboard
-        const starstrokeKeys = $$('.starstrokeKeys');
-        createKeyboard(starstrokeKeys, starstrokeInputRev);
-    }
-}
-
-// Create keyboard
-function createKeyboard(keys, inputElement) {
-    const k = keys;
-    const i = inputElement;
-    k.forEach(key => {
-        key.addEventListener('click', () => {
-            const char = key.dataset.key;
-            if (char === 'DEL') {
-                i.value = i.value.slice(0, -1);
-                i.dispatchEvent(new Event('input'));
-                return;
-            }
-            if (char === 'CLR') {
-                i.value = '';
-                i.dispatchEvent(new Event('input'));
-                return;
-            }
-            i.value += char;
-            i.dispatchEvent(new Event('input'));
-        });
-    });
-}
 
 
 
@@ -1607,6 +1452,73 @@ function vizUI() {
 
 
 /* --------------------------
+   Mode switcher
+   -------------------------- */
+
+// Read SIMPLE_MODE from localStorage
+function getSimpleMode() {
+    // Try localStorage first (modern approach)
+    const saved = localStorage.getItem('simpleMode');
+    if (saved !== null) {
+        return saved === 'true' || saved === '1' ? 1 : 0;
+    }
+
+    // Fallback to cookie for older browsers
+    const cookies = document.cookie.split(';').reduce((acc, cookie) => {
+        const [key, value] = cookie.trim().split('=');
+        acc[key] = value;
+        return acc;
+    }, {});
+
+    if (cookies.simpleMode !== undefined) {
+        return cookies.simpleMode === 'true' || cookies.simpleMode === '1' ? 1 : 0;
+    }
+
+    return 0;
+}
+
+// Save SIMPLE_MODE preference
+function setSimpleMode(value) {
+    const boolValue = value ? 1 : 0;
+    SIMPLE_MODE = boolValue;
+    localStorage.setItem('simpleMode', boolValue.toString());
+    document.cookie = `simpleMode=${boolValue}; path=/; max-age=${365 * 24 * 60 * 60}`; // 1 year expiry
+    return boolValue;
+}
+
+const switchBtn = document.getElementById('switchBtn');
+
+function updateswitchBtnText() {
+    const span = switchBtn.querySelector('span');
+    span.textContent = SIMPLE_MODE ? 'Switch to Orbit Mode' : 'Switch to Simple Mode';
+}
+
+function toggleViewMode() {
+    const newMode = !SIMPLE_MODE;
+    if (confirm(`Switch to ${newMode ? 'Simple Mode' : 'Orbit Mode'}? Page will be reloaded.`)) {
+        setSimpleMode(newMode);
+        updateswitchBtnText();
+        setTimeout(() => {
+            window.location.reload();
+        }, 500);
+    }
+}
+
+// Initialize mode toggle
+if (switchBtn) {
+    updateswitchBtnText();
+    switchBtn?.addEventListener('click', (e) => {
+        toggleViewMode();
+        // openMenuById('info', true);
+    });
+}
+
+if (SIMPLE_MODE) $('.splash-text-info').dataset.infodesc = "(click to open main menu)";
+
+
+
+
+/* --------------------------
     Open menu by q / internal links / URL handler
     -------------------------- */
 
@@ -1816,6 +1728,7 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             vizRemove(searchBtn);
             vizRemove(hideBtn);
             vizRemove(centerBtn);
+            vizRemove(switchBtn);
             menuStage.classList.add('blur');
             starfield?.classList.add('blur');
 
@@ -1829,6 +1742,7 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
 
             vizAdd(searchBtn);
             vizAdd(hideBtn);
+            vizAdd(switchBtn);
             updateCenterButtonVisibility();
             menuStage.classList.remove('blur');
             starfield?.classList.remove('blur');

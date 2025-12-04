@@ -4,7 +4,7 @@
 
 // Metadata
 const lastUpdated = 'December 4th, 2025';
-const version = '0.3.5';
+const version = '0.3.6';
 
 // Main menu data array
 menuItems = [
