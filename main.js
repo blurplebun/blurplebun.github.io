@@ -759,6 +759,7 @@ function renderContent(menu, sort = null) {
                 // Special cards
                 if (lbl.url) c.dataset.link = "true";
                 if (lbl.unclickable) c.dataset.noclick = "true";
+                if (lbl.banner) c.dataset.banner = 'true';
 
                 // Character cards
                 if (isCharacter(lbl)) c.dataset.character = 'true';
@@ -774,7 +775,7 @@ function renderContent(menu, sort = null) {
                 if (totalSplashCounter) totalSplashCounter.textContent = `totalSplash: ${totalSplash}`;
 
                 // click handling (links/external/unclikable)
-                if (!lbl.unclickable) {
+                if (!(lbl.unclickable || lbl.banner)) {
                     c.addEventListener('click', () => {
                         if (lbl.url) return window.open(lbl.url, '_blank');
 

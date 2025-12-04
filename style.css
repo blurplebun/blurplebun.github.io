@@ -17,7 +17,7 @@
     --accent2: #303c6c;
     --accent3: #151b33;
     --white: #fff;
-    
+
     /* Base color palette */
     --color-0: #00000000;
     --color-1: #0BA0A7;
@@ -35,17 +35,20 @@
     --color-13: #9fe551;
     --color-14: #ff8d57;
     --color-15: #432cae;
-    
+
 
     /* Layout variables */
     --menu-radius: 150px;
     --menu-stage-scale: 1;
     --button-size: 100px;
     --ring-rotation-duration: 60s;
+    --overlay-transition: 700ms;
     --card-scale: 0.875;
     --card-scale-mini: 0.6;
-    --overlay-transition: 700ms;
+    --card-scale-banner: 0.625;
     --card-gap: 12px;
+    --card-padding: 12px;
+    --grid-max-columns: 8;
 
     /* Menu specific variables */
     --menu-button-sub: var(--white);
@@ -55,11 +58,11 @@
     --menu-button-thumb-inset-shadow: rgba(0, 0, 0, 0.4);
     --menu-button-thumb-scale: 1.1375;
     --menu-center-text-shadow: rgba(0, 0, 0, 0.5);
-    
+
     /* Ring/orbit variables */
     --ring: var(--accent2);
     --ring-inset-shadow: var(--ring);
-        
+
     /* Card variables */
     --card-bg: color-mix(in srgb, var(--accent2) 40%, transparent);
     --card-inset-shadow: color-mix(in srgb, var(--accent2) 50%, transparent);
@@ -69,32 +72,32 @@
     --card-link-border: color-mix(in srgb, var(--accent) 50%, transparent);
     --card-link-text-bg: color-mix(in srgb, var(--accent2) 50%, transparent);
     --card-noclick-border: color-mix(in srgb, var(--accent) 25%, transparent);
-    
+
     /* Content view variables */
     --content-view-bg: color-mix(in srgb, var(--bg) 50%, transparent);
     --content-sub-color: color-mix(in srgb, var(--accentl) 75%, transparent);
-    
+
     /* Panel variables */
     --panel-right-bg: color-mix(in srgb, var(--accent2) 30%, transparent);
     --details-open-bg: color-mix(in srgb, var(--bg) 60%, transparent);
     --hr-color: color-mix(in srgb, var(--accent) 50%, transparent);
-    
+
     /* Detail area variables */
     --detail-text-color: var(--white);
     --detail-li-color: color-mix(in srgb, var(--accentl) 75%, transparent);
     --detail-small-color: color-mix(in srgb, var(--accentl) 75%, transparent);
     --detail-img-hover-shadow: rgba(0, 0, 0, 0.5);
     --detail-caption-color: var(--accentl);
-    
+
     /* Focused layout variables */
     --focused-layout-bg: color-mix(in srgb, var(--bg) 50%, transparent);
-    
+
     /* Button variables */
     --ui-btn-bg: var(--white);
     --ui-btn-color: var(--bg);
     --ui-btn-border: rgba(255, 255, 255, 0.06);
     --hide-btn-border: var(--accent2);
-    
+
     /* Form variables */
     --searchbox-bg: color-mix(in srgb, var(--accent3) 50%, transparent);
     --searchbox-shadow: rgba(0, 0, 0, 0.8);
@@ -105,11 +108,11 @@
     --form-button-bg: var(--accent);
     --form-button-shadow: rgba(0, 0, 0, 0.3);
     --form-button-alt-bg: color-mix(in srgb, var(--accent2) 50%, transparent);
-    
+
     /* Textarea variables */
     --textarea-bg: color-mix(in srgb, var(--bg) 70%, transparent);
     --textarea-border: var(--accent2);
-    
+
     /* Keyboard layout variables */
     --keyboard-bg: color-mix(in srgb, var(--accent2) 30%, transparent);
     --keycap-bg: var(--accent3);
@@ -117,21 +120,21 @@
     --keycap-hover-bg: color-mix(in srgb, var(--accent2) 60%, transparent);
     --keycap-active-shadow: rgba(0, 0, 0, 0.3);
     --keycap-active-inset-shadow: rgba(0, 0, 0, 0.2);
-    
+
     /* Image preview variables */
     --img-preview-bg: color-mix(in srgb, var(--bg) 90%, transparent);
     --img-preview-shadow: rgba(0, 0, 0, 0.6);
-    
+
     /* Lazy loading variables */
     --lazy-placeholder-bg: rgba(21, 27, 51, 0.5);
-    
+
     /* Starfield variables */
     --star-bg: var(--accent2);
-    
+
     /* Splash text variables */
     --splash-text-shadow: var(--bg);
     --info-text-color: color-mix(in srgb, var(--accentl) 75%, transparent);
-    
+
     /* Ticker variables */
     --ticker-bg: color-mix(in srgb, var(--bg) 70%, transparent);
     --ticker-color: var(--white);
@@ -471,11 +474,14 @@ body {
     gap: var(--card-gap);
     margin-bottom: 80px;
     flex: 0 0 auto;
+    max-width: calc((250px * var(--card-scale) * var(--grid-max-columns, 3)) + (var(--card-gap) * (var(--grid-max-columns, 3) - 1)));
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card {
     background: var(--card-bg);
-    padding: calc(12px * var(--card-scale));
+    padding: calc(var(--card-padding) * var(--card-scale));
     border-radius: calc(10px * var(--card-scale));
     cursor: pointer;
     width: calc(250px * var(--card-scale));
@@ -491,7 +497,7 @@ body {
     position: relative;
     backdrop-filter: blur(2rem);
     box-shadow: inset 0 0 30px var(--card-inset-shadow);
-    flex-shrink: 0;
+    flex: 0 0 auto;
 }
 
 .card:hover {
@@ -571,7 +577,8 @@ body {
     scale: calc(1.5 * var(--card-scale));
 }
 
-.card[data-noclick="true"] {
+.card[data-noclick="true"],
+.card[data-banner="true"] {
     background: var(--card-link-bg);
     cursor: auto;
     border: calc(4px * var(--card-scale)) solid var(--card-noclick-border);
@@ -599,16 +606,59 @@ body {
     overflow-wrap: anywhere;
 }
 
-.card[data-noclick="true"]:hover {
+.card[data-noclick="true"]:hover,
+.card[data-banner="true"]:hover {
     transform: scale(1)
 }
 
 .card[data-blank="true"] {
     justify-content: center;
+
     .thumb {
         aspect-ratio: 250/310;
     }
 }
+
+.card[data-banner="true"] {
+    width: 100%;
+    height: calc(310px * var(--card-scale) * var(--card-padding));
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    overflow: hidden;
+    
+    .thumb {
+        width: calc(310px * var(--card-scale) * var(--card-scale-banner));
+        height: 100%;
+        max-height: 100%;
+        aspect-ratio: 1/1;
+        flex-shrink: 0;
+        margin: 0;
+        border-radius: calc(5px * var(--card-scale));
+        background-size: cover;
+        background-position: center;
+    }
+
+    .card-text {
+        width: 50%;
+        padding-left: 12px;
+        background: transparent;
+        flex: 1;
+        text-align: left;
+        max-height: none;
+    }
+
+    .card-text strong {
+        font-size: calc(24px * var(--card-scale));
+    }
+
+    .card-text .excerpt {
+        font-size: calc(16px * var(--card-scale));
+        white-space: normal;
+    }
+}
+
 
 .card .menu-button {
     position: absolute;
@@ -804,6 +854,7 @@ a[data-open-card] {
     width: 100%;
     cursor: auto;
     justify-content: flex-start;
+
     .thumb {
         aspect-ratio: 1/1;
     }
@@ -1003,6 +1054,7 @@ a[data-open-card] {
 .ui-btn:hover {
     transform: scale(1.1);
 }
+
 .ui-btn:active {
     transform: scale(0.95);
 }
@@ -1284,7 +1336,8 @@ textarea#starstrokeOutput {
         padding-right: 6px;
     }
 
-    .content-header {
+    .content-title,
+    .content-sub {
         padding-left: 36px;
         padding-right: 36px;
     }

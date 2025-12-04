@@ -23,6 +23,13 @@ menuItems = [
         hidden: true,                         // Hide from orbit (accessible via links only)
         invisible: true,                      // Exclude from search
         labels: [
+            {
+                cardId: 'bannerCard',
+                title: 'Banner Card',
+                excerpt: 'A type of card that spans the entire width of the container<br><br>This type of card is currently unclickable and merely used to describe a section of the container',
+                banner: true,
+                image: 'images/temp3.png'
+            },
             // CARDS WITH THUMBNAILS
             {
                 cardId: 'normalCard',         // REQUIRED: Unique card identifier
