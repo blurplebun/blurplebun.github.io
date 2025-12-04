@@ -4,7 +4,7 @@
 
 // Lazy loader base path
 const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
-const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to 1
+const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to true
 
 // If you prefer an orbit-less interface, set this to true
 const SIMPLE_MODE = 0;
@@ -479,14 +479,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
         const pick = list[Math.floor(Math.random() * list.length)];
         const targetMenu = pick.menu;
         const targetLabel = pick.label;
-        /*
-        openMenuById(targetMenu.menuId, true);
-        const cardEl = $(`[data-card-id="${targetLabel.cardId}"]`);
-        if (cardEl) {
-            focusCard(cardEl, targetLabel, targetMenu);
-            vizAdd(rerollBtn);
-        }
-            */
+        
         openCardById(targetMenu.menuId, targetLabel.cardId, true)
         vizAdd(rerollBtn);
         return;
