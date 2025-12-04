@@ -683,7 +683,12 @@ function renderContent(menu, sort = null) {
 
             // Sort cards within this group if needed
             if (sort === 'asc' || sort === 'desc') {
-                cardsToRender = [...group.items].sort((a, b) => {
+                // Separate banner and non-banner cards
+                const nonBannerCards = cardsToRender.filter(lbl => !lbl.banner);
+                const bannerCards = cardsToRender.filter(lbl => lbl.banner);
+
+                // Sort only non-banner cards
+                nonBannerCards.sort((a, b) => {
                     if (!a.title || !b.title) return 0;
 
                     const titleA = a.title.toLowerCase();
@@ -695,6 +700,10 @@ function renderContent(menu, sort = null) {
                         return titleB.localeCompare(titleA);
                     }
                 });
+
+                cardsToRender = cardsToRender.map(item =>
+                    item.banner ? item : nonBannerCards.shift()
+                );
             }
 
             // Render the sorted cards
@@ -1416,7 +1425,7 @@ function search() {
 
         // add matching menus as linked cards
         if (menuMatches.length > 0) {
-            labelGroup.push({ title: '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>Matching menus found'});
+            labelGroup.push({ title: '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>Matching menus found' });
             menuMatches.forEach(menu => {
                 labelGroup.push({
                     cardId: `menu-${menu.menuId}`,
