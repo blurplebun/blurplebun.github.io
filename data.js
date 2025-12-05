@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'December 4th, 2025';
-const version = '0.3.6';
+const lastUpdated = 'December 5th, 2025';
+const version = '0.3.7';
 
 // Main menu data array
 menuItems = [
@@ -2589,11 +2589,13 @@ menuItems = [
                         C = Center view<br>
                         H = Hide UIs<br>
                 `,
-                banner: true,
                 unclickable: true,
                 detail:
                     ``,
                 image: ''
+            },
+            {
+                title: 'Developer Section',
             },
             {
                 cardId: 'webinfo',
@@ -2611,9 +2613,6 @@ menuItems = [
                 detail:
                     ``,
                 image: ''
-            },
-            {
-                title: 'Developer Section',
             },
             {
                 linkId: 'menuTemplate',
@@ -3008,6 +3007,24 @@ menuItems = [
 ];
 
 menuLogoRedirect = 'info:artifyber';
+
+orbitData = [
+    {
+        orbit: 1,
+        name: "Universes",
+        desc: "The 6 sections of Fyberverse",
+    },
+    {
+        orbit: 2,
+        name: "Canon",
+        desc: "Fyberverse-related menus",
+    },
+    {
+        orbit: 4,
+        name: "Portfolio",
+        desc: "Creator of Fyberverse",
+    },
+];
 
 // Beecat
 if (Math.floor(Math.random() * 333) == 0) {

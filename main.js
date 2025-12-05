@@ -15,6 +15,7 @@ let SIMPLE_MODE = getSimpleMode();
 // Simple mode index data
 const MAIN_MENU_TITLE = 'Main Menu';
 const MAIN_MENU_SUBTITLE = 'Welcome to the Fyberverse!';
+const SIMPLE_MODE_MENU_LOGO_SCALE = 1.5;
 
 
 
@@ -533,11 +534,20 @@ function initContent() {
         let menuMatches = menuItems.filter(menu => (!(menu.invisible || menu.hidden)));
 
         if (menuMatches.length > 0) {
-            let currOrbit = 1;
+            let currOrbit = 0;
             menuMatches.forEach(menu => {
                 let separateOnce = false;
                 while (menu.orbit > currOrbit) {
-                    if (!separateOnce) {labelGroup.push({}); separateOnce = true;}
+                    if (!separateOnce) {
+                        let orbitMatch = orbitData.find(o => o.orbit === menu.orbit);
+                        t = '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>'+orbitMatch.name;
+                        e = '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>'+orbitMatch.desc;
+                        labelGroup.push({
+                            title: t,
+                            excerpt: e
+                        });
+                        separateOnce = true;
+                    }
                     currOrbit++;
                 }
                 labelGroup.push({
@@ -810,6 +820,7 @@ function renderContent(menu, sort = null) {
                             <div class="excerpt">${lbl.excerpt || ''}</div>
                         </div>
                     `;
+                    c.dataset.textonly = "true";
                 }
 
                 // Special cards
@@ -1144,21 +1155,62 @@ window.addEventListener('load', () => {
     const splashTexts = $$('.splash-text');
     splashTexts.forEach(el => {
         const type = el.dataset.info;
+        
         if (type === 'info') {
             el.textContent = el.dataset.infodesc;
+            if (SIMPLE_MODE) {
+                const scaleFactor = SIMPLE_MODE_MENU_LOGO_SCALE;
+                const baseFontSize = 12; // Default font size
+                el.style.fontSize = `calc(${baseFontSize}px * ${scaleFactor})`;
+                
+                scaleInlineStyles(el, scaleFactor);
+            }
         }
+        
         if (type === 'splash') {
             const text = splashLines[Math.floor(Math.random() * splashLines.length)];
             el.innerHTML = text;
             const baseSize = 20;
             const minSize = 12;
             const maxLen = 45;
-            let size = baseSize - (text.length / maxLen) * (baseSize - minSize);
+            
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = text;
+            const textLength = tempDiv.textContent.length;
+            
+            let size = baseSize - (textLength / maxLen) * (baseSize - minSize);
             size = clamp(size, minSize, baseSize);
             el.style.fontSize = `${size}px`;
+            el.style.marginTop = `${-size}px`;
+            
+            if (SIMPLE_MODE) {
+                const scaleFactor = SIMPLE_MODE_MENU_LOGO_SCALE;
+                el.style.fontSize = `calc(${size}px * ${scaleFactor})`;
+                el.style.marginTop = `calc(${-size}px * ${scaleFactor})`;
+                
+                scaleInlineStyles(el, scaleFactor);
+            }
         }
     });
 });
+
+// Helper function to scale inline styles
+function scaleInlineStyles(element, scaleFactor) {
+    const inlineStyledElements = element.querySelectorAll('[style*="font-size"]');
+    inlineStyledElements.forEach(inlineEl => {
+        const currentStyle = inlineEl.getAttribute('style');
+        // Replace font-size values with scaled versions
+        const scaledStyle = currentStyle.replace(
+            /font-size\s*:\s*([0-9]+(\.[0-9]+)?)px/g,
+            (match, value) => {
+                const scaledValue = parseFloat(value) * scaleFactor;
+                return `font-size: ${scaledValue}px`;
+            }
+        );
+        inlineEl.setAttribute('style', scaledStyle);
+    });
+}
+
 
 
 
@@ -1362,6 +1414,8 @@ menuLogo.addEventListener('click', () => {
     if (cardQ) openCardById(menuQ, cardQ, true); else openMenuById(menuQ, true);
 });
 
+if (SIMPLE_MODE) menuLogo.style.width = `calc(${getComputedStyle(menuLogo).getPropertyValue("width")} * ${SIMPLE_MODE_MENU_LOGO_SCALE})`;
+
 const searchBtn = document.getElementById('searchBtn')
 searchBtn?.addEventListener('click', () => {
     openSearchBox();
@@ -1490,7 +1544,7 @@ const switchBtn = document.getElementById('switchBtn');
 
 function updateswitchBtnText() {
     const span = switchBtn.querySelector('span');
-    span.textContent = SIMPLE_MODE ? 'Switch to Orbit Mode' : 'Switch to Simple Mode';
+    span.textContent = SIMPLE_MODE ? 'Orbit Mode' : 'Simple Mode';
 }
 
 function toggleViewMode() {

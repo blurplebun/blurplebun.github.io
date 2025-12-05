@@ -98,6 +98,8 @@
     --ui-btn-bg: var(--white);
     --ui-btn-color: var(--bg);
     --ui-btn-border: rgba(255, 255, 255, 0.06);
+    --ui-btn-scale: 1;
+    --ui-btn-scale-mini: 0.8;
     --hide-btn-border: var(--accent2);
 
     /* Form variables */
@@ -368,7 +370,7 @@ body {
 }
 
 .menu-logo {
-    max-width: 200px;
+    width: 200px;
     pointer-events: auto;
     transition: transform 0.1s ease-in-out;
     cursor: pointer;
@@ -416,7 +418,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 36px;
-    gap: 18px;
+    gap: 0;
     align-items: stretch;
     justify-content: flex-start;
     opacity: 0;
@@ -647,16 +649,17 @@ body {
         flex: 1;
         max-height: none;
     }
+}
 
-    .card-text strong {
-        font-size: calc(52px * var(--card-scale-banner) * var(--card-scale));
-        margin-bottom: calc(12px * var(--card-scale-banner) * var(--card-scale));
-    }
-
-    .card-text .excerpt {
+.card[data-banner="true"] .card-text strong,
+.card[data-textonly="true"] .card-text strong {
+    font-size: calc(52px * var(--card-scale-banner) * var(--card-scale));
+    margin-bottom: calc(12px * var(--card-scale-banner) * var(--card-scale));
+}
+.card[data-banner="true"] .card-text .excerpt,
+.card[data-textonly="true"] .card-text .excerpt {
         font-size: calc(32px * var(--card-scale-banner) * var(--card-scale));
         white-space: normal;
-    }
 }
 
 .card[data-banner="true"]:has(.menu-button) {
@@ -1064,15 +1067,15 @@ a[data-open-card] {
 .ui-btn {
     background: var(--ui-btn-bg);
     color: var(--ui-btn-color);
-    padding: 12px 14px;
+    padding: calc(12px * var(--ui-btn-scale)) calc(14px * var(--ui-btn-scale));
     border-radius: 999px;
-    min-height: 40px;
-    border: 1px solid var(--ui-btn-border);
+    min-height: calc(40px * var(--ui-btn-scale));
+    border: calc(1px * var(--ui-btn-scale)) solid var(--ui-btn-border);
     cursor: pointer;
     z-index: 80;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: calc(8px * var(--ui-btn-scale));
     pointer-events: auto;
     transition: opacity 300ms, transform 100ms;
     font-family: 'Main', 'Ubuntu', verdana, sans-serif;
@@ -1086,8 +1089,12 @@ a[data-open-card] {
     transform: scale(0.95);
 }
 
+.ui-btn span {
+    font-size: calc(14px * var(--ui-btn-scale));
+}
+
 .back-btn svg {
-    width: 13px;
+    width: calc(13px * var(--ui-btn-scale));
 }
 
 #uiPanelBottom,
@@ -1095,9 +1102,9 @@ a[data-open-card] {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
-    gap: 16px;
+    gap: calc(16px * var(--ui-btn-scale));
     align-items: center;
-    padding: 24px;
+    padding: calc(24px * var(--ui-btn-scale));
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -1113,7 +1120,7 @@ a[data-open-card] {
 
 #uiPanelBottom *[id],
 #uiPanelTop *[id] {
-    padding: 12px 14px;
+    padding: calc(12px * var(--ui-btn-scale)) calc(14px * var(--ui-btn-scale));
     opacity: 0;
     display: block;
     visibility: hidden;
@@ -1133,10 +1140,10 @@ a[data-open-card] {
 
 #hideBtn.hidden-mode {
     background-color: transparent;
-    border: 3px solid var(--hide-btn-border);
+    border: calc(3px * var(--ui-btn-scale)) solid var(--hide-btn-border);
     opacity: 0.6;
-    height: 40px;
-    width: 40px;
+    height: calc(40px * var(--ui-btn-scale));
+    width: calc(40px * var(--ui-btn-scale));
 }
 
 
@@ -1351,6 +1358,7 @@ textarea#starstrokeOutput {
     :root {
         --menu-stage-scale: 0.75;
         --card-scale: var(--card-scale-mini);
+        --ui-btn-scale: var(--ui-btn-scale-mini);
         --card-gap: 10px;
     }
 
@@ -1509,7 +1517,7 @@ textarea#starstrokeOutput {
 
 .splash-text[data-info="splash"] {
     position: absolute;
-    top: 95%;
+    top: 105%;
     left: 50%;
     animation: floatSplash 1s ease-in-out infinite alternate;
 }
@@ -1521,7 +1529,7 @@ textarea#starstrokeOutput {
     }
 
     100% {
-        transform: translate(-50%, 55%);
+        transform: translate(-50%, 60%);
     }
 }
 
