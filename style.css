@@ -48,6 +48,7 @@
     --card-scale-banner: 0.5;
     --card-gap: 12px;
     --card-padding: 12px;
+    --rounding: 1;
     --grid-max-columns: 6;
 
     /* Menu specific variables */
@@ -163,6 +164,10 @@
 }
 
 
+/* --------------------------
+    HTML
+    -------------------------- */
+
 * {
     box-sizing: border-box
 }
@@ -188,6 +193,10 @@ body {
     overflow: hidden;
     touch-action: none;
 }
+
+/* --------------------------
+    Orbital menu
+    -------------------------- */
 
 /* Main menu stage */
 .menu-stage {
@@ -224,26 +233,6 @@ body {
 
 .menu-stage.blur {
     filter: blur(0.5rem);
-}
-
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: none;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--accent2);
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent2);
 }
 
 /* Rings */
@@ -355,6 +344,18 @@ body {
     scale: var(--menu-button-thumb-scale);
 }
 
+/* Main logo */
+.menu-logo {
+    width: 200px;
+    pointer-events: auto;
+    transition: transform 0.1s ease-in-out;
+    cursor: pointer;
+}
+
+.menu-logo:hover {
+    transform: scale(1.05);
+}
+
 .menu-center-text {
     position: absolute;
     left: 50%;
@@ -369,17 +370,6 @@ body {
     font-family: 'Main', 'Ubuntu', verdana, sans-serif;
 }
 
-.menu-logo {
-    width: 200px;
-    pointer-events: auto;
-    transition: transform 0.1s ease-in-out;
-    cursor: pointer;
-}
-
-.menu-logo:hover {
-    transform: scale(1.05);
-}
-
 .ring {
     animation: none !important;
 }
@@ -392,8 +382,6 @@ body {
     will-change: transform;
     transform: translateZ(0);
 }
-
-
 
 /* Expander circle */
 .expander {
@@ -410,6 +398,10 @@ body {
     transform: translate(-50%, -50%) scale(1);
     transition: transform var(--overlay-transition) cubic-bezier(.2, .9, .2, 1), opacity var(--overlay-transition)
 }
+
+/* --------------------------
+    Contents
+    -------------------------- */
 
 /* content view */
 .content-view {
@@ -468,8 +460,9 @@ body {
     display: none;
 }
 
-
-/* Cards */
+/* --------------------------
+    Cards
+    -------------------------- */
 .cards-grid {
     display: flex;
     flex-wrap: wrap;
@@ -486,7 +479,7 @@ body {
 .card {
     background: var(--card-bg);
     padding: calc(var(--card-padding) * var(--card-scale));
-    border-radius: calc(10px * var(--card-scale));
+    border-radius: calc(10px * var(--card-scale) * var(--rounding));
     cursor: pointer;
     width: calc(240px * var(--card-scale));
     height: calc(300px * var(--card-scale));
@@ -515,7 +508,7 @@ body {
     flex-shrink: 0;
     background-size: cover;
     background-position: center;
-    border-radius: calc(5px * var(--card-scale));
+    border-radius: calc(5px * var(--card-scale) * var(--rounding));
     margin: 0 auto calc(11px * var(--card-scale)) auto;
     display: block;
 }
@@ -637,7 +630,7 @@ body {
         aspect-ratio: 1/1;
         flex-shrink: 0;
         margin: 0;
-        border-radius: calc(5px * var(--card-scale));
+        border-radius: calc(5px * var(--card-scale) * var(--rounding));
         background-size: cover;
         background-position: center;
     }
@@ -701,7 +694,7 @@ body {
 }
 
 .card[data-link="true"] .menu-button {
-    border-radius: 5px;
+    border-radius: calc(5px * var(--rounding));
     box-shadow: none;
     overflow: hidden;
 }
@@ -723,8 +716,7 @@ body {
     z-index: 2;
 }
 
-
-
+/* Animate menu bubbles */
 @keyframes bubbleFloat {
 
     0%,
@@ -742,9 +734,9 @@ body {
 }
 
 
-
-
-/* Detail view */
+/* --------------------------
+    Detail view
+    -------------------------- */
 .panel {
     flex: 1;
     display: flex;
@@ -761,7 +753,7 @@ body {
 .panel-right {
     flex: 1;
     background: var(--panel-right-bg);
-    border-radius: 10px;
+    border-radius: calc(10px * var(--rounding));
     padding: 16px;
     max-width: 1100px;
     min-height: 220px;
@@ -788,7 +780,7 @@ details[open] {
     margin: auto;
     max-width: 60%;
     max-height: 60%;
-    border-radius: 10px;
+    border-radius: calc(10px * var(--rounding));
     cursor: zoom-in;
     transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease-out;
 }
@@ -844,7 +836,7 @@ a[data-open-card] {
     flex: 0 0 auto;
     max-width: 30%;
     height: auto;
-    border-radius: 10px;
+    border-radius: calc(10px * var(--rounding));
     object-fit: cover;
     user-select: none;
     pointer-events: auto;
@@ -869,12 +861,9 @@ a[data-open-card] {
 #instaCard iframe {
     width: 100%;
     height: 500px;
-    border-radius: 20px;
+    border-radius: calc(20px * var(--rounding));
     font-family: 'Main', 'Ubuntu', verdana, sans-serif;
 }
-
-
-
 
 /* On-focus */
 .card.focused {
@@ -943,9 +932,40 @@ a[data-open-card] {
     transform: scale(1.2) rotate(45deg);
 }
 
+
+
+/* --------------------------
+    Misc elements
+    -------------------------- */
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent2);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent2);
+}
+
+
+
+/* --------------------------
+    Searchbox
+    -------------------------- */
+
 #searchBox {
     border: none;
-    border-radius: 20px;
+    border-radius: calc(20px * var(--rounding));
     padding: 0;
     background: var(--searchbox-bg);
     box-shadow: 0 0 40px var(--searchbox-shadow);
@@ -984,7 +1004,7 @@ a[data-open-card] {
 #searchText {
     background: var(--search-text-bg);
     border: 2px solid var(--search-text-border);
-    border-radius: 12px;
+    border-radius: calc(12px * var(--rounding));
     padding: 10px 14px;
     font-size: 1rem;
     color: var(--white);
@@ -1044,6 +1064,10 @@ a[data-open-card] {
 }
 
 
+
+/* --------------------------
+    Focused layout
+    -------------------------- */
 .focused-layout {
     height: 100vh;
     position: fixed;
@@ -1063,7 +1087,10 @@ a[data-open-card] {
     transform: translateX(0)
 }
 
-/* Back button */
+
+/* --------------------------
+    UI buttons
+    -------------------------- */
 .ui-btn {
     background: var(--ui-btn-bg);
     color: var(--ui-btn-color);
@@ -1097,6 +1124,7 @@ a[data-open-card] {
     width: calc(13px * var(--ui-btn-scale));
 }
 
+/* UI Panels */
 #uiPanelBottom,
 #uiPanelTop {
     display: flex;
@@ -1138,6 +1166,7 @@ a[data-open-card] {
     pointer-events: auto;
 }
 
+/* Hidebutton "hide" */
 #hideBtn.hidden-mode {
     background-color: transparent;
     border: calc(3px * var(--ui-btn-scale)) solid var(--hide-btn-border);
@@ -1146,13 +1175,17 @@ a[data-open-card] {
     width: calc(40px * var(--ui-btn-scale));
 }
 
+/* --------------------------
+    Inside detail area
+    -------------------------- */
 
+/* Text area */
 textarea {
     width: 100%;
     min-height: 100px;
     background: var(--textarea-bg);
     border: 2px solid var(--textarea-border);
-    border-radius: 12px;
+    border-radius: calc(12px * var(--rounding));
     padding: 10px 14px;
     font-size: 1rem;
     color: var(--white);
@@ -1161,7 +1194,6 @@ textarea {
     font-family: 'Main', 'Ubuntu', verdana, sans-serif;
     resize: vertical;
 }
-
 
 /* Keyboard Layout Styles */
 .keyboardLayout {
@@ -1173,7 +1205,7 @@ textarea {
     margin-top: 10px;
     padding: 12px;
     background: var(--keyboard-bg);
-    border-radius: 12px;
+    border-radius: calc(12px * var(--rounding));
     backdrop-filter: blur(1rem);
     max-width: 700px;
     margin-left: auto;
@@ -1183,7 +1215,7 @@ textarea {
 #detailArea .keycap {
     background: var(--keycap-bg);
     border: 2px solid var(--keycap-border);
-    border-radius: 10%;
+    border-radius: calc(10% * var(--rounding));
     color: var(--white);
     padding: 12px 8px;
     cursor: pointer;
@@ -1232,8 +1264,9 @@ textarea#starstrokeOutput {
 
 
 
-
-/* Image preview */
+/* --------------------------
+    Image previewer
+    -------------------------- */
 .img-preview-overlay {
     position: fixed;
     inset: 0;
@@ -1257,7 +1290,7 @@ textarea#starstrokeOutput {
 .img-preview-overlay img {
     max-width: 95%;
     max-height: 95%;
-    border-radius: 5px;
+    border-radius: calc(5px * var(--rounding));
     box-shadow: 0 0 30px var(--img-preview-shadow);
     cursor: zoom-out;
     transition: transform 0.3s ease;
@@ -1348,7 +1381,10 @@ textarea#starstrokeOutput {
 
 
 
-/* small screens adjustments */
+/* --------------------------
+    Responsive layout
+    -------------------------- */
+/* small screens */
 @media (max-width:770px) {
     .menu-stage {
         width: 360px;
@@ -1398,7 +1434,7 @@ textarea#starstrokeOutput {
 
         img {
             max-width: 100%;
-            border-radius: 10px;
+            border-radius: calc(10px * var(--rounding));
             margin-top: 12px;
             padding: 0px;
         }
@@ -1431,7 +1467,6 @@ textarea#starstrokeOutput {
         width: 20%;
         height: auto;
         aspect-ratio: 1 / 1;
-        border-radius: 10px;
         margin: 0;
         flex-shrink: 0;
     }
@@ -1456,7 +1491,12 @@ textarea#starstrokeOutput {
 
 }
 
-/* Stars*/
+
+
+/* --------------------------
+    Stars
+    -------------------------- */
+
 .starfield {
     position: absolute;
     inset: 0;
@@ -1492,6 +1532,9 @@ textarea#starstrokeOutput {
     }
 }
 
+/* --------------------------
+    Splashes / floating text
+    -------------------------- */
 
 .splash-text {
     position: absolute;
@@ -1533,6 +1576,11 @@ textarea#starstrokeOutput {
     }
 }
 
+
+/* --------------------------
+    Ticker
+    -------------------------- */
+
 .ticker-bar {
     position: relative;
     overflow: hidden;
@@ -1554,6 +1602,11 @@ textarea#starstrokeOutput {
     will-change: transform;
     animation-timing-function: linear;
 }
+
+
+/* --------------------------
+    404 page
+    -------------------------- */
 
 .notFound {
     animation: shakeV 5s ease-in-out infinite;
