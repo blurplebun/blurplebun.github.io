@@ -4,7 +4,7 @@
 
 // Metadata
 const lastUpdated = 'December 6th, 2025';
-const version = '0.3.8';
+const version = '0.4.0';
 
 // Main menu data array
 menuItems = [
@@ -3014,16 +3014,22 @@ orbitData = [
         orbit: 1,
         name: "Universes",
         desc: "The 6 sections of Fyberverse",
+        scaleX: 1,
+        scaleY: 1,
     },
     {
         orbit: 2,
         name: "Canon",
         desc: "Fyberverse-related menus",
+        scaleX: 1,
+        scaleY: 1,
     },
     {
         orbit: 4,
         name: "Portfolio",
         desc: "Creator of Fyberverse",
+        scaleX: 1,
+        scaleY: 1,
     },
 ];
 

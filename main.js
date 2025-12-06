@@ -223,12 +223,16 @@ function initOrbitRings() {
         const orbitRing = document.createElement('div');
         orbitRing.className = 'orbit-visual pulse';
 
+        const oData = orbitData.find(o => o.orbit === orbit);
+        const oScaleX = oData?.scaleX || 1;
+        const oScaleY = oData?.scaleY || 1;
+
         const diameter = (baseRadius * orbit * 1.2 + 60) * 2;
         orbitRing.style.width = `${diameter}px`;
         orbitRing.style.height = `${diameter}px`;
         orbitRing.style.left = '50%';
         orbitRing.style.top = '50%';
-        orbitRing.style.transform = 'translate(-50%, -50%)';
+        orbitRing.style.transform = `translate(-50%, -50%) scale(${oScaleX}, ${oScaleY})`;
         orbitRing.style.opacity = 0.45 / orbit;
         orbitRing.style.zIndex = '-1';
         orbitRing.style.pointerEvents = 'auto';
@@ -298,8 +302,12 @@ function initMenu() {
             btn.dataset.omega = omega;
             btn.dataset.scale = m.scale || 1;
 
-            const x0 = Math.cos(angleRad) * r;
-            const y0 = Math.sin(angleRad) * r;
+            const oData = orbitData.find(o => o.orbit === orbit);
+            const oScaleX = oData?.scaleX || 1;
+            const oScaleY = oData?.scaleY || 1;
+
+            const x0 = Math.cos(angleRad) * r * oScaleX;
+            const y0 = Math.sin(angleRad) * r * oScaleY;
             btn.style.left = '50%';
             btn.style.top = '50%';
             btn.style.transform = `translate3d(${x0}px, ${y0}px, 0) scale(${m.scale || 1})`;
@@ -355,9 +363,14 @@ if (!SIMPLE_MODE) {
                 const r = parseFloat(dataset.radius) || 0;
                 const s = parseFloat(dataset.scale) || 1;
 
+                const oData = orbitData.find(o => o.orbit === parseFloat(dataset.orbit));
+                const oScaleX = oData?.scaleX || 1;
+                const oScaleY = oData?.scaleY || 1;
+
                 const angle = a0 + w * elapsed;
-                const x = Math.cos(angle) * r;
-                const y = Math.sin(angle) * r;
+                const x = Math.cos(angle) * r * oScaleX;
+                const y = Math.sin(angle) * r * oScaleY;
+                el.dataset.yIndex = y;
 
                 // Calculate zoom for hover effect
                 let zoom = 1;
@@ -393,7 +406,7 @@ if (!SIMPLE_MODE) {
         resizeTimeout = setTimeout(() => {
             const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
             orbitButtons.forEach(el => {
-                const orbit = parseInt(el.dataset.orbit) || 1;
+                const orbit = parseFloat(el.dataset.orbit) || 1;
                 const r = baseRadius * orbit * 1.2 + 60;
                 el.dataset.radius = r;
             });
