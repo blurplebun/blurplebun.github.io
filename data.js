@@ -18,7 +18,7 @@ menuItems = [
         subtitle: 'This is a menu example',   // Short description
         image: 'images/temp2.png',            // Orbit thumbnail image
         color: 'var(--color-15)',             // Menu color (hex, CSS var, or blank)
-        orbit: 3,                             // INTEGER: Orbit layer placement
+        orbit: 0,                             // INTEGER: Orbit layer placement
         scale: 1,                             // Menu size in orbit
         hidden: true,                         // Hide from orbit (accessible via links only)
         invisible: true,                      // Exclude from search
@@ -3008,6 +3008,7 @@ menuItems = [
 
 menuLogoRedirect = 'info:artifyber';
 
+// Orbit data
 orbitData = [
     {
         orbit: 1,
@@ -3030,7 +3031,7 @@ orbitData = [
 if (Math.floor(Math.random() * 333) == 0) {
     menuItems.forEach(menu => {
         if (menu.name == "Information") {
-            menu.labels.push({
+            menu.labels.unshift({
                 cardId: 'beecat',
                 title: 'Beecat',
                 excerpt: 'Beecat',

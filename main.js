@@ -10,7 +10,7 @@ const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set
 const SFX_MASTER_VOL = 1;
 const SFX_CLICK_VOL = 0.4;
 
-// If you prefer an orbit-less interface, set this to true
+// If you prefer to always use an orbit-less interface, set this to true
 let SIMPLE_MODE = getSimpleMode();
 // Simple mode index data
 const MAIN_MENU_TITLE = 'Main Menu';
@@ -250,14 +250,14 @@ function initMenu() {
     const grouped = {};
     menuItems.forEach(m => {
         if (m.hidden) return;
-        const orbit = m.orbit || 1;
+        const orbit = m.orbit;
         if (!grouped[orbit]) grouped[orbit] = [];
         grouped[orbit].push(m);
     });
 
     Object.keys(grouped).forEach(layerKey => {
         const items = grouped[layerKey];
-        const orbit = parseInt(layerKey, 10);
+        const orbit = parseFloat(layerKey, 10);
 
         const ringLayer = document.createElement('div');
         ringLayer.className = 'ring';
@@ -288,11 +288,12 @@ function initMenu() {
 
             // compute radius & motion params
             const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
-            const r = baseRadius * orbit * 1.2 + 60;
+            let r = baseRadius * orbit * 1.2 + 60;
+            if (orbit === 0) r = 0;
             btn.dataset.radius = r;
 
             const baseDuration = orbitDuration;
-            const periodSec = Math.max(0.01, baseDuration * orbit); // seconds per revolution
+            const periodSec = baseDuration * orbit; // seconds per revolution
             const omega = (2 * Math.PI) / periodSec * direction; // radians/sec
             btn.dataset.omega = omega;
             btn.dataset.scale = m.scale || 1;
@@ -361,7 +362,7 @@ if (!SIMPLE_MODE) {
                 // Calculate zoom for hover effect
                 let zoom = 1;
                 if (!isDragging && needsHoverEffect) {
-                    const rect = el.getBoundingClientRect();
+                    const rect = dataset.orbit != 0 ? el.getBoundingClientRect() : menuStage.getBoundingClientRect();
                     const btnX = rect.left + rect.width / 2;
                     const btnY = rect.top + rect.height / 2;
 
@@ -540,8 +541,8 @@ function initContent() {
                 while (menu.orbit > currOrbit) {
                     if (!separateOnce) {
                         let orbitMatch = orbitData.find(o => o.orbit === menu.orbit);
-                        t = '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>'+orbitMatch.name;
-                        e = '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>'+orbitMatch.desc;
+                        t = '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>' + orbitMatch.name;
+                        e = '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>' + orbitMatch.desc;
                         labelGroup.push({
                             title: t,
                             excerpt: e
@@ -1155,42 +1156,29 @@ window.addEventListener('load', () => {
     const splashTexts = $$('.splash-text');
     splashTexts.forEach(el => {
         const type = el.dataset.info;
-        
-        if (type === 'info') {
-            el.textContent = el.dataset.infodesc;
-            if (SIMPLE_MODE) {
-                const scaleFactor = SIMPLE_MODE_MENU_LOGO_SCALE;
-                const baseFontSize = 12; // Default font size
-                el.style.fontSize = `calc(${baseFontSize}px * ${scaleFactor})`;
-                
-                scaleInlineStyles(el, scaleFactor);
-            }
+        const text = type === 'splash' ? splashLines[Math.floor(Math.random() * splashLines.length)] : el.dataset.infodesc;
+        el.innerHTML = text;
+        const baseSize = type === 'splash' ? 20 : 10;
+        const minSize = 12;
+        const maxLen = 45;
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = text;
+        const textLength = tempDiv.textContent.length;
+
+        let size = baseSize - (textLength / maxLen) * (baseSize - minSize);
+        size = clamp(size, minSize, baseSize);
+        el.style.fontSize = `${size}px`;
+        el.style.marginTop = `${-size}px`;
+
+        if (SIMPLE_MODE) {
+            const scaleFactor = SIMPLE_MODE_MENU_LOGO_SCALE;
+            el.style.fontSize = `calc(${size}px * ${scaleFactor})`;
+            el.style.marginTop = `calc(${-size}px * ${scaleFactor})`;
+
+            scaleInlineStyles(el, scaleFactor);
         }
-        
-        if (type === 'splash') {
-            const text = splashLines[Math.floor(Math.random() * splashLines.length)];
-            el.innerHTML = text;
-            const baseSize = 20;
-            const minSize = 12;
-            const maxLen = 45;
-            
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = text;
-            const textLength = tempDiv.textContent.length;
-            
-            let size = baseSize - (textLength / maxLen) * (baseSize - minSize);
-            size = clamp(size, minSize, baseSize);
-            el.style.fontSize = `${size}px`;
-            el.style.marginTop = `${-size}px`;
-            
-            if (SIMPLE_MODE) {
-                const scaleFactor = SIMPLE_MODE_MENU_LOGO_SCALE;
-                el.style.fontSize = `calc(${size}px * ${scaleFactor})`;
-                el.style.marginTop = `calc(${-size}px * ${scaleFactor})`;
-                
-                scaleInlineStyles(el, scaleFactor);
-            }
-        }
+
     });
 });
 
@@ -1409,7 +1397,7 @@ function search() {
     contentView.style.overflow = '';
 }
 
-menuLogo.addEventListener('click', () => {
+menuLogo?.addEventListener('click', () => {
     const [menuQ, cardQ] = menuLogoRedirect.split(':');
     if (cardQ) openCardById(menuQ, cardQ, true); else openMenuById(menuQ, true);
 });

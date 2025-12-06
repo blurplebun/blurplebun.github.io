@@ -1552,7 +1552,7 @@ textarea#starstrokeOutput {
 .splash-text[data-info="info"] {
     color: var(--info-text-color);
     position: absolute;
-    top: 115%;
+    top: 125%;
     left: 50%;
     font-size: 12px;
     transform: translate(-50%, 50%);
