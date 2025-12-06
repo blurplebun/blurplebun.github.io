@@ -38,9 +38,9 @@
 
 
     /* Layout variables */
-    --menu-radius: 150px;
+    --menu-radius: 200px;
     --menu-orbit-scale-x: 1;
-    --menu-orbit-scale-y: 1;
+    --menu-orbit-scale-y: 0.6;
     --menu-stage-scale: 1;
     --button-size: 100px;
     --ring-rotation-duration: 60s;
@@ -149,6 +149,14 @@
     /* Copy link variables */
     --copy-link-stroke: var(--accentl);
     --copy-link-copied-stroke: var(--color-5);
+}
+
+@media only screen and (orientation: portrait) {
+    :root {
+        --menu-radius: 150px;
+        --menu-orbit-scale-x: 1;
+        --menu-orbit-scale-y: 1;
+    }
 }
 
 @font-face {
@@ -651,10 +659,11 @@ body {
     font-size: calc(52px * var(--card-scale-banner) * var(--card-scale));
     margin-bottom: calc(12px * var(--card-scale-banner) * var(--card-scale));
 }
+
 .card[data-banner="true"] .card-text .excerpt,
 .card[data-textonly="true"] .card-text .excerpt {
-        font-size: calc(32px * var(--card-scale-banner) * var(--card-scale));
-        white-space: normal;
+    font-size: calc(32px * var(--card-scale-banner) * var(--card-scale));
+    white-space: normal;
 }
 
 .card[data-banner="true"]:has(.menu-button) {
