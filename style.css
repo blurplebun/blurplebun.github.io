@@ -39,6 +39,8 @@
 
     /* Layout variables */
     --menu-radius: 150px;
+    --menu-orbit-scale-x: 1;
+    --menu-orbit-scale-y: 1;
     --menu-stage-scale: 1;
     --button-size: 100px;
     --ring-rotation-duration: 60s;

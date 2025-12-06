@@ -3014,20 +3014,19 @@ orbitData = [
         orbit: 1,
         name: "Universes",
         desc: "The 6 sections of Fyberverse",
-        scaleX: 1,
-        scaleY: 1,
     },
     {
         orbit: 2,
         name: "Canon",
         desc: "Fyberverse-related menus",
-        scaleX: 1,
-        scaleY: 1,
     },
     {
         orbit: 4,
         name: "Portfolio",
         desc: "Creator of Fyberverse",
+    },
+    {
+        orbit: 127,
         scaleX: 1,
         scaleY: 1,
     },

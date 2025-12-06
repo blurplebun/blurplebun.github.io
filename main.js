@@ -17,6 +17,8 @@ const MAIN_MENU_TITLE = 'Main Menu';
 const MAIN_MENU_SUBTITLE = 'Welcome to the Fyberverse!';
 const SIMPLE_MODE_MENU_LOGO_SCALE = 1.5;
 
+const ORBIT_FPS = 20;
+
 
 
 
@@ -67,7 +69,6 @@ menuStage.style.transform = `translate(0px, 0px) scale(${getCSSVar('--menu-stage
 /* --------------------------
     Camera / Drag / Parallax
     -------------------------- */
-
 
 // State for panning / parallax
 let isDragging = false;
@@ -224,8 +225,8 @@ function initOrbitRings() {
         orbitRing.className = 'orbit-visual pulse';
 
         const oData = orbitData.find(o => o.orbit === orbit);
-        const oScaleX = oData?.scaleX || 1;
-        const oScaleY = oData?.scaleY || 1;
+        const oScaleX = oData?.scaleX || getCSSVar('--menu-orbit-scale-x', 'float');
+        const oScaleY = oData?.scaleY || getCSSVar('--menu-orbit-scale-y', 'float');
 
         const diameter = (baseRadius * orbit * 1.2 + 60) * 2;
         orbitRing.style.width = `${diameter}px`;
@@ -303,8 +304,8 @@ function initMenu() {
             btn.dataset.scale = m.scale || 1;
 
             const oData = orbitData.find(o => o.orbit === orbit);
-            const oScaleX = oData?.scaleX || 1;
-            const oScaleY = oData?.scaleY || 1;
+            const oScaleX = oData?.scaleX || getCSSVar('--menu-orbit-scale-x', 'float');
+            const oScaleY = oData?.scaleY || getCSSVar('--menu-orbit-scale-y', 'float');
 
             const x0 = Math.cos(angleRad) * r * oScaleX;
             const y0 = Math.sin(angleRad) * r * oScaleY;
@@ -342,7 +343,6 @@ if (!SIMPLE_MODE) {
     }
 
     let lastFrame = 0;
-    const ORBIT_FPS = 20;
     function orbitFrame(ts) {
         if (ts - lastFrame > 1000 / ORBIT_FPS) {
             lastFrame = ts;
@@ -364,8 +364,8 @@ if (!SIMPLE_MODE) {
                 const s = parseFloat(dataset.scale) || 1;
 
                 const oData = orbitData.find(o => o.orbit === parseFloat(dataset.orbit));
-                const oScaleX = oData?.scaleX || 1;
-                const oScaleY = oData?.scaleY || 1;
+                const oScaleX = oData?.scaleX || getCSSVar('--menu-orbit-scale-x', 'float');
+                const oScaleY = oData?.scaleY || getCSSVar('--menu-orbit-scale-y', 'float');
 
                 const angle = a0 + w * elapsed;
                 const x = Math.cos(angle) * r * oScaleX;
@@ -409,6 +409,7 @@ if (!SIMPLE_MODE) {
                 const orbit = parseFloat(el.dataset.orbit) || 1;
                 const r = baseRadius * orbit * 1.2 + 60;
                 el.dataset.radius = r;
+                el.style.zIndex = el.dataset.yIndex < 0 ? 13 : 12;
             });
             initOrbitRings();
         }, 300);
