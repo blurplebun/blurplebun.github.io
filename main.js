@@ -99,6 +99,39 @@ function setMenuStageTransform(x, y, options = {}) {
     }
 }
 
+/*
+// Shared function used by mouse/touch/wheel to update transforms
+function setMenuStageTransform(x, y, options = {}) {
+    const scale = getCSSVar('--menu-stage-scale');
+    menuStage.style.transition = options.transition || menuStage.style.transition;
+    menuStage.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+
+}
+
+function wrap(v, min, max) {
+    const range = max - min;
+    return ((((v - min) % range) + range) % range) + min;
+}
+
+function moveStars(x, y) {
+    if (!starfield) return;
+
+    const stars = starfield.querySelectorAll('.star');
+
+    stars.forEach(s => {
+        const depth = parseFloat(s.dataset.depth) || 1;
+
+        let px = -x * parallaxFactor * depth + parseInt(s.dataset.x);
+        let py = -y * parallaxFactor * depth + parseInt(s.dataset.y);
+
+        let px2 = wrap(px, -STAR_RANGE, STAR_RANGE);
+        let py2 = wrap(py, -STAR_RANGE, STAR_RANGE);
+        s.style.transition = 'none'
+        s.style.transform = `translate(${px2}px, ${py2}px)`;
+    });
+}
+    */
+
 // Begin drag (mouse or touch)
 function beginDrag(clientX, clientY) {
     if (SIMPLE_MODE) return;
@@ -683,7 +716,7 @@ function showContentFor(menu, sort = null) {
     }
 
     initLazyLoad();
-    contentView.scrollTop = 0;
+    // contentView.scrollTop = 0;
 }
 
 // render content to grid
@@ -1243,6 +1276,26 @@ function createStarfield(layerCount = 3, starsPerLayer = 30) {
     }
 }
 
+/*
+function createStarfield(starCount = 200) {
+    if (!starfield) return;
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 5 + 1;
+        star.dataset.depth = 0.5 + (i / starCount) * 1;
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.left = `50%`;
+        star.style.top = `50%`;
+        star.dataset.x = (Math.random() * STAR_RANGE * 2 - STAR_RANGE) * 1;
+        star.dataset.y = (Math.random() * STAR_RANGE * 2 - STAR_RANGE) * 1;
+        star.style.animationDelay = `-${Math.random() * 5}s`;
+        starfield.appendChild(star);
+    }
+}
+*/
+
 
 
 /* --------------------------
@@ -1283,7 +1336,7 @@ function stripHTML(html) {
 
 let openFromSearch = false;
 function search() {
-    contentView.scrollTop = 0;
+    // contentView.scrollTop = 0;
     const query = searchText.value;
     const q = query.trim().toLowerCase();
     if (!q) return;

@@ -1522,7 +1522,6 @@ textarea#starstrokeOutput {
 .star {
     position: absolute;
     background: var(--star-bg);
-    rotate: 45deg;
     animation: twinkle 5s infinite ease-in-out;
 }
 
