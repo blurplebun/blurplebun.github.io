@@ -3099,3 +3099,7 @@ specialSearch = {
 totalCards = menuItems.reduce((sum, item) => sum + item.labels.length, 0);
 totalCharacters = menuItems.reduce((sum, item) => sum + item.labels.filter(label => label.isCharacter).length, 0);
 totalMenus = menuItems.length;
+
+if (typeof module !== "undefined") {
+    module.exports = { menuItems };
+}
