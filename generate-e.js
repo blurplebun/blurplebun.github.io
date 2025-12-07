@@ -23,13 +23,13 @@ function buildHTML({ title, desc, image, url }) {
   <meta property="og:type" content="website" />
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(desc)}">
-  <meta property="og:image" content="${esc(image)}">
+  <meta property="og:image" content="https://artifyber.xyz/${esc(image)}">
   <meta property="og:url" content="${esc(url)}">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${esc(title)}">
   <meta name="twitter:description" content="${esc(desc)}">
-  <meta name="twitter:image" content="${esc(image)}">
+  <meta name="twitter:image" content="https://artifyber.xyz/${esc(image)}">
 </head>
 
 <body>
