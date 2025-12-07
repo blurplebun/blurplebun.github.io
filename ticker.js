@@ -49,7 +49,7 @@ async function startTicker(containerSelector, filePath, speed = 100) {
   showNextMessage();
 }
 
-const tickerSpeed = 180;
+const tickerSpeed = 220;
 
 const observer = new MutationObserver((mutations) => {
   for (const mutation of mutations) {
@@ -66,4 +66,19 @@ const observer = new MutationObserver((mutations) => {
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-const messages = [ `nothing` ]
+let messages = ["This is a placeholder text. If you're seeing this, the ticker failed. You must restart Nansenz in order for it to work properly."];
+fetch('https://artifyber.xyz/nonsense.txt')
+  .then(response => {
+    // Check if the request was successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    // Return the response body as text
+    return response.text();
+  })
+  .then(data => {
+    messages = data.split("\n");
+  })
+  .catch(error => {
+    console.error('Error fetching the file:', error);
+  });
