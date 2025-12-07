@@ -19,6 +19,9 @@ const SIMPLE_MODE_MENU_LOGO_SCALE = 1.5;
 
 const ORBIT_FPS = 20;
 
+// Links
+const eFolder = "/e";
+
 
 
 
@@ -648,7 +651,7 @@ function showContentFor(menu, sort = null) {
         linkIcon.title = 'Copy shareable link';
         linkIcon.addEventListener('click', (e) => {
             e.stopPropagation();
-            const link = `${location.origin}${location.pathname}?m=${menu.menuId}`;
+            const link = !eFolder ? `${location.origin}${location.pathname}?m=${menu.menuId}` : `${location.origin}${location.pathname}${eFolder}/${menu.menuId}`;
             navigator.clipboard.writeText(link);
             linkIcon.classList.add('copied');
             linkIcon.title = 'Copied!';
@@ -973,7 +976,7 @@ function focusCard(cardEl, label, menu = null) {
         `;
     }
     const realMenuQ = label.fromMenu || menu.menuId;
-    const shareURL = `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}`;
+    const shareURL = !eFolder ? `${location.origin}${location.pathname}?m=${realMenuQ}&i=${label.cardId}` : `${location.origin}${location.pathname}${eFolder}/${realMenuQ}/${label.cardId}`;;
     detailArea.innerHTML = `
         <h1>
             ${!label.blank ? `<div style="font-size: 20px;"><small><a data-open-card="${menu.menuId}">${menu.name}</a> /</small></div>${label.title}` : ''}
