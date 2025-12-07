@@ -19,6 +19,8 @@ function buildHTML({ title, desc, image, url }) {
 <head>
   <meta charset="utf-8">
 
+  <meta name="theme-color" content="#C894F9">
+  <meta property="og:type" content="website" />
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:image" content="${esc(image)}">
