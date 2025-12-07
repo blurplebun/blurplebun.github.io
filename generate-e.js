@@ -12,33 +12,43 @@ function esc(s) {
     return String(s || "").replace(/"/g, "&quot;");
 }
 
-// Builds the HTML with OG tags + redirect
-function buildHTML({ title, desc, image, url }) {
-    return `<!doctype html>
-    <html>
-        <head>
-            <meta charset="utf-8">
-
-            <meta name="theme-color" content="#C894F9">
-            <meta property="og:type" content="website">
-            <meta property="og:title" content="${esc(title)}">
-            <meta property="og:description" content="${esc(desc)}">
-            <meta property="og:image" content="https://artifyber.xyz/${esc(image)}">
-            <meta property="og:url" content="${esc(url)}">
-
-            <meta name="twitter:card" content="summary">
-            <meta name="twitter:title" content="${esc(title)}">
-            <meta name="twitter:description" content="${esc(desc)}">
-            <meta name="twitter:image" content="https://artifyber.xyz/${esc(image)}">
-        </head>
-
-        <body>
-            <script>
-                location.href = "${esc(url)}";
-            </script>
-        </body>
-    </html>`;
+function pickCardImage(label, menu) {
+    if (label.cReference) return label.cReference;
+    if (Array.isArray(label.cGallery) && label.cGallery.length > 0)
+        return label.cGallery[0];
+    if (label.image) return label.image;
+    if (menu.image) return menu.image;
+    return "";
 }
+
+// Builds the HTML with OG tags + redirect
+function buildHTML({ title, desc, image, url, twitterType = "summary" }) {
+    return `<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <meta name="theme-color" content="#C894F9">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="${esc(title)}">
+        <meta property="og:description" content="${esc(desc)}">
+        <meta property="og:image" content="https://artifyber.xyz/${esc(image)}">
+        <meta property="og:url" content="${esc(url)}">
+
+        <meta name="twitter:card" content="${twitterType}">
+        <meta name="twitter:title" content="${esc(title)}">
+        <meta name="twitter:description" content="${esc(desc)}">
+        <meta name="twitter:image" content="https://artifyber.xyz/${esc(image)}">
+    </head>
+
+    <body>
+        <script>
+            location.href = "${esc(url)}";
+        </script>
+    </body>
+</html>`;
+}
+
 
 menuItems.forEach(menu => {
     const menuId = menu.menuId;
@@ -64,18 +74,38 @@ menuItems.forEach(menu => {
     // CARDS
     if (menu.labels) {
         menu.labels.forEach(label => {
-            // Skip invalid or unclickable cards
             if (!label.cardId || label.url || label.unclickable) return;
 
             const cardId = label.cardId;
             const cardFolder = path.join(menuFolder, cardId);
             if (!fs.existsSync(cardFolder)) fs.mkdirSync(cardFolder);
 
+            // PICK BEST IMAGE
+            const chosenImage = pickCardImage(label, menu);
+
+            // CHARACTER DESCRIPTION
+            let desc = label.excerpt || "View card";
+            if (label.isCharacter) {
+                const cSpecies = label.cSpecies ? `Species: ${label.cSpecies}\n` : '';
+                const cPronouns = label.cPronouns ? `Pronouns: ${label.cPronouns}\n` : '';
+                const cGender = label.cGender ? `Gender: ${label.cGender}\n` : '';
+                const cSexuality = label.cSexuality ? `Sexuality: ${label.cSexuality}\n` : '';
+                const cNicknames = label.cNicknames ? `Nicknames: ${label.cNicknames}\n` : '';
+
+                desc = `${cSpecies}${cPronouns}${cGender}${cSexuality}${cNicknames}`.trim();
+            }
+
+            // TWITTER CARD TYPE
+            const twitterType = label.isCharacter
+                ? "summary_large_image"
+                : "summary";
+
             const cardHTML = buildHTML({
                 title: label.title || cardId,
-                desc: label.excerpt || "View card",
-                image: label.image || menu.image || "",
-                url: `/?m=${menuId}&i=${cardId}`
+                desc,
+                image: chosenImage,
+                url: `/?m=${menuId}&i=${cardId}`,
+                twitterType
             });
 
             fs.writeFileSync(path.join(cardFolder, "index.html"), cardHTML, "utf8");

@@ -20,7 +20,7 @@ const SIMPLE_MODE_MENU_LOGO_SCALE = 1.5;
 const ORBIT_FPS = 20;
 
 // Links
-const eFolder = "/e";
+const eFolder = "e";
 
 
 
