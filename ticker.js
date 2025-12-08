@@ -26,16 +26,24 @@ async function startTicker(containerSelector, filePath, speed = 100) {
     let index = Math.floor(Math.random() * messages.length);
     const timeiso = new Date().toISOString();
     const timestamp = Date.now();
-    const message = messages[index]
-      .replace('$AUTHOR$', 'Visitor')
-      .replace('$RAND10$', Math.floor(Math.random() * 10).toString())
-      .replace('$RAND100$', Math.floor(Math.random() * 100).toString())
-      .replace('$RAND1000$', Math.floor(Math.random() * 1000).toString())
-      .replace('$TIME$', timeiso)
-      .replace('$TIMESTAMP$', timestamp)
-      .replace('$CHANNEL$', 'Nonsense Galaxy')
-      .replace('$SERVER$', 'Nansenz')
-      .replace('$NONSENSETOTAL$', nonsenseLen.toString());
+    let message = '';
+    let m = messages[index]
+      .replaceAll('$AUTHOR$', 'Visitor')
+      .replaceAll('$TIME$', timeiso)
+      .replaceAll('$TIMESTAMP$', timestamp)
+      .replaceAll('$CHANNEL$', 'Nonsense Galaxy')
+      .replaceAll('$SERVER$', 'Nansenz')
+      .replaceAll('$NONSENSETOTAL$', nonsenseLen.toString());
+    for (occ = 0; occ < (m.match(/RAND1000/g) || []).length * 100; occ++) {
+      m = m.replace('$RAND1000$', Math.floor(Math.random() * 1000).toString());
+    };
+    for (occ = 0; occ < (m.match(/RAND100/g) || []).length * 100; occ++) {
+      m = m.replace('$RAND100$', Math.floor(Math.random() * 100).toString());
+    };
+    for (occ = 0; occ < (m.match(/RAND10/g) || []).length * 100; occ++) {
+      m = m.replace('$RAND10$', Math.floor(Math.random() * 10).toString());
+    };
+    message = m;
     textElem.textContent = message;
 
     await new Promise(r => requestAnimationFrame(r));
@@ -78,7 +86,7 @@ const observer = new MutationObserver((mutations) => {
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-let messages = ["Hello, $AUTHOR$ number $RAND1000$. This is a placeholder text. If you're seeing this, the ticker failed. You must restart Nansenz in order for it to work properly. - This message was sent at $TIME$"];
+let messages = ["Hello, $AUTHOR$ number $RAND10$$RAND10$$RAND10$. This is a placeholder text. If you're seeing this, the ticker failed. You must restart Nansenz in order for it to work properly. You can do this by simply clicking the back button or hit the ESCAPE key and reopen this card. Once you do, the ticker should start fetching data straight from $CHANNEL$ into your device and serves you with our highest quality nonsense. We apologize for the inconvenience. - This message was sent at $TIME$"];
 fetch('https://artifyber.xyz/nonsense.txt')
   .then(response => {
     // Check if the request was successful
