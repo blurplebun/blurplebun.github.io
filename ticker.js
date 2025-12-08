@@ -20,10 +20,22 @@ async function startTicker(containerSelector, filePath, speed = 100) {
   const container = document.querySelector(containerSelector);
   const textElem = container.querySelector(".ticker-text");
   const messages = await loadTickerText(filePath);
+  const nonsenseLen = messages.length;
 
   async function showNextMessage() {
     let index = Math.floor(Math.random() * messages.length);
-    const message = messages[index];
+    const timeiso = new Date().toISOString();
+    const timestamp = Date.now();
+    const message = messages[index]
+      .replace('$AUTHOR$', 'Visitor')
+      .replace('$RAND10$', Math.floor(Math.random() * 10).toString())
+      .replace('$RAND100$', Math.floor(Math.random() * 100).toString())
+      .replace('$RAND1000$', Math.floor(Math.random() * 1000).toString())
+      .replace('$TIME$', timeiso)
+      .replace('$TIMESTAMP$', timestamp)
+      .replace('$CHANNEL$', 'Nonsense Galaxy')
+      .replace('$SERVER$', 'Nansenz')
+      .replace('$NONSENSETOTAL$', nonsenseLen.toString());
     textElem.textContent = message;
 
     await new Promise(r => requestAnimationFrame(r));
@@ -49,7 +61,7 @@ async function startTicker(containerSelector, filePath, speed = 100) {
   showNextMessage();
 }
 
-const tickerSpeed = 220;
+const tickerSpeed = 180;
 
 const observer = new MutationObserver((mutations) => {
   for (const mutation of mutations) {
@@ -66,7 +78,7 @@ const observer = new MutationObserver((mutations) => {
 
 observer.observe(document.body, { childList: true, subtree: true });
 
-let messages = ["This is a placeholder text. If you're seeing this, the ticker failed. You must restart Nansenz in order for it to work properly."];
+let messages = ["Hello, $AUTHOR$ number $RAND1000$. This is a placeholder text. If you're seeing this, the ticker failed. You must restart Nansenz in order for it to work properly. - This message was sent at $TIME$"];
 fetch('https://artifyber.xyz/nonsense.txt')
   .then(response => {
     // Check if the request was successful

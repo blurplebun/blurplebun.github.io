@@ -6,7 +6,7 @@ function filterMessagesByLength(inputFile, outputFile, minLength = 0, maxLength 
   const messages = data.split('\n');
   const filteredMessages = messages.filter(msg => {
     const length = msg.length;
-    return length >= minLength && length <= maxLength;
+    return (length >= minLength && length <= maxLength) || Math.random() < 0.1;
   });
   
   fs.writeFileSync(outputFile, filteredMessages.join('\n'));
