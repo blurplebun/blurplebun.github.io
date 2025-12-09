@@ -1339,6 +1339,22 @@ function playSound(soundId, volume = 1) {
 
 
 
+let lastSeen;
+let bgmLoop = function (){
+    lastSeen = Date.now();
+    setTimeout(bgmLoop, 50);
+};
+bgmLoop();
+
+let music = document.getElementById('bgm');
+window.addEventListener('blur', function() {
+    music.volume = 0;
+});
+
+window.addEventListener('focus', function() {
+    music.volume = 0.25;
+});
+
 /* --------------------------
     Search
     -------------------------- */
