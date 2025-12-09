@@ -71,6 +71,15 @@
         </div>
 
         <div id="uiPanelBottom">
+            <!-- play bgm button -->
+            <button
+                id="playBgmBtn"
+                class="playBgm-btn ui-btn visible"
+                aria-hidden="true"
+                title="Play Background Music">
+                <span>‎ ▶‎ </span>
+            </button>
+
             <!-- center view button -->
             <button
                 id="centerBtn"
@@ -138,9 +147,14 @@
         </div>
     </div>
 
-    <!-- Audios
-    <audio id="sfxClick" src="audios/click.wav" preload="auto"></audio>
- -->
+
+    <audio id="sfxClick" src="audios/sfxClick.wav" preload="auto"></audio>
+    <audio id="sfxLink" src="audios/sfxLink.wav" preload="auto"></audio>
+    <audio id="sfxPageClose" src="audios/sfxPageClose.wav" preload="auto"></audio>
+    <audio id="sfxPageOpen" src="audios/sfxPageOpen.wav" preload="auto"></audio>
+    <audio id="sfxSwap" src="audios/sfxSwap.wav" preload="auto"></audio>
+    <audio id="sfxWarp" src="audios/sfxWarp.wav" preload="auto"></audio>
+    <audio id="bgm" src="audios/bgm.mp3" preload="auto" loop="loop"></audio>
     <script src="data.js"></script>
     <script src="card-scripts.js"></script>
     <script src="splashtext.js"></script>

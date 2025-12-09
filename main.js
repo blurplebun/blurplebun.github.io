@@ -7,8 +7,15 @@ const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/'
 const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to true
 
 // Sound control
-const SFX_MASTER_VOL = 1;
-const SFX_CLICK_VOL = 0.4;
+let MASTER_VOL = 1;
+let BGM_MASTER_VOL = 0.5;
+let SFX_MASTER_VOL = 0.6;
+let SFX_CLICK_VOL = 0.4;
+let SFX_LINK_VOL = 0.3;
+let SFX_PAGE_CLOSE_VOL = 0.5;
+let SFX_PAGE_OPEN_VOL = 0.5;
+let SFX_SWAP_VOL = 0.4;
+let SFX_WARP_VOL = 0.4;
 
 // If you prefer to always use an orbit-less interface, set this to true
 let SIMPLE_MODE = getSimpleMode();
@@ -224,7 +231,10 @@ function updateCenterButtonVisibility() {
 }
 
 window.addEventListener('resize', snapCameraToCenter);
-centerBtn.addEventListener('click', snapCameraToCenter);
+centerBtn.addEventListener('click', (e) => {
+    snapCameraToCenter();
+    playSound('sfxClick', SFX_CLICK_VOL);
+});
 
 // Helper function to check if any input element is focused
 function isInputFocused() {
@@ -516,6 +526,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
         history.pushState({}, '', `?m=${menu.menuId}`);
+        playSound('sfxSwap', SFX_SWAP_VOL);
         return;
     }
 
@@ -532,6 +543,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
 
         openCardById(targetMenu.menuId, targetLabel.cardId, true)
         vizAdd(rerollBtn);
+        playSound('sfxSwap', SFX_SWAP_VOL);
         return;
     }
 
@@ -569,6 +581,8 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
             history.pushState({}, '', `?m=${menu.menuId}`);
         }, parseInt(speed));
     });
+
+    playSound('sfxWarp', SFX_WARP_VOL);
 }
 
 
@@ -692,6 +706,7 @@ function showContentFor(menu, sort = null) {
                 linkIcon.classList.remove('copied');
                 linkIcon.title = 'Copy shareable link';
             }, 1500);
+            playSound('sfxLink', SFX_LINK_VOL);
         });
         contentTitle.appendChild(linkIcon);
     }
@@ -842,7 +857,6 @@ function renderContent(menu, sort = null) {
                         c.addEventListener('click', (e) => {
                             e.stopPropagation();
                             openMenuById(lbl.linkId, true);
-                            playSfx('sfxClick', SFX_CLICK_VOL);
                         });
                     }
                     section.appendChild(c);
@@ -901,7 +915,6 @@ function renderContent(menu, sort = null) {
                             : menu;
 
                         focusCard(c, lbl, realMenu);
-                        playSfx('sfxClick', SFX_CLICK_VOL);
                     });
                 }
 
@@ -1029,6 +1042,7 @@ function focusCard(cardEl, label, menu = null) {
         icon.classList.add('copied');
         icon.title = 'Copied!';
         setTimeout(() => { icon.classList.remove('copied'); icon.title = 'Copy shareable link'; }, 1500);
+        playSound('sfxLink', SFX_LINK_VOL);
     });
     history.pushState({}, '', `?m=${realMenuQ}&i=${label.cardId}`);
     initLazyLoad();
@@ -1051,6 +1065,8 @@ function focusCard(cardEl, label, menu = null) {
     else backBtn.querySelector('span').textContent = 'Card Selector';
     initLazyLoad();
     detailArea.scrollTop = 0;
+
+    playSound('sfxSwap', SFX_SWAP_VOL);
 }
 
 
@@ -1121,10 +1137,12 @@ document.addEventListener('click', (e) => {
     overlay.innerHTML = `<img src="${img.src}" alt="preview" ${caption ? 'data-hasCaption=true' : ''}>${caption}${subcaption}`;
     vizAdd(overlay);
     disableZoom();
+    playSound('sfxPageOpen', SFX_PAGE_OPEN_VOL);
 
     overlay.addEventListener('click', () => {
         vizRemove(overlay);
         enableZoom();
+        playSound('sfxPageClose', SFX_PAGE_CLOSE_VOL);
     }, { once: true });
 });
 
@@ -1302,22 +1320,21 @@ function createStarfield(starCount = 200) {
     Audios
     --------------------------*/
 
-// ui button clicks
-document.addEventListener('DOMContentLoaded', (e) => {
-    const uiBtns = $$('.ui-btn').concat($$('.card'));
-    uiBtns.forEach(b => {
-        b.addEventListener('click', (e) => {
-            playSfx('sfxClick', SFX_CLICK_VOL);
-        })
-    })
+// button clicks : sfx
+document.addEventListener('click', (e) => {
+    if (e.target.closest('#detailArea button')) {
+        playSound('sfxClick', SFX_CLICK_VOL);
+    }
 });
 
-// sfx: click
-function playSfx(soundId, volume = 1) {
-    sfx = document.getElementById(soundId);
-    if (!sfx) return;
-    sfx.volume = volume * SFX_MASTER_VOL;
-    sfx.play();
+// play sfx
+function playSound(soundId, volume = 1) {
+    s = document.getElementById(soundId);
+    if (!s) return;
+    s.pause();
+    s.currentTime = 0;
+    s.volume = soundId === 'bgm' ? volume * MASTER_VOL * BGM_MASTER_VOL : volume * MASTER_VOL * SFX_MASTER_VOL ;
+    s.play();
 }
 
 
@@ -1480,22 +1497,43 @@ searchBtn?.addEventListener('click', () => {
 });
 
 function openSearchBox() {
+    playSound('sfxClick', SFX_CLICK_VOL);
     searchBox.showModal();
     vizRemove(searchBtn);
 }
 
 searchBox.addEventListener('close', () => {
-    if (searchText.value.trim() !== '') search();
+    if (searchText.value.trim() !== '') {
+        search();
+    } else {
+        playSound('sfxClick', SFX_CLICK_VOL);
+    };
 });
 
 searchText.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') { e.preventDefault(); searchBox.close(); }
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        searchBox.close();
+    }
 });
 
 cancelSearch.addEventListener('click', () => {
     searchText.value = '';
     searchBox.close();
     vizAdd(searchBtn);
+});
+
+// button to play bgm
+
+let BGM_PLAYED = false;
+const playBgmBtn = document.getElementById('playBgmBtn')
+playBgmBtn.addEventListener('click', (e) => {
+    if (!BGM_PLAYED) {
+        playSound('sfxClick', SFX_CLICK_VOL);
+        playSound('bgm', BGM_MASTER_VOL);
+        vizRemove(playBgmBtn);
+        BGM_PLAYED = true;
+    }
 });
 
 
@@ -1548,6 +1586,7 @@ function toggleUIs() {
     } else {
         showUIs();
     }
+    playSound('sfxClick', SFX_CLICK_VOL);
 }
 
 // Toggle function for the hide button
@@ -1620,6 +1659,7 @@ function toggleViewMode() {
 if (switchBtn) {
     updateswitchBtnText();
     switchBtn?.addEventListener('click', (e) => {
+        playSound('sfxClick', SFX_CLICK_VOL);
         toggleViewMode();
         // openMenuById('info', true);
     });
@@ -1763,6 +1803,7 @@ function goBack() {
         } else {
             backBtn.querySelector('span').textContent = SIMPLE_MODE ? 'Close' : 'Menu';
         }
+        playSound('sfxClick', SFX_CLICK_VOL);
         return;
     }
 
@@ -1791,6 +1832,7 @@ function goBack() {
             openSingle = false;
             vizRemove(rerollBtn);
         }
+        playSound('sfxClick', SFX_CLICK_VOL);
         return;
     }
 }
@@ -1841,6 +1883,7 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             vizRemove(hideBtn);
             vizRemove(centerBtn);
             vizRemove(switchBtn);
+            if (!BGM_PLAYED) vizRemove(playBgmBtn);
             menuStage.classList.add('blur');
             starfield?.classList.add('blur');
 
@@ -1855,6 +1898,7 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             vizAdd(searchBtn);
             vizAdd(hideBtn);
             vizAdd(switchBtn);
+            if (!BGM_PLAYED) vizAdd(playBgmBtn);
             updateCenterButtonVisibility();
             menuStage.classList.remove('blur');
             starfield?.classList.remove('blur');
