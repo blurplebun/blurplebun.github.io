@@ -8,8 +8,8 @@ const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set
 
 // Sound control
 let MASTER_VOL = 1;
-let BGM_MASTER_VOL = 0.5;
-let SFX_MASTER_VOL = 0.6;
+let BGM_MASTER_VOL = 0.75;
+let SFX_MASTER_VOL = 1;
 let SFX_CLICK_VOL = 0.4;
 let SFX_LINK_VOL = 0.3;
 let SFX_PAGE_CLOSE_VOL = 0.5;
@@ -73,6 +73,68 @@ const starfield = $('.starfield');
 // Make sure menuStage initial transform uses CSS var scale
 menuStage.style.transition = 'none';
 menuStage.style.transform = `translate(0px, 0px) scale(${getCSSVar('--menu-stage-scale')})`;
+
+
+
+
+// --------------------------
+// BGM SYSTEM
+// --------------------------
+
+// Declare all BGM elements
+const bgm = {
+    fyberverse: document.getElementById("bgmFyberverse"),
+    deltadim: document.getElementById("bgmDeltadim"),
+    floriverse: document.getElementById("bgmFloriverse"),
+    digirel: document.getElementById("bgmDigirel"),
+    nansenz: document.getElementById("bgmNansenz"),
+    hizen: document.getElementById("bgmHizen"),
+    nadir: document.getElementById("bgmNadir"),
+};
+
+const menuToBgm = {
+    deltadim: "deltadim",
+    floriverse: "floriverse",
+    digirel: "digirel",
+    nansenz: "nansenz",
+    hizen: "hizen",
+    nadir: "nadir",
+};
+
+const silentMenus = new Set([
+    "yolkspocketdimension",
+]);
+
+// Currently active background music
+let currentBgm = "fyberverse";
+let bgmEnabled = false;
+
+// Fade helper
+function fadeVolume(audio, t, speed = 0.02) {
+    const target = t * BGM_MASTER_VOL;
+    if (!audio) return;
+    clearInterval(audio._fadeInterval);
+    audio._fadeInterval = setInterval(() => {
+        if (Math.abs(audio.volume - target) < 0.02) {
+            audio.volume = target;
+            clearInterval(audio._fadeInterval);
+        } else {
+            audio.volume += (audio.volume < target ? speed : -speed);
+        }
+    }, 50);
+}
+
+// Start all BGMs with only fyberverse audible
+function startAllBgm() {
+    Object.entries(bgm).forEach(([key, audio]) => {
+        audio.volume = (key === "fyberverse" ? 1 : 0) * BGM_MASTER_VOL;
+        audio.play().catch(() => { });
+    });
+    currentBgm = "fyberverse";
+    bgmEnabled = true;
+}
+
+
 
 
 
@@ -523,6 +585,28 @@ let openSingle = false;
 let isTransitioning = false;
 function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     isTransitioning = true;
+
+    // BGM transition when opening menu
+    if (bgmEnabled) {
+        const rootId = menu.menuId.split("-")[0];
+        const newBgm = menuToBgm[rootId];
+
+        if (silentMenus.has(rootId)) {
+            // Menus that are set to be silent
+            fadeVolume(bgm[currentBgm], 0);
+        } else if (newBgm && newBgm !== currentBgm) {
+            // Menus with new BGM
+            fadeVolume(bgm[currentBgm], 0);
+            fadeVolume(bgm[newBgm], 1);
+
+            currentBgm = newBgm;
+        } else if (!newBgm) {
+            // Menus with no specific BGM = return to fyberverse
+            fadeVolume(bgm[currentBgm], 0);
+            fadeVolume(bgm.fyberverse, 1);
+            currentBgm = "fyberverse";
+        }
+    }
     if (menu.hidden || !buttonEl || skipAnimation) {
         showContentFor(menu);
         history.pushState({}, '', `?m=${menu.menuId}`);
@@ -549,7 +633,6 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
 
     // compute center for expander origin
     const speed = getCSSVar('--overlay-transition');
-    console.log(speed)
     const rect = buttonEl.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
@@ -1333,26 +1416,31 @@ function playSound(soundId, volume = 1) {
     if (!s) return;
     s.pause();
     s.currentTime = 0;
-    s.volume = soundId === 'bgm' ? volume * MASTER_VOL * BGM_MASTER_VOL : volume * MASTER_VOL * SFX_MASTER_VOL ;
+    s.volume = soundId.includes('bgm') ? volume * MASTER_VOL * BGM_MASTER_VOL : volume * MASTER_VOL * SFX_MASTER_VOL;
     s.play();
 }
 
+const bgmList = Object.values(bgm);
 
-
+// Background tab detection
 let lastSeen;
-let bgmLoop = function (){
+let bgmLoop = function () {
     lastSeen = Date.now();
     setTimeout(bgmLoop, 50);
 };
 bgmLoop();
 
-let music = document.getElementById('bgm');
-window.addEventListener('blur', function() {
-    music.volume = 0;
+// Pause all BGM on tab blur
+window.addEventListener('blur', () => {
+    bgmList.forEach(audio => audio.pause());
 });
 
-window.addEventListener('focus', function() {
-    music.volume = 0.25;
+// Resume all BGM on tab focus
+window.addEventListener('focus', () => {
+    if (!bgmEnabled) return;
+    bgmList.forEach(audio => {
+        audio.play().catch(() => {});
+    });
 });
 
 /* --------------------------
@@ -1540,13 +1628,19 @@ cancelSearch.addEventListener('click', () => {
 });
 
 // button to play bgm
-
 let BGM_PLAYED = false;
-const playBgmBtn = document.getElementById('playBgmBtn')
+const playBgmBtn = document.getElementById('playBgmBtn');
+playBgmBtn.addEventListener("click", () => {
+    if (!bgmEnabled) {
+        startAllBgm();
+    }
+    playSound("sfxClick", SFX_CLICK_VOL);
+});
+
 playBgmBtn.addEventListener('click', (e) => {
     if (!BGM_PLAYED) {
         playSound('sfxClick', SFX_CLICK_VOL);
-        playSound('bgm', BGM_MASTER_VOL);
+        playSound('bgmFyberverse', BGM_MASTER_VOL);
         vizRemove(playBgmBtn);
         BGM_PLAYED = true;
     }
