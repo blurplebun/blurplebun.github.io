@@ -1036,7 +1036,8 @@ a[data-open-card] {
 }
 
 #searchForm button,
-#detailArea button {
+#detailArea button,
+.card button {
     background: var(--form-button-bg);
     color: var(--white);
     border: none;
@@ -1049,12 +1050,17 @@ a[data-open-card] {
     box-shadow: 0 0 12px var(--form-button-shadow);
 }
 
+.card button {
+    margin: 4px;
+}
+
 #searchForm button:hover {
     background: var(--accent);
     transform: translateY(-2px);
 }
 
-#detailArea button:hover {
+#detailArea button:hover,
+.card button:hover {
     transform: scale(1.05);
 }
 

@@ -4,7 +4,7 @@
 
 // Metadata
 const lastUpdated = 'December 11th, 2025';
-const version = '0.4.3';
+const version = '0.4.4';
 
 // Main menu data array
 menuItems = [
@@ -2912,6 +2912,43 @@ menuItems = [
         ]
     },
 
+    {
+        // Settings
+        menuId: 'settings',
+        name: 'Settings',
+        showName: true,
+        color: 'var(--color-14)',
+        orbit: 4,
+        scale: 1.5,
+        hidden: true,
+        invisible: true,
+        labels: [
+            {
+                cardId: 'audioSettings',
+                title: `Audio`,
+                excerpt: `
+                        <button type="button" id="toggleSFX">Mute SFX</button>
+                        <button type="button" id="toggleMusic">Enable Music</button>
+                `,
+                unclickable: true,
+                detail:
+                    ``,
+                image: ''
+            },
+            {
+                cardId: 'modeSwitch',
+                title: `Layout`,
+                excerpt: `
+                        <button type="button" id="modeSwitch">Switch Layout</button>
+                `,
+                unclickable: true,
+                detail:
+                    ``,
+                image: ''
+            },
+        ]
+    },
+
     // Misc
     {
         menuId: 'loopTest',
@@ -3021,8 +3058,8 @@ orbitData = [
     },
     {
         orbit: 4,
-        name: "Portfolio",
-        desc: "Creator of Fyberverse",
+        name: "Others",
+        desc: "Miscellanous",
     },
     {
         orbit: 127,

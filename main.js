@@ -7,15 +7,19 @@ const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/'
 const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to true
 
 // Sound control
-let MASTER_VOL = 1;
-let BGM_MASTER_VOL = 0.75;
-let SFX_MASTER_VOL = 1;
+const INIT_MASTER_VOL = 1;
+const INIT_BGM_MASTER_VOL = 0.75;
+const INIT_SFX_MASTER_VOL = 1;
 let SFX_CLICK_VOL = 0.4;
 let SFX_LINK_VOL = 0.3;
 let SFX_PAGE_CLOSE_VOL = 0.5;
 let SFX_PAGE_OPEN_VOL = 0.5;
 let SFX_SWAP_VOL = 0.4;
 let SFX_WARP_VOL = 0.4;
+
+let MASTER_VOL = INIT_MASTER_VOL;
+let BGM_MASTER_VOL = INIT_BGM_MASTER_VOL;
+let SFX_MASTER_VOL = INIT_SFX_MASTER_VOL;
 
 // If you prefer to always use an orbit-less interface, set this to true
 let SIMPLE_MODE = getSimpleMode();
@@ -114,13 +118,28 @@ function fadeVolume(audio, t, speed = 0.02) {
     const target = t * BGM_MASTER_VOL;
     if (!audio) return;
     clearInterval(audio._fadeInterval);
+    
+    // Clamp speed to prevent overshooting
+    const effectiveSpeed = Math.min(speed, 1); // Cap at 0.1 max
+    
     audio._fadeInterval = setInterval(() => {
-        if (Math.abs(audio.volume - target) < 0.02) {
+        const currentVol = audio.volume;
+        const diff = target - currentVol;
+        // If we're close enough to target, snap to it
+        if (Math.abs(diff) < 0.01) {
             audio.volume = target;
             clearInterval(audio._fadeInterval);
-        } else {
-            audio.volume += (audio.volume < target ? speed : -speed);
+            return;
         }
+        // Calculate step size based on remaining difference
+        let step = diff * 0.1;
+        if (Math.abs(step) > effectiveSpeed) {
+            step = (diff > 0 ? effectiveSpeed : -effectiveSpeed);
+        }
+
+        audio.volume = currentVol + step;
+        audio.volume = Math.max(0, Math.min(target > currentVol ? target : 1, audio.volume));
+        
     }, 50);
 }
 
@@ -132,6 +151,8 @@ function startAllBgm() {
     });
     currentBgm = "fyberverse";
     bgmEnabled = true;
+    vizRemove(playBgmBtn);
+    updateSettingsButtonText('toggleMusic', 'Mute Music');
 }
 
 
@@ -587,7 +608,7 @@ function openMenu(menu, buttonEl, { skipAnimation = false } = {}) {
     isTransitioning = true;
 
     // BGM transition when opening menu
-    if (bgmEnabled) {
+    if (bgmEnabled && !bgmStop) {
         const rootId = menu.menuId.split("-")[0];
         const newBgm = menuToBgm[rootId];
 
@@ -977,6 +998,9 @@ function renderContent(menu, sort = null) {
 
                 // Character cards
                 if (isCharacter(lbl)) c.dataset.character = 'true';
+
+                // Handle card scripts
+                cardScriptHandler(menu, lbl);
 
                 // optional webinfo counters
                 const totalCardsCounter = c.querySelector('#totalCardsCounter');
@@ -1405,7 +1429,7 @@ function createStarfield(starCount = 200) {
 
 // button clicks : sfx
 document.addEventListener('click', (e) => {
-    if (e.target.closest('#detailArea button')) {
+    if (e.target.closest('#detailArea button') || e.target.closest('.card .excerpt button')) {
         playSound('sfxClick', SFX_CLICK_VOL);
     }
 });
@@ -1417,7 +1441,7 @@ function playSound(soundId, volume = 1) {
     s.pause();
     s.currentTime = 0;
     s.volume = soundId.includes('bgm') ? volume * MASTER_VOL * BGM_MASTER_VOL : volume * MASTER_VOL * SFX_MASTER_VOL;
-    s.play();
+    s.play().catch(() => {});
 }
 
 const bgmList = Object.values(bgm);
@@ -1628,22 +1652,12 @@ cancelSearch.addEventListener('click', () => {
 });
 
 // button to play bgm
-let BGM_PLAYED = false;
 const playBgmBtn = document.getElementById('playBgmBtn');
 playBgmBtn.addEventListener("click", () => {
     if (!bgmEnabled) {
         startAllBgm();
     }
     playSound("sfxClick", SFX_CLICK_VOL);
-});
-
-playBgmBtn.addEventListener('click', (e) => {
-    if (!BGM_PLAYED) {
-        playSound('sfxClick', SFX_CLICK_VOL);
-        playSound('bgmFyberverse', BGM_MASTER_VOL);
-        vizRemove(playBgmBtn);
-        BGM_PLAYED = true;
-    }
 });
 
 
@@ -1747,18 +1761,13 @@ function setSimpleMode(value) {
     return boolValue;
 }
 
-const switchBtn = document.getElementById('switchBtn');
 
-function updateswitchBtnText() {
-    const span = switchBtn.querySelector('span');
-    span.textContent = SIMPLE_MODE ? 'Orbit Mode' : 'Simple Mode';
-}
+const settingsBtn = document.getElementById('settingsBtn');
 
 function toggleViewMode() {
     const newMode = !SIMPLE_MODE;
     if (confirm(`Switch to ${newMode ? 'Simple Mode' : 'Orbit Mode'}? Page will be reloaded.`)) {
         setSimpleMode(newMode);
-        updateswitchBtnText();
         setTimeout(() => {
             window.location.reload();
         }, 500);
@@ -1766,14 +1775,12 @@ function toggleViewMode() {
 }
 
 // Initialize mode toggle
-if (switchBtn) {
-    updateswitchBtnText();
-    switchBtn?.addEventListener('click', (e) => {
-        playSound('sfxClick', SFX_CLICK_VOL);
-        toggleViewMode();
-        // openMenuById('info', true);
+if (settingsBtn) {
+    settingsBtn?.addEventListener('click', (e) => {
+        openMenuById('settings', true);
     });
 }
+
 
 if (SIMPLE_MODE) $('.splash-text-info').dataset.infodesc = "(click to open main menu)";
 
@@ -1992,8 +1999,8 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             vizRemove(searchBtn);
             vizRemove(hideBtn);
             vizRemove(centerBtn);
-            vizRemove(switchBtn);
-            if (!BGM_PLAYED) vizRemove(playBgmBtn);
+            vizRemove(settingsBtn);
+            if (!bgmEnabled) vizRemove(playBgmBtn);
             menuStage.classList.add('blur');
             starfield?.classList.add('blur');
 
@@ -2007,8 +2014,8 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
 
             vizAdd(searchBtn);
             vizAdd(hideBtn);
-            vizAdd(switchBtn);
-            if (!BGM_PLAYED) vizAdd(playBgmBtn);
+            vizAdd(settingsBtn);
+            if (!bgmEnabled) vizAdd(playBgmBtn);
             updateCenterButtonVisibility();
             menuStage.classList.remove('blur');
             starfield?.classList.remove('blur');
