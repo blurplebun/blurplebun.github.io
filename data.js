@@ -2927,7 +2927,7 @@ menuItems = [
                 cardId: 'audioSettings',
                 title: `Audio`,
                 excerpt: `
-                        <button type="button" id="toggleSFX">Mute SFX</button>
+                        <button type="button" id="toggleSFX">SFX: On</button>
                         <button type="button" id="toggleMusic">Enable Music</button>
                 `,
                 unclickable: true,

@@ -9,14 +9,14 @@ function toggleSFXVol() {
     if (!sfxIsMute) {
         SFX_MASTER_VOL = 0;
         sfxIsMute = true;
-        toggleSFX.textContent = "Play SFX";
-        updateSettingsButtonText('toggleSFX', 'Play SFX');
+        toggleSFX.textContent = "SFX: Off";
+        updateSettingsButtonText('toggleSFX', 'SFX: Off');
         return;
     } else {
         SFX_MASTER_VOL = INIT_SFX_MASTER_VOL;
         sfxIsMute = false;
-        toggleSFX.textContent = "Mute SFX";
-        updateSettingsButtonText('toggleSFX', 'Mute SFX');
+        toggleSFX.textContent = "SFX: On";
+        updateSettingsButtonText('toggleSFX', 'SFX: On');
         return;
     }
 }
@@ -26,20 +26,20 @@ function toggleBGM() {
         if (!bgmStop) {
             fadeVolume(bgm[currentBgm], 0, 1);
             bgmStop = true;
-            toggleMusic.textContent = "Play Music";
-            updateSettingsButtonText('toggleMusic', 'Play Music');
+            toggleMusic.textContent = "Music: Off";
+            updateSettingsButtonText('toggleMusic', 'Music: Off');
             return;
         } else {
             fadeVolume(bgm[currentBgm], 1, 1);
             bgmStop = false;
-            toggleMusic.textContent = "Mute Music";
-            updateSettingsButtonText('toggleMusic', 'Mute Music');
+            toggleMusic.textContent = "Music: On";
+            updateSettingsButtonText('toggleMusic', 'Music: On');
             return;
         }
     } else {
         startAllBgm();
-        toggleMusic.textContent = "Mute Music";
-        updateSettingsButtonText('toggleMusic', 'Mute Music');
+        toggleMusic.textContent = "Music: On";
+        updateSettingsButtonText('toggleMusic', 'Music: On');
     }
 }
 
