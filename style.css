@@ -676,7 +676,7 @@ body {
         width: calc(80px * var(--card-scale));
         height: calc(80px * var(--card-scale));
         position: absolute;
-        right: calc(-50% * var(--card-scale));
+        right: calc(-50% + var(--card-scale)*10%);
         top: 50%;
         transform: translateY(-50%);
         z-index: 2;
