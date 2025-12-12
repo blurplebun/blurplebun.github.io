@@ -528,6 +528,7 @@ body {
     width: 100%;
     min-height: calc(50px * var(--card-scale));
     padding: calc(8px * var(--card-scale));
+    border-radius: calc(5px * var(--card-scale) * var(--rounding));
     box-sizing: border-box;
     flex: 0 0 auto;
     max-height: calc(60px * var(--card-scale));
