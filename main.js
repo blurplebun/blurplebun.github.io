@@ -19,7 +19,7 @@ let SFX_WARP_VOL = 0.4;
 
 let MASTER_VOL = INIT_MASTER_VOL;
 let BGM_MASTER_VOL = INIT_BGM_MASTER_VOL;
-let SFX_MASTER_VOL = INIT_SFX_MASTER_VOL;
+let SFX_MASTER_VOL = 0;
 
 // If you prefer to always use an orbit-less interface, set this to true
 let SIMPLE_MODE = getSimpleMode();
@@ -2116,3 +2116,9 @@ if (params.get('m') === 'search') history.pushState({}, '', location.pathname);
 
 // Expose small console helpers (preserve original)
 window.prototypeMenu = { menuItems, openMenu, showContentFor, goBack };
+
+// asset loading
+window.addEventListener('load', (e) => {
+    const assetLoad = document.getElementById("assetLoad");
+    assetLoad.classList.remove('visible');
+});
