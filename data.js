@@ -713,6 +713,7 @@ menuItems = [
                     'images/c/artiferret-c.png',
                     'images/c/artiferret-c2.png',
                     'images/c/artiferret-c3.png',
+                    'images/c/artiferret-c4.png',
                 ],
                 
                 image: 'images/i/artiferret-i.png',
