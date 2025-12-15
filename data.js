@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'December 13th, 2025';
+const lastUpdated = 'December 15th, 2025';
 const version = '0.4.5';
 
 // Main menu data array
@@ -528,11 +528,12 @@ menuItems = [
                 cAddOns: 'S/O: <a data-open-card="deltadim-teksui:gift">Gift</a>',
                 cReference: 'images/r/card-r.png',
                 cGallery: [
-                    'images/c/card-c5.png',
                     'images/c/card-c.png',
                     'images/c/card-c2.png',
                     'images/c/card-c3.png',
                     'images/c/card-c4.png',
+                    'images/c/card-c5.png',
+                    'images/c/card-c6.png',
                 ],
                 
                 image: 'images/i/card-i.png',
@@ -1099,6 +1100,26 @@ menuItems = [
                 image: 'images/i/artiusagi-i.png',
             },
             {
+                cardId: 'artiproto',
+                title: 'Port',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Protogen',
+                cPronouns: 'He/They/It',
+                cGender: 'Male',
+                cSexuality: 'Asexual',
+                cNicknames: 'Proto',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artiproto-c.png',
+                ],
+                
+                image: 'images/i/artiproto-i.png',
+            },
+            {
                 cardId: 'ellie',
                 title: 'Ellie',
                 excerpt: '',
@@ -1211,11 +1232,12 @@ menuItems = [
                 cAddOns: '',
                 cReference: '',
                 cGallery: [
-                    'images/c/gamma-c5.png',
                     'images/c/gamma-c.png',
                     'images/c/gamma-c2.png',
                     'images/c/gamma-c3.png',
                     'images/c/gamma-c4.png',
+                    'images/c/gamma-c5.png',
+                    'images/c/gamma-c6.png',
                 ],
                 
                 image: 'images/i/gamma-i.png',
@@ -1352,7 +1374,7 @@ menuItems = [
                     `
                     Floriverse is a universe of flories, sentient floral creatures, with Klorofil as its main setting, a planet similar to Earth where the main characters live.<br>
                     <br>
-                    Anyone that enters Floriverse instantly transforms into a florie. However, flories who leave Floriverse retains their form.<br>
+                    Anyone that enters Floriverse instantly transforms into a florie. However, flories who leave Floriverse retain their form.<br>
                     <h4>What's in this page</h4>
                     This page list all flories in separate categories based on the Floriverse album they associate with, as well as uncategorized ones.<br>`,
                 image: 'icons/floriverse.png'
@@ -1577,14 +1599,6 @@ menuItems = [
                 <a data-open-card="info:ocrules">Character rules</a>
                     `,
                 image: 'images/fve-i.png'
-            },
-            {
-                cardId: 'fvzeta',
-                title: 'Floriverse : Zeta',
-                excerpt: 'Album',
-                detail:
-                    ``,
-                image: 'images/fvz-i.png'
             },
             {
                 title: 'Characters',
@@ -1874,6 +1888,26 @@ menuItems = [
                 image: 'images/i/placeholder-i.png',
             },
             {
+                cardId: 'usbun',
+                title: 'USBun',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'USB-Rabbit',
+                cPronouns: 'He/She',
+                cGender: 'Intersex',
+                cSexuality: 'Pansexual',
+                cNicknames: 'Universal Serial Bunny',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/usbun-c.png',
+                ],
+                
+                image: 'images/i/usbun-i.png',
+            },
+            {
                 cardId: 'sakura',
                 title: 'Sakura',
                 excerpt: '',
@@ -2003,6 +2037,24 @@ menuItems = [
                 ],
                 
                 image: 'images/i/oworeo-i.png',
+            },
+            {
+                cardId: 'treehee',
+                title: 'Treehee',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Tree (Object)',
+                cPronouns: 'Any Pronouns',
+                cGender: 'Male',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/treehee-r.png',
+                cGallery: [],
+                
+                image: 'images/i/treehee-i.png',
             },
             {
                 cardId: 'cancerman',
