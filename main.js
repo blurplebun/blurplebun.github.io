@@ -1621,6 +1621,7 @@ function search() {
 
 menuLogo?.addEventListener('click', () => {
     const [menuQ, cardQ] = menuLogoRedirect.split(':');
+    contentView.scrollTop = 0;
     if (cardQ) openCardById(menuQ, cardQ, true); else openMenuById(menuQ, true);
 });
 
