@@ -3,11 +3,38 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'December 15th, 2025';
+const lastUpdated = 'December 17th, 2025';
 const version = '0.4.5';
 
+// menu logo redirection
+menuLogoRedirect = 'info:artifyber';
+
+// Orbit data
+orbitData = [
+    {
+        orbit: 1,
+        name: "Universes",
+        desc: "The 6 sections of Fyberverse",
+    },
+    {
+        orbit: 2,
+        name: "Canon",
+        desc: "Fyberverse-related menus",
+    },
+    {
+        orbit: 4,
+        name: "Others",
+        desc: "Miscellanous",
+    },
+    {
+        orbit: 127,
+        scaleX: 1,
+        scaleY: 1,
+    },
+];
+
 // Main menu data array
-menuItems = [
+let menuItems = [
     /* --------------------------
     Menu Template
     -------------------------- */
@@ -175,8 +202,7 @@ menuItems = [
     /* --------------------------
     Actual Website Data
     -------------------------- */
-    
-    // Orbit 1
+
     {
         // Deltadim
         name: 'Deltadim',
@@ -868,7 +894,7 @@ menuItems = [
                 cGender: 'Demigirl',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="floriverse:aurelia">Aurelia</a>',
+                cAddOns: 'S/O: <a data-open-card="floriverse-epsilon:fveAurelia">Aurelia</a>',
                 cReference: '',
                 cGallery: [
                     'images/c/hana-c.png',
@@ -1357,6 +1383,8 @@ menuItems = [
         ]
     },
 
+
+
     {
         // Floriverse
         name: 'Floriverse',
@@ -1381,232 +1409,1443 @@ menuItems = [
                 image: 'icons/floriverse.png'
             },
             {
-                cardId: 'uncat',
-                title: 'Uncategorized',
-                excerpt: 'Flories with no associated album',
-                detail:
-                    `
-                    <h2>Uncategorized Flories</h2>
-                    Click a florie to view its name
-                    <div class="imgContainer">
-                    <img src="images/flories/uncat/Zep.png" data-caption="Zep" data-subcaption="Alien flower - Non-binary"><br>
-                    <img src="images/flories/uncat/Mintscreen.png" data-caption="Mintscreen" data-subcaption="Robot florie - Male"><br>
-                    <img src="images/flories/uncat/Kau.png" data-caption="Kau" data-subcaption="Cauliflower - Non-binary"><br>
-                    <img src="images/flories/uncat/Sweetbreaker.png" data-caption="Sweetbreaker" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/uncat/Cuby.png" data-caption="Cuby" data-subcaption="Slimy blueberry - Male"><br>
-                    <img src="images/flories/uncat/Blizzi.png" data-caption="Blizzi" data-subcaption="Ice flower - Non-binary"><br>
-                    <img src="images/flories/uncat/Plugika.png" data-caption="Plugika" data-subcaption="Electric plug florie - Female"><br>
-                    <img src="images/flories/uncat/Tessa.png" data-caption="Tessa" data-subcaption="Tulip - Genderless"><br>
-                    <img src="images/flories/uncat/Gem.png" data-caption="Gem" data-subcaption="Gem - Female"><br>
-                    <img src="images/flories/uncat/Anvre.png" data-caption="Anvre" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/uncat/Latrice.png" data-caption="Latrice" data-subcaption="Bellflower - Male"><br>
-                    <img src="images/flories/uncat/CactunAndPipin.png" data-caption="Cactun & Pipin" data-subcaption="Cactus - Male and Female respectively"><br>
-                    <img src="images/flories/uncat/Sa.png" data-caption="Sa" data-subcaption="Sawblade Flower - Male"><br>
-                    <img src="images/flories/uncat/Chloe.png" data-caption="Chloe" data-subcaption="Four-leaf clover - Female"><br>
-                    <img src="images/flories/uncat/Teknia.png" data-caption="Teknia" data-subcaption="Robot flower - Female"><br>
-                    <img src="images/flories/uncat/Artiflow.png" data-caption="Artiflow" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/Artidell.png" data-caption="Artidell" data-subcaption="Catdelion - Male"><br>
-                    <img src="images/flories/uncat/Kappa.png" data-caption="Kappa" data-subcaption="Sunflower - Male"><br>
-                    <img src="images/flories/uncat/Sunflette.png" data-caption="Sunflette" data-subcaption="Sunflower - Female"><br>
-                    <img src="images/flories/uncat/Strawrberry.png" data-caption="Strawrberry" data-subcaption="Strawberrikitty - Male"><br>
-                    <img src="images/flories/uncat/Lyte.png" data-caption="Lyte" data-subcaption="Robot berry - Female"><br>
-                    <img src="images/flories/uncat/Fyra.png" data-caption="Fyra" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/Therra.png" data-caption="Therra" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/DJMuseberry.png" data-caption="DJ Museberry" data-subcaption="Berry - Male"><br>
-                    <img src="images/flories/uncat/Lineko.png" data-caption="Lineko" data-subcaption="Cat lemon - Male"><br>
-                    <img src="images/flories/uncat/Pompy.png" data-caption="Pompy" data-subcaption="Allium - Female"><br>
-                    <img src="images/flories/uncat/Beep.png" data-caption="Beep" data-subcaption="Tulip - Genderless"><br>
-                    <img src="images/flories/uncat/Sweetree.png" data-caption="Sweetree" data-subcaption="Candy tree - Non-binary"><br>
-                    <img src="images/flories/uncat/Eco.png" data-caption="Eco" data-subcaption="Cloudy cottonflower - Male"><br>
-                    <img src="images/flories/uncat/Cryoflow.png" data-caption="Cryoflow" data-subcaption="Frozen flower - Male"><br>
-                    <img src="images/flories/uncat/Delia.png" data-caption="Delia" data-subcaption="Dandelion - Female"><br>
-                    <img src="images/flories/uncat/Spinny.png" data-caption="Spinny" data-subcaption="Berry with wind turbine - Male"><br>
-                    <img src="images/flories/uncat/Aero.png" data-caption="Aero" data-subcaption="Baloon tulip - Genderless"><br>
-                    <img src="images/flories/uncat/Enila.png" data-caption="Enila" data-subcaption="Fruit with broken stem - Female"><br>
-                    <img src="images/flories/uncat/Tikao.png" data-caption="Tikao" data-subcaption="Megaphone-head florie - Male"><br>
-                    <img src="images/flories/uncat/Flaany.png" data-caption="Flaany" data-subcaption="Upside-down tulip - Female"><br>
-                    <img src="images/flories/uncat/B-na.png" data-caption="B-na" data-subcaption="Tulip - Non-binary"><br>
-                    <img src="images/flories/uncat/Kraka.png" data-caption="Kraka" data-subcaption="Cactus monster - Male"><br>
-                    <img src="images/flories/uncat/Azerium.png" data-caption="Azerium" data-subcaption="Robot tulip - Non-binary"><br>
-                    <img src="images/flories/uncat/Vo.png" data-caption="Vo" data-subcaption="Ghost tulip - Genderless"><br>
-                    <img src="images/flories/uncat/Smog.png" data-caption="Smog" data-subcaption="Pollutant - Genderless"><br>
-                    <img src="images/flories/uncat/Niane.png" data-caption="Niane" data-subcaption="Tulip - Female"><br>
-                    <img src="images/flories/uncat/Neru.png" data-caption="Neru" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/uncat/Viona.png" data-caption="Viona" data-subcaption="Venus flytrap - Female"><br>
-                    <img src="images/flories/uncat/Phyana.png" data-caption="Phyana" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/Nell.png" data-caption="Nell" data-subcaption="Popcorn?? - Male"><br>
-                    <img src="images/flories/uncat/Voni.png" data-caption="Voni" data-subcaption="Void tulip - Non-binary"><br>
-                    <img src="images/flories/uncat/Mizudria.png" data-caption="Mizudria" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/uncat/Suneea.png" data-caption="Suneea" data-subcaption="Sunflower - Female"><br>
-                    <img src="images/flories/uncat/Acidzer.png" data-caption="Acidzer" data-subcaption="Acid tulip - Genderless"><br>
-                    <img src="images/flories/uncat/Mia.png" data-caption="Mia" data-subcaption="Potted plant - Female"><br>
-                    </div>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
-                    `,
-                image: 'images/flories/strawlineko-pfp.png'
+                linkId: 'floriverse-uncat',
             },
             {
-                cardId: 'fvvanilla',
-                title: 'Floriverse',
-                excerpt: 'Album',
-                detail:
-                    `
+                linkId: 'floriverse-vanilla',
+            },
+            {
+                linkId: 'floriverse-delta',
+            },
+            {
+                linkId: 'floriverse-epsilon',
+            },
+        ]
+    },
+    {
+        name: 'Uncategorized Flories',
+        menuId: 'floriverse-uncat',
+        parent: 'floriverse',
+        subtitle: 'Flories with no associated album',
+        image: 'images/fvuncat-i.png',
+        color: 'var(--color-11)',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'fvZep',
+                title: 'Zep',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Alien flower',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/uncat/Zep.png',
+                detail: '',
+                image: 'images/flories/uncat/Zep.png'
+            },
+            {
+                cardId: 'fvMintscreen',
+                title: 'Mintscreen',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Robot florie',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Mintscreen.png',
+                detail: '',
+                image: 'images/flories/uncat/Mintscreen.png'
+            },
+            {
+                cardId: 'fvKau',
+                title: 'Kau',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cauliflower',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/uncat/Kau.png',
+                detail: '',
+                image: 'images/flories/uncat/Kau.png'
+            },
+            {
+                cardId: 'fvSweetbreaker',
+                title: 'Sweetbreaker',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Sweetbreaker.png',
+                detail: '',
+                image: 'images/flories/uncat/Sweetbreaker.png'
+            },
+            {
+                cardId: 'fvCuby',
+                title: 'Cuby',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Slimy blueberry',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Cuby.png',
+                detail: '',
+                image: 'images/flories/uncat/Cuby.png'
+            },
+            {
+                cardId: 'fvBlizzi',
+                title: 'Blizzi',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Ice flower',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/uncat/Blizzi.png',
+                detail: '',
+                image: 'images/flories/uncat/Blizzi.png'
+            },
+            {
+                cardId: 'fvPlugika',
+                title: 'Plugika',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Electric plug florie',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Plugika.png',
+                detail: '',
+                image: 'images/flories/uncat/Plugika.png'
+            },
+            {
+                cardId: 'fvTessa',
+                title: 'Tessa',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/uncat/Tessa.png',
+                detail: '',
+                image: 'images/flories/uncat/Tessa.png'
+            },
+            {
+                cardId: 'fvGem',
+                title: 'Gem',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Gem',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Gem.png',
+                detail: '',
+                image: 'images/flories/uncat/Gem.png'
+            },
+            {
+                cardId: 'fvAnvre',
+                title: 'Anvre',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Anvre.png',
+                detail: '',
+                image: 'images/flories/uncat/Anvre.png'
+            },
+            {
+                cardId: 'fvLatrice',
+                title: 'Latrice',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Bellflower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Latrice.png',
+                detail: '',
+                image: 'images/flories/uncat/Latrice.png'
+            },
+            {
+                cardId: 'fvCactunPipin',
+                title: 'Cactun & Pipin',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cactus',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/CactunAndPipin.png',
+                detail: '',
+                image: 'images/flories/uncat/CactunAndPipin.png'
+            },
+            {
+                cardId: 'fvSa',
+                title: 'Sa',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Sawblade Flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Sa.png',
+                detail: '',
+                image: 'images/flories/uncat/Sa.png'
+            },
+            {
+                cardId: 'fvChloe',
+                title: 'Chloe',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Four',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Chloe.png',
+                detail: '',
+                image: 'images/flories/uncat/Chloe.png'
+            },
+            {
+                cardId: 'fvTeknia',
+                title: 'Teknia',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Roboflorie',
+                cPronouns: 'She/It',
+                cGender: 'Female',
+                cSexuality: 'Asexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/flories/uncat/Teknia.png',
+                cGallery: [
+                    'images/c/teknia-c.png',
+                ],
+                
+                image: 'images/flories/uncat/Teknia.png'
+            },
+            {
+                cardId: 'fvArtiflow',
+                title: 'Artiflow',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Artiflow.png',
+                detail: '',
+                image: 'images/flories/uncat/Artiflow.png'
+            },
+            {
+                cardId: 'fvArtidell',
+                title: 'Artidell',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Artidell.png',
+                detail: '',
+                image: 'images/flories/uncat/Artidell.png'
+            },
+            {
+                cardId: 'fvKappa',
+                title: 'Kappa',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Sunflower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Kappa.png',
+                detail: '',
+                image: 'images/flories/uncat/Kappa.png'
+            },
+            {
+                cardId: 'fvSunflette',
+                title: 'Sunflette',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Sunflower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Sunflette.png',
+                detail: '',
+                image: 'images/flories/uncat/Sunflette.png'
+            },
+            {
+                cardId: 'fvStrawrberry',
+                title: 'Strawrberry',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Strawberrikitty',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Strawrberry.png',
+                detail: '',
+                image: 'images/flories/uncat/Strawrberry.png'
+            },
+            {
+                cardId: 'fvLyte',
+                title: 'Lyte',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Robot berry',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Lyte.png',
+                detail: '',
+                image: 'images/flories/uncat/Lyte.png'
+            },
+            {
+                cardId: 'fvFyra',
+                title: 'Fyra',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Fyra.png',
+                detail: '',
+                image: 'images/flories/uncat/Fyra.png'
+            },
+            {
+                cardId: 'fvTherra',
+                title: 'Therra',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Therra.png',
+                detail: '',
+                image: 'images/flories/uncat/Therra.png'
+            },
+            {
+                cardId: 'fvDJMuseberry',
+                title: 'DJ Museberry',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Berry',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/DJMuseberry.png',
+                detail: '',
+                image: 'images/flories/uncat/DJMuseberry.png'
+            },
+            {
+                cardId: 'fvLineko',
+                title: 'Lineko',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cat lemon',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Lineko.png',
+                detail: '',
+                image: 'images/flories/uncat/Lineko.png'
+            },
+            {
+                cardId: 'fvPompy',
+                title: 'Pompy',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Allium',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Pompy.png',
+                detail: '',
+                image: 'images/flories/uncat/Pompy.png'
+            },
+            {
+                cardId: 'fvBeep',
+                title: 'Beep',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/uncat/Beep.png',
+                detail: '',
+                image: 'images/flories/uncat/Beep.png'
+            },
+            {
+                cardId: 'fvSweetree',
+                title: 'Sweetree',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Candy tree',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/uncat/Sweetree.png',
+                detail: '',
+                image: 'images/flories/uncat/Sweetree.png'
+            },
+            {
+                cardId: 'fvEco',
+                title: 'Eco',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cloudy cottonflower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Eco.png',
+                detail: '',
+                image: 'images/flories/uncat/Eco.png'
+            },
+            {
+                cardId: 'fvCryoflow',
+                title: 'Cryoflow',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Frozen flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Cryoflow.png',
+                detail: '',
+                image: 'images/flories/uncat/Cryoflow.png'
+            },
+            {
+                cardId: 'fvDelia',
+                title: 'Delia',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Dandelion',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Delia.png',
+                detail: '',
+                image: 'images/flories/uncat/Delia.png'
+            },
+            {
+                cardId: 'fvSpinny',
+                title: 'Spinny',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Berry with wind turbine',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Spinny.png',
+                detail: '',
+                image: 'images/flories/uncat/Spinny.png'
+            },
+            {
+                cardId: 'fvAero',
+                title: 'Aero',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Baloon tulip',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/uncat/Aero.png',
+                detail: '',
+                image: 'images/flories/uncat/Aero.png'
+            },
+            {
+                cardId: 'fvEnila',
+                title: 'Enila',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Fruit with broken stem',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Enila.png',
+                detail: '',
+                image: 'images/flories/uncat/Enila.png'
+            },
+            {
+                cardId: 'fvTikao',
+                title: 'Tikao',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Megaphone',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Tikao.png',
+                detail: '',
+                image: 'images/flories/uncat/Tikao.png'
+            },
+            {
+                cardId: 'fvFlaany',
+                title: 'Flaany',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Upside',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Flaany.png',
+                detail: '',
+                image: 'images/flories/uncat/Flaany.png'
+            },
+            {
+                cardId: 'fvBna',
+                title: 'B-na',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/uncat/B-na.png',
+                detail: '',
+                image: 'images/flories/uncat/B-na.png'
+            },
+            {
+                cardId: 'fvKraka',
+                title: 'Kraka',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cactus monster',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Kraka.png',
+                detail: '',
+                image: 'images/flories/uncat/Kraka.png'
+            },
+            {
+                cardId: 'fvAzerium',
+                title: 'Azerium',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Robot tulip',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/uncat/Azerium.png',
+                detail: '',
+                image: 'images/flories/uncat/Azerium.png'
+            },
+            {
+                cardId: 'fvVo',
+                title: 'Vo',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Ghost tulip',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/uncat/Vo.png',
+                detail: '',
+                image: 'images/flories/uncat/Vo.png'
+            },
+            {
+                cardId: 'fvSmog',
+                title: 'Smog',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Pollutant',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/uncat/Smog.png',
+                detail: '',
+                image: 'images/flories/uncat/Smog.png'
+            },
+            {
+                cardId: 'fvNiane',
+                title: 'Niane',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Niane.png',
+                detail: '',
+                image: 'images/flories/uncat/Niane.png'
+            },
+            {
+                cardId: 'fvNeru',
+                title: 'Neru',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Neru.png',
+                detail: '',
+                image: 'images/flories/uncat/Neru.png'
+            },
+            {
+                cardId: 'fvViona',
+                title: 'Viona',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Venus flytrap',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Viona.png',
+                detail: '',
+                image: 'images/flories/uncat/Viona.png'
+            },
+            {
+                cardId: 'fvPhyana',
+                title: 'Phyana',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Phyana.png',
+                detail: '',
+                image: 'images/flories/uncat/Phyana.png'
+            },
+            {
+                cardId: 'fvNell',
+                title: 'Nell',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Popcorn??',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/uncat/Nell.png',
+                detail: '',
+                image: 'images/flories/uncat/Nell.png'
+            },
+            {
+                cardId: 'fvVoni',
+                title: 'Voni',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Void tulip',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/uncat/Voni.png',
+                detail: '',
+                image: 'images/flories/uncat/Voni.png'
+            },
+            {
+                cardId: 'fvMizudria',
+                title: 'Mizudria',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Mizudria.png',
+                detail: '',
+                image: 'images/flories/uncat/Mizudria.png'
+            },
+            {
+                cardId: 'fvSuneea',
+                title: 'Suneea',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Sunflower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Suneea.png',
+                detail: '',
+                image: 'images/flories/uncat/Suneea.png'
+            },
+            {
+                cardId: 'fvAcidzer',
+                title: 'Acidzer',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Acid tulip',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/uncat/Acidzer.png',
+                detail: '',
+                image: 'images/flories/uncat/Acidzer.png'
+            },
+            {
+                cardId: 'fvMia',
+                title: 'Mia',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Potted plant',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/uncat/Mia.png',
+                detail: '',
+                image: 'images/flories/uncat/Mia.png'
+            }
+        ]
+    },
+    {
+        name: 'Floriverse',
+        menuId: 'floriverse-vanilla',
+        parent: 'floriverse',
+        subtitle: '2023 Album',
+        image: 'images/fv-i.png',
+        color: 'var(--color-6)',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'fvvInfo',
+                title: 'Info',
+                excerpt: 'Information about the Floriverse Album',
+                banner: true,
+                detail: `
                     Released: October 5th, 2023<br>
                     Total tracks: 10<br>
                     Total length: 32m 16s<br>
                     <a href="https://open.spotify.com/album/0AGxggSyuXqGdYLk0D7pbF?si=4Eej22G-RcOnbu8XIagHWQ" target="_blank">Spotify album link</a><br>
                     <h2>Album Cover:</h2><br>
-                    <img src="images/fv-i.png"><br>
-                    <hr>
-                    <h2>Associated Flories</h2>
-                    Click a florie to view its name
-                    <div class="imgContainer">
-                    <img src="images/flories/fv-potto.png" data-caption="Potto" data-subcaption="Potted plant - Male"><br>
-                    <img src="images/flories/fv-twinkle.png" data-caption="Twinkle" data-subcaption="Star flower - Female"><br>
-                    <img src="images/flories/fv-strawmon.png" data-caption="Strawmon" data-subcaption="Glass-head tulip - Male"><br>
-                    <img src="images/flories/fv-nocto.png" data-caption="Nocto" data-subcaption="Spirit tulip - Genderless"><br>
-                    <img src="images/flories/fv-furflow.png" data-caption="Furflow" data-subcaption="Catdelion - Female"><br>
-                    <img src="images/flories/fv-pana.png" data-caption="Pana" data-subcaption="Pancake tulip - Female"><br>
-                    <img src="images/flories/fv-kosmaya.png" data-caption="Kosmaya" data-subcaption="Exotic flower - Female"><br>
-                    <img src="images/flories/fv-pinkly.png" data-caption="Pinkly" data-subcaption="Tulip - Female"><br>
-                    <img src="images/flories/fv-mincha.png" data-caption="Mincha" data-subcaption="Jasmine - Female"><br>
-                    <img src="images/flories/fv-lan.png" data-caption="Lan" data-subcaption="Lemon - Male"><br>
-                    </div>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
+                    <img src="images/fv-i.png" data-caption="Floriverse" data-subcaption="Album cover for Floriverse"><br>
                     `,
                 image: 'images/fv-i.png'
             },
             {
-                cardId: 'fvdelta',
-                title: 'Floriverse : Delta',
-                excerpt: 'Album',
-                detail:
-                    `
+                cardId: 'fvvPotto',
+                title: 'Potto',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Potted plant',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fv-potto.png',
+                detail: '',
+                image: 'images/flories/fv-potto.png'
+            },
+            {
+                cardId: 'fvvTwinkle',
+                title: 'Twinkle',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Star flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fv-twinkle.png',
+                detail: '',
+                image: 'images/flories/fv-twinkle.png'
+            },
+            {
+                cardId: 'fvvStrawmon',
+                title: 'Strawmon',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Glass',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fv-strawmon.png',
+                detail: '',
+                image: 'images/flories/fv-strawmon.png'
+            },
+            {
+                cardId: 'fvvNocto',
+                title: 'Nocto',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Spirit tulip',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fv-nocto.png',
+                detail: '',
+                image: 'images/flories/fv-nocto.png'
+            },
+            {
+                cardId: 'fvvFurflow',
+                title: 'Furflow',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="floriverse-epsilon:fveMisty">Misty</a>',
+                cReference: 'images/c/furflow-c.png',
+                cGallery: [
+                    'images/flories/fv-furflow.png',
+                    'images/c/furflow-c2.png',
+                    'images/c/furflow-c3.png',
+                    'images/c/furflow-c4.png',
+                ],
+                
+                image: 'images/c/furflow-c.png'
+            },
+            {
+                cardId: 'fvvPana',
+                title: 'Pana',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Pancake tulip',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fv-pana.png',
+                detail: '',
+                image: 'images/flories/fv-pana.png'
+            },
+            {
+                cardId: 'fvvKosmaya',
+                title: 'Kosmaya',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Exotic flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fv-kosmaya.png',
+                detail: '',
+                image: 'images/flories/fv-kosmaya.png'
+            },
+            {
+                cardId: 'fvvPinkly',
+                title: 'Pinkly',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fv-pinkly.png',
+                detail: '',
+                image: 'images/flories/fv-pinkly.png'
+            },
+            {
+                cardId: 'fvvMincha',
+                title: 'Mincha',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Jasmine',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fv-mincha.png',
+                detail: '',
+                image: 'images/flories/fv-mincha.png'
+            },
+            {
+                cardId: 'fvvLan',
+                title: 'Lan',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Lemon',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fv-lan.png',
+                detail: '',
+                image: 'images/flories/fv-lan.png'
+            }
+        ]
+    },
+    {
+        name: 'Floriverse : Delta',
+        menuId: 'floriverse-delta',
+        parent: 'floriverse',
+        subtitle: '2024 Album',
+        image: 'images/fvd-i.png',
+        color: 'var(--color-1)',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'fvdInfo',
+                title: 'Info',
+                excerpt: 'Information about the Floriverse : Delta Album',
+                banner: true,
+                detail: `
                     Released: March 3rd, 2024<br>
                     Total tracks: 32<br>
                     Total length: 1hr 37m<br>
                     <a href="https://open.spotify.com/album/2PNIG5k8lEGQ6fSuMUn7ir?si=BO2liD1rSpq7Wna6xTksYQ" target="_blank">Spotify album link</a><br>
                     <h2>Album Cover:</h2><br>
-                    <img src="images/fvd-i.png"><br>
-                    <hr>
-                    <h2>Associated Flories</h2>
-                    Click a florie to view its name
-                    <div class="imgContainer">
-                    <img src="images/flories/fvd-starple.png" data-caption="Starple" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/fvd-chrora.png" data-caption="Chrora" data-subcaption="Exotic flower - Non-Binary"><br>
-                    <img src="images/flories/fvd-orply.png" data-caption="Orply" data-subcaption="Tulip - Female"><br>
-                    <img src="images/flories/fvd-tiram.png" data-caption="Tiram" data-subcaption="Mushroom - Female"><br>
-                    <img src="images/flories/fvd-nimibi.png" data-caption="Nimibi" data-subcaption="Cloudy flower - Female"><br>
-                    <img src="images/flories/fvd-slump.png" data-caption="Slump" data-subcaption="Rock with kelps - Male"><br>
-                    <img src="images/flories/fvd-pio.png" data-caption="Pio" data-subcaption="Berry - Male"><br>
-                    <img src="images/flories/fvd-yana.png" data-caption="Yana" data-subcaption="Tulip - Female"><br>
-                    <img src="images/flories/fvd-looni.png" data-caption="Looni" data-subcaption="Fruit - Female"><br>
-                    <img src="images/flories/fvd-chocopop.png" data-caption="Chocopop" data-subcaption="Chocoflower - Male"><br>
-                    <img src="images/flories/fvd-staz.png" data-caption="Staz" data-subcaption="Pistachio - Male"><br>
-                    <img src="images/flories/fvd-delly.png" data-caption="Delly" data-subcaption="Catdelion - Male"><br>
-                    <img src="images/flories/fvd-sprinkly.png" data-caption="Sprinkly" data-subcaption="Potted cakeflower - Male"><br>
-                    <img src="images/flories/fvd-ecno.png" data-caption="Ecno" data-subcaption="Multi-flower"><br>
-                    <img src="images/flories/fvd-disaton.png" data-caption="Disaton" data-subcaption="Cottonbun - Female"><br>
-                    <img src="images/flories/fvd-protoberries.png" data-caption="Protoberries" data-subcaption="Berries"><br>
-                    <img src="images/flories/fvd-pipix.png" data-caption="Pipix" data-subcaption="Pixel flower - Female"><br>
-                    <img src="images/flories/fvd-pico.png" data-caption="Pico" data-subcaption="Robot flower - Male"><br>
-                    <img src="images/flories/fvd-starlila.png" data-caption="Starlila" data-subcaption="Transgender flower - Female"><br>
-                    <img src="images/flories/fvd-wina.png" data-caption="Wina" data-subcaption="Charred flower - Female"><br>
-                    <img src="images/flories/fvd-fret.png" data-caption="Fret" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/fvd-azka.png" data-caption="Azka" data-subcaption="Angel - Genderless"><br>
-                    <img src="images/flories/fvd-cherro.png" data-caption="Cherro" data-subcaption="Tomatoes"><br>
-                    <img src="images/flories/fvd-floorion.png" data-caption="Floorion" data-subcaption="Potted robot flower - Genderless"><br>
-                    <img src="images/flories/fvd-stell-a.png" data-caption="Stell-A" data-subcaption="Black hole flower - Genderless"><br>
-                    <img src="images/flories/fvd-datum.png" data-caption="Datum" data-subcaption="Digital flower - Genderless"><br>
-                    <img src="images/flories/fvd-poloniloo.png" data-caption="Poloniloo" data-subcaption="Polonium flower - Male"><br>
-                    <img src="images/flories/fvd-grayscale.png" data-caption="Grayscale" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/fvd-erwith.png" data-caption="Erwith" data-subcaption="Flower - Male"><br>
-                    <img src="images/flories/fvd-fyzer.png" data-caption="Fyzer" data-subcaption="Florifyber - Genderless"><br>
-                    <img src="images/flories/fvd-kloroforo.png" data-caption="Kloroforo" data-subcaption="Robot flower - Male"><br>
-                    </div>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
+                    <img src="images/fvd-i.png" data-caption="Floriverse : Delta" data-subcaption="Album cover for Floriverse : Delta"><br>
                     `,
                 image: 'images/fvd-i.png'
             },
             {
-                cardId: 'fvepsilon',
-                title: 'Floriverse : Epsilon',
-                excerpt: 'Album',
-                detail:
-                    `
+                cardId: 'fvdStarple',
+                title: 'Starple',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-starple.png',
+                detail: '',
+                image: 'images/flories/fvd-starple.png'
+            },
+            {
+                cardId: 'fvdChrora',
+                title: 'Chrora',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Exotic flower',
+                cPronouns: 'They',
+                cGender: 'Non-Binary',
+                cReference: 'images/flories/fvd-chrora.png',
+                detail: '',
+                image: 'images/flories/fvd-chrora.png'
+            },
+            {
+                cardId: 'fvdOrply',
+                title: 'Orply',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-orply.png',
+                detail: '',
+                image: 'images/flories/fvd-orply.png'
+            },
+            {
+                cardId: 'fvdTiram',
+                title: 'Tiram',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Mushroom',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-tiram.png',
+                detail: '',
+                image: 'images/flories/fvd-tiram.png'
+            },
+            {
+                cardId: 'fvdNimibi',
+                title: 'Nimibi',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cloudy flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-nimibi.png',
+                detail: '',
+                image: 'images/flories/fvd-nimibi.png'
+            },
+            {
+                cardId: 'fvdSlump',
+                title: 'Slump',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Rock with kelps',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-slump.png',
+                detail: '',
+                image: 'images/flories/fvd-slump.png'
+            },
+            {
+                cardId: 'fvdPio',
+                title: 'Pio',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Berry',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-pio.png',
+                detail: '',
+                image: 'images/flories/fvd-pio.png'
+            },
+            {
+                cardId: 'fvdYana',
+                title: 'Yana',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-yana.png',
+                detail: '',
+                image: 'images/flories/fvd-yana.png'
+            },
+            {
+                cardId: 'fvdLooni',
+                title: 'Looni',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Fruit',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-looni.png',
+                detail: '',
+                image: 'images/flories/fvd-looni.png'
+            },
+            {
+                cardId: 'fvdChocopop',
+                title: 'Chocopop',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Chocoflower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-chocopop.png',
+                detail: '',
+                image: 'images/flories/fvd-chocopop.png'
+            },
+            {
+                cardId: 'fvdStaz',
+                title: 'Staz',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Pistachio',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-staz.png',
+                detail: '',
+                image: 'images/flories/fvd-staz.png'
+            },
+            {
+                cardId: 'fvdDelly',
+                title: 'Delly',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-delly.png',
+                detail: '',
+                image: 'images/flories/fvd-delly.png'
+            },
+            {
+                cardId: 'fvdSprinkly',
+                title: 'Sprinkly',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Potted cakeflower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-sprinkly.png',
+                detail: '',
+                image: 'images/flories/fvd-sprinkly.png'
+            },
+            {
+                cardId: 'fvdEcno',
+                title: 'Ecno',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Multi',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fvd-ecno.png',
+                detail: '',
+                image: 'images/flories/fvd-ecno.png'
+            },
+            {
+                cardId: 'fvdDisaton',
+                title: 'Disaton',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cottonbun',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-disaton.png',
+                detail: '',
+                image: 'images/flories/fvd-disaton.png'
+            },
+            {
+                cardId: 'fvdProtoberries',
+                title: 'Protoberries',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Berries',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fvd-protoberries.png',
+                detail: '',
+                image: 'images/flories/fvd-protoberries.png'
+            },
+            {
+                cardId: 'fvdPipix',
+                title: 'Pipix',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Pixel flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-pipix.png',
+                detail: '',
+                image: 'images/flories/fvd-pipix.png'
+            },
+            {
+                cardId: 'fvdPico',
+                title: 'Pico',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Robot flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-pico.png',
+                detail: '',
+                image: 'images/flories/fvd-pico.png'
+            },
+            {
+                cardId: 'fvdStarlila',
+                title: 'Starlila',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Transgender flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-starlila.png',
+                detail: '',
+                image: 'images/flories/fvd-starlila.png'
+            },
+            {
+                cardId: 'fvdWina',
+                title: 'Wina',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Charred flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-wina.png',
+                detail: '',
+                image: 'images/flories/fvd-wina.png'
+            },
+            {
+                cardId: 'fvdFret',
+                title: 'Fret',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-fret.png',
+                detail: '',
+                image: 'images/flories/fvd-fret.png'
+            },
+            {
+                cardId: 'fvdAzka',
+                title: 'Azka',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Angel',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fvd-azka.png',
+                detail: '',
+                image: 'images/flories/fvd-azka.png'
+            },
+            {
+                cardId: 'fvdCherro',
+                title: 'Cherro',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tomatoes',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fvd-cherro.png',
+                detail: '',
+                image: 'images/flories/fvd-cherro.png'
+            },
+            {
+                cardId: 'fvdFloorion',
+                title: 'Floorion',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Potted robot flower',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fvd-floorion.png',
+                detail: '',
+                image: 'images/flories/fvd-floorion.png'
+            },
+            {
+                cardId: 'fvdStellA',
+                title: 'Stell-A',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Black hole flower',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fvd-stell-a.png',
+                detail: '',
+                image: 'images/flories/fvd-stell-a.png'
+            },
+            {
+                cardId: 'fvdDatum',
+                title: 'Datum',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Digital flower',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fvd-datum.png',
+                detail: '',
+                image: 'images/flories/fvd-datum.png'
+            },
+            {
+                cardId: 'fvdPoloniloo',
+                title: 'Poloniloo',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Polonium flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-poloniloo.png',
+                detail: '',
+                image: 'images/flories/fvd-poloniloo.png'
+            },
+            {
+                cardId: 'fvdGrayscale',
+                title: 'Grayscale',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fvd-grayscale.png',
+                detail: '',
+                image: 'images/flories/fvd-grayscale.png'
+            },
+            {
+                cardId: 'fvdErwith',
+                title: 'Erwith',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-erwith.png',
+                detail: '',
+                image: 'images/flories/fvd-erwith.png'
+            },
+            {
+                cardId: 'fvdFyzer',
+                title: 'Fyzer',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Florifyber',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fvd-fyzer.png',
+                detail: '',
+                image: 'images/flories/fvd-fyzer.png'
+            },
+            {
+                cardId: 'fvdKloroforo',
+                title: 'Kloroforo',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Robot flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fvd-kloroforo.png',
+                detail: '',
+                image: 'images/flories/fvd-kloroforo.png'
+            }
+        ]
+    },
+    {
+        name: 'Floriverse : Epsilon',
+        menuId: 'floriverse-epsilon',
+        parent: 'floriverse',
+        subtitle: '2025 Album',
+        image: 'images/fve-i.png',
+        color: 'var(--color-8)',
+        hidden: true,
+        labels: [
+            {
+                cardId: 'fveInfo',
+                title: 'Info',
+                excerpt: 'Information about the Floriverse : Epsilon Album',
+                banner: true,
+                detail: `
                     Released: June 4th, 2025<br>
                     Total tracks: 48<br>
                     Total length: 2hr 36m<br>
                     <a href="https://open.spotify.com/album/2qpLiyGRBhRHggKZSJUYbj?si=j0kxk_nfQ9u4bmv1iZmj3Q" target="_blank">Spotify album link</a><br>
                     <h2>Album Cover:</h2><br>
-                    <img src="images/fve-i.png"><br>
-                    <hr>
-                    <h2>Associated Flories</h2>
-                    Click a florie to view its name
-                    <div class="imgContainer">
-                    <img src="images/flories/fve-solaris.png" data-caption="Solaris" data-subcaption="Fire flower - Female"><br>
-                    <img src="images/flories/fve-trix.png" data-caption="Trix" data-subcaption="Dandelion - Female"><br>
-                    <img src="images/flories/fve-lux.png" data-caption="Lux" data-subcaption="Exotic flower - Male"><br>
-                    <img src="images/flories/fve-glitter.png" data-caption="Glitter" data-subcaption="Tulip - Male"><br>
-                    <img src="images/flories/fve-fomfz.png" data-caption="Fomfz" data-subcaption="Tree - Female"><br>
-                    <img src="images/flories/fve-bion.png" data-caption="Bion" data-subcaption="Spirit flower - Male"><br>
-                    <img src="images/flories/fve-zoey.png" data-caption="Zoey" data-subcaption="Mushroom - Female"><br>
-                    <img src="images/flories/fve-hera.png" data-caption="Hera" data-subcaption="Goddess of time - Female"><br>
-                    <img src="images/flories/fve-isla.png" data-caption="Isla" data-subcaption="Palm tree - Female"><br>
-                    <img src="images/flories/fve-azira.png" data-caption="Azira" data-subcaption="Blueberry - Male"><br>
-                    <img src="images/flories/fve-misty.png" data-caption="Misty" data-subcaption="Catdelion - Female"><br>
-                    <img src="images/flories/fve-nya.png" data-caption="Nya" data-subcaption="Catdelion - Female"><br>
-                    <img src="images/flories/fve-atto.png" data-caption="Atto" data-subcaption="Catdelion - Male"><br>
-                    <img src="images/flories/fve-clara.png" data-caption="Clara" data-subcaption="Cottonbun - Female"><br>
-                    <img src="images/flories/fve-lyra.png" data-caption="Lyra" data-subcaption="Cottonbun - Female"><br>
-                    <img src="images/flories/fve-strawnilla.png" data-caption="Strawnilla" data-subcaption="Poptart berry - Male"><br>
-                    <img src="images/flories/fve-poppers.png" data-caption="Poppers" data-subcaption="Berries"><br>
-                    <img src="images/flories/fve-aurelia.png" data-caption="Aurelia" data-subcaption="Zinnia - Female"><br>
-                    <img src="images/flories/fve-dysis.png" data-caption="Dysis" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/fve-butter.png" data-caption="Butter" data-subcaption="Tulip - Female"><br>
-                    <img src="images/flories/fve-bell.png" data-caption="Bell" data-subcaption="Mistletoe - Female"><br>
-                    <img src="images/flories/fve-nila.png" data-caption="Nila" data-subcaption="Tulip - Female"><br>
-                    <img src="images/flories/fve-zest.png" data-caption="Zest" data-subcaption="Lemon - Male"><br>
-                    <img src="images/flories/fve-corrode.png" data-caption="Corrode" data-subcaption="Charred tulip - Male"><br>
-                    <img src="images/flories/fve-amalgamapot.png" data-caption="Amalgamapot" data-subcaption="Amalgamation - Multi-florie"><br>
-                    <img src="images/flories/fve-posie.png" data-caption="Posie" data-subcaption="Multi-flower"><br>
-                    <img src="images/flories/fve-nonsense.png" data-caption="Nonsense (Florie)" data-subcaption="Shapeshifter - Non-binary"><br>
-                    <img src="images/flories/fve-torq.png" data-caption="Torq" data-subcaption="Mechanical flower - Male"><br>
-                    <img src="images/flories/fve-persen.png" data-caption="Persen" data-subcaption="Exotic flower - Genderless"><br>
-                    <img src="images/flories/fve-terentia.png" data-caption="Terentia" data-subcaption="Flower - Female"><br>
-                    <img src="images/flories/fve-lumina.png" data-caption="Lumina" data-subcaption="Aquatic mushroom - Non-binary"><br>
-                    <img src="images/flories/fve-triplequestionmark.png" data-caption="???" data-subcaption="Unknown florie"><br>
-                    <img src="images/flories/fve-upsidedowntriplequestionmark.png" data-caption="¿¿¿" data-subcaption="Unknown Florie"><br>
-                    <img src="images/flories/fve-ghoargh.png" data-caption="Ghoargh" data-subcaption="Prehistoric plant - Male"><br>
-                    <img src="images/flories/fve-hyd-124.png" data-caption="HYD-124" data-subcaption="Black-hole flower - Male"><br>
-                    <img src="images/flories/fve-thorn.png" data-caption="Thorn" data-subcaption="Wilted rose - Male"><br>
-                    <img src="images/flories/fve-reva.png" data-caption="Reva" data-subcaption="Cactus - Female"><br>
-                    <img src="images/flories/fve-ash.png" data-caption="Ash" data-subcaption="Burning flower - Non-binary"><br>
-                    <img src="images/flories/fve-flailer.png" data-caption="Flailer" data-subcaption="Femtanyl bootleg florie - Female"><br>
-                    <img src="images/flories/fve-mang.png" data-caption="Mang" data-subcaption="Potted mango tree - Male"><br>
-                    <img src="images/flories/fve-zappie.png" data-caption="Zappie" data-subcaption="Bee tulip - Male"><br>
-                    <img src="images/flories/fve-kai.png" data-caption="Kai" data-subcaption="Clouds - Non-binary"><br>
-                    <img src="images/flories/fve-console.png" data-caption="Console" data-subcaption="Robot bush - Genderless"><br>
-                    <img src="images/flories/fve-xi.png" data-caption="Xi" data-subcaption="Angel - Genderless"><br>
-                    <img src="images/flories/fve-floriecookies.png" data-caption="Floriecookies" data-subcaption="Cookies"><br>
-                    <img src="images/flories/fve-nini.png" data-caption="Nini" data-subcaption="Mystical lemon - Female"><br>
-                    <img src="images/flories/fve-xyxiv.png" data-caption="Xyxiv" data-subcaption="Angel - Genderless"><br>
-                    <img src="images/flories/fve-nau.png" data-caption="Nau" data-subcaption="Flower - Female"><br>
-                    </div>
-                <br>
-                <a data-open-card="info:ocrules">Character rules</a>
+                    <img src="images/fve-i.png" data-caption="Floriverse : Epsilon" data-subcaption="Album cover for Floriverse : Epsilon"><br>
                     `,
                 image: 'images/fve-i.png'
             },
             {
-                title: 'Characters',
-                excerpt: 'People of the Floriverse',
+                cardId: 'fveSolaris',
+                title: 'Solaris',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Fire flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-solaris.png',
+                detail: '',
+                image: 'images/flories/fve-solaris.png'
             },
             {
-                cardId: 'aurelia',
+                cardId: 'fveTrix',
+                title: 'Trix',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Dandelion',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-trix.png',
+                detail: '',
+                image: 'images/flories/fve-trix.png'
+            },
+            {
+                cardId: 'fveLux',
+                title: 'Lux',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Exotic flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-lux.png',
+                detail: '',
+                image: 'images/flories/fve-lux.png'
+            },
+            {
+                cardId: 'fveGlitter',
+                title: 'Glitter',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-glitter.png',
+                detail: '',
+                image: 'images/flories/fve-glitter.png'
+            },
+            {
+                cardId: 'fveFomfz',
+                title: 'Fomfz',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tree',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-fomfz.png',
+                detail: '',
+                image: 'images/flories/fve-fomfz.png'
+            },
+            {
+                cardId: 'fveBion',
+                title: 'Bion',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Spirit flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-bion.png',
+                detail: '',
+                image: 'images/flories/fve-bion.png'
+            },
+            {
+                cardId: 'fveZoey',
+                title: 'Zoey',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Mushroom',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-zoey.png',
+                detail: '',
+                image: 'images/flories/fve-zoey.png'
+            },
+            {
+                cardId: 'fveHera',
+                title: 'Hera',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Goddess of time',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-hera.png',
+                detail: '',
+                image: 'images/flories/fve-hera.png'
+            },
+            {
+                cardId: 'fveIsla',
+                title: 'Isla',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Palm tree',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-isla.png',
+                detail: '',
+                image: 'images/flories/fve-isla.png'
+            },
+            {
+                cardId: 'fveAzira',
+                title: 'Azira',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Blueberry',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-azira.png',
+                detail: '',
+                image: 'images/flories/fve-azira.png'
+            },
+            {
+                cardId: 'fveMisty',
+                title: 'Misty',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: 'S/O: <a data-open-card="floriverse-vanilla:fvvFurflow">Furflow</a>',
+                cReference: 'images/flories/fve-misty.png',
+                cGallery: [
+                    'images/c/misty-c.png',
+                ],
+                
+                image: 'images/flories/fve-misty.png'
+            },
+            {
+                cardId: 'fveNya',
+                title: 'Nya',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-nya.png',
+                detail: '',
+                image: 'images/flories/fve-nya.png'
+            },
+            {
+                cardId: 'fveAtto',
+                title: 'Atto',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Catdelion',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-atto.png',
+                detail: '',
+                image: 'images/flories/fve-atto.png'
+            },
+            {
+                cardId: 'fveClara',
+                title: 'Clara',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cottonbun',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-clara.png',
+                detail: '',
+                image: 'images/flories/fve-clara.png'
+            },
+            {
+                cardId: 'fveLyra',
+                title: 'Lyra',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cottonbun',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-lyra.png',
+                detail: '',
+                image: 'images/flories/fve-lyra.png'
+            },
+            {
+                cardId: 'fveStrawnilla',
+                title: 'Strawnilla',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Poptart berry',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-strawnilla.png',
+                detail: '',
+                image: 'images/flories/fve-strawnilla.png'
+            },
+            {
+                cardId: 'fvePoppers',
+                title: 'Poppers',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Berries',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fve-poppers.png',
+                detail: '',
+                image: 'images/flories/fve-poppers.png'
+            },
+            {
+                cardId: 'fveAurelia',
                 title: 'Aurelia',
                 excerpt: '',
                 detail: '',
@@ -1627,76 +2866,373 @@ menuItems = [
                     'images/c/aurelia-c4.png',
                 ],
                 
-                image: 'images/i/aurelia-i.png',
+                image: 'images/flories/fve-aurelia.png'
             },
             {
-                cardId: 'furflow',
-                title: 'Furflow',
+                cardId: 'fveDysis',
+                title: 'Dysis',
                 excerpt: '',
-                detail: '',
-
                 isCharacter: true,
-                cSpecies: 'Catdelion',
+                cSpecies: 'Flower',
                 cPronouns: 'She',
                 cGender: 'Female',
-                cSexuality: 'Lesbian',
-                cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="floriverse:misty">Misty</a>',
-                cReference: '',
-                cGallery: [
-                    'images/c/furflow-c.png',
-                    'images/c/furflow-c2.png',
-                    'images/c/furflow-c3.png',
-                    'images/c/furflow-c4.png',
-                ],
-                
-                image: 'images/i/furflow-i.png',
+                cReference: 'images/flories/fve-dysis.png',
+                detail: '',
+                image: 'images/flories/fve-dysis.png'
             },
             {
-                cardId: 'misty',
-                title: 'Misty',
+                cardId: 'fveButter',
+                title: 'Butter',
                 excerpt: '',
-                detail: '',
-
                 isCharacter: true,
-                cSpecies: 'Catdelion',
+                cSpecies: 'Tulip',
                 cPronouns: 'She',
                 cGender: 'Female',
-                cSexuality: 'Lesbian',
-                cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="floriverse:furflow">Furflow</a>',
-                cReference: '',
-                cGallery: [
-                    'images/flories/fve-misty.png',
-                    'images/c/misty-c.png',
-                ],
-                
-                image: 'images/i/misty-i.png',
+                cReference: 'images/flories/fve-butter.png',
+                detail: '',
+                image: 'images/flories/fve-butter.png'
             },
             {
-                cardId: 'teknia',
-                title: 'Teknia',
+                cardId: 'fveBell',
+                title: 'Bell',
                 excerpt: '',
-                detail: '',
-
                 isCharacter: true,
-                cSpecies: 'Roboflorie',
-                cPronouns: 'She/It',
+                cSpecies: 'Mistletoe',
+                cPronouns: 'She',
                 cGender: 'Female',
-                cSexuality: 'Asexual',
-                cNicknames: '',
-                cAddOns: '',
-                cReference: '',
-                cGallery: [
-                    'images/flories/uncat/Teknia.png',
-                    'images/c/teknia-c.png',
-                ],
-                
-                image: 'images/c/teknia-c.png',
+                cReference: 'images/flories/fve-bell.png',
+                detail: '',
+                image: 'images/flories/fve-bell.png'
             },
+            {
+                cardId: 'fveNila',
+                title: 'Nila',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Tulip',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-nila.png',
+                detail: '',
+                image: 'images/flories/fve-nila.png'
+            },
+            {
+                cardId: 'fveZest',
+                title: 'Zest',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Lemon',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-zest.png',
+                detail: '',
+                image: 'images/flories/fve-zest.png'
+            },
+            {
+                cardId: 'fveCorrode',
+                title: 'Corrode',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Charred tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-corrode.png',
+                detail: '',
+                image: 'images/flories/fve-corrode.png'
+            },
+            {
+                cardId: 'fveAmalgamapot',
+                title: 'Amalgamapot',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Amalgamation',
+                cPronouns: 'They',
+                cGender: 'Multi-florie',
+                cReference: 'images/flories/fve-amalgamapot.png',
+                detail: '',
+                image: 'images/flories/fve-amalgamapot.png'
+            },
+            {
+                cardId: 'fvePosie',
+                title: 'Posie',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Multi',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fve-posie.png',
+                detail: '',
+                image: 'images/flories/fve-posie.png'
+            },
+            {
+                cardId: 'fveNonsense',
+                title: 'Nonsense',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Shapeshifter',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/fve-nonsense.png',
+                detail: '',
+                image: 'images/flories/fve-nonsense.png'
+            },
+            {
+                cardId: 'fveTorq',
+                title: 'Torq',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Mechanical flower',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-torq.png',
+                detail: '',
+                image: 'images/flories/fve-torq.png'
+            },
+            {
+                cardId: 'fvePersen',
+                title: 'Persen',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Exotic flower',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fve-persen.png',
+                detail: '',
+                image: 'images/flories/fve-persen.png'
+            },
+            {
+                cardId: 'fveTerentia',
+                title: 'Terentia',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-terentia.png',
+                detail: '',
+                image: 'images/flories/fve-terentia.png'
+            },
+            {
+                cardId: 'fveLumina',
+                title: 'Lumina',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Aquatic mushroom',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/fve-lumina.png',
+                detail: '',
+                image: 'images/flories/fve-lumina.png'
+            },
+            {
+                cardId: 'fveTriplequestionmark',
+                title: '???',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Unknown Florie',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fve-triplequestionmark.png',
+                detail: '',
+                image: 'images/flories/fve-triplequestionmark.png'
+            },
+            {
+                cardId: 'fveUpsidedowntriplequestionmark',
+                title: '¿¿¿',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Unknown Florie',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fve-upsidedowntriplequestionmark.png',
+                detail: '',
+                image: 'images/flories/fve-upsidedowntriplequestionmark.png'
+            },
+            {
+                cardId: 'fveGhoargh',
+                title: 'Ghoargh',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Prehistoric plant',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-ghoargh.png',
+                detail: '',
+                image: 'images/flories/fve-ghoargh.png'
+            },
+            {
+                cardId: 'fveHYD124',
+                title: 'HYD-124',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Black',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-hyd-124.png',
+                detail: '',
+                image: 'images/flories/fve-hyd-124.png'
+            },
+            {
+                cardId: 'fveThorn',
+                title: 'Thorn',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Wilted rose',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-thorn.png',
+                detail: '',
+                image: 'images/flories/fve-thorn.png'
+            },
+            {
+                cardId: 'fveReva',
+                title: 'Reva',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cactus',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-reva.png',
+                detail: '',
+                image: 'images/flories/fve-reva.png'
+            },
+            {
+                cardId: 'fveAsh',
+                title: 'Ash',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Burning flower',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/fve-ash.png',
+                detail: '',
+                image: 'images/flories/fve-ash.png'
+            },
+            {
+                cardId: 'fveFlailer',
+                title: 'Flailer',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Femtanyl bootleg florie',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-flailer.png',
+                detail: '',
+                image: 'images/flories/fve-flailer.png'
+            },
+            {
+                cardId: 'fveMang',
+                title: 'Mang',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Potted mango tree',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-mang.png',
+                detail: '',
+                image: 'images/flories/fve-mang.png'
+            },
+            {
+                cardId: 'fveZappie',
+                title: 'Zappie',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Bee tulip',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cReference: 'images/flories/fve-zappie.png',
+                detail: '',
+                image: 'images/flories/fve-zappie.png'
+            },
+            {
+                cardId: 'fveKai',
+                title: 'Kai',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Clouds',
+                cPronouns: 'They',
+                cGender: 'Non-binary',
+                cReference: 'images/flories/fve-kai.png',
+                detail: '',
+                image: 'images/flories/fve-kai.png'
+            },
+            {
+                cardId: 'fveConsole',
+                title: 'Console',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Robot bush',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fve-console.png',
+                detail: '',
+                image: 'images/flories/fve-console.png'
+            },
+            {
+                cardId: 'fveXi',
+                title: 'Xi',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Angel',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fve-xi.png',
+                detail: '',
+                image: 'images/flories/fve-xi.png'
+            },
+            {
+                cardId: 'fveFloriecookies',
+                title: 'Floriecookies',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Cookies',
+                cPronouns: 'They',
+                cGender: 'Unknown',
+                cReference: 'images/flories/fve-floriecookies.png',
+                detail: '',
+                image: 'images/flories/fve-floriecookies.png'
+            },
+            {
+                cardId: 'fveNini',
+                title: 'Nini',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Mystical lemon',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-nini.png',
+                detail: '',
+                image: 'images/flories/fve-nini.png'
+            },
+            {
+                cardId: 'fveXyxiv',
+                title: 'Xyxiv',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Angel',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cReference: 'images/flories/fve-xyxiv.png',
+                detail: '',
+                image: 'images/flories/fve-xyxiv.png'
+            },
+            {
+                cardId: 'fveNau',
+                title: 'Nau',
+                excerpt: '',
+                isCharacter: true,
+                cSpecies: 'Flower',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cReference: 'images/flories/fve-nau.png',
+                detail: '',
+                image: 'images/flories/fve-nau.png'
+            }
         ]
     },
 
+
+    
     {
         // Digirel
         name: 'Digirel',
@@ -1951,6 +3487,8 @@ menuItems = [
         ]
     },
 
+
+    
     {
         // Nansenz
         name: 'Nansenz',
@@ -2116,6 +3654,8 @@ menuItems = [
         ]
     },
 
+
+    
     {
         // Hizen
         name: 'Hizen',
@@ -2201,6 +3741,8 @@ menuItems = [
         ]
     },
 
+
+    
     {
         // Nadir
         name: 'Nadir',
@@ -2302,23 +3844,8 @@ menuItems = [
         ]
     },
 
-    // Orbit 2
-    {
-        // Random
-        name: 'Random Character',
-        menuId: 'random',
-        showName: true,
-        image: 'icons/oc-random.png',
-        color: 'var(--color-12)',
-        orbit: 2,
-        scale: 1.5,
-        invisible: true,
-        labels: [
-            {
-                cardId: 'random',
-            }
-        ],
-    },
+
+    
     {
         name: 'Daily Art+',
         showName: true,
@@ -2965,6 +4492,24 @@ menuItems = [
         ]
     },
 
+
+    
+    {
+        // Random
+        name: 'Random Character',
+        menuId: 'random',
+        showName: true,
+        image: 'icons/oc-random.png',
+        color: 'var(--color-12)',
+        orbit: 2,
+        scale: 1.5,
+        invisible: true,
+        labels: [
+            {
+                cardId: 'random',
+            }
+        ],
+    },
     {
         // Settings
         menuId: 'settings',
@@ -3092,32 +4637,6 @@ menuItems = [
                 image: 'icons/whitespace.png'
             },
         ]
-    },
-];
-
-menuLogoRedirect = 'info:artifyber';
-
-// Orbit data
-orbitData = [
-    {
-        orbit: 1,
-        name: "Universes",
-        desc: "The 6 sections of Fyberverse",
-    },
-    {
-        orbit: 2,
-        name: "Canon",
-        desc: "Fyberverse-related menus",
-    },
-    {
-        orbit: 4,
-        name: "Others",
-        desc: "Miscellanous",
-    },
-    {
-        orbit: 127,
-        scaleX: 1,
-        scaleY: 1,
     },
 ];
 

@@ -2,7 +2,6 @@
 // Creates /e/<menuId>/index.html and /e/<menuId>/<cardId>/index.html
 
 const DOMAIN = 'https://artifyber.xyz';
-
 const fs = require("fs");
 const path = require("path");
 const { menuItems } = require("./data.js");
@@ -29,7 +28,6 @@ function buildHTML({ title, desc, image, url, twitterType = "summary" }) {
 <html>
     <head>
         <meta charset="utf-8">
-
         <meta name="theme-color" content="#C894F9">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Artifyber">
@@ -37,13 +35,11 @@ function buildHTML({ title, desc, image, url, twitterType = "summary" }) {
         <meta property="og:description" content="${esc(desc)}">
         <meta property="og:image" content="${DOMAIN}/${esc(image)}">
         <meta property="og:url" content="${esc(url)}">
-
         <meta name="twitter:card" content="${twitterType}">
         <meta name="twitter:title" content="${esc(title)}">
         <meta name="twitter:description" content="${esc(desc)}">
         <meta name="twitter:image" content="${DOMAIN}/${esc(image)}">
     </head>
-
     <body>
         <script>
             location.href = "${esc(url)}";
@@ -51,7 +47,6 @@ function buildHTML({ title, desc, image, url, twitterType = "summary" }) {
     </body>
 </html>`;
 }
-
 
 menuItems.forEach(menu => {
     const menuId = menu.menuId;
@@ -116,6 +111,5 @@ menuItems.forEach(menu => {
         });
     }
 });
-
 
 console.log("\nAll embed pages generated in /e/");
