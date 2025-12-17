@@ -571,6 +571,7 @@ function getAllCharacters() {
     menuItems.forEach(menu => {
         if (!menu.labels) return;
         if (menu.menuId === 'random') return;
+        if (menu.menuId.includes('floriverse')) return;
         menu.labels.forEach(label => {
             if (label.cardId && isCharacter(label)) characters.push({ menu, label });
         });
