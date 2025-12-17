@@ -294,7 +294,7 @@ let menuItems = [
                     'images/c/articat-c5.png',
                     'images/c/articat-c6.png',
                 ],
-                
+
                 image: 'images/i/articat-i.png',
             },
             {
@@ -344,7 +344,7 @@ let menuItems = [
                     'images/c/artifish-c5.png',
                     'images/c/artifish-c6.png',
                 ],
-                
+
                 image: 'images/i/artifish-i.png',
             },
             {
@@ -369,7 +369,7 @@ let menuItems = [
                     'images/c/artigoat-c5.png',
                     'images/c/artigoat-c6.png',
                 ],
-                
+
                 image: 'images/i/artigoat-i.png',
             },
             {
@@ -394,7 +394,7 @@ let menuItems = [
                     'images/c/artilope-c5.png',
                     'images/c/artilope-c6.png',
                 ],
-                
+
                 image: 'images/i/artilope-i.png',
             },
             {
@@ -419,7 +419,7 @@ let menuItems = [
                     'images/c/artipup-c5.png',
                     'images/c/artipup-c6.png',
                 ],
-                
+
                 image: 'images/i/artipup-i.png',
             },
             {
@@ -444,7 +444,7 @@ let menuItems = [
                     'images/c/artineko-c5.png',
                     'images/c/artineko-c6.png',
                 ],
-                
+
                 image: 'images/i/artineko-i.png',
             },
             {
@@ -469,7 +469,7 @@ let menuItems = [
                     'images/c/eros-c5.png',
                     'images/c/eros-c6.png',
                 ],
-                
+
                 image: 'images/i/eros-i.png',
             },
             {
@@ -490,7 +490,7 @@ let menuItems = [
                     'images/c/sora-c.png',
                     'images/c/sora-c2.png',
                 ],
-                
+
                 image: 'images/i/sora-i.png',
             },
             {
@@ -515,7 +515,7 @@ let menuItems = [
                     'images/c/furfy-c4.png',
                     'images/c/furfy-c5.png',
                 ],
-                
+
                 image: 'images/i/furfy-i.png',
             },
             {
@@ -536,7 +536,7 @@ let menuItems = [
                     'images/c/mist-c.png',
                     'images/c/mist-c2.png',
                 ],
-                
+
                 image: 'images/i/mist-i.png',
             },
             {
@@ -561,7 +561,7 @@ let menuItems = [
                     'images/c/card-c5.png',
                     'images/c/card-c6.png',
                 ],
-                
+
                 image: 'images/i/card-i.png',
             },
             {
@@ -579,7 +579,7 @@ let menuItems = [
                 cAddOns: 'S/O: <a data-open-card="deltadim-teksui:card">Card</a>',
                 cReference: 'images/r/gift-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/gift-i.png',
             },
             {
@@ -599,7 +599,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/elise-c.png',
                 ],
-                
+
                 image: 'images/i/elise-i.png',
             },
             {
@@ -620,7 +620,7 @@ let menuItems = [
                     'images/c/fika-c.png',
                     'images/c/fika-c2.png',
                 ],
-                
+
                 image: 'images/i/fika-i.png',
             },
             {
@@ -641,7 +641,7 @@ let menuItems = [
                     'images/c/rai-c.png',
                     'images/c/rai-c2.png',
                 ],
-                
+
                 image: 'images/i/rai-i.png',
             },
             {
@@ -659,8 +659,26 @@ let menuItems = [
                 cAddOns: '',
                 cReference: 'images/r/remy-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/remy-i.png',
+            },
+            {
+                cardId: 'unnamed155',
+                title: 'Unnamed-155',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Robocat',
+                cPronouns: 'He/They',
+                cGender: 'Non-Binary',
+                cSexuality: 'Asexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/unnamed155-r.png',
+                cGallery: [],
+
+                image: 'images/i/unnamed155-i.png',
             },
         ]
     },
@@ -695,7 +713,7 @@ let menuItems = [
                     'images/c/artibon-c5.png',
                     'images/c/artibon-c6.png',
                 ],
-                
+
                 image: 'images/i/artibon-i.png',
             },
             {
@@ -718,7 +736,7 @@ let menuItems = [
                     'images/c/artimouse-c2.png',
                     'images/c/artimouse-c3.png',
                 ],
-                
+
                 image: 'images/i/artimouse-i.png',
             },
             {
@@ -741,7 +759,7 @@ let menuItems = [
                     'images/c/artiferret-c3.png',
                     'images/c/artiferret-c4.png',
                 ],
-                
+
                 image: 'images/i/artiferret-i.png',
             },
             {
@@ -762,7 +780,7 @@ let menuItems = [
                     'images/c/artitri-c.png',
                     'images/c/artitri-c2.png',
                 ],
-                
+
                 image: 'images/i/artitri-i.png',
             },
             {
@@ -784,7 +802,7 @@ let menuItems = [
                     'images/c/artibot-c2.png',
                     'images/c/artibot-c3.png',
                 ],
-                
+
                 image: 'images/i/artibot-i.png',
             },
             {
@@ -808,7 +826,7 @@ let menuItems = [
                     'images/c/artishade-c4.png',
                     'images/c/artishade-c5.png',
                 ],
-                
+
                 image: 'images/i/artishade-i.png',
             },
             {
@@ -831,7 +849,7 @@ let menuItems = [
                     'images/c/artidragon-c3.png',
                     'images/c/artidragon-c4.png',
                 ],
-                
+
                 image: 'images/i/artidragon-i.png',
             },
             {
@@ -856,7 +874,7 @@ let menuItems = [
                     'images/c/shirley-c5.png',
                     'images/c/shirley-c6.png',
                 ],
-                
+
                 image: 'images/i/shirley-i.png',
             },
             {
@@ -879,7 +897,7 @@ let menuItems = [
                     'images/c/rose-c3.png',
                     'images/c/rose-c4.png',
                 ],
-                
+
                 image: 'images/i/rose-i.png',
             },
             {
@@ -904,7 +922,7 @@ let menuItems = [
                     'images/c/hana-c5.png',
                     'images/c/hana-c6.png',
                 ],
-                
+
                 image: 'images/i/hana-i.png',
             },
             {
@@ -931,7 +949,7 @@ let menuItems = [
                     'images/c/caramella-c5.png',
                     'images/c/caramella-c6.png',
                 ],
-                
+
                 image: 'images/i/caramella-i.png',
             },
             {
@@ -954,7 +972,7 @@ let menuItems = [
                     'images/c/azurey-c3.png',
                     'images/c/azurey-c4.png',
                 ],
-                
+
                 image: 'images/i/azurey-i.png',
             },
             {
@@ -976,7 +994,7 @@ let menuItems = [
                     'images/c/mida-c2.png',
                     'images/c/mida-c3.png',
                 ],
-                
+
                 image: 'images/i/mida-i.png',
             },
             {
@@ -994,7 +1012,7 @@ let menuItems = [
                 cAddOns: 'Adopted from <a href="https://x.com/naycookye" target="_blank">naycookye</a>',
                 cReference: 'images/r/lilac-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/lilac-i.png',
             },
             {
@@ -1012,7 +1030,7 @@ let menuItems = [
                 cAddOns: '',
                 cReference: 'images/r/moka-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/moka-i.png',
             },
             {
@@ -1032,7 +1050,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/nameless-c.png',
                 ],
-                
+
                 image: 'images/i/nameless-i.png',
             },
             {
@@ -1053,7 +1071,7 @@ let menuItems = [
                     'images/c/nuki-c.png',
                     'images/c/nuki-c2.png',
                 ],
-                
+
                 image: 'images/i/nuki-i.png',
             },
             {
@@ -1071,7 +1089,7 @@ let menuItems = [
                 cAddOns: '',
                 cReference: 'images/r/sawo-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/sawo-i.png',
             },
             {
@@ -1092,7 +1110,7 @@ let menuItems = [
                     'images/c/nytro-c.png',
                     'images/c/nytro-c2.png',
                 ],
-                
+
                 image: 'images/i/nytro-i.png',
             },
         ]
@@ -1123,7 +1141,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/artiusagi-c.png',
                 ],
-                
+
                 image: 'images/i/artiusagi-i.png',
             },
             {
@@ -1143,7 +1161,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/artiproto-c.png',
                 ],
-                
+
                 image: 'images/i/artiproto-i.png',
             },
             {
@@ -1164,7 +1182,7 @@ let menuItems = [
                     'images/c/ellie-c.png',
                     'images/c/ellie-c2.png',
                 ],
-                
+
                 image: 'images/i/ellie-i.png',
             },
             {
@@ -1185,7 +1203,7 @@ let menuItems = [
                     'images/c/amber-c.png',
                     'images/c/amber-c2.png',
                 ],
-                
+
                 image: 'images/i/amber-i.png',
             },
             {
@@ -1205,7 +1223,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/hazel-c.png',
                 ],
-                
+
                 image: 'images/i/hazel-i.png',
             },
         ]
@@ -1241,7 +1259,7 @@ let menuItems = [
                     'images/c/skitty-c5.png',
                     'images/c/skitty-c6.png',
                 ],
-                
+
                 image: 'images/i/skitty-i.png',
             },
             {
@@ -1266,7 +1284,7 @@ let menuItems = [
                     'images/c/gamma-c5.png',
                     'images/c/gamma-c6.png',
                 ],
-                
+
                 image: 'images/i/gamma-i.png',
             },
             {
@@ -1291,7 +1309,7 @@ let menuItems = [
                     'images/c/micro-c5.png',
                     'images/c/micro-c6.png',
                 ],
-                
+
                 image: 'images/i/micro-i.png',
             },
             {
@@ -1316,7 +1334,7 @@ let menuItems = [
                     'images/c/artilotl-c5.png',
                     'images/c/artilotl-c6.png',
                 ],
-                
+
                 image: 'images/i/artilotl-i.png',
             },
             {
@@ -1337,7 +1355,7 @@ let menuItems = [
                     'images/c/articani-c.png',
                     'images/c/articani-c2.png',
                 ],
-                
+
                 image: 'images/i/articani-i.png',
             },
             {
@@ -1357,7 +1375,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/ryon-c.png',
                 ],
-                
+
                 image: 'images/i/ryon-i.png',
             },
             {
@@ -1377,7 +1395,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/klora-c.png',
                 ],
-                
+
                 image: 'images/i/klora-i.png',
             },
         ]
@@ -1423,7 +1441,7 @@ let menuItems = [
         ]
     },
     {
-        name: 'Uncategorized Flories',
+        name: 'Floriverse (Unsorted)',
         menuId: 'floriverse-uncat',
         parent: 'floriverse',
         subtitle: 'Flories with no associated album',
@@ -1616,7 +1634,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/teknia-c.png',
                 ],
-                
+
                 image: 'images/flories/uncat/Teknia.png'
             },
             {
@@ -2059,7 +2077,7 @@ let menuItems = [
         parent: 'floriverse',
         subtitle: '2023 Album',
         image: 'images/fv-i.png',
-        color: 'var(--color-6)',
+        color: 'var(--color-16)',
         hidden: true,
         labels: [
             {
@@ -2145,7 +2163,7 @@ let menuItems = [
                     'images/c/furflow-c3.png',
                     'images/c/furflow-c4.png',
                 ],
-                
+
                 image: 'images/c/furflow-c.png'
             },
             {
@@ -2769,7 +2787,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/misty-c.png',
                 ],
-                
+
                 image: 'images/flories/fve-misty.png'
             },
             {
@@ -2865,7 +2883,7 @@ let menuItems = [
                     'images/c/aurelia-c3.png',
                     'images/c/aurelia-c4.png',
                 ],
-                
+
                 image: 'images/flories/fve-aurelia.png'
             },
             {
@@ -3232,7 +3250,7 @@ let menuItems = [
     },
 
 
-    
+
     {
         // Digirel
         name: 'Digirel',
@@ -3273,7 +3291,7 @@ let menuItems = [
                     'images/c/soap-c3.png',
                     'images/c/soap-c4.png',
                 ],
-                
+
                 image: 'images/i/soap-i.png',
             },
             {
@@ -3295,7 +3313,7 @@ let menuItems = [
                     'images/c/semyk-c2.png',
                     'images/c/semyk-c3.png',
                 ],
-                
+
                 image: 'images/i/semyk-i.png',
             },
             {
@@ -3315,7 +3333,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/artifolder-c.png',
                 ],
-                
+
                 image: 'images/i/artifolder-i.png',
             },
             {
@@ -3336,7 +3354,7 @@ let menuItems = [
                     'images/c/byte-c.png',
                     'images/c/byte-c2.png',
                 ],
-                
+
                 image: 'images/i/byte-i.png',
             },
             {
@@ -3357,7 +3375,7 @@ let menuItems = [
                     'images/c/cherry-c.png',
                     'images/c/cherry-c2.png',
                 ],
-                
+
                 image: 'images/i/cherry-i.png',
             },
             {
@@ -3378,7 +3396,7 @@ let menuItems = [
                     'images/c/ebta-c.png',
                     'images/c/ebta-c2.png',
                 ],
-                
+
                 image: 'images/i/ebta-i.png',
             },
             {
@@ -3399,7 +3417,7 @@ let menuItems = [
                     'images/c/furryeah-c.png',
                     'images/c/furryeah-c2.png',
                 ],
-                
+
                 image: 'images/i/furryeah-i.png',
             },
             {
@@ -3421,7 +3439,7 @@ let menuItems = [
                     'images/c/placeholder-c2.png',
                     'images/c/placeholder-c3.png',
                 ],
-                
+
                 image: 'images/i/placeholder-i.png',
             },
             {
@@ -3441,7 +3459,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/usbun-c.png',
                 ],
-                
+
                 image: 'images/i/usbun-i.png',
             },
             {
@@ -3461,7 +3479,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/sakura-c.png',
                 ],
-                
+
                 image: 'images/i/sakura-i.png',
             },
             {
@@ -3481,14 +3499,14 @@ let menuItems = [
                 cGallery: [
                     'images/c/quanta-c.png',
                 ],
-                
+
                 image: 'images/i/quanta-i.png',
             },
         ]
     },
 
 
-    
+
     {
         // Nansenz
         name: 'Nansenz',
@@ -3516,6 +3534,117 @@ let menuItems = [
                 image: 'icons/nansenz.png'
             },
             {
+                linkId: 'nansenz-thingamaland',
+            },
+            {
+                cardId: 'mu',
+                title: 'Mu',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: '"Cabbit"',
+                cPronouns: 'She/Any',
+                cGender: 'Genderless',
+                cSexuality: 'Aroace',
+                cNicknames: 'μ',
+                cAddOns: '',
+                cReference: 'images/r/mu-r.png',
+                cGallery: [],
+
+                image: 'images/i/mu-i.png',
+            },
+            {
+                cardId: 'cancerman',
+                title: 'Cancerman',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Cigarette',
+                cPronouns: 'He',
+                cGender: 'Male',
+                cSexuality: 'Gay',
+                cNicknames: 'Cigarman, Cigar',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/cancerman-c.png',
+                ],
+
+                image: 'images/i/cancerman-i.png',
+            },
+            {
+                cardId: 'furrophelix',
+                title: 'Furrophelix',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Bacteria',
+                cPronouns: 'Any Pronouns',
+                cGender: 'Non-binary',
+                cSexuality: 'Asexual',
+                cNicknames: 'Phelix',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/furrophelix-c.png',
+                ],
+
+                image: 'images/i/furrophelix-i.png',
+            },
+            {
+                cardId: 'malit',
+                title: 'Malit',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Polygons',
+                cPronouns: 'It',
+                cGender: 'Genderless',
+                cSexuality: 'Aroace',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/malit-c.png',
+                ],
+
+                image: 'images/i/malit-i.png',
+            },
+            {
+                cardId: 'gomboc',
+                title: 'THE GÖMBÖC',
+                excerpt: '',
+                detail: ``,
+
+                isCharacter: true,
+                cSpecies: '',
+                cPronouns: '',
+                cGender: '',
+                cSexuality: '',
+                cNicknames: '',
+                cAddOns: `<H1 style="font-size:50px; font-family: Times, serif; color: #e1b89c; text-align: center;">THE GÖMBÖC SIMPLY WANTS MORE.</H1>`,
+                cReference: '',
+                cGallery: [],
+
+                image: 'images/gomboc.gif',
+            },
+        ]
+    },
+    {
+        name: 'Thingamaland',
+        menuId: 'nansenz-thingamaland',
+        subtitle: 'Object Island',
+        image: 'images/nansenz-thingamaland.png',
+        color: 'var(--color-19)',
+        orbit: 1,
+        hidden: true,
+        parent: 'nansenz',
+        labels: [
+            {
                 cardId: 'article',
                 title: 'Article',
                 excerpt: '',
@@ -3532,7 +3661,7 @@ let menuItems = [
                 cGallery: [
                     'images/c/article-c.png',
                 ],
-                
+
                 image: 'images/i/article-i.png',
             },
             {
@@ -3553,7 +3682,7 @@ let menuItems = [
                     'images/c/meowcaroon-c.png',
                     'images/c/meowcaroon-c2.png',
                 ],
-                
+
                 image: 'images/i/meowcaroon-i.png',
             },
             {
@@ -3574,7 +3703,7 @@ let menuItems = [
                     'images/c/oworeo-c.png',
                     'images/c/oworeo-c2.png',
                 ],
-                
+
                 image: 'images/i/oworeo-i.png',
             },
             {
@@ -3592,70 +3721,53 @@ let menuItems = [
                 cAddOns: '',
                 cReference: 'images/r/treehee-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/treehee-i.png',
             },
             {
-                cardId: 'cancerman',
-                title: 'Cancerman',
+                cardId: 'rexav',
+                title: 'Rexav',
                 excerpt: '',
                 detail: '',
 
                 isCharacter: true,
-                cSpecies: 'Cigarette',
-                cPronouns: 'He',
-                cGender: 'Male',
-                cSexuality: 'Gay',
-                cNicknames: 'Cigarman, Cigar',
+                cSpecies: 'Excavator',
+                cPronouns: 'He (Bucket), They (Cabin)',
+                cGender: 'Male (Bucket), Non-binary (Cabin)',
+                cSexuality: 'Asexual',
+                cNicknames: '',
                 cAddOns: '',
                 cReference: '',
                 cGallery: [
-                    'images/c/cancerman-c.png',
+                    'images/c/rexav-c.png',
                 ],
-                
-                image: 'images/i/cancerman-i.png',
+
+                image: 'images/i/rexav-i.png',
             },
             {
-                cardId: 'mu',
-                title: 'Mu',
+                cardId: 'censored',
+                title: '#@!?',
                 excerpt: '',
                 detail: '',
 
                 isCharacter: true,
-                cSpecies: '"Cabbit"',
-                cPronouns: 'She/Any',
-                cGender: 'Genderless',
-                cSexuality: 'Aroace',
-                cNicknames: 'μ',
-                cAddOns: '',
-                cReference: 'images/r/mu-r.png',
-                cGallery: [],
-                
-                image: 'images/i/mu-i.png',
-            },
-            {
-                cardId: 'gomboc',
-                title: 'THE GÖMBÖC',
-                excerpt: '',
-                detail: ``,
-
-                isCharacter: true,
-                cSpecies: '',
-                cPronouns: '',
-                cGender: '',
-                cSexuality: '',
+                cSpecies: 'Curse Word (Object)',
+                cPronouns: 'He/It',
+                cGender: 'Male',
+                cSexuality: 'Pansexual',
                 cNicknames: '',
-                cAddOns: `<H1 style="font-size:50px; font-family: Times, serif; color: #e1b89c; text-align: center;">THE GÖMBÖC SIMPLY WANTS MORE.</H1>`,
+                cAddOns: '',
                 cReference: '',
-                cGallery: [],
-                
-                image: 'images/gomboc.gif',
+                cGallery: [
+                    'images/c/censored-c.png',
+                ],
+
+                image: 'images/i/censored-i.png',
             },
         ]
     },
 
 
-    
     {
         // Hizen
         name: 'Hizen',
@@ -3694,7 +3806,7 @@ let menuItems = [
                     'images/c/nim-c.png',
                     'images/c/nim-c2.png',
                 ],
-                
+
                 image: 'images/i/nim-i.png',
             },
             {
@@ -3715,7 +3827,7 @@ let menuItems = [
                     'images/c/awan-c.png',
                     'images/c/awan-c2.png',
                 ],
-                
+
                 image: 'images/i/awan-i.png',
             },
             {
@@ -3735,14 +3847,14 @@ let menuItems = [
                 cGallery: [
                     'images/c/lyne-c.png',
                 ],
-                
+
                 image: 'images/i/lyne-i.png',
             },
         ]
     },
 
 
-    
+
     {
         // Nadir
         name: 'Nadir',
@@ -3781,7 +3893,7 @@ let menuItems = [
                     'images/c/artinihil-c.png',
                     'images/c/artinihil-c2.png',
                 ],
-                
+
                 image: 'images/i/artinihil-i.png',
             },
             {
@@ -3799,7 +3911,7 @@ let menuItems = [
                 cAddOns: '',
                 cReference: 'images/r/infineko-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/infineko-i.png',
             },
             {
@@ -3817,7 +3929,7 @@ let menuItems = [
                 cAddOns: 'S/O: <a data-open-card="nadir:artinihil">Artinihil</a>',
                 cReference: 'images/r/ugo-r.png',
                 cGallery: [],
-                
+
                 image: 'images/i/ugo-i.png',
             },
             {
@@ -3838,14 +3950,14 @@ let menuItems = [
                     'images/c/Δ-c.png',
                     'images/c/Δ-c2.png',
                 ],
-                
+
                 image: 'images/i/Δ-i.png',
             },
         ]
     },
 
 
-    
+
     {
         name: 'Daily Art+',
         showName: true,
@@ -4493,7 +4605,7 @@ let menuItems = [
     },
 
 
-    
+
     {
         // Random
         name: 'Random Character',
