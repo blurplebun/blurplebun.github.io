@@ -1610,6 +1610,7 @@ function search() {
     const searchMenu = {
         menuId: searchId,
         name: searchName,
+        subtitle: `Found ${labelGroup.filter(label => label.cardId || label.linkId).length} result(s)`,
         labels: labelGroup,
     };
 
