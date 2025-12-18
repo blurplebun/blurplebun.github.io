@@ -358,7 +358,7 @@ function initOrbitRings() {
 
     uniqueOrbits.forEach(orbit => {
         const orbitRing = document.createElement('div');
-        orbitRing.className = 'orbit-visual pulse';
+        orbitRing.className = 'orbit-visual pulse ringHidden';
 
         const oData = orbitData.find(o => o.orbit === orbit);
         const oScaleX = oData?.scaleX || getCSSVar('--menu-orbit-scale-x', 'float');
@@ -401,7 +401,7 @@ function initMenu() {
         const orbit = parseFloat(layerKey, 10);
 
         const ringLayer = document.createElement('div');
-        ringLayer.className = 'ring';
+        ringLayer.className = 'ring ringHidden';
         ringLayer.style.zIndex = '10';
 
         const direction = orbit % 2 === 0 ? -1 : 1;
@@ -2124,4 +2124,5 @@ window.prototypeMenu = { menuItems, openMenu, showContentFor, goBack };
 window.addEventListener('load', (e) => {
     const assetLoad = document.getElementById("assetLoad");
     assetLoad.classList.remove('visible');
+    menuStage.querySelectorAll('.ringHidden').forEach(child => child.classList.remove('ringHidden'));
 });

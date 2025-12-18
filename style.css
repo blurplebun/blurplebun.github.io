@@ -256,6 +256,8 @@ body {
     display: block;
     z-index: 0;
     pointer-events: none;
+    opacity: 1;
+    transition: opacity 1s ease;
 }
 
 .orbit-visual {
@@ -384,10 +386,6 @@ body {
     font-family: 'Main', 'Ubuntu', verdana, sans-serif;
 }
 
-.ring {
-    animation: none !important;
-}
-
 .menu-button .inner {
     animation: none !important;
 }
@@ -395,6 +393,18 @@ body {
 .menu-button {
     will-change: transform;
     transform: translateZ(0);
+}
+
+.ringHidden {
+    opacity: 0;
+
+    .menu-button {
+        pointer-events: none;
+    }
+}
+
+.orbit-visual.ringHidden {
+    display: none;
 }
 
 /* Expander circle */
