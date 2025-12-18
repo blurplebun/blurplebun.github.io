@@ -85,7 +85,7 @@ const starfield = $('.starfield');
 menuStage.style.transition = 'none';
 menuStage.style.transform = `translate(0px, 0px) scale(${getCSSVar('--menu-stage-scale')})`;
 
-
+let appLoaded = false;
 
 
 // --------------------------
@@ -358,7 +358,8 @@ function initOrbitRings() {
 
     uniqueOrbits.forEach(orbit => {
         const orbitRing = document.createElement('div');
-        orbitRing.className = 'orbit-visual pulse ringHidden';
+        orbitRing.className = 'orbit-visual pulse';
+        if (!appLoaded) orbitRing.classList.add('ringHidden');
 
         const oData = orbitData.find(o => o.orbit === orbit);
         const oScaleX = oData?.scaleX || getCSSVar('--menu-orbit-scale-x', 'float');
@@ -401,7 +402,8 @@ function initMenu() {
         const orbit = parseFloat(layerKey, 10);
 
         const ringLayer = document.createElement('div');
-        ringLayer.className = 'ring ringHidden';
+        ringLayer.className = 'ring';
+        if (!appLoaded) ringLayer.classList.add('ringHidden');
         ringLayer.style.zIndex = '10';
 
         const direction = orbit % 2 === 0 ? -1 : 1;
@@ -2125,4 +2127,5 @@ window.addEventListener('load', (e) => {
     const assetLoad = document.getElementById("assetLoad");
     assetLoad.classList.remove('visible');
     menuStage.querySelectorAll('.ringHidden').forEach(child => child.classList.remove('ringHidden'));
+    appLoaded = true;
 });
