@@ -787,7 +787,7 @@ function showContentFor(menu, sort = null) {
     isTransitioning = false;
     shownMenu = menu;
     contentTitle.textContent = menu.name;
-    const addTicker = menu.menuId === ""?`<br><br><div class="ticker-bar"><div class="ticker-text"></div></div>`:'';
+    const addTicker = menu.menuId.includes("nansenz") ? `<br><br><div class="ticker-bar"><div class="ticker-text"></div></div>` : '';
     contentSubtitle.innerHTML = menu.subtitle + addTicker;
     toggleView({ focused: true, show: false });
     toggleView({ content: true, show: true });
@@ -1925,6 +1925,20 @@ function goBack() {
         detailArea.innerHTML = `<h3>Detail</h3><p>Select a card to see details here.</p>`;
         contentView.style.overflow = '';
 
+        // Stop ticker when navigating away from Nansenz
+        if (menuCode === 'nansenz') {
+            setTimeout(() => {
+                const tickerBar = document.querySelector('.ticker-bar');
+                if (tickerBar) {
+                    tickerBar.style.visibility = 'hidden';
+                    tickerBar.offsetHeight;
+                    tickerBar.style.visibility = '';
+
+                    tickerBar.dispatchEvent(new CustomEvent('ticker-restart'));
+                }
+            }, 100);
+        }
+
         // Update back button text to show parent menu name if exists
         const currentMenu = menuItems.find(m => m.menuId === menuCode);
         if (currentMenu && currentMenu.parent && !openFromSearch) {
@@ -2125,17 +2139,15 @@ if (params.get('m') === 'search') history.pushState({}, '', location.pathname);
 window.prototypeMenu = { menuItems, openMenu, showContentFor, goBack };
 
 // asset loading
-if (!params.get('m')) {
-    ["uiPanelTop", "uiPanelBottom"].forEach(p => {
-        const panel = document.getElementById(p);
-        const vBtns = panel.querySelectorAll('.visible');
-        vBtns.forEach(b => {
-            if (b.id === "assetLoad") return;
-            b.classList.add("btnInLoad");
-            b.classList.remove("visible");
-        })
+["uiPanelTop", "uiPanelBottom"].forEach(p => {
+    const panel = document.getElementById(p);
+    const vBtns = panel.querySelectorAll('.visible');
+    vBtns.forEach(b => {
+        if (b.id === "assetLoad") return;
+        b.classList.add("btnInLoad");
+        b.classList.remove("visible");
     })
-}
+})
 
 window.addEventListener('load', (e) => {
     document.getElementById("assetLoad").classList.remove('visible');

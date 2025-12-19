@@ -3522,8 +3522,8 @@ let menuItems = [
                 excerpt: 'About Nansenz',
                 banner: true,
                 detail:
-                    `
-                    <div class="ticker-bar"><div class="ticker-text"></div></div><br>
+                // <div class="ticker-bar"><div class="ticker-text"></div></div><br></br>
+                    `<div class="ticker-bar"><div class="ticker-text"></div></div><br></br>
                     A world beyond logical limits where anything can exist. It’s like a fever dream. Anything you imagine or could be imagined, objects with limbs, cube-shaped planets, galaxies made of spaghetti, there are no boundaries in Nansenz. The entire purpose of this universe is to contain everything that defy all sense of logic.<br>
                     <h4>What's in this page</h4>
                     This page is a list of all Fyberverse characters located in Nansenz. This include character information, reference art, and picture gallery of each character.<br>
