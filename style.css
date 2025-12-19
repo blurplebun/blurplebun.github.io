@@ -670,14 +670,24 @@ body {
 }
 
 .card[data-banner="true"] .card-text strong,
-.card[data-textonly="true"] .card-text strong {
+.card[data-banner="true"][data-textonly="true"] .card-text strong {
     font-size: calc(52px * var(--card-scale-banner) * var(--card-scale));
     margin-bottom: calc(12px * var(--card-scale-banner) * var(--card-scale));
 }
 
 .card[data-banner="true"] .card-text .excerpt,
-.card[data-textonly="true"] .card-text .excerpt {
+.card[data-banner="true"][data-textonly="true"] .card-text .excerpt {
     font-size: calc(32px * var(--card-scale-banner) * var(--card-scale));
+    white-space: normal;
+}
+
+.card[data-textonly="true"] .card-text strong {
+    font-size: calc(26px * var(--card-scale));
+    margin-bottom: calc(6px * var(--card-scale));
+}
+
+.card[data-textonly="true"] .card-text .excerpt {
+    font-size: calc(16px * var(--card-scale));
     white-space: normal;
 }
 
@@ -688,10 +698,10 @@ body {
     }
 
     .menu-button.bubble {
-        width: calc(80px * var(--card-scale));
-        height: calc(80px * var(--card-scale));
+        width: calc(150px * var(--card-scale-banner) * var(--card-scale));
+        height: calc(150px * var(--card-scale-banner) * var(--card-scale));
         position: absolute;
-        right: calc(-50% + var(--card-scale)*10%);
+        right: calc(-50% + var(--card-scale-banner) * var(--card-scale)*15%);
         top: 50%;
         transform: translateY(-50%);
         z-index: 2;

@@ -4271,49 +4271,6 @@ let menuItems = [
                     `,
                 image: 'icons/oc-rules.png'
             },
-            {
-                cardId: 'keybinds',
-                title: `Keyboard Shortcut`,
-                excerpt: `
-                        ESC = Go back<br>
-                        SPACE = Open search<br>
-                        C = Center view<br>
-                        H = Hide UIs<br>
-                `,
-                unclickable: true,
-                detail:
-                    ``,
-                image: ''
-            },
-            {
-                title: 'Developer Section',
-            },
-            {
-                cardId: 'webinfo',
-                title: `Website Info`,
-                excerpt: `Updated: ${lastUpdated}<br>
-                        Version: ${version}<br>
-                        <br>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCardsCounter"></div>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalMenusCounter"></div>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCharacterCounter"></div>
-                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalSplashCounter"></div>
-                `,
-                banner: true,
-                unclickable: true,
-                detail:
-                    ``,
-                image: ''
-            },
-            {
-                linkId: 'menuTemplate',
-            },
-            {
-                linkId: 'loopTest',
-            },
-            {
-                linkId: 'infiniteTest1',
-            }
         ]
     },
 
@@ -4656,6 +4613,52 @@ let menuItems = [
                     ``,
                 image: ''
             },
+            {
+                cardId: 'keybinds',
+                title: `Keyboard Shortcut`,
+                excerpt: `
+                        ESC = Go back<br>
+                        SPACE = Open search<br>
+                        C = Center view<br>
+                        H = Hide UIs<br>
+                `,
+                unclickable: true,
+                detail:
+                    ``,
+                image: ''
+            },
+            {
+                title: 'Developer Section',
+            },
+            {
+                cardId: 'webinfo',
+                title: `Website Info`,
+                excerpt: `Updated: ${lastUpdated}<br>
+                        Version: ${version}<br>
+                        <br>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCardsCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalMenusCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCharacterCounter"></div>
+                        <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalSplashCounter"></div>
+                `,
+                banner: true,
+                unclickable: true,
+                detail:
+                    ``,
+                image: ''
+            },
+            {
+                linkId: 'menuTemplate',
+                banner: true,
+            },
+            {
+                linkId: 'loopTest',
+                banner: true,
+            },
+            {
+                linkId: 'infiniteTest1',
+                banner: true,
+            }
         ]
     },
 
