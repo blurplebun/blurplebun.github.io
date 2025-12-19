@@ -1103,7 +1103,7 @@ function focusCard(cardEl, label, menu = null) {
     clone.removeAttribute('data-link');
     clone.removeAttribute('data-noclick');
     focusedCardArea.appendChild(clone);
-    vizRemove(sortBtn);
+    toggleView({ focused: true, show: true });
 
     // Add lazy classes to any <img> in label.detail and convert src->data-src
     let html = label.detail
@@ -2008,7 +2008,6 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             vizAdd(contentView);
             vizAdd(backBtn);
 
-            vizRemove(searchBtn);
             vizRemove(hideBtn);
             vizRemove(centerBtn);
             vizRemove(settingsBtn);
@@ -2018,13 +2017,13 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
 
             if (!focusedLayout.classList.contains('visible')) {
                 vizAdd(sortBtn);
+                vizAdd(searchBtn);
             }
             updateSortButtonText();
         } else {
             vizRemove(contentView);
             vizRemove(backBtn);
 
-            vizAdd(searchBtn);
             vizAdd(hideBtn);
             vizAdd(settingsBtn);
             if (!bgmEnabled) vizAdd(playBgmBtn);
@@ -2043,12 +2042,14 @@ function toggleView({ content = false, focused = false, show = true } = {}) {
             focusedLayout.style.display = '';
 
             vizRemove(sortBtn);
+            vizRemove(searchBtn);
         } else {
             vizRemove(focusedLayout);
             focusedLayout.style.display = 'none';
 
             if (contentView.classList.contains('visible')) {
                 vizAdd(sortBtn);
+                vizAdd(searchBtn);
             }
         }
     }
