@@ -787,7 +787,8 @@ function showContentFor(menu, sort = null) {
     isTransitioning = false;
     shownMenu = menu;
     contentTitle.textContent = menu.name;
-    contentSubtitle.textContent = menu.subtitle;
+    const addTicker = menu.menuId === ""?`<br><br><div class="ticker-bar"><div class="ticker-text"></div></div>`:'';
+    contentSubtitle.innerHTML = menu.subtitle + addTicker;
     toggleView({ focused: true, show: false });
     toggleView({ content: true, show: true });
     const parentMenu = menuItems.find(m => m.menuId === menu.parent);
@@ -2124,9 +2125,32 @@ if (params.get('m') === 'search') history.pushState({}, '', location.pathname);
 window.prototypeMenu = { menuItems, openMenu, showContentFor, goBack };
 
 // asset loading
+if (!params.get('m')) {
+    ["uiPanelTop", "uiPanelBottom"].forEach(p => {
+        const panel = document.getElementById(p);
+        const vBtns = panel.querySelectorAll('.visible');
+        vBtns.forEach(b => {
+            if (b.id === "assetLoad") return;
+            b.classList.add("btnInLoad");
+            b.classList.remove("visible");
+        })
+    })
+}
+
 window.addEventListener('load', (e) => {
-    const assetLoad = document.getElementById("assetLoad");
-    assetLoad.classList.remove('visible');
+    document.getElementById("assetLoad").classList.remove('visible');
     menuStage.querySelectorAll('.ringHidden').forEach(child => child.classList.remove('ringHidden'));
+
+    if (!params.get('m')) {
+        ["uiPanelTop", "uiPanelBottom"].forEach(p => {
+            const panel = document.getElementById(p);
+            const vBtns = panel.querySelectorAll('.btnInLoad');
+            vBtns.forEach(b => {
+                b.classList.remove("btnInLoad");
+                b.classList.add("visible");
+            })
+        })
+    }
+
     appLoaded = true;
 });
