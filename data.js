@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'December 19th, 2025';
-const version = '0.4.8';
+const lastUpdated = 'December 22th, 2025';
+const version = '0.4.9';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
@@ -17,7 +17,7 @@ orbitData = [
         desc: "The 6 sections of Fyberverse",
     },
     {
-        orbit: 2,
+        orbit: 3,
         name: "Canon",
         desc: "Fyberverse-related menus",
     },
@@ -235,6 +235,28 @@ let menuItems = [
             },
             {
                 linkId: 'deltadim-deltaspace',
+            },
+            {
+                title: 'Pinned',
+                excerpt: 'You might be looking for these'
+            },
+            {
+                reference: 'deltadim-teksui:artibun',
+            },
+            {
+                reference: 'deltadim-deltaspace:skitty',
+            },
+            {
+                reference: 'deltadim-deltaspace:gamma',
+            },
+            {
+                reference: 'deltadim-teksui:artifish',
+            },
+            {
+                reference: 'deltadim-teksui:artilope',
+            },
+            {
+                reference: 'deltadim-chromasia:shirley',
             },
         ]
     },
@@ -1437,6 +1459,28 @@ let menuItems = [
             },
             {
                 linkId: 'floriverse-epsilon',
+            },
+            {
+                title: 'Pinned',
+                excerpt: 'You might be looking for these'
+            },
+            {
+                reference: 'floriverse-uncat:fvArtiflow',
+            },
+            {
+                reference: 'floriverse-vanilla:fvvFurflow',
+            },
+            {
+                reference: 'floriverse-delta:fvdWina',
+            },
+            {
+                reference: 'floriverse-epsilon:fveMisty',
+            },
+            {
+                reference: 'floriverse-epsilon:fveAurelia',
+            },
+            {
+                reference: 'floriverse-epsilon:fveZest',
             },
         ]
     },
@@ -3962,7 +4006,7 @@ let menuItems = [
         subtitle: '',
         image: 'icons/dailyartplus.png',
         color: 'var(--color-8)',
-        orbit: 2,
+        orbit: 3,
         scale: 1.5,
         labels: [
             {
@@ -3993,7 +4037,7 @@ let menuItems = [
         subtitle: '',
         image: 'icons/converters.png',
         color: 'var(--color-13)',
-        orbit: 2,
+        orbit: 3,
         scale: 1.5,
         labels: [
             {
@@ -4179,10 +4223,11 @@ let menuItems = [
                 cardId: 'artifyber',
                 title: 'Artifyber',
                 excerpt: '',
-                detail:
+                cAddOns:
                     `
-                    <h2>Hello!</h2> I'm Artifyber, an Indonesian furry artist who likes to draw and make music.<br>
-                    <br>
+                    <h2>Hello!</h2> I'm Artifyber, an Indonesian furry artist who likes to draw and make music.
+                    `,
+                detail: `
                     I taught myself how to draw since 2021 and produce music for even longer since 2019. Only in the late 2021 did I start to appear online under an old alias which I no longer use or associate with.<br>
                     <br>
                     Under my old alias, I started my online presence on a mobile game platform called Fancade. It's a game creation platform for mobile users and it was peak back then. I made a lot... and I mean A LOT of games. Most are simple, some are quite complicated. I was very active on the community and it taught me a lot about game development and art. The games I created are still available on the app if you want to play them. In fact if you've played Fancade, you've probably played my games without you realizing!<br>
@@ -4201,15 +4246,13 @@ let menuItems = [
                     <hr>
                     All done. Thank you for enjoying what I make :3<br>
                     <br>
-                    <img src="images/fyberhappy.png"">
-                    `,
+                    <img src="images/fyberhappy.png"">`,
                 isCharacter: true,
                 cSpecies: 'Fyber',
                 cPronouns: 'She/Any',
                 cGender: 'Bigender',
                 cSexuality: 'Bisexual',
                 cNicknames: '',
-                cAddOns: '',
                 cReference: 'images/r/artifyber-r.png',
                 cGallery: [],
                 image: 'images/temp3.png'
@@ -4567,7 +4610,7 @@ let menuItems = [
         showName: true,
         image: 'icons/oc-random.png',
         color: 'var(--color-12)',
-        orbit: 2,
+        orbit: 3,
         scale: 1.5,
         invisible: true,
         labels: [

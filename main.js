@@ -862,6 +862,20 @@ function renderContent(menu, sort = null) {
     let currentGroup = [];
 
     labels.forEach((lbl) => {
+        if (lbl.reference) {
+            const ref = lbl.reference.split(':');
+            const refMenu = menuItems.find(m => m.menuId === ref[0]);
+            const refCard = refMenu.labels.find(c => c.cardId === ref[1]);
+
+            lbl = {
+                ...refCard,
+                isReference: true,
+                refMenu: refMenu,
+                fromMenu: refMenu.menuId,
+                currentMenu: menu.menuId,
+                ...lbl
+            };
+        }
         if (!lbl.cardId) {
             // separator
             if (currentGroup.length > 0) {
@@ -1027,10 +1041,13 @@ function renderContent(menu, sort = null) {
                 if (!(lbl.unclickable)) {
                     c.addEventListener('click', () => {
                         if (lbl.url) return window.open(lbl.url, '_blank');
+                        if (lbl.isReference) lbl.fromMenu = lbl.refMenu.menuId;
 
                         const realMenu = (menu.menuId === 'search' && lbl.fromMenu)
                             ? menuItems.find(m => m.menuId === lbl.fromMenu)
-                            : menu;
+                            : (lbl.isReference && lbl.fromMenu)
+                                ? menuItems.find(m => m.menuId === lbl.refMenu.menuId)
+                                : menu;
 
                         focusCard(c, lbl, realMenu);
                     });
@@ -1162,7 +1179,8 @@ function focusCard(cardEl, label, menu = null) {
         setTimeout(() => { icon.classList.remove('copied'); icon.title = 'Copy shareable link'; }, 1500);
         playSound('sfxLink', SFX_LINK_VOL);
     });
-    history.pushState({}, '', `?m=${realMenuQ}&i=${label.cardId}`);
+    const navMenuCode = label.currentMenu || menu.menuId;
+    history.pushState({}, '', `?m=${navMenuCode}&i=${label.cardId}`);
     initLazyLoad();
 
     // set up image handlers inside detailArea
