@@ -1993,6 +1993,7 @@ function goBack() {
         if (openSingle) {
             openSingle = false;
             vizRemove(rerollBtn);
+            vizAdd(searchBtn);
         }
         playSound('sfxClick', SFX_CLICK_VOL);
         return;
