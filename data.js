@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'December 30th, 2025';
-const version = '0.4.10';
+const lastUpdated = 'January 1st, 2026';
+const version = '0.4.11';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
@@ -407,7 +407,7 @@ let menuItems = [
                 cSexuality: 'Demisexual',
                 cNicknames: 'Arti, Lolo, Jacquie, Jacqueline',
                 cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a>',
-                cReference: '',
+                cReference: 'images/r/artilope-r.png',
                 cGallery: [
                     'images/c/artilope-c.png',
                     'images/c/artilope-c2.png',
@@ -468,6 +468,26 @@ let menuItems = [
                 ],
 
                 image: 'images/i/artineko-i.png',
+            },
+            {
+                cardId: 'artimoth',
+                title: 'Artimoth',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Moth',
+                cPronouns: 'He/They',
+                cGender: 'Male',
+                cSexuality: 'Bisexual',
+                cNicknames: 'Arti, Mothy',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/artimoth-c.png'
+                ],
+
+                image: 'images/i/artimoth-i.png',
             },
             {
                 cardId: 'eros',
@@ -1248,6 +1268,26 @@ let menuItems = [
 
                 image: 'images/i/hazel-i.png',
             },
+            {
+                cardId: 'cerulean',
+                title: 'Cerulean',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Rabbit',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Demisexual',
+                cNicknames: '',
+                cAddOns: 'Adopted from <a href="https://x.com/fixy_cookies" target="_blank">Fixy Cookies</a>',
+                cReference: 'images/r/cerulean-r.png',
+                cGallery: [
+                    'images/c/cerulean-c.png',
+                ],
+
+                image: 'images/i/cerulean-i.png',
+            },
         ]
     },
     {
@@ -1419,6 +1459,24 @@ let menuItems = [
                 ],
 
                 image: 'images/i/klora-i.png',
+            },
+            {
+                cardId: 'ichor',
+                title: 'Ichor',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Black Hole',
+                cPronouns: 'Any Pronouns',
+                cGender: 'Non-binary',
+                cSexuality: 'Aroace',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/ichor-r.png',
+                cGallery: [],
+
+                image: 'images/i/ichor-i.png',
             },
         ]
     },
@@ -3314,6 +3372,24 @@ let menuItems = [
                     <h4>What's in this page</h4>
                     This page list all characters in separate categories based on the Digirel album they associate with, as well as uncategorized ones.<br>`,
                 image: 'icons/digirel.png'
+            },
+            {
+                cardId: 'ruby',
+                title: 'Ruby',
+                excerpt: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Rabbit',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Bisexual',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: 'images/r/ruby-r.png',
+                cGallery: [],
+
+                image: 'images/i/ruby-i.png',
             },
             {
                 cardId: 'soap',
