@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'January 1st, 2026';
+const lastUpdated = 'January 7th, 2026';
 const version = '0.4.11';
 
 // menu logo redirection
@@ -273,7 +273,12 @@ let menuItems = [
                 cardId: 'artibun',
                 title: 'Artibun',
                 excerpt: '',
-                detail: '',
+                detail:
+                `Artibun is a white female rabbit, with parts of her body colored in lilac, such as her arms, legs, right ear, half of her tail, and chest to abdomen area. Her inner ears are colored in blurple and has dark blue eyes.<br>
+                <br>
+                Arti has a passion for drawing, singing, and cooking delicacies. She is known in Terra as a celebrity by her popularity on social medias.<br>
+                <br>
+                Artibun was born as a supposedly faulty clone of Articat. On prototype, she was meant to only be a near identical copy of Articat except with bunny ears and a puffy tail. However, an accident happened, and her flesh wasn't developed correctly. Thankfully, she was later recovered on a second attempt thanks to the love of her partner.`,
 
                 isCharacter: true,
                 cSpecies: 'Rabbit',
@@ -298,7 +303,11 @@ let menuItems = [
                 cardId: 'articat',
                 title: 'Articat',
                 excerpt: '',
-                detail: '',
+                detail: 
+                `Articat is a white male cat, with parts of his body colored in light blurple such as his right ear and chest to abdomen area. The inside of his right ear is colored white while the other ear is colored in light blurple.<br>
+                <br>
+                Arti is a multi-genre music composer, typically creating EDM and a mix of jazz. His success as a musical artist made him just as popular as his partner Artibun on social medias.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
@@ -323,7 +332,11 @@ let menuItems = [
                 cardId: 'artifox',
                 title: 'Artifox',
                 excerpt: '',
-                detail: '',
+                detail: `Arti Fox is an arctic fox with blue accent colors on parts of his body, such as arms, pawfeet and the base of his tail. His inner ears and eyes are also colored in blue and he has top surgery scars.<br>
+                <br>
+                Arti likes to play drums and often expresses his pride as a transgender male. Although his selfish and sometime overconfident attitude made him look like a jerk to some people, he still care about the people he loved, such as his family and especially his sister Anna Fox.<br>
+                <br>
+                Arti was born in Chromasia and moved to Teksui after his gender-affirming surgery. He's currently living in an apartment and work part-time as a fast food employee.`,
 
                 isCharacter: true,
                 cSpecies: 'Fox',
@@ -348,7 +361,12 @@ let menuItems = [
                 cardId: 'artifish',
                 title: 'Artifish',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Artifish is a white non-binary tiger-cat hybrid with shark features, having a dorsal fin at their back and a caudal fin at the end of their tail. They have green accent colors on their ears, arms, legs, and fins, as well as part of their hair.<br>
+                <br>
+                Fifi live with their partner Artilope at the outskirts of Teksui and have a passion of cooking and baking.<br>
+                <br>
+                While being an aquatic creature who needs water to survive, they can also breathe in air as long as their organs stay wet, which they do by sleeping in an aquarium or soaking themselves in nearby pond every couple hours.`,
 
                 isCharacter: true,
                 cSpecies: 'Cat + Shark',
@@ -373,7 +391,10 @@ let menuItems = [
                 cardId: 'artigoat',
                 title: 'Artigoat',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Artigoat is a white male goat with yellow fur pattern on his legs and ears, as well as having a pair of short pointy horns. He also has a pair of hooves as his feet.<br>
+                <br>
+                Arti has a hobby of reading books, writing stories, and play saxophone. He lives in an apartment with his partner Artipup and works as a cashier at a local supermarket in Teksui.`,
 
                 isCharacter: true,
                 cSpecies: 'Goat',
@@ -398,7 +419,10 @@ let menuItems = [
                 cardId: 'artilope',
                 title: 'Artilope',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Artilope is a white female jackalope, a fusion between antelope and jackrabbit, with orange fur on her arms, legs, right ear, half of her tail, and chest in a shape resembling a heart. She has a pair of antlers on her head that look like forks.<br>
+                <br>
+                Living at the outskirts of Teksui with her partner Artifish, she is a lumberjack and carpenter. She likes to make wood sculptures and furnitures.`,
 
                 isCharacter: true,
                 cSpecies: 'Jackalope',
@@ -406,7 +430,9 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Demisexual',
                 cNicknames: 'Arti, Lolo, Jacquie, Jacqueline',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a>',
+                cAddOns: `
+                S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a><br>
+                Sibling: <a data-open-card="deltadim-teksui:xanthe">Xanthe</a>`,
                 cReference: 'images/r/artilope-r.png',
                 cGallery: [
                     'images/c/artilope-c.png',
@@ -423,7 +449,10 @@ let menuItems = [
                 cardId: 'artipup',
                 title: 'Artipup',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Artipup is a white male dog with red fur on his legs, right ear, muzzle and abdomen.<br>
+                <br>
+                Living in an apartment with his partner Artigoat, this puppy occasionally makes music with his minimal setup, being a laptop, MIDI keytar and an amplifier.`,
 
                 isCharacter: true,
                 cSpecies: 'Dog',
@@ -448,7 +477,12 @@ let menuItems = [
                 cardId: 'artineko',
                 title: 'Artineko',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Artineko is a female human who loves to cosplay as a pink catgirl, having pink cat ears, long hair, and paw gloves.<br>
+                <br>
+                She is an influencer and streamer who makes content on social medias. She has a younger sibling with the name Artimouse, who lives in Chromasia.<br>
+                <br>
+                Neko pretty much never be seen taking off her accessories. She claims that she feels more comfortable that way.`,
 
                 isCharacter: true,
                 cSpecies: 'Human (cat cosplay)',
@@ -687,6 +721,32 @@ let menuItems = [
                 image: 'images/i/rai-i.png',
             },
             {
+                cardId: 'xanthe',
+                title: 'Xanthe',
+                excerpt: '',
+                detail: `
+                Xanthe is a white jackalope with short orange hair, light beige fur on her arms and legs, and red eyes. She has a pair of spiky antlers and hooves for her feet.<br>
+                <br>
+                Xanthe lives at the central part of Teksui. She loves photography and traveling. She occasionally visits her sister at the outskirts of Teksui to hang out, or just to annoy her.`,
+
+                isCharacter: true,
+                cSpecies: 'Jackalope',
+                cPronouns: 'She',
+                cGender: 'Female',
+                cSexuality: 'Heterosexual',
+                cNicknames: 'Xanthelope',
+                cAddOns: 'Sibling: <a data-open-card="deltadim-teksui:artilope">Artilope</a>',
+                cReference: '',
+                cGallery: [
+                    'images/c/xanthe-c.png',
+                    'images/c/xanthe-c2.png',
+                    'images/c/xanthe-c3.png',
+                    'images/c/xanthe-c4.png',
+                ],
+
+                image: 'images/i/xanthe-i.png',
+            },
+            {
                 cardId: 'remy',
                 title: 'Remy',
                 excerpt: '',
@@ -898,7 +958,10 @@ let menuItems = [
                 cardId: 'shirley',
                 title: 'Shirley',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Shirley is an orange cat-fox hybrid with white fur on her ears, muzzle, chest, abdomen, and the tip of her tail. Her eyes are yellow and her pawpads and inner ears are orange.<br>
+                <br>
+                She lives with her boyfriend Rose, and works as a barista at a local cafe in Chromasia. She also loves gardening and taking care of pretty flowers.`,
 
                 isCharacter: true,
                 cSpecies: 'Cat + Fox',
@@ -923,7 +986,12 @@ let menuItems = [
                 cardId: 'rose',
                 title: 'Rose',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Rose is a green fox with red fur covering her head and tail, and dark green neck fur. In fact, his color schemes and fur patterns look like a typical rose flower.<br>
+                <br>
+                Rose really likes the color pink. He can often be seen wearing pink sweaters and skirts or trousers. He doesn't mind being called cute or pretty despite being a male.<br>
+                <br>
+                He works as a farmer in Chromasia, growing various kinds of crops to sell at the local market.`,
 
                 isCharacter: true,
                 cSpecies: 'Fox',
@@ -1303,7 +1371,14 @@ let menuItems = [
                 cardId: 'skitty',
                 title: 'Singularikitty',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Singularikitty is a black cat with red fur on his arms and legs, orange eyes, and a ring on the tip of his tail. He always wears a collar that holds a small black hole which they can deploy anytime.<br>
+                <br>
+                Skitty's eyes and mouth essentially function as black holes, which sucks in anything that gets nearby. However, she doesn't use this power to harm others, as he is a very kind and gentle cat. He constantly warn people to not get nearby his face for that matter.<br>
+                <br>
+                Skitty has an ability to grow or shrink in size as he pleases. He also can toggle the black hole on his collar whenever he wants.<br>
+                <br>
+                'DESTROYER' is the name Skitty given to his black hole.`,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
@@ -1328,7 +1403,16 @@ let menuItems = [
                 cardId: 'gamma',
                 title: 'Gamma',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Gamma is a white cat with blue fur on her arms and legs, dark inverted blue eyes, a long hair, and a ring on the tip of her tail. Her color scheme is essentially Skitty's inverted colors.<br>
+                <br>
+                Gamma is a very shy and soft person. She always wears a blue collar that holds a small white hole which she can deploy anytime. Her white hole ejects anything that gets nearby. As such, she is very warm due to constant radiation emitted from her body.<br>
+                <br>
+                Gamma has an ability to grow or shrink in size as she pleases. She also can toggle the white hole on her collar whenever she wants.<br>
+                <br>
+                Despite being a complete opposite of Skitty, Gamma confirmed that she is not his sibling, as the matter that she spew out does not come from Skitty's black hole. She's still speculating where it comes from...<br>
+                <br>
+                'RESTORER' is the name Gamma given to her white hole.`,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
@@ -4298,12 +4382,11 @@ let menuItems = [
             {
                 cardId: 'artifyber',
                 title: 'Artifyber',
-                excerpt: '',
-                cAddOns:
-                    `
-                    <h2>Hello!</h2> I'm Artifyber, an Indonesian furry artist who likes to draw and make music.
-                    `,
+                excerpt: 'artifyber@gmail.com',
+                cAddOns: ``,
                 detail: `
+                    <h2>Hello!</h2> I'm Artifyber, an Indonesian furry artist who likes to draw and make music.
+                    <hr>
                     I taught myself how to draw since 2021 and produce music for even longer since 2019. Only in the late 2021 did I start to appear online under an old alias which I no longer use or associate with.<br>
                     <br>
                     Under my old alias, I started my online presence on a mobile game platform called Fancade. It's a game creation platform for mobile users and it was peak back then. I made a lot... and I mean A LOT of games. Most are simple, some are quite complicated. I was very active on the community and it taught me a lot about game development and art. The games I created are still available on the app if you want to play them. In fact if you've played Fancade, you've probably played my games without you realizing!<br>
