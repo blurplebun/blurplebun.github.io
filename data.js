@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'January 7th, 2026';
+const lastUpdated = 'January 11th, 2026';
 const version = '0.4.11';
 
 // menu logo redirection
@@ -4588,6 +4588,7 @@ let menuItems = [
         color: 'var(--color-11)',
         orbit: 4,
         scale: 1.5,
+        hidden: true,
         labels: [
             {
                 cardId: 'kofi',
@@ -4604,13 +4605,7 @@ let menuItems = [
                     `
                     <h2>Before You Commission:</h2>     
                     <ul>
-                    <li>Please check my <a href="https://x.com/artifyber" target="_blank">Twitter</a> account for my current commission status. It should be written on my bio as either one of these:</li><br>
-                    <ul>
-                        <li>Open: I am available for new commissions.</li><br>
-                        <li>Full: I am currently at full capacity and cannot take new commissions.</li><br>
-                        <li>Ask: I may be available for new commissions. Please ask me first by sending me a direct message.</li><br>
-                        <li>Closed: I am not accepting any new commissions at the moment.</li><br>
-                    </ul>
+                    <li>To limit the number of commissions, my commissions are only open to <a href="https://ko-fi.com/artifyber/tiers" target="_blank">Ko-Fi members</a>. You'll need to be a member of any tier before commissioning me.</li><br>
                     <li>Please read the Terms of Service listed below. By commissioning me you acknowledge that you agree to my Terms of Service.</li><br>
                     </ul>
                     <hr>
