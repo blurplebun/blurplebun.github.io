@@ -987,7 +987,7 @@ let menuItems = [
                 title: 'Rose',
                 excerpt: '',
                 detail: `
-                Rose is a green fox with red fur covering her head and tail, and dark green neck fur. In fact, his color schemes and fur patterns look like a typical rose flower.<br>
+                Rose is a green fox with red fur covering his head and tail, and dark green neck fur. In fact, his color schemes and fur patterns look like a typical rose flower.<br>
                 <br>
                 Rose really likes the color pink. He can often be seen wearing pink sweaters and skirts or trousers. He doesn't mind being called cute or pretty despite being a male.<br>
                 <br>
@@ -1374,7 +1374,7 @@ let menuItems = [
                 detail: `
                 Singularikitty is a black cat with red fur on his arms and legs, orange eyes, and a ring on the tip of his tail. He always wears a collar that holds a small black hole which they can deploy anytime.<br>
                 <br>
-                Skitty's eyes and mouth essentially function as black holes, which sucks in anything that gets nearby. However, she doesn't use this power to harm others, as he is a very kind and gentle cat. He constantly warn people to not get nearby his face for that matter.<br>
+                Skitty's eyes and mouth essentially function as black holes, which sucks in anything that gets nearby. However, she doesn't use this power to harm others, as she is a very kind and gentle cat. SHe constantly warn people to not get nearby his face for that matter.<br>
                 <br>
                 Skitty has an ability to grow or shrink in size as he pleases. He also can toggle the black hole on his collar whenever he wants.<br>
                 <br>
@@ -4612,16 +4612,16 @@ let menuItems = [
                     <h2>Art Commission T.O.S</h2>
                     <ul>
                     <li>The customer understands they are paying for a digital commission, and will receive a digital file (e.g. JPG, PNG) of the commissioned artwork. Artworks are made using Ibis Paint and the customer will not receive any raw project file after the commission is complete. The customer will not receive any physical item in the mail from this purchase either.</li><br>
-                    <li>Payment is upfront via Paypal invoice or Ko-Fi.</li><br>
+                    <li>Payment is upfront via Ko-Fi.</li><br>
                     <li>There is no limitation on character request. But keep in mind that I'm a primarily furry artist and i am more comfortable drawing species i'm interested in (cats, rabbits, dogs and foxes).</li><br>
-                    <li>Please provide details and references beforehand as i may not provide sketches or WIPs during the process. You can provide minor revision to the final product later.</li><br>
+                    <li>Please provide details and references beforehand as i may sometime not provide sketches or WIPs during the process. You can provide minor revision to the final product later.</li><br>
                     <li>By default the artwork size for icon commissions will be in 2048x2048 (1:1) while thigh-ups and full-bodies will be in 2000x2500 (4:5). Please specify beforehand for custom canvas size.</li><br>
-                    <li>The estimated turnaround time is a day to 2 weeks.</li><br>
-                    <li>If the commission is private, please let me know in advance and the name will be anonymous.</li><br>
+                    <li>The estimated turnaround time is a day to 3 weeks.</li><br>
+                    <li>If the commission is private, please let me know in advance and the name will be anonymous or if you prefer it not being posted to my socials.</li><br>
                     <li>The illustration should only be used in personal case. No commercial use allowed.</li><br>
-                    <li>I do not allow my artworks to be feed into AI art generators or being used in any AI-related services. A copyright strike will be issued if this is violated.</li><br>
+                    <li>I do not allow my artworks to be fed into AI art generators or being used in any AI-related services. A copyright strike will be issued if this is violated.</li><br>
                     <li>You have the right to ask for a full refund only if the commission has not been started yet.</li><br>
-                    <li>If you are interested send a DM on my <a href="https://x.com/artifyber" target="_blank">Twitter</a>. However if you want to contact me through Discord, please notify me first. My Discord DM's are only open to close friends or commissioners with my permission.</li><br>
+                    <li>If you are interested send a DM on my Discord, which i only accept DM requests from if you are a Ko-Fi member.</li><br>
                     </ul>
                     <h4>What I'm willing to draw:</h4>
                     <ul>
@@ -4665,7 +4665,7 @@ let menuItems = [
                     <h2><i>PLEASE READ MY <a data-open-card="comms:tos">T.O.S</a> BEFORE COMMISIONING ME.</i></h2>
                     <hr>
                     <h2>Full-body</h2>
-                    80 USD per character<br>
+                    70 USD per character<br>
                     <div class="imgContainer">
                     <img src="images/comms/cfb-1.png"><br>
                     <img src="images/comms/cfb-2.png"><br>
@@ -4676,7 +4676,7 @@ let menuItems = [
                     </div>
                     <hr>
                     <h2>Thigh-up</h2>
-                    60 USD per character<br>
+                    50 USD per character<br>
                     <div class="imgContainer">
                     <img src="images/comms/ctu-1.png"><br>
                     <img src="images/comms/ctu-2.png"><br>
@@ -4687,7 +4687,7 @@ let menuItems = [
                     </div>
                     <hr>
                     <h2>Icon</h2>
-                    35 USD per character<br>
+                    30 USD per character<br>
                     <div class="imgContainer">
                     <img src="images/comms/ci-1.png"><br>
                     <img src="images/comms/ci-2.png"><br>
@@ -4701,22 +4701,34 @@ let menuItems = [
                     </div>
                     <hr>
                     <h2>Background</h2>
-                    <h4>Simple / Geometric = Free</h4>
+                    <h4>Simple / Geometric</h4>
                     Can also be transparent<br>
+                    <ul>
+                        <li>Free if included with character commission</li><br>
+                        <li>10 USD if requested separately</li>
+                    </ul>
                     <div class="imgContainer">
                     <img src="images/c/artibun-c2.png"><br>
                     <img src="images/c/artigoat-c4.png"><br>
                     <img src="images/c/micro-c.png"><br>
                     </div>
-                    <h4>Nature = +10 USD</h4>
+                    <h4>Nature</h4>
                     This include clouds and space-themed background<br>
+                    <ul>
+                        <li>+10 USD with character commission</li><br>
+                        <li>15 USD if requested separately</li>
+                    </ul>
                     <div class="imgContainer">
                     <img src="images/c/artigoat-c2.png"><br>
                     <img src="images/c/skitty-c3.png"><br>
                     <img src="images/c/furfy-c.png"><br>
                     </div>
-                    <h4>Many objects = +30 USD</h4>
+                    <h4>Many objects</h4>
                     Cityscapes, interior, etc.<br>
+                    <ul>
+                        <li>+30 USD with character commission</li><br>
+                        <li>40 USD if requested separately</li>
+                    </ul>
                     <div class="imgContainer">
                     <img src="images/c/artifox-c4.png"><br>
                     <img src="images/c/eros-c2.png"><br>
