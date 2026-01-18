@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'January 11th, 2026';
-const version = '0.4.11';
+const lastUpdated = 'January 18th, 2026';
+const version = '0.4.12';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
