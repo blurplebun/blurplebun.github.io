@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'January 18th, 2026';
+const lastUpdated = 'January 24th, 2026';
 const version = '0.4.12';
 
 // menu logo redirection
@@ -4385,20 +4385,15 @@ let menuItems = [
                 excerpt: 'artifyber@gmail.com',
                 cAddOns: ``,
                 detail: `
-                    <h2>Hello!</h2> I'm Artifyber, an Indonesian furry artist who likes to draw and make music.
+                    <h2>Hello!</h2> I'm Artifyber, a furry artist who likes to draw and make music.
                     <hr>
-                    I taught myself how to draw since 2021 and produce music for even longer since 2019. Only in the late 2021 did I start to appear online under an old alias which I no longer use or associate with.<br>
-                    <br>
-                    Under my old alias, I started my online presence on a mobile game platform called Fancade. It's a game creation platform for mobile users and it was peak back then. I made a lot... and I mean A LOT of games. Most are simple, some are quite complicated. I was very active on the community and it taught me a lot about game development and art. The games I created are still available on the app if you want to play them. In fact if you've played Fancade, you've probably played my games without you realizing!<br>
-                    <br>
-                    After my Fancade days, I started to focus on art more. I started my first daily art challenge on January 1st, 2023. It wasn't called Daily Art+ back then. No significant worldbuilding or lore, just a challenge to develop a consistent art style. I succeeded and I kept going. At halfway through the year I rebranded to Artifyber and started developing a little bit of lore and worldbuilding. I also released my first album "Floriverse" around that time.<br>
+                    I taught myself how to draw since 2021 and produce music for even longer since 2019. Only in the late 2021 did I start to appear online.<br>
+                    <br>I started my first daily art challenge on January 1st, 2023. It wasn't called Daily Art+ back then. No significant worldbuilding or lore, just a challenge to develop a consistent art style. I succeeded and I kept going. At halfway through the year I rebranded to Artifyber and started developing a little bit of lore and worldbuilding. I also released my first album "Floriverse" around that time.<br>
                     <br>
                     <hr>
                     A year passed, and I'm now continuing my art hobby with the Daily Art+ series starting 2024. Drawing is the main activity I spent online the most. I mainly draw my own furry characters, but I also take art commissions from time to time. I quite enjoy drawing my own characters as I find it rather relaxing.<br>
                     <br>
                     Music production is also my hobby. Some say i have a diverse taste in music with the amount of genres i've produced. Honestly, i don't even know what kind of genre i'm making half of the time. I just throw 'n' slice samples and draw melodies and if it sounds good, then it's good. Even if it sounds unusual to a majority.<br>
-                    <br>
-                    I've been doing art and music on a phone since the beginning and still am to this day. Even though I have a more powerful PC, I still prefer being mobile with my work. I use Ibis Paint for drawing and FL Studio Mobile for music production. Just a phone and my fingers.<br>
                     <br>
                     In the future I want to be a game developer and create something out of the worlds and characters i've made. It's a dream of mine to create an actual game and I still have a long way to go.<br>
                     <br>
@@ -4846,6 +4841,22 @@ let menuItems = [
                         <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalMenusCounter"></div>
                         <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCharacterCounter"></div>
                         <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalSplashCounter"></div>
+                `,
+                banner: true,
+                unclickable: true,
+                detail:
+                    ``,
+                image: ''
+            },
+            {
+                cardId: 'credits',
+                title: `Credits`,
+                excerpt: `
+                        Developed by:<br>
+                        Artifyber<br>
+                        <br>
+                        Special thanks:<br>
+                        Azka "Artist" Zavian
                 `,
                 banner: true,
                 unclickable: true,

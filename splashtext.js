@@ -225,6 +225,19 @@ splashLines = [
     "You cannot ragebait me 💜🌼",
     "+3030350% !!",
     "2️⃣7️⃣6️⃣3️⃣",
+    "Funding for this program was made possible by viewers like you!",
+    "it's kinda crazy that i can just do that",
+    "syntax error? more like",
+    "i don't know what else to add here",
+    "Wow, you guys are weird af",
+    "Everything in the internet stays in the internet :)",
+    "0 = 1 + 23^i",
+    "yeah yeah keep scraping, you moron!!!",
+    "hold on i gotta fix these bugs first",
+    "kinda buggy srry",
+    "sry4dalag :(",
+    ":sweatsmile:",
+    "↗️ is having a crush with a router"
 ];
 
 totalSplash = splashLines.length;
