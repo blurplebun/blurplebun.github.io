@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'January 24th, 2026';
-const version = '0.4.12';
+const lastUpdated = 'January 25th, 2026';
+const version = '0.4.13';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
@@ -4363,6 +4363,71 @@ let menuItems = [
                     </div>
                     `,
                 image: 'icons/starstroke.png'
+            },
+            {
+                cardId: 'nadirune',
+                title: 'NADIRUNE',
+                excerpt: 'Convert Latin to NADIRUNE',
+                detail:
+                    `
+                    <a href="https://artifyber.xyz/fonts/NADIRUNE.ttf" target="_blank">Download NADIRUNE Font</a><br><br>
+                    <h2>Latin to NADIRUNE</h2>
+                    Latin input
+                    <div style="margin-top:10px;">
+                        <textarea id="nadiruneInput" rows="4" style="width:100%;"></textarea>
+                    </div>
+                    <br>
+                    NADIRUNE output
+                    <div style="margin-top:10px;">
+                        <textarea id="nadiruneOutput" rows="4" style="width:100%;" readonly></textarea>
+                    </div>
+
+                    <br><br><hr>
+
+                    <h2>NADIRUNE to Latin</h2>
+                    NADIRUNE input
+                    <div style="margin-top:10px;">
+                        <textarea id="nadiruneInputRev" class="nadirune" rows="2" style="width:100%;" readonly></textarea>
+                    </div>
+                    <br>
+                    <button id="copyNadiruneRevBtn" type="button">Copy</button> -  latin output<br>
+                    <div style="margin-top:10px;">
+                        <textarea id="nadiruneOutputRev" rows="2" style="width:100%;" readonly></textarea>
+                    </div>
+                    <br>
+                    <div class="keyboardLayout" style="margin-top:10px;">
+                        <button type="button" class="keycap nadiruneKeys" data-key="DEL">DEL</button>
+                        <button type="button" class="keycap nadiruneKeys" data-key="CLR">CLR</button>
+                        <button type="button" class="keycap nadiruneKeys" data-key=" ">SPACE</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="A">A</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="B">B</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="C">C</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="D">D</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="E">E</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="F">F</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="G">G</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="H">H</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="I">I</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="J">J</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="K">K</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="L">L</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="M">M</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="N">N</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="O">O</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="P">P</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="Q">Q</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="R">R</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="S">S</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="T">T</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="U">U</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="V">V</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="W">W</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="X">X</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="Y">Y</button>
+                        <button type="button" class="keycap nadirune nadiruneKeys" data-key="Z">Z</button>
+                    </div>
+                    `,
+                image: 'icons/nadirune.png'
             },
         ]
     },

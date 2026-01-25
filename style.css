@@ -177,6 +177,13 @@
     src: url(fonts/starstroke.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'nadirune';
+    font-weight: 800;
+    font-display: swap;
+    src: url(fonts/NADIRUNE.ttf) format('truetype');
+}
+
 
 /* --------------------------
     HTML
@@ -1303,6 +1310,16 @@ textarea#genothetaOutputEx {
 
 textarea#starstrokeOutput {
     font-family: 'starstroke', 'Main', 'Ubuntu', verdana, sans-serif;
+    font-size: 1.5rem;
+}
+
+#detailArea .nadirune {
+    font-family: 'nadirune', 'Main', 'Ubuntu', verdana, sans-serif;
+    font-size: 2rem;
+}
+
+textarea#nadiruneOutput {
+    font-family: 'nadirune', 'Main', 'Ubuntu', verdana, sans-serif;
     font-size: 1.5rem;
 }
 
