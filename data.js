@@ -1607,7 +1607,13 @@ let menuItems = [
                 excerpt: 'You might be looking for these'
             },
             {
+                reference: 'floriverse-epsilon:fveAurelia',
+            },
+            {
                 reference: 'floriverse-uncat:fvArtiflow',
+            },
+            {
+                reference: 'floriverse-uncat:fvArtidell',
             },
             {
                 reference: 'floriverse-vanilla:fvvFurflow',
@@ -1617,12 +1623,6 @@ let menuItems = [
             },
             {
                 reference: 'floriverse-epsilon:fveMisty',
-            },
-            {
-                reference: 'floriverse-epsilon:fveAurelia',
-            },
-            {
-                reference: 'floriverse-epsilon:fveZest',
             },
         ]
     },
@@ -1828,10 +1828,11 @@ let menuItems = [
                 title: 'Artiflow',
                 excerpt: '',
                 isCharacter: true,
-                cSpecies: 'Flower',
+                cSpecies: 'Hepatica',
                 cPronouns: 'She',
                 cGender: 'Female',
                 cReference: 'images/flories/uncat/Artiflow.png',
+                cAddOns: 'S/O: <a data-open-card="floriverse-uncat:fvArtidell">Artidell</a>',
                 detail: '',
                 image: 'images/flories/uncat/Artiflow.png'
             },
@@ -1841,9 +1842,10 @@ let menuItems = [
                 excerpt: '',
                 isCharacter: true,
                 cSpecies: 'Catdelion',
-                cPronouns: 'He',
-                cGender: 'Male',
+                cPronouns: 'He/She',
+                cGender: 'Bigender',
                 cReference: 'images/flories/uncat/Artidell.png',
+                cAddOns: 'S/O: <a data-open-card="floriverse-uncat:fvArtiflow">Artiflow</a>',
                 detail: '',
                 image: 'images/flories/uncat/Artidell.png'
             },
