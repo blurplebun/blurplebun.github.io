@@ -184,6 +184,13 @@
     src: url(fonts/NADIRUNE.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'zenpen';
+    font-weight: 800;
+    font-display: swap;
+    src: url(fonts/zenpen.ttf) format('truetype');
+}
+
 
 /* --------------------------
     HTML
@@ -1320,6 +1327,16 @@ textarea#starstrokeOutput {
 
 textarea#nadiruneOutput {
     font-family: 'nadirune', 'Main', 'Ubuntu', verdana, sans-serif;
+    font-size: 1.5rem;
+}
+
+#detailArea .zenpen {
+    font-family: 'zenpen', 'Main', 'Ubuntu', verdana, sans-serif;
+    font-size: 2rem;
+}
+
+textarea#zenpenOutput {
+    font-family: 'zenpen', 'Main', 'Ubuntu', verdana, sans-serif;
     font-size: 1.5rem;
 }
 

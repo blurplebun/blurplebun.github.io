@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'January 26th, 2026';
-const version = '0.4.13';
+const lastUpdated = 'February 2nd, 2026';
+const version = '0.4.14';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
@@ -4431,6 +4431,83 @@ let menuItems = [
                     `,
                 image: 'icons/nadirune.png'
             },
+            {
+                cardId: 'zenpen',
+                title: 'Zenpen',
+                excerpt: 'Convert Latin to Zenpen',
+                detail:
+                    `
+                    <a href="https://artifyber.xyz/fonts/zenpen.ttf" target="_blank">Download Zenpen Font</a><br><br>
+                    <h2>Latin to Zenpen</h2>
+                    Latin input
+                    <div style="margin-top:10px;">
+                        <textarea id="zenpenInput" rows="4" style="width:100%;"></textarea>
+                    </div>
+                    <br>
+                    Zenpen output
+                    <div style="margin-top:10px;">
+                        <textarea id="zenpenOutput" rows="4" style="width:100%;" readonly></textarea>
+                    </div>
+
+                    <br><br><hr>
+
+                    <h2>Zenpen to Latin</h2>
+                    Zenpen input
+                    <div style="margin-top:10px;">
+                        <textarea id="zenpenInputRev" class="zenpen" rows="2" style="width:100%;" readonly></textarea>
+                    </div>
+                    <br>
+                    <button id="copyZenpenRevBtn" type="button">Copy</button> -  latin output<br>
+                    <div style="margin-top:10px;">
+                        <textarea id="zenpenOutputRev" rows="2" style="width:100%;" readonly></textarea>
+                    </div>
+                    <br>
+                    <div class="keyboardLayout" style="margin-top:10px;">
+                        <button type="button" class="keycap zenpenKeys" data-key="DEL">DEL</button>
+                        <button type="button" class="keycap zenpenKeys" data-key="CLR">CLR</button>
+                        <button type="button" class="keycap zenpenKeys" data-key=" ">SPACE</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="A">A</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="B">B</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="C">C</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="D">D</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="E">E</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="F">F</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="G">G</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="H">H</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="I">I</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="J">J</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="K">K</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="L">L</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="M">M</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="N">N</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="O">O</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="P">P</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="Q">Q</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="R">R</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="S">S</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="T">T</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="U">U</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="V">V</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="W">W</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="X">X</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="Y">Y</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="Z">Z</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="0">0</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="1">1</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="2">2</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="3">3</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="4">4</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="5">5</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="6">6</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="7">7</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="8">8</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key="9">9</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key=".">.</button>
+                        <button type="button" class="keycap zenpen zenpenKeys" data-key=",">,</button>
+                    </div>
+                    `,
+                image: 'icons/zenpen.png'
+            },
         ]
     },
 
@@ -4851,6 +4928,7 @@ let menuItems = [
         // Settings
         menuId: 'settings',
         name: 'Settings',
+        subtitle: 'Options to tweak',
         showName: true,
         color: 'var(--color-14)',
         orbit: 4,

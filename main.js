@@ -802,28 +802,30 @@ function showContentFor(menu, sort = null) {
         const existing = contentTitle.querySelector('.copy-link');
         if (existing) existing.remove();
 
-        const linkIcon = document.createElement('span');
-        linkIcon.className = 'copy-link';
-        linkIcon.innerHTML = `
+        if (!menu.invisible) {
+            const linkIcon = document.createElement('span');
+            linkIcon.className = 'copy-link';
+            linkIcon.innerHTML = `
             <svg viewBox="0 0 24 24" fill="none">
                 <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
                 <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
             </svg>
         `;
-        linkIcon.title = 'Copy shareable link';
-        linkIcon.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const link = !eFolder ? `${location.origin}${location.pathname}?m=${menu.menuId}` : `${location.origin}${location.pathname}${eFolder}/${menu.menuId}`;
-            navigator.clipboard.writeText(link);
-            linkIcon.classList.add('copied');
-            linkIcon.title = 'Copied!';
-            setTimeout(() => {
-                linkIcon.classList.remove('copied');
-                linkIcon.title = 'Copy shareable link';
-            }, 1500);
-            playSound('sfxLink', SFX_LINK_VOL);
-        });
-        contentTitle.appendChild(linkIcon);
+            linkIcon.title = 'Copy shareable link';
+            linkIcon.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const link = !eFolder ? `${location.origin}${location.pathname}?m=${menu.menuId}` : `${location.origin}${location.pathname}${eFolder}/${menu.menuId}`;
+                navigator.clipboard.writeText(link);
+                linkIcon.classList.add('copied');
+                linkIcon.title = 'Copied!';
+                setTimeout(() => {
+                    linkIcon.classList.remove('copied');
+                    linkIcon.title = 'Copy shareable link';
+                }, 1500);
+                playSound('sfxLink', SFX_LINK_VOL);
+            });
+            contentTitle.appendChild(linkIcon);
+        }
     }
 
     contentView.dataset.singleCardMenu = menu.labels.length === 1 ? 'true' : 'false';
@@ -1474,7 +1476,8 @@ function playSound(soundId, volume = 1) {
 
 const bgmList = Object.values(bgm);
 
-// Background tab detection
+// On tab blur, pause BGM; on focus, resume if enabled
+/*
 let lastSeen;
 let bgmLoop = function () {
     lastSeen = Date.now();
@@ -1482,18 +1485,17 @@ let bgmLoop = function () {
 };
 bgmLoop();
 
-// Pause all BGM on tab blur
 window.addEventListener('blur', () => {
     bgmList.forEach(audio => audio.pause());
 });
 
-// Resume all BGM on tab focus
 window.addEventListener('focus', () => {
     if (!bgmEnabled) return;
     bgmList.forEach(audio => {
         audio.play().catch(() => { });
     });
 });
+*/
 
 /* --------------------------
     Search
@@ -1932,6 +1934,14 @@ function goBack() {
     const params = new URLSearchParams(location.search);
     const menuCode = params.get('m');
     const itemId = params.get('i');
+
+    // if search box is open, close it
+    if (searchBox.open) {
+        searchBox.close();
+        vizAdd(searchBtn);
+        playSound('sfxClick', SFX_CLICK_VOL);
+        return;
+    }
 
     // if viewing a card, go back to menu grid
     if (itemId && !openSingle) {

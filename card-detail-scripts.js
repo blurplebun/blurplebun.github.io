@@ -131,6 +131,35 @@ function converterHandler(label) {
         const nadiruneKeys = $$('.nadiruneKeys');
         createKeyboard(nadiruneKeys, nadiruneInputRev);
     }
+
+    // Zenpen
+    if (label.cardId === 'zenpen') {
+        const zenpenInput = document.getElementById('zenpenInput');
+        const zenpenOutput = document.getElementById('zenpenOutput');
+
+        const zenpenInputRev = document.getElementById('zenpenInputRev');
+        const zenpenOutputRev = document.getElementById('zenpenOutputRev');
+
+        copyZenpenRevBtn.addEventListener('click', async () => { copyToClipboard(copyZenpenRevBtn, zenpenOutputRev); });
+
+        // latin to zenpen
+        zenpenInput.addEventListener('input', () => {
+            const input = zenpenInput.value;
+            const output = input;
+            zenpenOutput.value = output;
+        });
+
+        // zenpen to latin
+        zenpenInputRev.addEventListener('input', () => {
+            const input = zenpenInputRev.value;
+            const output = input;
+            zenpenOutputRev.value = output;
+        });
+
+        // zenpen keyboard
+        const zenpenKeys = $$('.zenpenKeys');
+        createKeyboard(zenpenKeys, zenpenInputRev);
+    }
 }
 
 // for genotheta converter: convert base10 to base32
