@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'February 2nd, 2026';
+const lastUpdated = 'February 5th, 2026';
 const version = '0.4.14';
 
 // menu logo redirection
@@ -527,7 +527,11 @@ let menuItems = [
                 cardId: 'eros',
                 title: 'Eros',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Eros is a tall black female cat with light gray fur on her face, darker shade of black on the tip of her ears, and orange pawpads. She has no tail and her ears are pointy, as well as wearing glasses.<br>
+                <br>
+                Eros works as a barista at a local cafe in Teksui. She has a shy and introverted personality and prefer to not be the center of attention. She lives in an apartment with her loving partner named Sora.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
@@ -552,7 +556,11 @@ let menuItems = [
                 cardId: 'sora',
                 title: 'Sora',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Sora is a short light gray female cat with darker gray fur on her face. She has no tail and her ears are pointy.<br>
+                <br>
+                Sora is unemployed and spends most of her time at the apartment she shares with her partner Eros. She enjoys writing stories.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
@@ -573,7 +581,12 @@ let menuItems = [
                 cardId: 'furfy',
                 title: 'Furfy',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Furfy is a white female cat with green fur on the tip of her tail and lighter shade of green for her face. Her pawpads are green and is often seen wearing a green sweater.<br>
+                <br>
+                Furfy works as a baker at her own bakery shop in Teksui. Other than baking loaves of bread, she also enjoys taking care of her plants and flowers in her free time. She lives with her loving partner named Mist.
+                `
+                ,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
@@ -598,7 +611,11 @@ let menuItems = [
                 cardId: 'mist',
                 title: 'Mist',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Mist is a white female cat with her inner ears colored in teal and lighter shade of teal for her face. Her pawpads are teal and is often seen wearing a teal sweater and light blue scarf.<br>
+                <br>
+                Mist works together with her partner Furfy at the bakery shop in Teksui. Other than that she also loves to take care of plants.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
@@ -619,7 +636,11 @@ let menuItems = [
                 cardId: 'card',
                 title: 'Card',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Card is an orange female cat with an open cardboard box as her head. It consists of drawn-on cat features such as triangular ears, as well as some informational texts on the sides of her head like a typical packaging box. Her eyes and mouth are also seemingly drawn-on. However it can dynamically change expressions like a real face.<br>
+                <br>
+                Card has a part-time job as a delivery courier. She lives with her partner Gift at their own home in Teksui. She likes to make crafts and origamis out of paper. She also has an obsession of collecting anything and sort them into cardboard boxes.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Cardboard Cat',
@@ -644,7 +665,11 @@ let menuItems = [
                 cardId: 'gift',
                 title: 'Gift',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Gift is a white female rabbit with a gift box as her head. It's a plain white box with a red ribbon tied around it and a bow on top. It also has two droopy bunny ears attached from the lid. Like Card, her eyes and mouth are seemingly drawn-on but can dynamically change expressions like a real face.<br>
+                <br>
+                Gift lives with her partner Card and really love making surprises and parties for her loved ones and friends.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Giftbox Rabbit',
@@ -654,7 +679,9 @@ let menuItems = [
                 cNicknames: '',
                 cAddOns: 'S/O: <a data-open-card="deltadim-teksui:card">Card</a>',
                 cReference: 'images/r/gift-r.png',
-                cGallery: [],
+                cGallery: [
+                    'images/c/gift-c.png',
+                ],
 
                 image: 'images/i/gift-i.png',
             },
@@ -682,7 +709,13 @@ let menuItems = [
                 cardId: 'fika',
                 title: 'Fika',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Fika is an orange female fox with long light beige hair. Her inner ears and pawpads are in slightly darker shade of orange.<br>
+                <br>
+                Fika lives with Rai as a couple. She enjoys drawing and painting as well as singing. She sometimes upload her paintings on social medias.<br>
+                <br>
+                As a neighbor to Artibun and Articat, Fika doesn't really interact with them too much. She doesn't hate them as much as Rai does, but she still prefer to keep a distance from both Arti's.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Fox',
@@ -703,7 +736,13 @@ let menuItems = [
                 cardId: 'rai',
                 title: 'Rai',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Rai is a white male fox with grey ears and black eyes. His pupils are white and has no pawpads.<br>
+                <br>
+                Rai has a passion in music production, often making EDM tracks in his home studio. He lives with his partner Fika and is a neighbor to Artibun and Articat.<br>
+                <br>
+                Despite being neighbors, Rai dislikes both Arti's. He finds them too obnoxious and often tries to avoid them as much as possible. The reason? Might be because of their popularity and fame.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Fox',
