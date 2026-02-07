@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'February 5th, 2026';
+const lastUpdated = 'February 7th, 2026';
 const version = '0.4.14';
 
 // menu logo redirection
@@ -1476,7 +1476,15 @@ let menuItems = [
                 cardId: 'micro',
                 title: 'Micro',
                 excerpt: '',
-                detail: '',
+                detail: `
+                Micro is a non-binary dark purple cat with half of their body parts (eyes, pawpads, glows, etc.) in blue while the other half is in pink. They always wear a blue collar with a pink bell. They also sometimes wear an air bubble on their head purely for cosmetic.<br>
+                <br>
+                As a space cat, Micro doesn't need to breathe to survive. They also don't need to consume food or drink, as they have no mouth. This also makes them mute. They communicate through body language and writing on a small board they always carry around.<br>
+                <br>
+                Micro has a flying saucer that they use to travel long-distances in space. The saucer is also a storage for all sorts of thing they collect from their travels.<br>
+                <br>
+                They possess a power of vacuum manipulation, albeit they don't really use it often as it is very limited. They can push and pull objects by controlling the vacuum around them.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Cat',
