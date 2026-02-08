@@ -723,7 +723,7 @@ function initContent() {
                         e = '<span style="border-left: 6px solid var(--white); padding-right: 8px"></span>' + orbitMatch.desc;
                         labelGroup.push({
                             title: t,
-                            excerpt: e
+                            subtitle: e
                         });
                         separateOnce = true;
                     }
@@ -732,7 +732,7 @@ function initContent() {
                 labelGroup.push({
                     cardId: `menu-${menu.menuId}`,
                     title: menu.title,
-                    excerpt: menu.subtitle || '',
+                    subtitle: menu.subtitle || '',
                     image: menu.image || '',
                     linkId: menu.menuId,
                     banner: true,
@@ -742,7 +742,7 @@ function initContent() {
 
         // main menu data
         mainMenu = {
-            name: MAIN_MENU_TITLE,
+            title: MAIN_MENU_TITLE,
             menuId: 'index',
             subtitle: MAIN_MENU_SUBTITLE,
             labels: labelGroup,
@@ -769,8 +769,8 @@ function initContent() {
     if (!SIMPLE_MODE) {
         faraway = {
             menuId: 'farawaymenu',
-            name: 'faraway',
-            showName: false,
+            title: 'faraway',
+            showTitle: false,
             orbit: 999,
             scale: 0.01,
             invisible: true,
@@ -1573,7 +1573,7 @@ function search() {
         if (!specialQuery) {
             labelGroup.push({
                 title: 'Nothing found',
-                excerpt: ''
+                subtitle: ''
             });
 
         } else {
@@ -1581,7 +1581,7 @@ function search() {
             if (data && !data.special) {
                 labelGroup.push({
                     title: data.title,
-                    excerpt: data.subtitle || ''
+                    subtitle: data.subtitle || ''
                 });
             }
         }
@@ -1602,7 +1602,7 @@ function search() {
                 labelGroup.push({
                     cardId: `menu-${menu.menuId}`,
                     title: menu.title,
-                    excerpt: menu.subtitle || '',
+                    subtitle: menu.subtitle || '',
                     image: menu.image || '',
                     linkId: menu.menuId,
                 });
@@ -1632,7 +1632,7 @@ function search() {
 
     const searchMenu = {
         menuId: searchId,
-        name: searchName,
+        title: searchName,
         subtitle: `Found ${labelGroup.filter(label => label.cardId || label.linkId).length} result(s)`,
         labels: labelGroup,
     };
