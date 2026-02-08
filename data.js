@@ -3,8 +3,8 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'February 7th, 2026';
-const version = '0.4.14';
+const lastUpdated = 'February 8th, 2026';
+const version = '0.4.15';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
@@ -13,17 +13,17 @@ menuLogoRedirect = 'info:artifyber';
 orbitData = [
     {
         orbit: 1,
-        name: "Universes",
+        title: "Universes",
         desc: "The 6 sections of Fyberverse",
     },
     {
         orbit: 3,
-        name: "Canon",
+        title: "Canon",
         desc: "Fyberverse-related menus",
     },
     {
         orbit: 4,
-        name: "Others",
+        title: "Others",
         desc: "Miscellanous",
     },
     {
@@ -40,8 +40,8 @@ let menuItems = [
     -------------------------- */
     {
         menuId: 'menuTemplate',               // REQUIRED: Unique identifier (alphanumeric, no spaces)
-        name: 'Menu Template Example',        // Menu name and title
-        showName: false,                      // Show name in orbit
+        title: 'Menu Template Example',        // Menu name and title
+        showTitle: false,                      // Show name in orbit
         subtitle: 'This is a menu example',   // Short description
         image: 'images/temp2.png',            // Orbit thumbnail image
         color: 'var(--color-15)',             // Menu color (hex, CSS var, or blank)
@@ -54,26 +54,26 @@ let menuItems = [
             {
                 // Cards without cardId become separators
                 title: 'Card examples',
-                excerpt: 'Main card types to put your content in',
+                subtitle: 'Main card types to put your content in',
             },
             {
                 cardId: 'normalCard',         // REQUIRED: Unique card identifier
                 title: 'Normal Card',
-                excerpt: 'With thumbnail',
+                subtitle: 'With thumbnail',
                 detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
                 image: 'images/temp.png'        // Thumbnail will be shown in 1:1 aspect ratio
             },
             {
                 cardId: 'urlCard',
                 title: 'URL Card',
-                excerpt: 'With thumbnail',
+                subtitle: 'With thumbnail',
                 url: 'https://x.com/artifyber',  // External URL redirect
                 image: 'images/temp.png'
             },
             {
                 cardId: 'unclickableCard',
                 title: 'Unclickable Card',
-                excerpt: 'With thumbnail',
+                subtitle: 'With thumbnail',
                 unclickable: true,            // Non-clickable info card
                 image: 'images/temp.png'
             },
@@ -102,19 +102,19 @@ let menuItems = [
             {
                 cardId: 'normalCardPlain',
                 title: 'Normal Card',
-                excerpt: 'Without thumbnail',
+                subtitle: 'Without thumbnail',
                 detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.'
             },
             {
                 cardId: 'urlCardPlain',
                 title: 'URL Card',
-                excerpt: 'Without thumbnail',
+                subtitle: 'Without thumbnail',
                 url: 'https://x.com/artifyber'
             },
             {
                 cardId: 'unclickableCardPlain',
                 title: 'Unclickable Card',
-                excerpt: 'Without thumbnail',
+                subtitle: 'Without thumbnail',
                 unclickable: true
             },
 
@@ -122,12 +122,12 @@ let menuItems = [
             {
                 // Cards without cardId become separators
                 title: 'Banner examples',
-                excerpt: 'Useful for describing a section of card grid',
+                subtitle: 'Useful for describing a section of card grid',
             },
             {
                 cardId: 'bannerCard',
                 title: 'Banner Card',
-                excerpt: 'A type of card that spans the entire width of the container',
+                subtitle: 'A type of card that spans the entire width of the container',
                 detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
                 banner: true,
                 image: 'images/temp3.png'
@@ -135,7 +135,7 @@ let menuItems = [
             {
                 cardId: 'bannerUrlCard',
                 title: 'Banner Card (URL)',
-                excerpt: 'A type of card that spans the entire width of the container',
+                subtitle: 'A type of card that spans the entire width of the container',
                 banner: true,
                 url: 'https://x.com/artifyber',
                 image: 'images/temp3.png'
@@ -143,7 +143,7 @@ let menuItems = [
             {
                 cardId: 'bannerUnclickableCard',
                 title: 'Banner Card (Unclickable)',
-                excerpt: 'A type of card that spans the entire width of the container',
+                subtitle: 'A type of card that spans the entire width of the container',
                 banner: true,
                 unclickable: true,
                 image: 'images/temp3.png'
@@ -151,21 +151,21 @@ let menuItems = [
             {
                 cardId: 'bannerCardBlank',
                 title: 'Banner Card - No Thumbnail',
-                excerpt: 'A type of card that spans the entire width of the container',
+                subtitle: 'A type of card that spans the entire width of the container',
                 detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
                 banner: true,
             },
             {
                 cardId: 'bannerUrlCardBlank',
                 title: 'Banner Card - No Thumbnail (URL)',
-                excerpt: 'A type of card that spans the entire width of the container',
+                subtitle: 'A type of card that spans the entire width of the container',
                 banner: true,
                 url: 'https://x.com/artifyber',
             },
             {
                 cardId: 'bannerUnclickableCardBlank',
                 title: 'Banner Card - No Thumbnail (Unclickable)',
-                excerpt: 'A type of card that spans the entire width of the container',
+                subtitle: 'A type of card that spans the entire width of the container',
                 banner: true,
                 unclickable: true,
             },
@@ -173,7 +173,7 @@ let menuItems = [
             // MENU-LINKED CARDS
             {
                 title: 'Menu-Link examples',
-                excerpt: 'Cards that open another menu',
+                subtitle: 'Cards that open another menu',
             },
             {
                 linkId: 'deltadim'  // Links to menu with matching 'q' property
@@ -205,7 +205,7 @@ let menuItems = [
 
     {
         // Deltadim
-        name: 'Deltadim',
+        title: 'Deltadim',
         menuId: 'deltadim',
         subtitle: 'Delta Dimension',
         image: 'icons/deltadim.png',
@@ -216,7 +216,7 @@ let menuItems = [
             {
                 cardId: 'info',
                 title: 'Info',
-                excerpt: 'About Deltadim',
+                subtitle: 'About Deltadim',
                 banner: true,
                 detail:
                     `Deltadim is the main universe portrayed in Daily Art+. Its characteristics are similar to our own universe. Terra is where the main plot takes place. It's an Earth-like planet inhabited by furries, humanoids, and other creatures.<br>
@@ -238,7 +238,7 @@ let menuItems = [
             },
             {
                 title: 'Pinned',
-                excerpt: 'You might be looking for these'
+                subtitle: 'You might be looking for these'
             },
             {
                 reference: 'deltadim-teksui:artibun',
@@ -262,7 +262,7 @@ let menuItems = [
     },
     {
         menuId: 'deltadim-teksui',
-        name: 'Teksui',
+        title: 'Teksui',
         subtitle: 'Terra',
         image: 'images/deltadim-teksui.png',
         color: 'var(--color-9)',
@@ -272,7 +272,7 @@ let menuItems = [
             {
                 cardId: 'artibun',
                 title: 'Artibun',
-                excerpt: '',
+                subtitle: '',
                 detail:
                 `Artibun is a white female rabbit, with parts of her body colored in lilac, such as her arms, legs, right ear, half of her tail, and chest to abdomen area. Her inner ears are colored in blurple and has dark blue eyes.<br>
                 <br>
@@ -302,7 +302,7 @@ let menuItems = [
             {
                 cardId: 'articat',
                 title: 'Articat',
-                excerpt: '',
+                subtitle: '',
                 detail: 
                 `Articat is a white male cat, with parts of his body colored in light blurple such as his right ear and chest to abdomen area. The inside of his right ear is colored white while the other ear is colored in light blurple.<br>
                 <br>
@@ -331,7 +331,7 @@ let menuItems = [
             {
                 cardId: 'artifox',
                 title: 'Artifox',
-                excerpt: '',
+                subtitle: '',
                 detail: `Arti Fox is an arctic fox with blue accent colors on parts of his body, such as arms, pawfeet and the base of his tail. His inner ears and eyes are also colored in blue and he has top surgery scars.<br>
                 <br>
                 Arti likes to play drums and often expresses his pride as a transgender male. Although his selfish and sometime overconfident attitude made him look like a jerk to some people, he still care about the people he loved, such as his family and especially his sister Anna Fox.<br>
@@ -360,7 +360,7 @@ let menuItems = [
             {
                 cardId: 'artifish',
                 title: 'Artifish',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Artifish is a white non-binary tiger-cat hybrid with shark features, having a dorsal fin at their back and a caudal fin at the end of their tail. They have green accent colors on their ears, arms, legs, and fins, as well as part of their hair.<br>
                 <br>
@@ -390,7 +390,7 @@ let menuItems = [
             {
                 cardId: 'artigoat',
                 title: 'Artigoat',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Artigoat is a white male goat with yellow fur pattern on his legs and ears, as well as having a pair of short pointy horns. He also has a pair of hooves as his feet.<br>
                 <br>
@@ -418,7 +418,7 @@ let menuItems = [
             {
                 cardId: 'artilope',
                 title: 'Artilope',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Artilope is a white female jackalope, a fusion between antelope and jackrabbit, with orange fur on her arms, legs, right ear, half of her tail, and chest in a shape resembling a heart. She has a pair of antlers on her head that look like forks.<br>
                 <br>
@@ -448,7 +448,7 @@ let menuItems = [
             {
                 cardId: 'artipup',
                 title: 'Artipup',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Artipup is a white male dog with red fur on his legs, right ear, muzzle and abdomen.<br>
                 <br>
@@ -476,7 +476,7 @@ let menuItems = [
             {
                 cardId: 'artineko',
                 title: 'Artineko',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Artineko is a female human who loves to cosplay as a pink catgirl, having pink cat ears, long hair, and paw gloves.<br>
                 <br>
@@ -506,7 +506,7 @@ let menuItems = [
             {
                 cardId: 'artimoth',
                 title: 'Artimoth',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -526,7 +526,7 @@ let menuItems = [
             {
                 cardId: 'eros',
                 title: 'Eros',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Eros is a tall black female cat with light gray fur on her face, darker shade of black on the tip of her ears, and orange pawpads. She has no tail and her ears are pointy, as well as wearing glasses.<br>
                 <br>
@@ -555,7 +555,7 @@ let menuItems = [
             {
                 cardId: 'sora',
                 title: 'Sora',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Sora is a short light gray female cat with darker gray fur on her face. She has no tail and her ears are pointy.<br>
                 <br>
@@ -580,7 +580,7 @@ let menuItems = [
             {
                 cardId: 'furfy',
                 title: 'Furfy',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Furfy is a white female cat with green fur on the tip of her tail and lighter shade of green for her face. Her pawpads are green and is often seen wearing a green sweater.<br>
                 <br>
@@ -610,7 +610,7 @@ let menuItems = [
             {
                 cardId: 'mist',
                 title: 'Mist',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Mist is a white female cat with her inner ears colored in teal and lighter shade of teal for her face. Her pawpads are teal and is often seen wearing a teal sweater and light blue scarf.<br>
                 <br>
@@ -635,7 +635,7 @@ let menuItems = [
             {
                 cardId: 'card',
                 title: 'Card',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Card is an orange female cat with an open cardboard box as her head. It consists of drawn-on cat features such as triangular ears, as well as some informational texts on the sides of her head like a typical packaging box. Her eyes and mouth are also seemingly drawn-on. However it can dynamically change expressions like a real face.<br>
                 <br>
@@ -664,7 +664,7 @@ let menuItems = [
             {
                 cardId: 'gift',
                 title: 'Gift',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Gift is a white female rabbit with a gift box as her head. It's a plain white box with a red ribbon tied around it and a bow on top. It also has two droopy bunny ears attached from the lid. Like Card, her eyes and mouth are seemingly drawn-on but can dynamically change expressions like a real face.<br>
                 <br>
@@ -688,7 +688,7 @@ let menuItems = [
             {
                 cardId: 'elise',
                 title: 'Elise',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -708,7 +708,7 @@ let menuItems = [
             {
                 cardId: 'fika',
                 title: 'Fika',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Fika is an orange female fox with long light beige hair. Her inner ears and pawpads are in slightly darker shade of orange.<br>
                 <br>
@@ -735,7 +735,7 @@ let menuItems = [
             {
                 cardId: 'rai',
                 title: 'Rai',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Rai is a white male fox with grey ears and black eyes. His pupils are white and has no pawpads.<br>
                 <br>
@@ -762,7 +762,7 @@ let menuItems = [
             {
                 cardId: 'xanthe',
                 title: 'Xanthe',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Xanthe is a white jackalope with short orange hair, light beige fur on her arms and legs, and red eyes. She has a pair of spiky antlers and hooves for her feet.<br>
                 <br>
@@ -788,7 +788,7 @@ let menuItems = [
             {
                 cardId: 'remy',
                 title: 'Remy',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -806,7 +806,7 @@ let menuItems = [
             {
                 cardId: 'unnamed155',
                 title: 'Unnamed-155',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -825,7 +825,7 @@ let menuItems = [
     },
     {
         menuId: 'deltadim-chromasia',
-        name: 'Chromasia',
+        title: 'Chromasia',
         subtitle: 'Terra',
         image: 'images/deltadim-chromasia.png',
         color: 'var(--color-14)',
@@ -835,7 +835,7 @@ let menuItems = [
             {
                 cardId: 'artibon',
                 title: 'Artibon',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -860,7 +860,7 @@ let menuItems = [
             {
                 cardId: 'artimouse',
                 title: 'Artimouse',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -883,7 +883,7 @@ let menuItems = [
             {
                 cardId: 'artiferret',
                 title: 'Artiferret',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -906,7 +906,7 @@ let menuItems = [
             {
                 cardId: 'artitri',
                 title: 'Artitri',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -927,7 +927,7 @@ let menuItems = [
             {
                 cardId: 'artibot',
                 title: 'Artibot',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -949,7 +949,7 @@ let menuItems = [
             {
                 cardId: 'artishade',
                 title: 'Artishade',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -973,7 +973,7 @@ let menuItems = [
             {
                 cardId: 'artidragon',
                 title: 'Artidragon',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -996,7 +996,7 @@ let menuItems = [
             {
                 cardId: 'shirley',
                 title: 'Shirley',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Shirley is an orange cat-fox hybrid with white fur on her ears, muzzle, chest, abdomen, and the tip of her tail. Her eyes are yellow and her pawpads and inner ears are orange.<br>
                 <br>
@@ -1024,7 +1024,7 @@ let menuItems = [
             {
                 cardId: 'rose',
                 title: 'Rose',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Rose is a green fox with red fur covering his head and tail, and dark green neck fur. In fact, his color schemes and fur patterns look like a typical rose flower.<br>
                 <br>
@@ -1052,7 +1052,7 @@ let menuItems = [
             {
                 cardId: 'hana',
                 title: 'Hana',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1077,7 +1077,7 @@ let menuItems = [
             {
                 cardId: 'caramella',
                 title: 'Caramella',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1104,7 +1104,7 @@ let menuItems = [
             {
                 cardId: 'azurey',
                 title: 'Azurey',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1127,7 +1127,7 @@ let menuItems = [
             {
                 cardId: 'mida',
                 title: 'Mida',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1149,7 +1149,7 @@ let menuItems = [
             {
                 cardId: 'lilac',
                 title: 'Lilac',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1167,7 +1167,7 @@ let menuItems = [
             {
                 cardId: 'moka',
                 title: 'Moka',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1185,7 +1185,7 @@ let menuItems = [
             {
                 cardId: 'nameless',
                 title: 'Nameless',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1205,7 +1205,7 @@ let menuItems = [
             {
                 cardId: 'nuki',
                 title: 'Nuki',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1226,7 +1226,7 @@ let menuItems = [
             {
                 cardId: 'sawo',
                 title: 'Sawo',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1244,7 +1244,7 @@ let menuItems = [
             {
                 cardId: 'nytro',
                 title: 'Nytro',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1266,7 +1266,7 @@ let menuItems = [
     },
     {
         menuId: 'deltadim-aakik',
-        name: 'Aakik',
+        title: 'Aakik',
         subtitle: 'Terra',
         image: 'images/deltadim-aakik.png',
         color: 'var(--color-3)',
@@ -1276,7 +1276,7 @@ let menuItems = [
             {
                 cardId: 'artiusagi',
                 title: 'Sukie',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1296,7 +1296,7 @@ let menuItems = [
             {
                 cardId: 'artiproto',
                 title: 'Port',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1316,7 +1316,7 @@ let menuItems = [
             {
                 cardId: 'ellie',
                 title: 'Ellie',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1337,7 +1337,7 @@ let menuItems = [
             {
                 cardId: 'amber',
                 title: 'Amber',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1358,7 +1358,7 @@ let menuItems = [
             {
                 cardId: 'hazel',
                 title: 'Hazel',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1378,7 +1378,7 @@ let menuItems = [
             {
                 cardId: 'cerulean',
                 title: 'Cerulean',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1399,7 +1399,7 @@ let menuItems = [
     },
     {
         menuId: 'deltadim-deltaspace',
-        name: 'Deltaspace',
+        title: 'Deltaspace',
         subtitle: 'Somewhere in space',
         image: 'images/deltadim-deltaspace.png',
         color: 'var(--color-15)',
@@ -1409,7 +1409,7 @@ let menuItems = [
             {
                 cardId: 'skitty',
                 title: 'Singularikitty',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Singularikitty is a black cat with red fur on his arms and legs, orange eyes, and a ring on the tip of his tail. He always wears a collar that holds a small black hole which they can deploy anytime.<br>
                 <br>
@@ -1441,7 +1441,7 @@ let menuItems = [
             {
                 cardId: 'gamma',
                 title: 'Gamma',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Gamma is a white cat with blue fur on her arms and legs, dark inverted blue eyes, a long hair, and a ring on the tip of her tail. Her color scheme is essentially Skitty's inverted colors.<br>
                 <br>
@@ -1475,7 +1475,7 @@ let menuItems = [
             {
                 cardId: 'micro',
                 title: 'Micro',
-                excerpt: '',
+                subtitle: '',
                 detail: `
                 Micro is a non-binary dark purple cat with half of their body parts (eyes, pawpads, glows, etc.) in blue while the other half is in pink. They always wear a blue collar with a pink bell. They also sometimes wear an air bubble on their head purely for cosmetic.<br>
                 <br>
@@ -1508,7 +1508,7 @@ let menuItems = [
             {
                 cardId: 'artilotl',
                 title: 'Artilotl',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1533,7 +1533,7 @@ let menuItems = [
             {
                 cardId: 'articani',
                 title: 'Articani',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1554,7 +1554,7 @@ let menuItems = [
             {
                 cardId: 'ryon',
                 title: 'Ryon',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1574,7 +1574,7 @@ let menuItems = [
             {
                 cardId: 'klora',
                 title: 'Klora',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1594,7 +1594,7 @@ let menuItems = [
             {
                 cardId: 'ichor',
                 title: 'Ichor',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1616,7 +1616,7 @@ let menuItems = [
 
     {
         // Floriverse
-        name: 'Floriverse',
+        title: 'Floriverse',
         menuId: 'floriverse',
         subtitle: 'Florie Universe',
         image: 'icons/floriverse.png',
@@ -1626,7 +1626,7 @@ let menuItems = [
             {
                 cardId: 'info',
                 title: 'Info',
-                excerpt: 'About Floriverse',
+                subtitle: 'About Floriverse',
                 banner: true,
                 detail:
                     `
@@ -1651,7 +1651,7 @@ let menuItems = [
             },
             {
                 title: 'Pinned',
-                excerpt: 'You might be looking for these'
+                subtitle: 'You might be looking for these'
             },
             {
                 reference: 'floriverse-epsilon:fveAurelia',
@@ -1674,7 +1674,7 @@ let menuItems = [
         ]
     },
     {
-        name: 'Floriverse (Unsorted)',
+        title: 'Floriverse (Unsorted)',
         menuId: 'floriverse-uncat',
         parent: 'floriverse',
         subtitle: 'Flories with no associated album',
@@ -1685,7 +1685,7 @@ let menuItems = [
             {
                 cardId: 'fvZep',
                 title: 'Zep',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Alien flower',
                 cPronouns: 'They',
@@ -1697,7 +1697,7 @@ let menuItems = [
             {
                 cardId: 'fvMintscreen',
                 title: 'Mintscreen',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Robot florie',
                 cPronouns: 'He',
@@ -1709,7 +1709,7 @@ let menuItems = [
             {
                 cardId: 'fvKau',
                 title: 'Kau',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cauliflower',
                 cPronouns: 'They',
@@ -1721,7 +1721,7 @@ let menuItems = [
             {
                 cardId: 'fvSweetbreaker',
                 title: 'Sweetbreaker',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'He',
@@ -1733,7 +1733,7 @@ let menuItems = [
             {
                 cardId: 'fvCuby',
                 title: 'Cuby',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Slimy blueberry',
                 cPronouns: 'He',
@@ -1745,7 +1745,7 @@ let menuItems = [
             {
                 cardId: 'fvBlizzi',
                 title: 'Blizzi',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Ice flower',
                 cPronouns: 'They',
@@ -1757,7 +1757,7 @@ let menuItems = [
             {
                 cardId: 'fvPlugika',
                 title: 'Plugika',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Electric plug florie',
                 cPronouns: 'She',
@@ -1769,7 +1769,7 @@ let menuItems = [
             {
                 cardId: 'fvTessa',
                 title: 'Tessa',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'It',
@@ -1781,7 +1781,7 @@ let menuItems = [
             {
                 cardId: 'fvGem',
                 title: 'Gem',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Gem',
                 cPronouns: 'She',
@@ -1793,7 +1793,7 @@ let menuItems = [
             {
                 cardId: 'fvAnvre',
                 title: 'Anvre',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'He',
@@ -1805,7 +1805,7 @@ let menuItems = [
             {
                 cardId: 'fvLatrice',
                 title: 'Latrice',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Bellflower',
                 cPronouns: 'He',
@@ -1817,7 +1817,7 @@ let menuItems = [
             {
                 cardId: 'fvCactunPipin',
                 title: 'Cactun & Pipin',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cactus',
                 cPronouns: 'He',
@@ -1829,7 +1829,7 @@ let menuItems = [
             {
                 cardId: 'fvSa',
                 title: 'Sa',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Sawblade Flower',
                 cPronouns: 'He',
@@ -1841,7 +1841,7 @@ let menuItems = [
             {
                 cardId: 'fvChloe',
                 title: 'Chloe',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Four',
                 cPronouns: 'She',
@@ -1853,7 +1853,7 @@ let menuItems = [
             {
                 cardId: 'fvTeknia',
                 title: 'Teknia',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -1873,7 +1873,7 @@ let menuItems = [
             {
                 cardId: 'fvArtiflow',
                 title: 'Artiflow',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Hepatica',
                 cPronouns: 'She',
@@ -1886,7 +1886,7 @@ let menuItems = [
             {
                 cardId: 'fvArtidell',
                 title: 'Artidell',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Catdelion',
                 cPronouns: 'He/She',
@@ -1899,7 +1899,7 @@ let menuItems = [
             {
                 cardId: 'fvKappa',
                 title: 'Kappa',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Sunflower',
                 cPronouns: 'He',
@@ -1911,7 +1911,7 @@ let menuItems = [
             {
                 cardId: 'fvSunflette',
                 title: 'Sunflette',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Sunflower',
                 cPronouns: 'She',
@@ -1923,7 +1923,7 @@ let menuItems = [
             {
                 cardId: 'fvStrawrberry',
                 title: 'Strawrberry',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Strawberrikitty',
                 cPronouns: 'He',
@@ -1935,7 +1935,7 @@ let menuItems = [
             {
                 cardId: 'fvLyte',
                 title: 'Lyte',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Robot berry',
                 cPronouns: 'She',
@@ -1947,7 +1947,7 @@ let menuItems = [
             {
                 cardId: 'fvFyra',
                 title: 'Fyra',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -1959,7 +1959,7 @@ let menuItems = [
             {
                 cardId: 'fvTherra',
                 title: 'Therra',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -1971,7 +1971,7 @@ let menuItems = [
             {
                 cardId: 'fvDJMuseberry',
                 title: 'DJ Museberry',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Berry',
                 cPronouns: 'He',
@@ -1983,7 +1983,7 @@ let menuItems = [
             {
                 cardId: 'fvLineko',
                 title: 'Lineko',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cat lemon',
                 cPronouns: 'He',
@@ -1995,7 +1995,7 @@ let menuItems = [
             {
                 cardId: 'fvPompy',
                 title: 'Pompy',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Allium',
                 cPronouns: 'She',
@@ -2007,7 +2007,7 @@ let menuItems = [
             {
                 cardId: 'fvBeep',
                 title: 'Beep',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'It',
@@ -2019,7 +2019,7 @@ let menuItems = [
             {
                 cardId: 'fvSweetree',
                 title: 'Sweetree',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Candy tree',
                 cPronouns: 'They',
@@ -2031,7 +2031,7 @@ let menuItems = [
             {
                 cardId: 'fvEco',
                 title: 'Eco',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cloudy cottonflower',
                 cPronouns: 'He',
@@ -2043,7 +2043,7 @@ let menuItems = [
             {
                 cardId: 'fvCryoflow',
                 title: 'Cryoflow',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Frozen flower',
                 cPronouns: 'He',
@@ -2055,7 +2055,7 @@ let menuItems = [
             {
                 cardId: 'fvDelia',
                 title: 'Delia',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Dandelion',
                 cPronouns: 'She',
@@ -2067,7 +2067,7 @@ let menuItems = [
             {
                 cardId: 'fvSpinny',
                 title: 'Spinny',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Berry with wind turbine',
                 cPronouns: 'He',
@@ -2079,7 +2079,7 @@ let menuItems = [
             {
                 cardId: 'fvAero',
                 title: 'Aero',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Baloon tulip',
                 cPronouns: 'It',
@@ -2091,7 +2091,7 @@ let menuItems = [
             {
                 cardId: 'fvEnila',
                 title: 'Enila',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Fruit with broken stem',
                 cPronouns: 'She',
@@ -2103,7 +2103,7 @@ let menuItems = [
             {
                 cardId: 'fvTikao',
                 title: 'Tikao',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Megaphone',
                 cPronouns: 'He',
@@ -2115,7 +2115,7 @@ let menuItems = [
             {
                 cardId: 'fvFlaany',
                 title: 'Flaany',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Upside',
                 cPronouns: 'She',
@@ -2127,7 +2127,7 @@ let menuItems = [
             {
                 cardId: 'fvBna',
                 title: 'B-na',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'They',
@@ -2139,7 +2139,7 @@ let menuItems = [
             {
                 cardId: 'fvKraka',
                 title: 'Kraka',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cactus monster',
                 cPronouns: 'He',
@@ -2151,7 +2151,7 @@ let menuItems = [
             {
                 cardId: 'fvAzerium',
                 title: 'Azerium',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Robot tulip',
                 cPronouns: 'They',
@@ -2163,7 +2163,7 @@ let menuItems = [
             {
                 cardId: 'fvVo',
                 title: 'Vo',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Ghost tulip',
                 cPronouns: 'It',
@@ -2175,7 +2175,7 @@ let menuItems = [
             {
                 cardId: 'fvSmog',
                 title: 'Smog',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Pollutant',
                 cPronouns: 'It',
@@ -2187,7 +2187,7 @@ let menuItems = [
             {
                 cardId: 'fvNiane',
                 title: 'Niane',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'She',
@@ -2199,7 +2199,7 @@ let menuItems = [
             {
                 cardId: 'fvNeru',
                 title: 'Neru',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'He',
@@ -2211,7 +2211,7 @@ let menuItems = [
             {
                 cardId: 'fvViona',
                 title: 'Viona',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Venus flytrap',
                 cPronouns: 'She',
@@ -2223,7 +2223,7 @@ let menuItems = [
             {
                 cardId: 'fvPhyana',
                 title: 'Phyana',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -2235,7 +2235,7 @@ let menuItems = [
             {
                 cardId: 'fvNell',
                 title: 'Nell',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Popcorn??',
                 cPronouns: 'He',
@@ -2247,7 +2247,7 @@ let menuItems = [
             {
                 cardId: 'fvVoni',
                 title: 'Voni',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Void tulip',
                 cPronouns: 'They',
@@ -2259,7 +2259,7 @@ let menuItems = [
             {
                 cardId: 'fvMizudria',
                 title: 'Mizudria',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -2271,7 +2271,7 @@ let menuItems = [
             {
                 cardId: 'fvSuneea',
                 title: 'Suneea',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Sunflower',
                 cPronouns: 'She',
@@ -2283,7 +2283,7 @@ let menuItems = [
             {
                 cardId: 'fvAcidzer',
                 title: 'Acidzer',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Acid tulip',
                 cPronouns: 'It',
@@ -2295,7 +2295,7 @@ let menuItems = [
             {
                 cardId: 'fvMia',
                 title: 'Mia',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Potted plant',
                 cPronouns: 'She',
@@ -2307,7 +2307,7 @@ let menuItems = [
         ]
     },
     {
-        name: 'Floriverse',
+        title: 'Floriverse',
         menuId: 'floriverse-vanilla',
         parent: 'floriverse',
         subtitle: '2023 Album',
@@ -2318,7 +2318,7 @@ let menuItems = [
             {
                 cardId: 'fvvInfo',
                 title: 'Info',
-                excerpt: 'Information about the Floriverse Album',
+                subtitle: 'Information about the Floriverse Album',
                 banner: true,
                 detail: `
                     Released: October 5th, 2023<br>
@@ -2333,7 +2333,7 @@ let menuItems = [
             {
                 cardId: 'fvvPotto',
                 title: 'Potto',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Potted plant',
                 cPronouns: 'He',
@@ -2345,7 +2345,7 @@ let menuItems = [
             {
                 cardId: 'fvvTwinkle',
                 title: 'Twinkle',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Star flower',
                 cPronouns: 'She',
@@ -2357,7 +2357,7 @@ let menuItems = [
             {
                 cardId: 'fvvStrawmon',
                 title: 'Strawmon',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Glass',
                 cPronouns: 'He',
@@ -2369,7 +2369,7 @@ let menuItems = [
             {
                 cardId: 'fvvNocto',
                 title: 'Nocto',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Spirit tulip',
                 cPronouns: 'It',
@@ -2381,7 +2381,7 @@ let menuItems = [
             {
                 cardId: 'fvvFurflow',
                 title: 'Furflow',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -2404,7 +2404,7 @@ let menuItems = [
             {
                 cardId: 'fvvPana',
                 title: 'Pana',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Pancake tulip',
                 cPronouns: 'She',
@@ -2416,7 +2416,7 @@ let menuItems = [
             {
                 cardId: 'fvvKosmaya',
                 title: 'Kosmaya',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Exotic flower',
                 cPronouns: 'She',
@@ -2428,7 +2428,7 @@ let menuItems = [
             {
                 cardId: 'fvvPinkly',
                 title: 'Pinkly',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'She',
@@ -2440,7 +2440,7 @@ let menuItems = [
             {
                 cardId: 'fvvMincha',
                 title: 'Mincha',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Jasmine',
                 cPronouns: 'She',
@@ -2452,7 +2452,7 @@ let menuItems = [
             {
                 cardId: 'fvvLan',
                 title: 'Lan',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Lemon',
                 cPronouns: 'He',
@@ -2464,7 +2464,7 @@ let menuItems = [
         ]
     },
     {
-        name: 'Floriverse : Delta',
+        title: 'Floriverse : Delta',
         menuId: 'floriverse-delta',
         parent: 'floriverse',
         subtitle: '2024 Album',
@@ -2475,7 +2475,7 @@ let menuItems = [
             {
                 cardId: 'fvdInfo',
                 title: 'Info',
-                excerpt: 'Information about the Floriverse : Delta Album',
+                subtitle: 'Information about the Floriverse : Delta Album',
                 banner: true,
                 detail: `
                     Released: March 3rd, 2024<br>
@@ -2490,7 +2490,7 @@ let menuItems = [
             {
                 cardId: 'fvdStarple',
                 title: 'Starple',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'He',
@@ -2502,7 +2502,7 @@ let menuItems = [
             {
                 cardId: 'fvdChrora',
                 title: 'Chrora',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Exotic flower',
                 cPronouns: 'They',
@@ -2514,7 +2514,7 @@ let menuItems = [
             {
                 cardId: 'fvdOrply',
                 title: 'Orply',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'She',
@@ -2526,7 +2526,7 @@ let menuItems = [
             {
                 cardId: 'fvdTiram',
                 title: 'Tiram',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Mushroom',
                 cPronouns: 'She',
@@ -2538,7 +2538,7 @@ let menuItems = [
             {
                 cardId: 'fvdNimibi',
                 title: 'Nimibi',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cloudy flower',
                 cPronouns: 'She',
@@ -2550,7 +2550,7 @@ let menuItems = [
             {
                 cardId: 'fvdSlump',
                 title: 'Slump',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Rock with kelps',
                 cPronouns: 'He',
@@ -2562,7 +2562,7 @@ let menuItems = [
             {
                 cardId: 'fvdPio',
                 title: 'Pio',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Berry',
                 cPronouns: 'He',
@@ -2574,7 +2574,7 @@ let menuItems = [
             {
                 cardId: 'fvdYana',
                 title: 'Yana',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'She',
@@ -2586,7 +2586,7 @@ let menuItems = [
             {
                 cardId: 'fvdLooni',
                 title: 'Looni',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Fruit',
                 cPronouns: 'She',
@@ -2598,7 +2598,7 @@ let menuItems = [
             {
                 cardId: 'fvdChocopop',
                 title: 'Chocopop',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Chocoflower',
                 cPronouns: 'He',
@@ -2610,7 +2610,7 @@ let menuItems = [
             {
                 cardId: 'fvdStaz',
                 title: 'Staz',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Pistachio',
                 cPronouns: 'He',
@@ -2622,7 +2622,7 @@ let menuItems = [
             {
                 cardId: 'fvdDelly',
                 title: 'Delly',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Catdelion',
                 cPronouns: 'He',
@@ -2634,7 +2634,7 @@ let menuItems = [
             {
                 cardId: 'fvdSprinkly',
                 title: 'Sprinkly',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Potted cakeflower',
                 cPronouns: 'He',
@@ -2646,7 +2646,7 @@ let menuItems = [
             {
                 cardId: 'fvdEcno',
                 title: 'Ecno',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Multi',
                 cPronouns: 'They',
@@ -2658,7 +2658,7 @@ let menuItems = [
             {
                 cardId: 'fvdDisaton',
                 title: 'Disaton',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cottonbun',
                 cPronouns: 'She',
@@ -2670,7 +2670,7 @@ let menuItems = [
             {
                 cardId: 'fvdProtoberries',
                 title: 'Protoberries',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Berries',
                 cPronouns: 'They',
@@ -2682,7 +2682,7 @@ let menuItems = [
             {
                 cardId: 'fvdPipix',
                 title: 'Pipix',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Pixel flower',
                 cPronouns: 'She',
@@ -2694,7 +2694,7 @@ let menuItems = [
             {
                 cardId: 'fvdPico',
                 title: 'Pico',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Robot flower',
                 cPronouns: 'He',
@@ -2706,7 +2706,7 @@ let menuItems = [
             {
                 cardId: 'fvdStarlila',
                 title: 'Starlila',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Transgender flower',
                 cPronouns: 'She',
@@ -2718,7 +2718,7 @@ let menuItems = [
             {
                 cardId: 'fvdWina',
                 title: 'Wina',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Charred flower',
                 cPronouns: 'She',
@@ -2730,7 +2730,7 @@ let menuItems = [
             {
                 cardId: 'fvdFret',
                 title: 'Fret',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'He',
@@ -2742,7 +2742,7 @@ let menuItems = [
             {
                 cardId: 'fvdAzka',
                 title: 'Azka',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Angel',
                 cPronouns: 'It',
@@ -2754,7 +2754,7 @@ let menuItems = [
             {
                 cardId: 'fvdCherro',
                 title: 'Cherro',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tomatoes',
                 cPronouns: 'They',
@@ -2766,7 +2766,7 @@ let menuItems = [
             {
                 cardId: 'fvdFloorion',
                 title: 'Floorion',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Potted robot flower',
                 cPronouns: 'It',
@@ -2778,7 +2778,7 @@ let menuItems = [
             {
                 cardId: 'fvdStellA',
                 title: 'Stell-A',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Black hole flower',
                 cPronouns: 'It',
@@ -2790,7 +2790,7 @@ let menuItems = [
             {
                 cardId: 'fvdDatum',
                 title: 'Datum',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Digital flower',
                 cPronouns: 'It',
@@ -2802,7 +2802,7 @@ let menuItems = [
             {
                 cardId: 'fvdPoloniloo',
                 title: 'Poloniloo',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Polonium flower',
                 cPronouns: 'He',
@@ -2814,7 +2814,7 @@ let menuItems = [
             {
                 cardId: 'fvdGrayscale',
                 title: 'Grayscale',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -2826,7 +2826,7 @@ let menuItems = [
             {
                 cardId: 'fvdErwith',
                 title: 'Erwith',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'He',
@@ -2838,7 +2838,7 @@ let menuItems = [
             {
                 cardId: 'fvdFyzer',
                 title: 'Fyzer',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Florifyber',
                 cPronouns: 'It',
@@ -2850,7 +2850,7 @@ let menuItems = [
             {
                 cardId: 'fvdKloroforo',
                 title: 'Kloroforo',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Robot flower',
                 cPronouns: 'He',
@@ -2862,7 +2862,7 @@ let menuItems = [
         ]
     },
     {
-        name: 'Floriverse : Epsilon',
+        title: 'Floriverse : Epsilon',
         menuId: 'floriverse-epsilon',
         parent: 'floriverse',
         subtitle: '2025 Album',
@@ -2873,7 +2873,7 @@ let menuItems = [
             {
                 cardId: 'fveInfo',
                 title: 'Info',
-                excerpt: 'Information about the Floriverse : Epsilon Album',
+                subtitle: 'Information about the Floriverse : Epsilon Album',
                 banner: true,
                 detail: `
                     Released: June 4th, 2025<br>
@@ -2888,7 +2888,7 @@ let menuItems = [
             {
                 cardId: 'fveSolaris',
                 title: 'Solaris',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Fire flower',
                 cPronouns: 'She',
@@ -2900,7 +2900,7 @@ let menuItems = [
             {
                 cardId: 'fveTrix',
                 title: 'Trix',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Dandelion',
                 cPronouns: 'She',
@@ -2912,7 +2912,7 @@ let menuItems = [
             {
                 cardId: 'fveLux',
                 title: 'Lux',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Exotic flower',
                 cPronouns: 'He',
@@ -2924,7 +2924,7 @@ let menuItems = [
             {
                 cardId: 'fveGlitter',
                 title: 'Glitter',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'He',
@@ -2936,7 +2936,7 @@ let menuItems = [
             {
                 cardId: 'fveFomfz',
                 title: 'Fomfz',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tree',
                 cPronouns: 'She',
@@ -2948,7 +2948,7 @@ let menuItems = [
             {
                 cardId: 'fveBion',
                 title: 'Bion',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Spirit flower',
                 cPronouns: 'He',
@@ -2960,7 +2960,7 @@ let menuItems = [
             {
                 cardId: 'fveZoey',
                 title: 'Zoey',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Mushroom',
                 cPronouns: 'She',
@@ -2972,7 +2972,7 @@ let menuItems = [
             {
                 cardId: 'fveHera',
                 title: 'Hera',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Goddess of time',
                 cPronouns: 'She',
@@ -2984,7 +2984,7 @@ let menuItems = [
             {
                 cardId: 'fveIsla',
                 title: 'Isla',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Palm tree',
                 cPronouns: 'She',
@@ -2996,7 +2996,7 @@ let menuItems = [
             {
                 cardId: 'fveAzira',
                 title: 'Azira',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Blueberry',
                 cPronouns: 'He',
@@ -3008,7 +3008,7 @@ let menuItems = [
             {
                 cardId: 'fveMisty',
                 title: 'Misty',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3028,7 +3028,7 @@ let menuItems = [
             {
                 cardId: 'fveNya',
                 title: 'Nya',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Catdelion',
                 cPronouns: 'She',
@@ -3040,7 +3040,7 @@ let menuItems = [
             {
                 cardId: 'fveAtto',
                 title: 'Atto',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Catdelion',
                 cPronouns: 'He',
@@ -3052,7 +3052,7 @@ let menuItems = [
             {
                 cardId: 'fveClara',
                 title: 'Clara',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cottonbun',
                 cPronouns: 'She',
@@ -3064,7 +3064,7 @@ let menuItems = [
             {
                 cardId: 'fveLyra',
                 title: 'Lyra',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cottonbun',
                 cPronouns: 'She',
@@ -3076,7 +3076,7 @@ let menuItems = [
             {
                 cardId: 'fveStrawnilla',
                 title: 'Strawnilla',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Poptart berry',
                 cPronouns: 'He',
@@ -3088,7 +3088,7 @@ let menuItems = [
             {
                 cardId: 'fvePoppers',
                 title: 'Poppers',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Berries',
                 cPronouns: 'They',
@@ -3100,7 +3100,7 @@ let menuItems = [
             {
                 cardId: 'fveAurelia',
                 title: 'Aurelia',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3124,7 +3124,7 @@ let menuItems = [
             {
                 cardId: 'fveDysis',
                 title: 'Dysis',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -3136,7 +3136,7 @@ let menuItems = [
             {
                 cardId: 'fveButter',
                 title: 'Butter',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'She',
@@ -3148,7 +3148,7 @@ let menuItems = [
             {
                 cardId: 'fveBell',
                 title: 'Bell',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Mistletoe',
                 cPronouns: 'She',
@@ -3160,7 +3160,7 @@ let menuItems = [
             {
                 cardId: 'fveNila',
                 title: 'Nila',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Tulip',
                 cPronouns: 'She',
@@ -3172,7 +3172,7 @@ let menuItems = [
             {
                 cardId: 'fveZest',
                 title: 'Zest',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Lemon',
                 cPronouns: 'He',
@@ -3184,7 +3184,7 @@ let menuItems = [
             {
                 cardId: 'fveCorrode',
                 title: 'Corrode',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Charred tulip',
                 cPronouns: 'He',
@@ -3196,7 +3196,7 @@ let menuItems = [
             {
                 cardId: 'fveAmalgamapot',
                 title: 'Amalgamapot',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Amalgamation',
                 cPronouns: 'They',
@@ -3208,7 +3208,7 @@ let menuItems = [
             {
                 cardId: 'fvePosie',
                 title: 'Posie',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Multi',
                 cPronouns: 'They',
@@ -3220,7 +3220,7 @@ let menuItems = [
             {
                 cardId: 'fveNonsense',
                 title: 'Nonsense',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Shapeshifter',
                 cPronouns: 'They',
@@ -3232,7 +3232,7 @@ let menuItems = [
             {
                 cardId: 'fveTorq',
                 title: 'Torq',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Mechanical flower',
                 cPronouns: 'He',
@@ -3244,7 +3244,7 @@ let menuItems = [
             {
                 cardId: 'fvePersen',
                 title: 'Persen',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Exotic flower',
                 cPronouns: 'It',
@@ -3256,7 +3256,7 @@ let menuItems = [
             {
                 cardId: 'fveTerentia',
                 title: 'Terentia',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -3268,7 +3268,7 @@ let menuItems = [
             {
                 cardId: 'fveLumina',
                 title: 'Lumina',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Aquatic mushroom',
                 cPronouns: 'They',
@@ -3280,7 +3280,7 @@ let menuItems = [
             {
                 cardId: 'fveTriplequestionmark',
                 title: '???',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Unknown Florie',
                 cPronouns: 'They',
@@ -3292,7 +3292,7 @@ let menuItems = [
             {
                 cardId: 'fveUpsidedowntriplequestionmark',
                 title: '¿¿¿',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Unknown Florie',
                 cPronouns: 'They',
@@ -3304,7 +3304,7 @@ let menuItems = [
             {
                 cardId: 'fveGhoargh',
                 title: 'Ghoargh',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Prehistoric plant',
                 cPronouns: 'He',
@@ -3316,7 +3316,7 @@ let menuItems = [
             {
                 cardId: 'fveHYD124',
                 title: 'HYD-124',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Black hole flower',
                 cPronouns: 'He',
@@ -3328,7 +3328,7 @@ let menuItems = [
             {
                 cardId: 'fveThorn',
                 title: 'Thorn',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Wilted rose',
                 cPronouns: 'He',
@@ -3340,7 +3340,7 @@ let menuItems = [
             {
                 cardId: 'fveReva',
                 title: 'Reva',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cactus',
                 cPronouns: 'She',
@@ -3352,7 +3352,7 @@ let menuItems = [
             {
                 cardId: 'fveAsh',
                 title: 'Ash',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Burning flower',
                 cPronouns: 'They',
@@ -3364,7 +3364,7 @@ let menuItems = [
             {
                 cardId: 'fveFlailer',
                 title: 'Flailer',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Femtanyl bootleg florie',
                 cPronouns: 'She',
@@ -3376,7 +3376,7 @@ let menuItems = [
             {
                 cardId: 'fveMang',
                 title: 'Mang',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Potted mango tree',
                 cPronouns: 'He',
@@ -3388,7 +3388,7 @@ let menuItems = [
             {
                 cardId: 'fveZappie',
                 title: 'Zappie',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Bee tulip',
                 cPronouns: 'He',
@@ -3400,7 +3400,7 @@ let menuItems = [
             {
                 cardId: 'fveKai',
                 title: 'Kai',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Clouds',
                 cPronouns: 'They',
@@ -3412,7 +3412,7 @@ let menuItems = [
             {
                 cardId: 'fveConsole',
                 title: 'Console',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Robot bush',
                 cPronouns: 'It',
@@ -3424,7 +3424,7 @@ let menuItems = [
             {
                 cardId: 'fveXi',
                 title: 'Xi',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Angel',
                 cPronouns: 'It',
@@ -3436,7 +3436,7 @@ let menuItems = [
             {
                 cardId: 'fveFloriecookies',
                 title: 'Floriecookies',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Cookies',
                 cPronouns: 'They',
@@ -3448,7 +3448,7 @@ let menuItems = [
             {
                 cardId: 'fveNini',
                 title: 'Nini',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Mystical lemon',
                 cPronouns: 'She',
@@ -3460,7 +3460,7 @@ let menuItems = [
             {
                 cardId: 'fveXyxiv',
                 title: 'Xyxiv',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Angel',
                 cPronouns: 'It',
@@ -3472,7 +3472,7 @@ let menuItems = [
             {
                 cardId: 'fveNau',
                 title: 'Nau',
-                excerpt: '',
+                subtitle: '',
                 isCharacter: true,
                 cSpecies: 'Flower',
                 cPronouns: 'She',
@@ -3488,7 +3488,7 @@ let menuItems = [
 
     {
         // Digirel
-        name: 'Digirel',
+        title: 'Digirel',
         menuId: 'digirel',
         subtitle: 'Digital Realm',
         image: 'icons/digirel.png',
@@ -3498,7 +3498,7 @@ let menuItems = [
             {
                 cardId: 'info',
                 title: 'Info',
-                excerpt: 'About Digirel',
+                subtitle: 'About Digirel',
                 banner: true,
                 detail:
                     `This universe does not exist independently but is derived from other universes where computers and servers can exist. It’s the result of multiversal intercommunication. “Digitalias” wander throughout Digirel and can interact with other universes through hardware connections.<br>
@@ -3509,7 +3509,7 @@ let menuItems = [
             {
                 cardId: 'ruby',
                 title: 'Ruby',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3527,7 +3527,7 @@ let menuItems = [
             {
                 cardId: 'soap',
                 title: 'Soap',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3550,7 +3550,7 @@ let menuItems = [
             {
                 cardId: 'semyk',
                 title: 'Semyk',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3572,7 +3572,7 @@ let menuItems = [
             {
                 cardId: 'artifolder',
                 title: 'Artifolder',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3592,7 +3592,7 @@ let menuItems = [
             {
                 cardId: 'byte',
                 title: 'Byte',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3613,7 +3613,7 @@ let menuItems = [
             {
                 cardId: 'cherry',
                 title: 'Cherry',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3634,7 +3634,7 @@ let menuItems = [
             {
                 cardId: 'ebta',
                 title: 'Ebta',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3655,7 +3655,7 @@ let menuItems = [
             {
                 cardId: 'furryeah',
                 title: 'Furryeah',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3676,7 +3676,7 @@ let menuItems = [
             {
                 cardId: 'placeholder',
                 title: '&lt;placeholder&gt;',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3698,7 +3698,7 @@ let menuItems = [
             {
                 cardId: 'usbun',
                 title: 'USBun',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3718,7 +3718,7 @@ let menuItems = [
             {
                 cardId: 'sakura',
                 title: 'Sakura',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3738,7 +3738,7 @@ let menuItems = [
             {
                 cardId: 'quanta',
                 title: 'Quanta',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3762,7 +3762,7 @@ let menuItems = [
 
     {
         // Nansenz
-        name: 'Nansenz',
+        title: 'Nansenz',
         menuId: 'nansenz',
         subtitle: 'World of Nonsense',
         image: 'icons/nansenz.png',
@@ -3772,7 +3772,7 @@ let menuItems = [
             {
                 cardId: 'info',
                 title: 'Info',
-                excerpt: 'About Nansenz',
+                subtitle: 'About Nansenz',
                 banner: true,
                 detail:
                 // <div class="ticker-bar"><div class="ticker-text"></div></div><br></br>
@@ -3789,7 +3789,7 @@ let menuItems = [
             {
                 cardId: 'mu',
                 title: 'Mu',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3807,7 +3807,7 @@ let menuItems = [
             {
                 cardId: 'cancerman',
                 title: 'Cancerman',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3827,7 +3827,7 @@ let menuItems = [
             {
                 cardId: 'furrophelix',
                 title: 'Furrophelix',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3847,7 +3847,7 @@ let menuItems = [
             {
                 cardId: 'malit',
                 title: 'Malit',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3867,7 +3867,7 @@ let menuItems = [
             {
                 cardId: 'gomboc',
                 title: 'THE GÖMBÖC',
-                excerpt: '',
+                subtitle: '',
                 detail: ``,
 
                 isCharacter: true,
@@ -3885,7 +3885,7 @@ let menuItems = [
         ]
     },
     {
-        name: 'Thingamaland',
+        title: 'Thingamaland',
         menuId: 'nansenz-thingamaland',
         subtitle: 'Object Island',
         image: 'images/nansenz-thingamaland.png',
@@ -3897,7 +3897,7 @@ let menuItems = [
             {
                 cardId: 'article',
                 title: 'Article',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3917,7 +3917,7 @@ let menuItems = [
             {
                 cardId: 'meowcaroon',
                 title: 'Meowcaroon',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3938,7 +3938,7 @@ let menuItems = [
             {
                 cardId: 'oworeo',
                 title: 'Oworeo',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3959,7 +3959,7 @@ let menuItems = [
             {
                 cardId: 'treehee',
                 title: 'Treehee',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3977,7 +3977,7 @@ let menuItems = [
             {
                 cardId: 'rexav',
                 title: 'Rexav',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -3997,7 +3997,7 @@ let menuItems = [
             {
                 cardId: 'censored',
                 title: '#@!?',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4020,7 +4020,7 @@ let menuItems = [
 
     {
         // Hizen
-        name: 'Hizen',
+        title: 'Hizen',
         menuId: 'hizen',
         subtitle: 'Hi-Zenith',
         image: 'icons/hizen.png',
@@ -4030,7 +4030,7 @@ let menuItems = [
             {
                 cardId: 'info',
                 title: 'Info',
-                excerpt: 'About Hizen',
+                subtitle: 'About Hizen',
                 banner: true,
                 detail:
                     `While this universe may represent a sort of heaven, it’s not just an “afterlife” (in fact, there are many realms beyond heaven and hell in the Fyberverse). This is where entities considered angelic (or derived from such origins) were born. The universe is depicted as infinite layers of floating islands.<br>
@@ -4041,7 +4041,7 @@ let menuItems = [
             {
                 cardId: 'nim',
                 title: 'Nim',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4062,7 +4062,7 @@ let menuItems = [
             {
                 cardId: 'awan',
                 title: 'Awan',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4083,7 +4083,7 @@ let menuItems = [
             {
                 cardId: 'lyne',
                 title: 'Lyne',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4107,7 +4107,7 @@ let menuItems = [
 
     {
         // Nadir
-        name: 'Nadir',
+        title: 'Nadir',
         menuId: 'nadir',
         subtitle: 'Void of Nadir',
         image: 'icons/nadir.png',
@@ -4117,7 +4117,7 @@ let menuItems = [
             {
                 cardId: 'info',
                 title: 'Info',
-                excerpt: 'About Nadir',
+                subtitle: 'About Nadir',
                 banner: true,
                 detail:
                     `Nadir can be seen as the inverse of Hizen. While often portrayed as hell, it isn’t fiery or chaotic. Instead, it’s quiet, dark, and dreadfully still, as though watched by an omnipresent gaze. Anything that enters this void slowly desaturates and decays as its essence of life fades away.<br>
@@ -4128,7 +4128,7 @@ let menuItems = [
             {
                 cardId: 'artinihil',
                 title: 'Artinihil',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4149,7 +4149,7 @@ let menuItems = [
             {
                 cardId: 'infineko',
                 title: 'Infineko',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4167,7 +4167,7 @@ let menuItems = [
             {
                 cardId: 'ugo',
                 title: 'Ugo',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4185,7 +4185,7 @@ let menuItems = [
             {
                 cardId: 'unknown',
                 title: '???',
-                excerpt: '',
+                subtitle: '',
                 detail: '',
 
                 isCharacter: true,
@@ -4209,8 +4209,8 @@ let menuItems = [
 
 
     {
-        name: 'Daily Art+',
-        showName: true,
+        title: 'Daily Art+',
+        showTitle: true,
         menuId: 'dailyartplus',
         subtitle: '',
         image: 'icons/dailyartplus.png',
@@ -4221,7 +4221,7 @@ let menuItems = [
             {
                 cardId: 'dailyartplus',
                 title: 'Daily Art+',
-                excerpt: '',
+                subtitle: '',
                 detail:
                     `
                     Showing latest posts from my Instagram.<br><br>
@@ -4240,8 +4240,8 @@ let menuItems = [
         ]
     },
     {
-        name: 'Converters',
-        showName: true,
+        title: 'Converters',
+        showTitle: true,
         menuId: 'converters',
         subtitle: '',
         image: 'icons/converters.png',
@@ -4252,7 +4252,7 @@ let menuItems = [
             {
                 cardId: 'genotheta',
                 title: 'Genotheta',
-                excerpt: 'Convert Latin to Genotheta',
+                subtitle: 'Convert Latin to Genotheta',
                 detail:
                     `
                     <a href="https://artifyber.xyz/fonts/GENOTHETAEX.ttf" target="_blank">Download Genotheta Font</a><br>
@@ -4351,7 +4351,7 @@ let menuItems = [
             {
                 cardId: 'starstroke',
                 title: 'Starstroke',
-                excerpt: 'Convert Latin to Starstroke',
+                subtitle: 'Convert Latin to Starstroke',
                 detail:
                     `
                     <a href="https://artifyber.xyz/fonts/starstroke.ttf" target="_blank">Download Starstroke Font</a><br><br>
@@ -4416,7 +4416,7 @@ let menuItems = [
             {
                 cardId: 'nadirune',
                 title: 'NADIRUNE',
-                excerpt: 'Convert Latin to NADIRUNE',
+                subtitle: 'Convert Latin to NADIRUNE',
                 detail:
                     `
                     <a href="https://artifyber.xyz/fonts/NADIRUNE.ttf" target="_blank">Download NADIRUNE Font</a><br><br>
@@ -4481,7 +4481,7 @@ let menuItems = [
             {
                 cardId: 'zenpen',
                 title: 'Zenpen',
-                excerpt: 'Convert Latin to Zenpen',
+                subtitle: 'Convert Latin to Zenpen',
                 detail:
                     `
                     <a href="https://artifyber.xyz/fonts/zenpen.ttf" target="_blank">Download Zenpen Font</a><br><br>
@@ -4561,10 +4561,10 @@ let menuItems = [
     // Orbit 4
     {
         // Information
-        name: 'Information',
+        title: 'Information',
         menuId: 'info',
         subtitle: 'Information about Artifyber and this website',
-        showName: true,
+        showTitle: true,
         image: 'icons/info.png',
         color: 'var(--color-3)',
         orbit: 4,
@@ -4573,7 +4573,7 @@ let menuItems = [
             {
                 cardId: 'artifyber',
                 title: 'Artifyber',
-                excerpt: 'artifyber@gmail.com',
+                subtitle: 'artifyber@gmail.com',
                 cAddOns: ``,
                 detail: `
                     <h2>Hello!</h2> I'm Artifyber, a furry artist who likes to draw and make music.
@@ -4605,7 +4605,7 @@ let menuItems = [
             {
                 cardId: 'ocrules',
                 title: 'Character Rules',
-                excerpt: `Rules regarding Artifyber's characters`,
+                subtitle: `Rules regarding Artifyber's characters`,
                 detail:
                     `
                     Last updated: November 12th, 2025<br>
@@ -4661,10 +4661,10 @@ let menuItems = [
 
     {
         // Links
-        name: 'Links',
+        title: 'Links',
         menuId: 'links',
         subtitle: 'All links to my social media',
-        showName: true,
+        showTitle: true,
         image: 'icons/earth.png',
         color: 'var(--color-9)',
         orbit: 4,
@@ -4673,77 +4673,77 @@ let menuItems = [
             {
                 cardId: 'twitter',
                 title: 'Twitter',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://twitter.com/artifyber',
                 image: 'icons/l-twitter.png'
             },
             {
                 cardId: 'instagram',
                 title: 'Instagram',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://instagram.com/artifyber',
                 image: 'icons/l-instagram.png'
             },
             {
                 cardId: 'bluesky',
                 title: 'BlueSky',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://bsky.app/profile/artifyber.xyz',
                 image: 'icons/l-bluesky.png'
             },
             {
                 cardId: 'discord',
                 title: 'Discord Server',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://discord.gg/mvZT3ANvSS',
                 image: 'icons/l-discord.png'
             },
             {
                 cardId: 'youtube',
                 title: 'YouTube',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://youtube.com/@artifyber',
                 image: 'icons/l-youtube.png'
             },
             {
                 cardId: 'spotify',
                 title: 'Spotify Artist',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://open.spotify.com/intl-id/artist/41B16M5LFJKcwUW3L75PVh',
                 image: 'icons/l-spotify.png'
             },
             {
                 cardId: 'newgrounds',
                 title: 'Newgrounds',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://artifyber.newgrounds.com/',
                 image: 'icons/l-newgrounds.png'
             },
             {
                 cardId: 'soundcloud',
                 title: 'SoundCloud',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://on.soundcloud.com/3V5Uz',
                 image: 'icons/l-soundcloud.png'
             },
             {
                 cardId: 'toyhouse',
                 title: 'Toyhouse',
-                excerpt: '',
+                subtitle: '',
                 url: 'https://toyhou.se/artifyber',
                 image: 'icons/l-toyhouse.png'
             },
             {
                 cardId: 'carrd',
                 title: 'Carrd',
-                excerpt: 'Backup website just in case',
+                subtitle: 'Backup website just in case',
                 url: 'https://artifyber.carrd.co/',
                 image: 'icons/l-carrd.png'
             },
             {
                 cardId: 'alts',
                 title: 'Alternates',
-                excerpt: 'All of my alternative accounts on various platforms',
+                subtitle: 'All of my alternative accounts on various platforms',
                 detail:
                     `Floriverse:<br>
                 <a href="https://x.com/Floriverse" target="_blank">Twitter</a><br>
@@ -4766,10 +4766,10 @@ let menuItems = [
 
     {
         // Commissions
-        name: 'Commissions',
+        title: 'Commissions',
         menuId: 'comms',
         subtitle: 'Information about art/music commissions',
-        showName: true,
+        showTitle: true,
         image: 'icons/dollar.png',
         color: 'var(--color-11)',
         orbit: 4,
@@ -4779,14 +4779,14 @@ let menuItems = [
             {
                 cardId: 'kofi',
                 title: 'Ko-Fi',
-                excerpt: 'For a method of payment',
+                subtitle: 'For a method of payment',
                 url: 'https://ko-fi.com/artifyber',
                 image: 'icons/comm-kofi.png'
             },
             {
                 cardId: 'tos',
                 title: 'Information and ToS',
-                excerpt: 'Rules and how to commission',
+                subtitle: 'Rules and how to commission',
                 detail:
                     `
                     <h2>Before You Commission:</h2>     
@@ -4845,7 +4845,7 @@ let menuItems = [
             {
                 cardId: 'art',
                 title: 'Art Pricing',
-                excerpt: 'With examples',
+                subtitle: 'With examples',
                 detail:
                     `
                     <h2><i>PLEASE READ MY <a data-open-card="comms:tos">T.O.S</a> BEFORE COMMISIONING ME.</i></h2>
@@ -4926,7 +4926,7 @@ let menuItems = [
             {
                 cardId: 'music',
                 title: 'Music Pricing',
-                excerpt: 'With examples',
+                subtitle: 'With examples',
                 detail:
                     `
                     <h2><i>PLEASE READ MY <a data-open-card="comms:tos">T.O.S</a> BEFORE COMMISIONING ME.</i></h2>
@@ -4943,7 +4943,7 @@ let menuItems = [
             {
                 cardId: 'adult',
                 title: '18+ Commissions',
-                excerpt: '',
+                subtitle: '',
                 detail:
                     `<br><h1 style="font-size: 120px; transform: rotate(-10deg); text-align: center;">NOPE!</h1><br><br>
                     Sorry! I don't do 18+ commissions. Were you expecting something? LOL
@@ -4957,9 +4957,9 @@ let menuItems = [
 
     {
         // Random
-        name: 'Random Character',
+        title: 'Random Character',
         menuId: 'random',
-        showName: true,
+        showTitle: true,
         image: 'icons/oc-random.png',
         color: 'var(--color-12)',
         orbit: 3,
@@ -4974,9 +4974,9 @@ let menuItems = [
     {
         // Settings
         menuId: 'settings',
-        name: 'Settings',
+        title: 'Settings',
         subtitle: 'Options to tweak',
-        showName: true,
+        showTitle: true,
         color: 'var(--color-14)',
         orbit: 4,
         scale: 1.5,
@@ -4986,7 +4986,7 @@ let menuItems = [
             {
                 cardId: 'audioSettings',
                 title: `Audio`,
-                excerpt: `
+                subtitle: `
                         <button type="button" id="toggleSFX">SFX: Off</button>
                         <button type="button" id="toggleMusic">Enable Music</button>
                 `,
@@ -4998,7 +4998,7 @@ let menuItems = [
             {
                 cardId: 'modeSwitch',
                 title: `Layout`,
-                excerpt: `
+                subtitle: `
                         <button type="button" id="modeSwitch">Switch Layout</button>
                 `,
                 unclickable: true,
@@ -5009,7 +5009,7 @@ let menuItems = [
             {
                 cardId: 'keybinds',
                 title: `Keyboard Shortcut`,
-                excerpt: `
+                subtitle: `
                         ESC = Go back<br>
                         SPACE = Open search<br>
                         C = Center view<br>
@@ -5026,7 +5026,7 @@ let menuItems = [
             {
                 cardId: 'webinfo',
                 title: `Website Info`,
-                excerpt: `Updated: ${lastUpdated}<br>
+                subtitle: `Updated: ${lastUpdated}<br>
                         Version: ${version}<br>
                         <br>
                         <div style='color: color-mix(in srgb, var(--accentl) 75%, transparent)' id="totalCardsCounter"></div>
@@ -5043,7 +5043,7 @@ let menuItems = [
             {
                 cardId: 'credits',
                 title: `Credits`,
-                excerpt: `
+                subtitle: `
                         Developed by:<br>
                         Artifyber<br>
                         <br>
@@ -5074,7 +5074,7 @@ let menuItems = [
     // Misc
     {
         menuId: 'loopTest',
-        name: 'loopTest',
+        title: 'loopTest',
         color: 'var(--color-15)',
         hidden: true,
         invisible: true,
@@ -5082,7 +5082,7 @@ let menuItems = [
             {
                 cardId: 'testloop1',
                 title: 'testloop1',
-                excerpt: '',
+                subtitle: '',
                 detail:
                     `<a data-open-card="loopTest:testloop2">testloop2</a>`,
                 image: 'images/temp2.png'
@@ -5090,7 +5090,7 @@ let menuItems = [
             {
                 cardId: 'testloop2',
                 title: 'testloop2',
-                excerpt: '',
+                subtitle: '',
                 detail:
                     `<a data-open-card="loopTest:testloop1">testloop1</a>`,
                 image: 'images/temp.png'
@@ -5099,7 +5099,7 @@ let menuItems = [
     },
     {
         menuId: 'infiniteTest1',
-        name: 'Softlock!!!',
+        title: 'Softlock!!!',
         color: 'var(--color-4)',
         hidden: true,
         invisible: true,
@@ -5108,20 +5108,20 @@ let menuItems = [
             {
                 cardId: 'urstucklol',
                 title: 'ur stuck lol',
-                excerpt: '',
+                subtitle: '',
                 detail: `lol`,
             },
             {
                 cardId: 'urstucklol2',
                 title: '<h1 style="font-size:100px">:3</h1>',
-                excerpt: '',
+                subtitle: '',
                 detail: `lol`,
             },
         ]
     },
     {
         menuId: 'infiniteTest2',
-        name: 'Softlock!!!',
+        title: 'Softlock!!!',
         color: 'var(--color-4)',
         hidden: true,
         invisible: true,
@@ -5130,19 +5130,19 @@ let menuItems = [
             {
                 cardId: 'urstucklol',
                 title: '<h1 style="font-size:100px">:3</h1>',
-                excerpt: '',
+                subtitle: '',
                 detail: `lol`,
             },
             {
                 cardId: 'urstucklol2',
                 title: 'ur stuck lol',
-                excerpt: '',
+                subtitle: '',
                 detail: `lol`,
             },
         ]
     },
     {
-        name: 'Whitespace',
+        title: 'Whitespace',
         menuId: 'yolkspocketdimension',
         subtitle: '',
         image: '',
@@ -5155,7 +5155,7 @@ let menuItems = [
                 id: 1,
                 cardId: 'blank',
                 title: ' ',
-                excerpt: '',
+                subtitle: '',
                 detail:
                     ``,
                 image: 'icons/whitespace.png'
@@ -5171,7 +5171,7 @@ if (Math.floor(Math.random() * 333) == 0) {
             menu.labels.unshift({
                 cardId: 'beecat',
                 title: 'Beecat',
-                excerpt: 'Beecat',
+                subtitle: 'Beecat',
                 detail: `It's a bee!<br>It's a cat!<br>It's a beecat!<br>And it's spinning!<br>But why is it spinning?<br><br>
                 Character by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a><br><br>
                 <img src="images/beecatspin.gif" data-caption="Beecat" data-subcaption="beecatspin.gif" style="width: 100%">`,
@@ -5193,7 +5193,7 @@ function generateLabels(n, prefix) {
     return Array.from({ length: n }).map((_, i) => ({
         id: i + 1,
         title: `${prefix} Item ${i + 1}`,
-        excerpt: `This is a short placeholder excerpt for ${prefix} item ${i + 1}.`,
+        subtitle: `This is a short placeholder excerpt for ${prefix} item ${i + 1}.`,
         detail: `Detailed description for ${prefix} item ${i + 1}. You can replace this with whatever content you want. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ut nulla sed velit malesuada fermentum.`,
         image: 'images/temp.png'
     }));
@@ -5203,27 +5203,27 @@ function generateLabels(n, prefix) {
 specialSearch = {
     nothing: {
         title: 'Nothing found!',
-        excerpt: ''
+        subtitle: ''
     },
     something: {
         title: 'Something found!',
-        excerpt: `...It's just me LOL<br>
+        subtitle: `...It's just me LOL<br>
         My name is omniLens btw! You've probably met my brother omniTracer! He's such a powerful guy...<br>
         Lowkey i'm kinda jealous of him. I wish to be as powerful as him one day :(`
     },
     content: {
         title: 'Content found!',
-        excerpt: `Yup, i am the content. You've found me heehee!<br>
+        subtitle: `Yup, i am the content. You've found me heehee!<br>
         Aww you listened to what i said!<br>
         Good boy :)`
     },
     help: {
         title: 'help yourself bro LOLXD',
-        excerpt: ''
+        subtitle: ''
     },
     hi: {
         title: 'HAII HIIII HELLLOOO!!!! :DD',
-        excerpt: ''
+        subtitle: ''
     },
 };
 
