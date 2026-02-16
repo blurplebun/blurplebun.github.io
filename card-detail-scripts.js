@@ -210,6 +210,6 @@ function createKeyboard(keys, inputElement) {
 }
 
 // init card scripts
-function focusCardScriptHandler(label) {
+function cardDetailScriptHandler(label) {
     converterHandler(label);
 }

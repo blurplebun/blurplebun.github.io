@@ -8,16 +8,15 @@
 </head>
 <body>
     <div class="app">
-        <div class="starfield"></div>
-        <div class="menu-stage">
-            <div class="menu-center-text">
-                <img class="menu-logo notFound" src="/icons/404.png" draggable="false">
-                <br>
-                <small style="font-size:large">There's nothing here...</small>
-                <br>
-                <a href="/" style="font-size:large"><small>Go back to Fyberverse</small></a>
+        <div class="starfield"></div><!-- Main menu center (logo, splash, text) -->
+            <div id="mainMenuCenter" class="main-menu-center">
+                <img id="mainMenuLogo" class="logo" src="icons/404.png" draggable="false">
+                <div class="logo-text">
+                    <div class="splash">There is nothing here...</div>
+                    <div class="info"><a href="/">Go back to Fyberverse</a></div>
+                </div>
+                
             </div>
-        </div>
     </div>
     
     <script>

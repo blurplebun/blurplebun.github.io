@@ -1,38 +1,74 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
 
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image" href="icons/fav-icon.png">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" id="vp">
-    <meta name="theme-color" content="#C894F9">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Artifyber">
-    <meta property="og:title" content="Fyberverse">
-    <meta property="og:image" content="https://artifyber.xyz/images/temp3.png">
-    <meta property="og:description" content="Welcome to the Fyberverse!">
-    <meta property="og:url" content="https://blurplebun.github.io/">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
-    <title>Artifyber</title>
-</head>
+<html lang="en">
+<meta charset="UTF-8">
+<link rel="icon" type="image" href="icons/fav-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" id="vp">
+<meta name="theme-color" content="#C894F9">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Artifyber">
+<meta property="og:title" content="Fyberverse">
+<meta property="og:image" content="https://artifyber.xyz/images/temp3.png">
+<meta property="og:description" content="Welcome to the Fyberverse!">
+<meta property="og:url" content="https://blurplebun.github.io/">
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script>
+<title>Artifyber</title>
+
+</html>
 
 <body>
+
     <!-- App -->
     <div class="app">
-        <div class="starfield"></div>
-        <div class="menu-stage">
-            <div class="menu-center-text">
-                <div class="splash-text splash-text-info" data-info="info" data-infodesc="(drag to move)"></div>
-                <img class="menu-logo" src="images/menu-logo.png" draggable="false"
-                    title="Click to open about me" /><br>
-                <div class="splash-text" data-info="splash"></div>
+        <div id="loading">loading assets...</div>
+        <!-- Starfield -->
+        <div id="starfield"></div>
+
+        <!-- Main menu -->
+        <div id="mainMenu">
+
+            <!-- Main menu center (logo, splash, text) -->
+            <div id="mainMenuCenter" class="main-menu-center">
+                <img id="mainMenuLogo" class="logo" src="images/menu-logo.png" draggable="false">
+                <div class="logo-text">
+                    <div class="splash"></div>
+                    <div class="info">artifyber.xyz</div>
+                </div>
+                
             </div>
-            <div class="ring">
-                <!-- buttons injected here -->
-            </div>
+
+            <!-- Main menu ring -->
+            <div id="menuRing" class="menu-ring"></div>
         </div>
+
+        <br>
+
+        <!-- Content viewer -->
+        <div id="contentView" class="content-view hidden">
+            <div id="contentViewHeader" class="content-view-header">
+                <div id="contentViewTitle" class="content-view-title">Menu Title</div>
+                <div id="contentViewSubtitle" class="content-view-subtitle">Menu Description</div>
+                <hr>
+            </div>
+            <div id="contentViewGrid" class="content-view-grid"></div>
+        </div>
+
+        <br>
+
+        <!-- Detail viewer -->
+        <div id="detailView" class="detail-view hidden">
+            <div id="detailViewHeader" class="detail-view-header"></div>
+            <div id="detailViewContent" class="detail-view-content">Card Content</div>
+        </div>
+
+        <br>
+
+        <!-- Image preview overlay -->
+        <div id="imageView" class="image-view hidden"></div>
+
+        <br>
 
         <dialog id="searchBox">
             <form method="dialog" id="searchForm">
@@ -51,81 +87,13 @@
             </form>
         </dialog>
 
-        <div id="expander" class="expander" style="opacity:0"></div>
+        <!-- Interface -->
+        <div id="UIPanelTop">
 
-        <!-- content view area (single page) -->
-        <div id="contentView" class="content-view" aria-hidden="true">
-            <div class="content-header">
-                <div class="content-title" id="contentTitle">Menu Title</div>
-                <div class="content-sub" id="contentSubtitle">Subtitle / description</div>
-                <hr>
-            </div>
-
-            <!-- <div id="cardsContainer" class="cards-grid max-cols-5" data-max="5"> -->
-            <div id="cardsContainer" class="max-cols-5" data-max="5">
-                <!-- cards injected here -->
-            </div>
-
-            <!-- focused layout (hidden until a card selected) -->
-            <div id="focusedLayout" class="focused-layout" style="display:none">
-                <div class="panel-left" id="focusedCardArea"></div>
-                <div class="panel-right" id="detailArea">
-                    <h3>Detail</h3>
-                    <p>Select a card to see details here.</p>
-                </div>
-            </div>
-        </div>
-
-        <div id="uiPanelBottom">
-            <span id="assetLoad" class="visible">Loading assets....</span>
-            <!-- play bgm button -->
-            <button id="playBgmBtn" class="playBgm-btn ui-btn visible" aria-hidden="true" title="Play Background Music">
+            <!-- search button -->
+            <button id="searchBtn" class="search-btn ui-btn visible" title="Search">
                 <span>
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M8 18V6l8 6-8 6Z" />
-                    </svg>
-                </span>
-            </button>
-
-            <!-- center view button -->
-            <button id="centerBtn" class="center-btn ui-btn" aria-hidden="true" title="Center camera">
-                <span>
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 8h4V4m12 4h-4V4M4 16h4v4m12-4h-4v4" />
-                    </svg>
-                </span>
-            </button>
-
-            <!-- reroll button -->
-            <button id="rerollBtn" class="reroll-btn ui-btn" aria-hidden="true" title="Reroll character">
-                <span>
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4" />
-                    </svg>
-                </span>
-            </button>
-
-            <!-- back button -->
-            <button id="backBtn" class="back-btn ui-btn" aria-hidden="true" title="Back">
-
-                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
-                    <path stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
-                </svg>
-                <span>Back</span>
-            </button>
-        </div>
-
-        <div id="uiPanelTop">
-
-            <button id="searchBtn" class="search-btn ui-btn visible" aria-hidden="true" title="Search">
-                <span>
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                         viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
                             d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
@@ -133,10 +101,11 @@
                 </span>
             </button>
 
-            <button id="settingsBtn" class="switch-btn ui-btn visible" aria-hidden="true"
+            <!-- settings button -->
+             <button id="settingsBtn" class="switch-btn ui-btn visible"
                 title="Toggle between orbit and simple mode">
                 <span>
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                         viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M21 13v-2a1 1 0 0 0-1-1h-.757l-.707-1.707.535-.536a1 1 0 0 0 0-1.414l-1.414-1.414a1 1 0 0 0-1.414 0l-.536.535L14 4.757V4a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v.757l-1.707.707-.536-.535a1 1 0 0 0-1.414 0L4.929 6.343a1 1 0 0 0 0 1.414l.536.536L4.757 10H4a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h.757l.707 1.707-.535.536a1 1 0 0 0 0 1.414l1.414 1.414a1 1 0 0 0 1.414 0l.536-.535 1.707.707V20a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-.757l1.707-.708.536.536a1 1 0 0 0 1.414 0l1.414-1.414a1 1 0 0 0 0-1.414l-.535-.536.707-1.707H20a1 1 0 0 0 1-1Z" />
@@ -146,23 +115,53 @@
                 </span>
             </button>
 
-            <button id="hideBtn" class="hide-btn ui-btn visible" aria-hidden="true" title="Hide UI elements">
+        </div>
+
+        <div id="UIPanelBottom">
+            
+            <!-- play bgm button -->
+            <button id="playBgmBtn" class="playBgm-btn ui-btn visible" title="Play Background Music">
                 <span>
-                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                         viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M6 18 17.94 6M18 18 6.06 6" />
+                            d="M8 18V6l8 6-8 6Z" />
                     </svg>
                 </span>
             </button>
 
-            <button id="sortBtn" class="sort-btn ui-btn" aria-hidden="true" title="Toggle sorting">
-                <span>Sort: Default</span>
+            <!-- center camera button -->
+            <button id="centerBtn" class="center-btn ui-btn ui-hide" title="Center">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 8h4V4m12 4h-4V4M4 16h4v4m12-4h-4v4" />
+                    </svg>
+                </span>
+            </button>
+
+            <!-- reroll button -->
+            <button id="rerollBtn" class="reroll-btn ui-btn ui-hide" title="Reroll character">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4" />
+                    </svg>
+                </span>
+            </button>
+
+            <!-- back button -->
+            <button id="backBtn" class="back-btn ui-btn ui-hide" title="Back">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor">
+                    <path stroke-width="3" stroke-linecap="round" stroke-linejoin="round" d="M15 18l-6-6 6-6" />
+                </svg>
+                <span>Back</span>
             </button>
 
         </div>
     </div>
-
 
     <audio id="sfxClick" src="audios/sfxClick.wav" preload="auto"></audio>
     <audio id="sfxLink" src="audios/sfxLink.wav" preload="auto"></audio>
@@ -178,13 +177,9 @@
     <audio id="bgmHizen" src="audios/ost/hizen.mp3" preload="auto" loop="loop"></audio>
     <audio id="bgmNadir" src="audios/ost/nadir.mp3" preload="auto" loop="loop"></audio>
     <script src="data.js"></script>
-    <script src="card-detail-scripts.js"></script>
     <script src="card-scripts.js"></script>
+    <script src="card-detail-scripts.js"></script>
     <script src="splashtext.js"></script>
     <script src="ticker.js"></script>
     <script src="main.js"></script>
-
-
 </body>
-
-</html>

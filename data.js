@@ -3,11 +3,22 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'February 8th, 2026';
-const version = '0.4.15';
+const lastUpdated = 'February 16th, 2026';
+const version = '1.0.0';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
+
+// orbitData attributes:
+// orbit: int            - which orbit id these attributes apply to
+// title: string         - the title of this orbit
+// desc: string          - the description of this orbit
+// orbitNum: int         - the actual orbit layer which determine how far it is from the center. defaults to orbit
+// direction: float      - the direction of spin and how fast it is. x<0 is clockwise, x>0 is counterclockwise.
+// offsetX: int          - offsets the X position of this orbit by pixels
+// offsetY: int          - offsets the Y position of this orbit by pixels
+// scaleX: float         - scale this orbit by the X axis
+// scaleY: float         - scale this orbit by the Y axis
 
 // Orbit data
 orbitData = [
@@ -33,22 +44,58 @@ orbitData = [
     },
 ];
 
+// menu attributes:
+// menuId: string           - REQUIRED: unique identifier for the menu (alphanumeric, no spaces)
+// title: string            - menu name and title
+// subtitle: string         - short description of menu
+// showTitle: bool          - show name in orbit?
+// orbit: float             - orbit id and default layer placement
+// image: string            - path to the menu thumbnail image. optional
+// color: string            - CSS color of menu. optional
+// scale: float             - if set, modify the menu button scale
+// hidden: bool             - if set, hide menu from orbit (accessible via links only)
+// invisible: bool          - if set, exclude from search
+// labels: array            - cards inside this menu. optional. if a menu has only one card it'll open that automatically
+
+// card attributes:
+// cardId: string           - unique identifier for the card (alphanumeric, no spaces). if unset, this becomes a separator
+// title: string            - card title
+// subtitle: string         - short description / excerpt of card
+// detail: string           - the HTML contents of this card
+// image: string            - path to the card thumbnail image. optional
+// url: string              - if set, this card becomes a URL-type card
+// unclickable: bool        - if set, this card becomes unclickable
+// blank: bool              - if set, make this card textless (image-only)
+// banner: bool             - if set, this card becomes a banner-type card
+// linkId: string           - if set as the only attribute, this card links to another menu (menuId)
+// reference: string        - if set as the only attribute, this card copies another card (menuId:cardId)
+// isCharacter: bool        - if set, this is a character card
+// cSpecies: string         - the character species. optional
+// cPronouns: string        - the character pronouns. optional
+// cGender: string          - the character gender. optional
+// cSexuality: string       - the character sexuality. optional
+// cNicknames: string       - the character nicknames. optional
+// cAddOns: string          - extra HTML put above the reference art of the character. optional
+// cReference: string       - path to the character reference art. optional
+// cGallery: array          - array of path to character images. optional
+// cardParentId: string     - DEV ONLY: contains the automatically-assigned menuId of this card
+
 // Main menu data array
 let menuItems = [
     /* --------------------------
     Menu Template
     -------------------------- */
     {
-        menuId: 'menuTemplate',               // REQUIRED: Unique identifier (alphanumeric, no spaces)
-        title: 'Menu Template Example',        // Menu name and title
-        showTitle: false,                      // Show name in orbit
-        subtitle: 'This is a menu example',   // Short description
-        image: 'images/temp2.png',            // Orbit thumbnail image
-        color: 'var(--color-15)',             // Menu color (hex, CSS var, or blank)
-        orbit: 0,                             // INTEGER: Orbit layer placement
-        scale: 1,                             // Menu size in orbit
-        hidden: true,                         // Hide from orbit (accessible via links only)
-        invisible: true,                      // Exclude from search
+        menuId: 'menuTemplate',
+        title: 'Menu Template Example',
+        showTitle: false,
+        subtitle: 'This is a menu example',
+        image: 'images/temp2.png',
+        color: 'var(--color-15)',
+        orbit: 1.5,
+        scale: 1,
+        hidden: true,
+        invisible: true,
         labels: [
             // CARDS WITH THUMBNAILS
             {
@@ -57,7 +104,7 @@ let menuItems = [
                 subtitle: 'Main card types to put your content in',
             },
             {
-                cardId: 'normalCard',         // REQUIRED: Unique card identifier
+                cardId: 'normalCard',
                 title: 'Normal Card',
                 subtitle: 'With thumbnail',
                 detail: 'This is a template for a normal card.<br>You can fill these with whatever you want in raw HTML.',
@@ -116,6 +163,24 @@ let menuItems = [
                 title: 'Unclickable Card',
                 subtitle: 'Without thumbnail',
                 unclickable: true
+            },
+            {
+                cardId: 'motherCard',
+                title: 'Mothercard',
+                subtitle: 'This card contains more cards',
+                detail: `
+                    You can embed cards inside another card by simply using a div element with <code>class="card internal"</code> and set it to reference another card using <code>data-href="menuId:cardId"</code><br>
+                    <br>
+                    To set a caption, use <code>data-caption="caption"</code>
+                    <div class="imgContainer">
+                        <div class="card internal" data-href="menuTemplate:normalCard""></div>
+                        <div class="card internal" data-href="deltadim"></div>
+                        <div class="card internal" data-href="menuTemplate:unclickableCardPlain" data-caption="Optional caption!"></div>
+                        <div class="card internal" data-href="menuTemplate:motherCard" data-caption="Cardception..."></div>
+                    </div>
+                    You can even embed itself if you want!
+                `,
+                image: 'images/temp2.png'
             },
 
             // BANNER CARDS
@@ -176,7 +241,7 @@ let menuItems = [
                 subtitle: 'Cards that open another menu',
             },
             {
-                linkId: 'deltadim'  // Links to menu with matching 'q' property
+                linkId: 'deltadim'  // Links to menu with matching 'menuId' property
             },
             {
                 linkId: 'floriverse'
@@ -221,7 +286,9 @@ let menuItems = [
                 detail:
                     `Deltadim is the main universe portrayed in Daily Art+. Its characteristics are similar to our own universe. Terra is where the main plot takes place. It's an Earth-like planet inhabited by furries, humanoids, and other creatures.<br>
                     <h4>What's in this page</h4>
-                    This page is a list of all Fyberverse characters located in Deltadim. This include character information, reference art, and picture gallery of each character.<br>`,
+                    This page is a list of all Fyberverse characters located in Deltadim. This include character information, reference art, and picture gallery of each character.<br>
+                    <br>
+                    `,
                 image: 'icons/deltadim.png'
             },
             {
@@ -274,11 +341,12 @@ let menuItems = [
                 title: 'Artibun',
                 subtitle: '',
                 detail:
-                `Artibun is a white female rabbit, with parts of her body colored in lilac, such as her arms, legs, right ear, half of her tail, and chest to abdomen area. Her inner ears are colored in blurple and has dark blue eyes.<br>
+                    `Artibun is a white female rabbit, with parts of her body colored in lilac, such as her arms, legs, right ear, half of her tail, and chest to abdomen area. Her inner ears are colored in blurple and has dark blue eyes.<br>
                 <br>
                 Arti has a passion for drawing, singing, and cooking delicacies. She is known in Terra as a celebrity by her popularity on social medias.<br>
                 <br>
-                Artibun was born as a supposedly faulty clone of Articat. On prototype, she was meant to only be a near identical copy of Articat except with bunny ears and a puffy tail. However, an accident happened, and her flesh wasn't developed correctly. Thankfully, she was later recovered on a second attempt thanks to the love of her partner.`,
+                Artibun was born as a supposedly faulty clone of Articat. On prototype, she was meant to only be a near identical copy of Articat except with bunny ears and a puffy tail. However, an accident happened, and her flesh wasn't developed correctly. Thankfully, she was later recovered on a second attempt thanks to the love of her partner.
+                `,
 
                 isCharacter: true,
                 cSpecies: 'Rabbit',
@@ -286,7 +354,7 @@ let menuItems = [
                 cGender: 'Bigender',
                 cSexuality: 'Bisexual',
                 cNicknames: 'Arti, Bunbun',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:articat">Articat</a>',
+                cAddOns: '',
                 cReference: 'images/r/artibun-r.png',
                 cGallery: [
                     'images/c/artibun-c.png',
@@ -296,6 +364,12 @@ let menuItems = [
                     'images/c/artibun-c5.png',
                     'images/c/artibun-c6.png',
                 ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:articat',
+                        relation: 'Significant Other'
+                    },
+                ],
 
                 image: 'images/i/artibun-i.png',
             },
@@ -303,8 +377,8 @@ let menuItems = [
                 cardId: 'articat',
                 title: 'Articat',
                 subtitle: '',
-                detail: 
-                `Articat is a white male cat, with parts of his body colored in light blurple such as his right ear and chest to abdomen area. The inside of his right ear is colored white while the other ear is colored in light blurple.<br>
+                detail:
+                    `Articat is a white male cat, with parts of his body colored in light blurple such as his right ear and chest to abdomen area. The inside of his right ear is colored white while the other ear is colored in light blurple.<br>
                 <br>
                 Arti is a multi-genre music composer, typically creating EDM and a mix of jazz. His success as a musical artist made him just as popular as his partner Artibun on social medias.
                 `,
@@ -315,7 +389,7 @@ let menuItems = [
                 cGender: 'Male',
                 cSexuality: 'Bisexual',
                 cNicknames: 'Arti, Kiki',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artibun">Artibun</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/articat-c.png',
@@ -324,6 +398,12 @@ let menuItems = [
                     'images/c/articat-c4.png',
                     'images/c/articat-c5.png',
                     'images/c/articat-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:artibun',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/articat-i.png',
@@ -374,7 +454,7 @@ let menuItems = [
                 cGender: 'Non-binary',
                 cSexuality: 'Demisexual',
                 cNicknames: 'Arti, Fifi',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artilope">Artilope</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artifish-c.png',
@@ -383,6 +463,12 @@ let menuItems = [
                     'images/c/artifish-c4.png',
                     'images/c/artifish-c5.png',
                     'images/c/artifish-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:artilope',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/artifish-i.png',
@@ -402,7 +488,7 @@ let menuItems = [
                 cGender: 'Male',
                 cSexuality: 'Gay',
                 cNicknames: 'Arti, Baba, Goat',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artipup">Artipup</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artigoat-c.png',
@@ -411,6 +497,12 @@ let menuItems = [
                     'images/c/artigoat-c4.png',
                     'images/c/artigoat-c5.png',
                     'images/c/artigoat-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:artipup',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/artigoat-i.png',
@@ -430,9 +522,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Demisexual',
                 cNicknames: 'Arti, Lolo, Jacquie, Jacqueline',
-                cAddOns: `
-                S/O: <a data-open-card="deltadim-teksui:artifish">Artifish</a><br>
-                Sibling: <a data-open-card="deltadim-teksui:xanthe">Xanthe</a>`,
+                cAddOns: '',
                 cReference: 'images/r/artilope-r.png',
                 cGallery: [
                     'images/c/artilope-c.png',
@@ -441,6 +531,16 @@ let menuItems = [
                     'images/c/artilope-c4.png',
                     'images/c/artilope-c5.png',
                     'images/c/artilope-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:artifish',
+                        relation: 'Significant Other'
+                    },
+                    {
+                        cardId: 'deltadim-teksui:xanthe',
+                        relation: 'Younger Sister'
+                    },
                 ],
 
                 image: 'images/i/artilope-i.png',
@@ -460,7 +560,7 @@ let menuItems = [
                 cGender: 'Male',
                 cSexuality: 'Gay',
                 cNicknames: 'Arti, Arfy, Puppy',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:artigoat">Artigoat</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artipup-c.png',
@@ -469,6 +569,12 @@ let menuItems = [
                     'images/c/artipup-c4.png',
                     'images/c/artipup-c5.png',
                     'images/c/artipup-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:artigoat',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/artipup-i.png',
@@ -490,7 +596,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Aroace',
                 cNicknames: 'Arti, Nay, Neko',
-                cAddOns: 'Sibling: <a data-open-card="deltadim-chromasia:artimouse">Artimouse</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artineko-c.png',
@@ -499,6 +605,12 @@ let menuItems = [
                     'images/c/artineko-c4.png',
                     'images/c/artineko-c5.png',
                     'images/c/artineko-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:artimouse',
+                        relation: 'Younger Sister'
+                    },
                 ],
 
                 image: 'images/i/artineko-i.png',
@@ -539,7 +651,7 @@ let menuItems = [
                 cGender: 'Trans-female',
                 cSexuality: 'Demisexual',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:sora">Sora</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/eros-c.png',
@@ -548,6 +660,12 @@ let menuItems = [
                     'images/c/eros-c4.png',
                     'images/c/eros-c5.png',
                     'images/c/eros-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:sora',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/eros-i.png',
@@ -568,11 +686,17 @@ let menuItems = [
                 cGender: 'Trans-female',
                 cSexuality: 'Bisexual',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:eros">Eros</a>',
+                cAddOns: '',
                 cReference: 'images/r/sora-r.png',
                 cGallery: [
                     'images/c/sora-c.png',
                     'images/c/sora-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:eros',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/sora-i.png',
@@ -594,7 +718,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:mist">Mist</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/furfy-c6.png',
@@ -603,6 +727,12 @@ let menuItems = [
                     'images/c/furfy-c3.png',
                     'images/c/furfy-c4.png',
                     'images/c/furfy-c5.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:mist',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/furfy-i.png',
@@ -623,11 +753,17 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:furfy">Furfy</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/mist-c.png',
                     'images/c/mist-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:furfy',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/mist-i.png',
@@ -648,7 +784,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Bisexual',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:gift">Gift</a>',
+                cAddOns: '',
                 cReference: 'images/r/card-r.png',
                 cGallery: [
                     'images/c/card-c.png',
@@ -657,6 +793,12 @@ let menuItems = [
                     'images/c/card-c4.png',
                     'images/c/card-c5.png',
                     'images/c/card-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:gift',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/card-i.png',
@@ -677,10 +819,16 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Bisexual',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:card">Card</a>',
+                cAddOns: '',
                 cReference: 'images/r/gift-r.png',
                 cGallery: [
                     'images/c/gift-c.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:card',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/gift-i.png',
@@ -723,11 +871,17 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Heterosexual',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:rai">Rai</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/fika-c.png',
                     'images/c/fika-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:rai',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/fika-i.png',
@@ -750,11 +904,17 @@ let menuItems = [
                 cGender: 'Male',
                 cSexuality: 'Heterosexual',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-teksui:fika">Fika</a>',
+                cAddOns: '',
                 cReference: 'images/r/rai-r.png',
                 cGallery: [
                     'images/c/rai-c.png',
                     'images/c/rai-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:fika',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/rai-i.png',
@@ -774,13 +934,19 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Heterosexual',
                 cNicknames: 'Xanthelope',
-                cAddOns: 'Sibling: <a data-open-card="deltadim-teksui:artilope">Artilope</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/xanthe-c.png',
                     'images/c/xanthe-c2.png',
                     'images/c/xanthe-c3.png',
                     'images/c/xanthe-c4.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:artilope',
+                        relation: 'Older Sister'
+                    },
                 ],
 
                 image: 'images/i/xanthe-i.png',
@@ -844,7 +1010,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: 'Arti, Ribbon, Bonbon, Sylvy',
-                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:artishade">Artishade</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artibon-c.png',
@@ -853,6 +1019,12 @@ let menuItems = [
                     'images/c/artibon-c4.png',
                     'images/c/artibon-c5.png',
                     'images/c/artibon-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:artishade',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/artibon-i.png',
@@ -869,13 +1041,19 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Bisexual',
                 cNicknames: 'Arti, Mimi',
-                cAddOns: 'Sibling: <a data-open-card="deltadim-teksui:artineko">Artineko</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artimouse-c.png',
                     'images/c/artimouse-c1.png',
                     'images/c/artimouse-c2.png',
                     'images/c/artimouse-c3.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-teksui:artineko',
+                        relation: 'Older Sister'
+                    },
                 ],
 
                 image: 'images/i/artimouse-i.png',
@@ -892,13 +1070,19 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Bisexual',
                 cNicknames: 'Arti, Fer',
-                cAddOns: 'Partner: <a data-open-card="deltadim-aakik:ellie">Ellie</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artiferret-c.png',
                     'images/c/artiferret-c2.png',
                     'images/c/artiferret-c3.png',
                     'images/c/artiferret-c4.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-aakik:ellie',
+                        relation: 'Married'
+                    },
                 ],
 
                 image: 'images/i/artiferret-i.png',
@@ -920,6 +1104,12 @@ let menuItems = [
                 cGallery: [
                     'images/c/artitri-c.png',
                     'images/c/artitri-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:artibot',
+                        relation: 'Machinemate'
+                    },
                 ],
 
                 image: 'images/i/artitri-i.png',
@@ -943,6 +1133,12 @@ let menuItems = [
                     'images/c/artibot-c2.png',
                     'images/c/artibot-c3.png',
                 ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:artitri',
+                        relation: 'Machinemate'
+                    },
+                ],
 
                 image: 'images/i/artibot-i.png',
             },
@@ -958,7 +1154,7 @@ let menuItems = [
                 cGender: 'Intersex Bigender',
                 cSexuality: 'Lesbian',
                 cNicknames: 'Arti, Sasha',
-                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:artibon">Artibon</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artishade-c.png',
@@ -966,6 +1162,12 @@ let menuItems = [
                     'images/c/artishade-c3.png',
                     'images/c/artishade-c4.png',
                     'images/c/artishade-c5.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:artibon',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/artishade-i.png',
@@ -1008,7 +1210,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Heterosexual',
                 cNicknames: 'Manda, Alamanda',
-                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:rose">Rose</a>',
+                cAddOns: '',
                 cReference: 'images/r/shirley-r.png',
                 cGallery: [
                     'images/c/shirley-c.png',
@@ -1017,6 +1219,12 @@ let menuItems = [
                     'images/c/shirley-c4.png',
                     'images/c/shirley-c5.png',
                     'images/c/shirley-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:rose',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/shirley-i.png',
@@ -1038,13 +1246,19 @@ let menuItems = [
                 cGender: 'Male',
                 cSexuality: 'Heterosexual',
                 cNicknames: 'Rosey',
-                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:shirley">Shirley</a>',
+                cAddOns: '',
                 cReference: 'images/r/rose-r.png',
                 cGallery: [
                     'images/c/rose-c.png',
                     'images/c/rose-c2.png',
                     'images/c/rose-c3.png',
                     'images/c/rose-c4.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:shirley',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/rose-i.png',
@@ -1061,7 +1275,7 @@ let menuItems = [
                 cGender: 'Demigirl',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="floriverse-epsilon:fveAurelia">Aurelia</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/hana-c.png',
@@ -1070,6 +1284,12 @@ let menuItems = [
                     'images/c/hana-c4.png',
                     'images/c/hana-c5.png',
                     'images/c/hana-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'floriverse-epsilon:fveAurelia',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/hana-i.png',
@@ -1086,9 +1306,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Bisexual',
                 cNicknames: 'Mella',
-                cAddOns:
-                    `S/O: <a data-open-card="deltadim-chromasia:azurey">Azurey</a><br>
-                    Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a>`,
+                cAddOns: `Design made by <a href="https://x.com/M3ko_Ne" target="_blank">M3ko_Ne</a>`,
                 cReference: 'images/r/caramella-r.png',
                 cGallery: [
                     'images/c/caramella-c.png',
@@ -1097,6 +1315,12 @@ let menuItems = [
                     'images/c/caramella-c4.png',
                     'images/c/caramella-c5.png',
                     'images/c/caramella-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:azurey',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/caramella-i.png',
@@ -1113,13 +1337,19 @@ let menuItems = [
                 cGender: 'Demiboy',
                 cSexuality: 'Pansexual',
                 cNicknames: 'Azu',
-                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:caramella">Caramella</a>',
+                cAddOns: '',
                 cReference: 'images/r/azurey-r.png',
                 cGallery: [
                     'images/c/azurey-c.png',
                     'images/c/azurey-c2.png',
                     'images/c/azurey-c3.png',
                     'images/c/azurey-c4.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:caramella',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/azurey-i.png',
@@ -1325,11 +1555,17 @@ let menuItems = [
                 cGender: 'Trans-female',
                 cSexuality: 'Demisexual',
                 cNicknames: '',
-                cAddOns: 'Partner: <a data-open-card="deltadim-chromasia:artiferret">Artiferret</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/ellie-c.png',
                     'images/c/ellie-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:artiferret',
+                        relation: 'Married'
+                    },
                 ],
 
                 image: 'images/i/ellie-i.png',
@@ -1435,6 +1671,16 @@ let menuItems = [
                     'images/c/skitty-c5.png',
                     'images/c/skitty-c6.png',
                 ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-deltaspace:gamma',
+                        relation: 'Spacekitty Trio'
+                    },
+                    {
+                        cardId: 'deltadim-deltaspace:micro',
+                        relation: 'Spacekitty Trio'
+                    },
+                ],
 
                 image: 'images/i/skitty-i.png',
             },
@@ -1469,6 +1715,16 @@ let menuItems = [
                     'images/c/gamma-c5.png',
                     'images/c/gamma-c6.png',
                 ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-deltaspace:skitty',
+                        relation: 'Spacekitty Trio'
+                    },
+                    {
+                        cardId: 'deltadim-deltaspace:micro',
+                        relation: 'Spacekitty Trio'
+                    },
+                ],
 
                 image: 'images/i/gamma-i.png',
             },
@@ -1501,6 +1757,16 @@ let menuItems = [
                     'images/c/micro-c4.png',
                     'images/c/micro-c5.png',
                     'images/c/micro-c6.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-deltaspace:gamma',
+                        relation: 'Spacekitty Trio'
+                    },
+                    {
+                        cardId: 'deltadim-deltaspace:skitty',
+                        relation: 'Spacekitty Trio'
+                    },
                 ],
 
                 image: 'images/i/micro-i.png',
@@ -1548,8 +1814,38 @@ let menuItems = [
                     'images/c/articani-c.png',
                     'images/c/articani-c2.png',
                 ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-deltaspace:nayacani',
+                        relation: 'Sister'
+                    }
+                ],
 
                 image: 'images/i/articani-i.png',
+            },
+            {
+                cardId: 'nayacani',
+                title: 'Nayacani',
+                subtitle: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Lucani',
+                cPronouns: 'She/They',
+                cGender: 'Female',
+                cSexuality: 'Heterosexual',
+                cNicknames: 'Naya',
+                cAddOns: 'Lucani is an open-species created by <a href="https://x.com/ZestyLemonss" target="_blank">ZestyLemonss</a>',
+                cReference: 'images/r/nayacani-r.png',
+                cGallery: [],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-deltaspace:articani',
+                        relation: 'Brother'
+                    }
+                ],
+
+                image: 'images/i/nayacani-i.png',
             },
             {
                 cardId: 'ryon',
@@ -1590,6 +1886,58 @@ let menuItems = [
                 ],
 
                 image: 'images/i/klora-i.png',
+            },
+            {
+                cardId: 'laniakea',
+                title: 'Laniakea',
+                subtitle: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Rabbit',
+                cPronouns: 'They/She',
+                cGender: 'Non-binary',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/laniakea-c.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-deltaspace:vela',
+                        relation: 'Significant Other'
+                    },
+                ],
+
+                image: 'images/i/laniakea-i.png',
+            },
+            {
+                cardId: 'vela',
+                title: 'Vela',
+                subtitle: '',
+                detail: '',
+
+                isCharacter: true,
+                cSpecies: 'Rabbit',
+                cPronouns: 'She/Any',
+                cGender: 'Female',
+                cSexuality: 'Lesbian',
+                cNicknames: '',
+                cAddOns: '',
+                cReference: '',
+                cGallery: [
+                    'images/c/vela-c.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-deltaspace:laniakea',
+                        relation: 'Significant Other'
+                    },
+                ],
+
+                image: 'images/i/vela-i.png',
             },
             {
                 cardId: 'ichor',
@@ -1879,8 +2227,14 @@ let menuItems = [
                 cPronouns: 'She',
                 cGender: 'Female',
                 cReference: 'images/flories/uncat/Artiflow.png',
-                cAddOns: 'S/O: <a data-open-card="floriverse-uncat:fvArtidell">Artidell</a>',
+                cAddOns: '',
                 detail: '',
+                cRelations: [
+                    {
+                        cardId: 'floriverse-uncat:fvArtidell',
+                        relation: 'Significant Other'
+                    },
+                ],
                 image: 'images/flories/uncat/Artiflow.png'
             },
             {
@@ -1892,8 +2246,14 @@ let menuItems = [
                 cPronouns: 'He/She',
                 cGender: 'Bigender',
                 cReference: 'images/flories/uncat/Artidell.png',
-                cAddOns: 'S/O: <a data-open-card="floriverse-uncat:fvArtiflow">Artiflow</a>',
+                cAddOns: '',
                 detail: '',
+                cRelations: [
+                    {
+                        cardId: 'floriverse-uncat:fvArtiflow',
+                        relation: 'Significant Other'
+                    },
+                ],
                 image: 'images/flories/uncat/Artidell.png'
             },
             {
@@ -2390,13 +2750,19 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="floriverse-epsilon:fveMisty">Misty</a>',
+                cAddOns: '',
                 cReference: 'images/c/furflow-c.png',
                 cGallery: [
                     'images/flories/fv-furflow.png',
                     'images/c/furflow-c2.png',
                     'images/c/furflow-c3.png',
                     'images/c/furflow-c4.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'floriverse-epsilon:fveMisty',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/c/furflow-c.png'
@@ -3017,10 +3383,16 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="floriverse-vanilla:fvvFurflow">Furflow</a>',
+                cAddOns: '',
                 cReference: 'images/flories/fve-misty.png',
                 cGallery: [
                     'images/c/misty-c.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'floriverse-vanilla:fvvFurflow',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/flories/fve-misty.png'
@@ -3109,7 +3481,7 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="deltadim-chromasia:hana">Hana</a>',
+                cAddOns: '',
                 cReference: 'images/r/aurelia-r.png',
                 cGallery: [
                     'images/flories/fve-aurelia.png',
@@ -3117,6 +3489,16 @@ let menuItems = [
                     'images/c/aurelia-c2.png',
                     'images/c/aurelia-c3.png',
                     'images/c/aurelia-c4.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'deltadim-chromasia:hana',
+                        relation: 'Significant Other'
+                    },
+                    {
+                        cardId: 'floriverse-epsilon:fveDysis',
+                        relation: 'Older Sister'
+                    },
                 ],
 
                 image: 'images/flories/fve-aurelia.png'
@@ -3131,6 +3513,12 @@ let menuItems = [
                 cGender: 'Female',
                 cReference: 'images/flories/fve-dysis.png',
                 detail: '',
+                cRelations: [
+                    {
+                        cardId: 'floriverse-epsilon:fveAurelia',
+                        relation: 'Younger Sister'
+                    },
+                ],
                 image: 'images/flories/fve-dysis.png'
             },
             {
@@ -3775,7 +4163,7 @@ let menuItems = [
                 subtitle: 'About Nansenz',
                 banner: true,
                 detail:
-                // <div class="ticker-bar"><div class="ticker-text"></div></div><br></br>
+                    // <div class="ticker-bar"><div class="ticker-text"></div></div><br></br>
                     `<div class="ticker-bar"><div class="ticker-text"></div></div><br></br>
                     A world beyond logical limits where anything can exist. It’s like a fever dream. Anything you imagine or could be imagined, objects with limbs, cube-shaped planets, galaxies made of spaghetti, there are no boundaries in Nansenz. The entire purpose of this universe is to contain everything that defy all sense of logic.<br>
                     <h4>What's in this page</h4>
@@ -3926,11 +4314,17 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="nansenz:oworeo">Oworeo</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/meowcaroon-c.png',
                     'images/c/meowcaroon-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'nansenz-thingamaland:oworeo',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/meowcaroon-i.png',
@@ -3947,11 +4341,17 @@ let menuItems = [
                 cGender: 'Non-Binary',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="nansenz:meowcaroon">Meowcaroon</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/oworeo-c.png',
                     'images/c/oworeo-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'nansenz-thingamaland:meowcaroon',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/oworeo-i.png',
@@ -4137,11 +4537,17 @@ let menuItems = [
                 cGender: 'Female',
                 cSexuality: 'Bisexual',
                 cNicknames: 'Nihil',
-                cAddOns: 'S/O: <a data-open-card="nadir:ugo">Ugo</a>',
+                cAddOns: '',
                 cReference: '',
                 cGallery: [
                     'images/c/artinihil-c.png',
                     'images/c/artinihil-c2.png',
+                ],
+                cRelations: [
+                    {
+                        cardId: 'nadir:ugo',
+                        relation: 'Significant Other'
+                    },
                 ],
 
                 image: 'images/i/artinihil-i.png',
@@ -4176,9 +4582,15 @@ let menuItems = [
                 cGender: 'Male',
                 cSexuality: 'Gay',
                 cNicknames: '',
-                cAddOns: 'S/O: <a data-open-card="nadir:artinihil">Artinihil</a>',
+                cAddOns: '',
                 cReference: 'images/r/ugo-r.png',
                 cGallery: [],
+                cRelations: [
+                    {
+                        cardId: 'nadir:artinihil',
+                        relation: 'Significant Other'
+                    },
+                ],
 
                 image: 'images/i/ugo-i.png',
             },
@@ -4987,7 +5399,7 @@ let menuItems = [
                 cardId: 'audioSettings',
                 title: `Audio`,
                 subtitle: `
-                        <button type="button" id="toggleSFX">SFX: Off</button>
+                        <button type="button" id="toggleSFX">SFX: Off</button><br>
                         <button type="button" id="toggleMusic">Enable Music</button>
                 `,
                 unclickable: true,
@@ -5200,32 +5612,52 @@ function generateLabels(n, prefix) {
 }
 
 // Special search responses
-specialSearch = {
-    nothing: {
+specialSearch = [
+    {
+        query: 'nothing',
         title: 'Nothing found!',
         subtitle: ''
     },
-    something: {
+    {
+        query: 'something',
         title: 'Something found!',
         subtitle: `...It's just me LOL<br>
         My name is omniLens btw! You've probably met my brother omniTracer! He's such a powerful guy...<br>
         Lowkey i'm kinda jealous of him. I wish to be as powerful as him one day :(`
     },
-    content: {
+    {
+        query: 'content',
         title: 'Content found!',
         subtitle: `Yup, i am the content. You've found me heehee!<br>
         Aww you listened to what i said!<br>
         Good boy :)`
     },
-    help: {
+    {
+        query: 'help',
         title: 'help yourself bro LOLXD',
         subtitle: ''
     },
-    hi: {
+    {
+        query: 'hi',
         title: 'HAII HIIII HELLLOOO!!!! :DD',
         subtitle: ''
     },
-};
+    {
+        query: 'hello',
+        title: 'HAII HIIII HELLLOOO!!!! :DD',
+        subtitle: ''
+    },
+    {
+        query: 'how are you',
+        title: `I'M GOOD!!!!!! thx 4 asking!! <3<3<3`,
+        subtitle: ''
+    },
+    {
+        query: 'hru',
+        title: `I'M GOOD!!!!!! thx 4 asking!! <3<3<3`,
+        subtitle: ''
+    },
+];
 
 // Calculate totals for statistics
 totalCards = menuItems.reduce((sum, item) => sum + item.labels.length, 0);

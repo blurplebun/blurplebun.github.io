@@ -73,12 +73,12 @@ function updateSettingsButtonText(buttonId, newText) {
     if (!audioSettingsLabel) return;
     
     if (buttonId === 'toggleSFX') {
-        audioSettingsLabel.excerpt = audioSettingsLabel.excerpt.replace(
+        audioSettingsLabel.subtitle = audioSettingsLabel.subtitle.replace(
             /<button[^>]*id="toggleSFX"[^>]*>.*?<\/button>/,
             `<button type="button" id="toggleSFX">${newText}</button>`
         );
     } else if (buttonId === 'toggleMusic') {
-        audioSettingsLabel.excerpt = audioSettingsLabel.excerpt.replace(
+        audioSettingsLabel.subtitle = audioSettingsLabel.subtitle.replace(
             /<button[^>]*id="toggleMusic"[^>]*>.*?<\/button>/,
             `<button type="button" id="toggleMusic">${newText}</button>`
         );

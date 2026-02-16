@@ -60,7 +60,7 @@ menuItems.forEach(menu => {
     if (!fs.existsSync(menuFolder)) fs.mkdirSync(menuFolder);
 
     const menuHTML = buildHTML({
-        title: menu.name || menuId,
+        title: menu.title || menuId,
         desc: menu.subtitle || "View menu",
         image: menu.image || "",
         url: `/?m=${menuId}`
@@ -82,7 +82,7 @@ menuItems.forEach(menu => {
             const chosenImage = pickCardImage(label, menu);
 
             // CHARACTER DESCRIPTION
-            let desc = label.excerpt || "View card";
+            let desc = label.subtitle || "View card";
             if (label.isCharacter) {
                 const cSpecies = label.cSpecies ? `Species: ${label.cSpecies}\n` : '';
                 const cPronouns = label.cPronouns ? `Pronouns: ${label.cPronouns}\n` : '';
