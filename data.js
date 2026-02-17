@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'February 16th, 2026';
+const lastUpdated = 'February 17th, 2026';
 const version = '1.0.0';
 
 // menu logo redirection
@@ -1895,7 +1895,7 @@ let menuItems = [
 
                 isCharacter: true,
                 cSpecies: 'Rabbit',
-                cPronouns: 'They/She',
+                cPronouns: 'They',
                 cGender: 'Non-binary',
                 cSexuality: 'Lesbian',
                 cNicknames: '',
