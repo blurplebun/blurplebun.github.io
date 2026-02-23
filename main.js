@@ -1615,7 +1615,7 @@ mainMenuLogo.addEventListener('click', () => { openLogo(); });
 if (SIMPLE_MODE) mainMenu.style.scale = `${SIMPLE_MODE_MENU_LOGO_SCALE}`;
 
 // click settings to open settings
-settingsBtn.addEventListener('click', () => { openSingle = true; openMenuById('settings') });
+settingsBtn.addEventListener('click', () => { openMenuById('settings') });
 
 // back button
 backBtn.addEventListener('click', () => { goBack(); });
@@ -1771,11 +1771,17 @@ if (SIMPLE_MODE) {
     detailView.classList.add("no-transition-at-all");
 };
 
-// loading indicator
-window.addEventListener('load', () => { setLayoutViz(loading, false); appLoaded = true; });
-
 // initialize everything
 if (!SIMPLE_MODE) createStarfield();
 initCardData();
 initLayoutViz();
-initMainMenu();
+
+setLayoutViz(UIPanelTop, false);
+setLayoutViz(UIPanelBottom, false);
+window.addEventListener('load', () => {
+    setLayoutViz(loading, false);
+    setLayoutViz(UIPanelTop, true);
+    setLayoutViz(UIPanelBottom, true);
+    initMainMenu();
+    appLoaded = true;
+});
