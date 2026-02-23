@@ -12,11 +12,42 @@
         <meta name="twitter:card" content="summary">
         <meta name="twitter:title" content="Daily Art+">
         <meta name="twitter:description" content="View card">
-        <meta name="twitter:image" content="https://artifyber.xyz/icons/l-instagram.png">
+        <meta name="twitter:image" content="https://artifyber.xyz/icons/l-instagram.png"><link rel="stylesheet" href="/style.css" type="text/css">
     </head>
     <body>
+            <div id="detailView" class="detail-view preview-mode">
+                <div id="detailViewHeader" class="detail-view-header">
+                    <div class="card active" data-id="dailyartplus">
+                        <img class="thumb" src="/icons/l-instagram.png">
+                        <div class="card-text">
+                            <div class="card-text-title">Daily Art+</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="detailViewContent" class="detail-view-content">
+                    <small>You're using the previewer mode. <a href="/?m=dailyartplus&i=dailyartplus">See more in Fyberverse</a></small>
+                    
+                    <h1>
+                        Daily Art+
+                    </h1>
+                    <hr>
+                    
+                    Showing latest posts from my Instagram.<br><br>
+                    <div id="instaCard">
+                        <iframe
+                            src="/https://cdn.lightwidget.com/widgets/ce1b2c5863eb58798710d296e980a26c.html"
+                            scrolling="no"
+                            allowtransparency="true"
+                            class="lightwidget-widget"
+                            style="width:100%;border:0;overflow:hidden;">
+                        </iframe>
+                    </div>
+                    
+                </div>
+            </div>
+            
         <script>
-            location.href = "/?m=dailyartplus&i=dailyartplus";
+            //location.href = "/?m=dailyartplus&i=dailyartplus";
         </script>
     </body>
 </html>

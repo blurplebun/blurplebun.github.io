@@ -980,6 +980,12 @@ a[data-open-card] {
 }
 
 
+/* preview mode */
+.detail-view.preview-mode img {
+    cursor: auto;
+}
+
+
 
 
 
