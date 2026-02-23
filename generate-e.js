@@ -31,6 +31,8 @@ function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, ca
     <head>
         <meta charset="utf-8">
         <meta name="theme-color" content="#C894F9">
+        <title>${cardTitle}</title>
+        <link rel="icon" type="image" href="/icons/fav-icon.png">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Artifyber">
         <meta property="og:title" content="${esc(title)}">
