@@ -94,8 +94,8 @@ let menuItems = [
         color: 'var(--color-15)',
         orbit: 1.5,
         scale: 1,
-        hidden: false,
-        invisible: false,
+        hidden: true,
+        invisible: true,
         labels: [
             // CARDS WITH THUMBNAILS
             {
