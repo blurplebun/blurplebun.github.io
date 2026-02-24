@@ -4,7 +4,7 @@
 
 // Metadata
 const lastUpdated = 'February 25th, 2026';
-const version = '1.0.1';
+const version = '1.0.2';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';

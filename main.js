@@ -3,7 +3,7 @@
 // --------------------------
 
 // Lazy loader base path
-const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io@latest/';
+const LAZY_BASE = 'https://cdn.jsdelivr.net/gh/blurplebun/blurplebun.github.io/';
 const LOCAL_MODE = 0; // if you don't use a cdn service to load images, just set this to true
 
 // Sound control
