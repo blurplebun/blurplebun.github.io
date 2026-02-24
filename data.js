@@ -3,7 +3,7 @@
     -------------------------- */
 
 // Metadata
-const lastUpdated = 'February 24th, 2026';
+const lastUpdated = 'February 25th, 2026';
 const version = '1.0.1';
 
 // menu logo redirection
@@ -1902,7 +1902,8 @@ let menuItems = [
                 cAddOns: '',
                 cReference: '',
                 cGallery: [
-                    'images/c/laniakea-c.png',
+                    'images/c/laniakea-c1.png',
+                    'images/c/laniakea-c2.png',
                 ],
                 cRelations: [
                     {
@@ -1928,7 +1929,8 @@ let menuItems = [
                 cAddOns: '',
                 cReference: '',
                 cGallery: [
-                    'images/c/vela-c.png',
+                    'images/c/vela-c1.png',
+                    'images/c/vela-c2.png',
                 ],
                 cRelations: [
                     {

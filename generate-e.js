@@ -25,7 +25,8 @@ function pickCardImage(c, menu) {
 
 
 // Builds the HTML with OG tags + redirect
-function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, cardDetail, cardImage, twitterType = "summary" }) {
+function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, cardDetail, cardImage, cardMenu, twitterType = "summary" }) {
+    const isCardType = cardId && !(cardMenu == 'converters');
     return `<!doctype html>
 <html>
     <head>
@@ -43,9 +44,9 @@ function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, ca
         <meta name="twitter:card" content="${twitterType}">
         <meta name="twitter:title" content="${esc(title)}">
         <meta name="twitter:description" content="${esc(desc)}">
-        <meta name="twitter:image" content="${DOMAIN}/${esc(image)}">${cardId ? '<link rel="stylesheet" href="/style.css" type="text/css">' : ''}
+        <meta name="twitter:image" content="${DOMAIN}/${esc(image)}">${isCardType ? '<link rel="stylesheet" href="/style.css" type="text/css">' : ''}
     </head>
-    <body>${cardId ? `
+    <body>${isCardType ? `
             <div id="detailView" class="detail-view preview-mode">
                 <div id="detailViewHeader" class="detail-view-header">
                     <div class="card active" data-id="${esc(cardId)}">
@@ -57,14 +58,14 @@ function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, ca
                     </div>
                 </div>
                 <div id="detailViewContent" class="detail-view-content">
-                    <small>Previewing ${cardTitle ? `${cardTitle}` : 'card'} - <a href="${esc(url)}">See more in Fyberverse</a></small>
+                    <small>Quick preview for ${cardTitle ? `<b>${cardTitle}</b>` : 'this card'} - <a href="${esc(url)}">See more in Fyberverse</a></small>
                     ${cardDetail}
                 </div>
             </div>
             `
             : ''}
         <script>
-            ${cardId ? '//' : ''}location.href = "${esc(url)}";
+            ${isCardType ? '//' : ''}location.href = "${esc(url)}";
         </script>
     </body>
 </html>`;
@@ -172,6 +173,7 @@ menuItems.forEach(menu => {
                     <hr>
                     ${html}`,
                 cardImage: c.image,
+                cardMenu: menuItems.find(m => m.labels.includes(c)).menuId,
                 twitterType,
             });
 

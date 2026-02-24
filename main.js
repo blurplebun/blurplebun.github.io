@@ -257,12 +257,17 @@ centerBtn.addEventListener('click', () => {
 // copy link icon
 const copyLinkIcon = `
     <span class="copy-link" title="Copy shareable link">
-        <svg viewBox="0 0 24 24" fill="none">
-            <path d="M10 13a5 5 0 0 0 7.07 0l3.54-3.54a5 5 0 0 0-7.07-7.07l-1.17 1.17" />
-            <path d="M14 11a5 5 0 0 0-7.07 0L3.4 14.54a5 5 0 0 0 7.07 7.07l1.17-1.17" />
+        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" d="m15.141 6 5.518 4.95a1.05 1.05 0 0 1 0 1.549l-5.612 5.088m-6.154-3.214v1.615a.95.95 0 0 0 1.525.845l5.108-4.251a1.1 1.1 0 0 0 0-1.646l-5.108-4.251a.95.95 0 0 0-1.525.846v1.7c-3.312 0-6 2.979-6 6.654v1.329a.7.7 0 0 0 1.344.353 5.174 5.174 0 0 1 4.652-3.191l.004-.003Z"/>
         </svg>
     </span>
 `;
+
+const copiedLinkIcon = `
+    <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5"/>
+    </svg>
+`
 
 // copy link functionality
 function copyLinkHandler(layout, menuId, cardId = null) {
@@ -273,8 +278,12 @@ function copyLinkHandler(layout, menuId, cardId = null) {
         navigator.clipboard.writeText(shareURL);
         const icon = e.currentTarget;
         icon.classList.add('copied');
-        icon.title = 'Copied!';
-        setTimeout(() => { icon.classList.remove('copied'); icon.title = 'Copy shareable link'; }, 1500);
+        icon.title = 'Link copied!';
+        setTimeout(() => {
+            icon.classList.remove('copied');
+            icon.title = 'Copy shareable link';
+        }, 1500);
+
         playSound('sfxLink', SFX_LINK_VOL);
     });
 }
