@@ -33,6 +33,7 @@ function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, ca
         <meta name="theme-color" content="#C894F9">
         <title>${cardTitle}</title>
         <link rel="icon" type="image" href="/icons/fav-icon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" id="vp">
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="Artifyber">
         <meta property="og:title" content="${esc(title)}">
@@ -55,7 +56,7 @@ function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, ca
                     </div>
                 </div>
                 <div id="detailViewContent" class="detail-view-content">
-                    <small>You're using the previewer mode. <a href="${esc(url)}">See more in Fyberverse</a></small>
+                    <small>Previewing "${cardTitle}" - <a href="${esc(url)}">See more in Fyberverse</a></small>
                     ${cardDetail}
                 </div>
             </div>
@@ -78,7 +79,8 @@ function characterHTMLBuilder(c, html) {
     const cSexuality = c.cSexuality ? `Sexuality: ${c.cSexuality}<br>` : '';
     const cNicknames = c.cNicknames ? `Nickname: ${c.cNicknames}<br>` : '';
     const cReference = c.cReference ? `<br><h2>Reference Art:</h2><br><img src="${c.cReference}"><br><br>` : '';
-    const cGallery = c.cGallery ? c.cGallery.length != 0 ? `<hr><h2>Picked Image:</h2>` + `<img src="${c.cGallery[0]}">` + `<br>` : '' : '';
+    // const cGallery = c.cGallery ? c.cGallery.length != 0 ? `<hr><h2>Picked Image:</h2>` + `<img src="${c.cGallery[0]}">` + `<br>` : '' : '';
+    const cGallery = c.cGallery ? c.cGallery.length != 0 ? `<hr><h2>Top Images:</h2><div class="imgContainer">` + c.cGallery.slice(0, 3).map(imgSrc => `<img src="${imgSrc}">`).join('') + `</div><br>` : '' : '';
     const cAddOns = c.cAddOns ? `<br>${c.cAddOns}<br>` : '';
     const details = c.detail ? `<hr>${html}<br>` : '';
     // const cRelations = c.cRelations ? c.cRelations.length != 0 ? `<hr><h2>Related Characters:</h2><div class="imgContainer">` + c.cRelations.map(rel => `<div class="card internal" data-href="${rel.cardId}" data-caption="${rel.relation}"></div>`).join('') + `</div><br>` : '' : '';
