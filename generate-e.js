@@ -49,19 +49,20 @@ function buildHTML({ title, desc, image, url, cardId, cardTitle, cardExcerpt, ca
             <div id="detailView" class="detail-view preview-mode">
                 <div id="detailViewHeader" class="detail-view-header">
                     <div class="card active" data-id="${esc(cardId)}">
-                        <img class="thumb" src="/${esc(cardImage)}">
-                        <div class="card-text">
+                        ${cardImage ? `<img class="thumb" src="/${esc(cardImage)}">` : ''}
+                        ${cardTitle || cardExcerpt ? `<div class="card-text">
                             <div class="card-text-title">${cardTitle}</div>${cardExcerpt ? `<div class="card-text-excerpt">${cardExcerpt}</div>` : ''}
-                        </div>
+                        </div>`
+                : ''}
                     </div>
                 </div>
                 <div id="detailViewContent" class="detail-view-content">
-                    <small>Previewing "${cardTitle}" - <a href="${esc(url)}">See more in Fyberverse</a></small>
+                    <small>Previewing ${cardTitle ? `${cardTitle}` : 'card'} - <a href="${esc(url)}">See more in Fyberverse</a></small>
                     ${cardDetail}
                 </div>
             </div>
             `
-        : ''}
+            : ''}
         <script>
             ${cardId ? '//' : ''}location.href = "${esc(url)}";
         </script>
@@ -167,9 +168,7 @@ menuItems.forEach(menu => {
                 cardTitle: c.title,
                 cardExcerpt: c.subtitle,
                 cardDetail: `
-                    <h1>
-                        ${c.title}
-                    </h1>
+                    ${c.title ? `<h1>${c.title}</h1>` : ''}
                     <hr>
                     ${html}`,
                 cardImage: c.image,

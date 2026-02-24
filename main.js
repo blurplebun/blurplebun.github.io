@@ -479,7 +479,6 @@ function addFaraway() {
     const far = {
         title: 'faraway',
         menuId: 'faraway',
-        hidden: true,
         invisible: true,
         scale: 0.01,
         orbit: 999,

@@ -607,6 +607,10 @@ hr {
     color: var(--card-excerpt-color)
 }
 
+.card:not(:has(.thumb)) .card-text .card-text-excerpt {
+    white-space: normal;
+}
+
 .card .card-text.full {
     flex: 1;
     max-height: none;
