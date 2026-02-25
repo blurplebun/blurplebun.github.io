@@ -4,7 +4,7 @@
 
 // Metadata
 const lastUpdated = 'February 25th, 2026';
-const version = '1.0.2';
+const version = '1.0.3';
 
 // menu logo redirection
 menuLogoRedirect = 'info:artifyber';
@@ -19,6 +19,7 @@ menuLogoRedirect = 'info:artifyber';
 // offsetY: int          - offsets the Y position of this orbit by pixels
 // scaleX: float         - scale this orbit by the X axis
 // scaleY: float         - scale this orbit by the Y axis
+// center: string        - menuId of a visible orbiting button that can be set as the center of the ring. making it work like sattelites
 
 // Orbit data
 orbitData = [
@@ -34,8 +35,19 @@ orbitData = [
     },
     {
         orbit: 4,
+        orbitNum: 4.5,
         title: "Others",
         desc: "Miscellanous",
+    },
+    {
+        orbit: 5,
+        orbitNum: 0.375,
+        direction: -0.75,
+        title: "Links",
+        desc: "Connections",
+        center: "info",
+        scaleX: 1,
+        scaleY: 1,
     },
     {
         orbit: 127,
@@ -5081,8 +5093,8 @@ let menuItems = [
         showTitle: true,
         image: 'icons/earth.png',
         color: 'var(--color-9)',
-        orbit: 4,
-        scale: 1.5,
+        orbit: 5,
+        scale: 1,
         labels: [
             {
                 cardId: 'twitter',

@@ -330,11 +330,21 @@ function calculateMenuPos(angleRad, layer, direction, phaseOffset = 0) {
     let x0, y0;
     const oScaleX = oData?.scaleX || getCSSVar('--menu-orbit-scale-x', 'float');
     const oScaleY = oData?.scaleY || getCSSVar('--menu-orbit-scale-y', 'float');
-    const oX = oData?.offsetX || 0;
-    const oY = oData?.offsetY || 0;
+    oX = oData?.offsetX || 0;
+    oY = oData?.offsetY || 0;
 
-    x0 = (Math.cos(angleRad + phaseOffset * omega) * r * oScaleX) + oX;
-    y0 = (Math.sin(angleRad + phaseOffset * omega) * r * oScaleY) + oY;
+    // orbit another menu?
+    let xC = 0, yC = 0;
+    if (oData?.center) {
+        const centerBtn = menuRing.querySelector(`.menu-item[data-menu-id="${oData.center}"]`);
+        if (centerBtn) {
+            xC = parseFloat(centerBtn.dataset.x) || 0;
+            yC = parseFloat(centerBtn.dataset.y) || 0;
+        }
+    }
+
+    x0 = (Math.cos(angleRad + phaseOffset * omega) * r * oScaleX) + oX + xC;
+    y0 = (Math.sin(angleRad + phaseOffset * omega) * r * oScaleY) + oY + yC;
 
     return { r, omega, x0, y0 };
 }
@@ -440,8 +450,20 @@ function positionOrbitRings(rings) {
         layer = oData?.orbitNum || layer;
         const oScaleX = oData?.scaleX || getCSSVar('--menu-orbit-scale-x', 'float');
         const oScaleY = oData?.scaleY || getCSSVar('--menu-orbit-scale-y', 'float');
-        const oX = oData?.offsetX || 0;
-        const oY = oData?.offsetY || 0;
+        let oX = oData?.offsetX || 0;
+        let oY = oData?.offsetY || 0;
+
+        // orbit another menu?
+        let xC = 0, yC = 0;
+        if (oData?.center) {
+            const centerBtn = menuRing.querySelector(`.menu-item[data-menu-id="${oData.center}"]`);
+            if (centerBtn) {
+                xC = parseFloat(centerBtn.dataset.x) || 0;
+                yC = parseFloat(centerBtn.dataset.y) || 0;
+            }
+        }
+        oX += xC;
+        oY += yC;
 
         const baseRadius = getCSSVar('--menu-radius', 'int') || 180;
         const diameter = (baseRadius * layer * 1.2 + 60) * 2;
