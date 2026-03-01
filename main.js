@@ -144,11 +144,18 @@ const parallaxFactor = -0.1;
 const transStyle = 'transition: filter var(--layout-transition-speed), transform 0.5s cubic-bezier(.2, .9, .2, 1), opacity 1000ms;'
 const transStyleSlow = 'transition: filter var(--layout-transition-speed), transform 1s cubic-bezier(.2, .9, .2, 1), opacity 1000ms;'
 
+// is wide screen?
+function checkWideScreen() {
+    return getCSSVar('--offset-main-menu-on-open') != '0';
+}
+
 // handle menu ring transform when panning
-function setElTransform(el, x, y, transition = null) {
+let offsetMainMenu = false;
+function setElTransform(el, x, y, transition = null, offset = false) {
+    const isWideScreen = checkWideScreen();
     const scale = getCSSVar('--menu-stage-scale');
     el.style.transition = transition || el.style.transition;
-    el.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    el.style.transform = `translate(calc(${x}px ${offset && isWideScreen ? '+ ' + getCSSVar('--offset-main-menu-on-open') : ''}), ${y}px) scale(${scale})`;
 
     // update starfield parallax if present
     if (starfield) updateStarfieldParallax(el, x, y);
@@ -165,6 +172,23 @@ function updateStarfieldParallax(el, x, y) {
         layer.style.transform = `translate(${px}px, ${py}px)`;
     });
 };
+
+// toggle main menu offset on widescreen
+function toggleMainMenuOffset(bool) {
+    const isWideScreen = checkWideScreen();
+    if (!isWideScreen) return;
+    if (bool) {
+        offsetMainMenu = true;
+        // currentX = 0, currentY = 0;
+        setElTransform(mainMenu, currentX, currentY, null, offsetMainMenu);
+        return;
+    }
+
+    offsetMainMenu = false;
+    currentX = 0, currentY = 0;
+    setElTransform(mainMenu, currentX, currentY, null, offsetMainMenu);
+}
+
 
 function enableCameraControl(el) {
 
@@ -188,7 +212,7 @@ function enableCameraControl(el) {
         currentX = clientX - startX;
         currentY = clientY - startY;
         setButtonViz(centerBtn, true);
-        setElTransform(el, currentX, currentY, transStyle);
+        setElTransform(el, currentX, currentY, transStyle, offsetMainMenu);
     }
 
     // end drag
@@ -221,7 +245,7 @@ function enableCameraControl(el) {
         if (Math.abs(e.deltaX) < 100 && Math.abs(e.deltaY) < 100) {
             currentX -= e.deltaX * 1.5;
             currentY -= e.deltaY * 1.5;
-            setElTransform(el, currentX, currentY);
+            setElTransform(el, currentX, currentY, null, offsetMainMenu);
         }
     }, { passive: false });
 }
@@ -229,7 +253,8 @@ function enableCameraControl(el) {
 // handle snapping back camera to center
 function snapCameraToCenter(el) {
     currentX = 0; currentY = 0;
-    setElTransform(el, currentX, currentY, transStyleSlow);
+    offsetMainMenu = menuIsOpen;
+    setElTransform(el, currentX, currentY, transStyleSlow, offsetMainMenu);
     setTimeout(() => {
         starfield?.querySelectorAll('.star-layer').forEach(layer => layer.style.transition = '');
     }, 900);
@@ -237,8 +262,9 @@ function snapCameraToCenter(el) {
 }
 
 function resetMenuTransform() {
-    setElTransform(mainMenu, 0, 0);
+    setElTransform(mainMenu, 0, 0, null, offsetMainMenu);
     currentX = 0, currentY = 0;
+    blurMainMenu(menuIsOpen);
 }
 
 enableCameraControl(mainMenu);
@@ -425,6 +451,10 @@ function createMenuItemElements(menus, layer, orbitLayer, count, direction, phas
 let openSingle = false;
 function openMainMenuButton(btn, m) {
     animateExpander();
+    if (checkWideScreen()) {
+        currentX = -btn.dataset.x;
+        currentY = -btn.dataset.y;
+    }
     if (m.labels && m.labels.length == 1) {
         openSingle = true;
         if (m.menuId === "random") { openRandom(); setButtonViz(rerollBtn, true); return; }
@@ -592,6 +622,12 @@ function orbitMenuLoop(t) {
 
 // blur main menu
 function blurMainMenu(bool) {
+    const isWideScreen = getCSSVar('--offset-main-menu-on-open') != '0';
+    if (isWideScreen) {
+        mainMenu.classList.remove('blur');
+        starfield.classList.remove('blur');
+        return;
+    }
     if (bool) {
         mainMenu.classList.add('blur');
         starfield.classList.add('blur');
@@ -749,6 +785,7 @@ function openMenu(menu, m) {
     setButtonViz(settingsBtn, false);
     setButtonViz(playBgmBtn, false);
     menuIsOpen = true;
+    toggleMainMenuOffset(true);
 
     const title = m.invisible ? m.title : m.title + copyLinkIcon;
     const subtitle = m.menuId.includes("nansenz") ? m.subtitle + `<div class="ticker-bar"><div class="ticker-text"></div></div>` : m.subtitle;
@@ -1692,6 +1729,7 @@ function returnToMainMenu() {
     setButtonViz(settingsBtn, true);
     if (!bgmEnabled) setButtonViz(playBgmBtn, true);
     menuIsOpen = false;
+    if (checkWideScreen()) snapCameraToCenter(mainMenu);
 
     setHistoryState(null);
 }
@@ -1761,13 +1799,27 @@ async function loadAndPopstateHandler() {
 
 
 
+// --------------------------
+// KEYBINDS
+// --------------------------
+document.addEventListener("keydown", (e) => {
+    const ae = document.activeElement;
+    const inInput = ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA' || ae.tagName === 'SELECT' || ae.isContentEditable);
+    if (inInput) return;
+    if (e.key === ' ') openSearchBox();
+    if (e.key === 'Escape') goBack();
+    if (e.key === 'c') snapCameraToCenter(mainMenu);
+})
+
+
+
+
 
 // --------------------------
 // INIT
 // --------------------------
 
-// listen to window load and popstate
-window.addEventListener('load', async () => { loadAndPopstateHandler(); pickSplash(); });
+// listen to popstate
 window.addEventListener('popstate', async () => { loadAndPopstateHandler(); })
 
 // initialize card data before anything else
@@ -1808,10 +1860,14 @@ initLayoutViz();
 
 setLayoutViz(UIPanelTop, false);
 setLayoutViz(UIPanelBottom, false);
-window.addEventListener('load', () => {
+window.addEventListener('load', async () => {
     setLayoutViz(loading, false);
     setLayoutViz(UIPanelTop, true);
     setLayoutViz(UIPanelBottom, true);
     initMainMenu();
     appLoaded = true;
+
+    // load any URL parameters after menu is initialized
+    await loadAndPopstateHandler();
+    pickSplash();
 });
