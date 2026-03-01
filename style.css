@@ -1513,6 +1513,8 @@ textarea#zenpenOutput {
 @media (max-width:2160px) {
     :root {
         --offset-main-menu-on-open: 0;
+        --content-view-bg: color-mix(in srgb, var(--bg) 50%, transparent);
+        --focused-layout-bg: color-mix(in srgb, var(--bg) 50%, transparent);
     }
 
     .content-view,
