@@ -146,6 +146,13 @@ const transStyleSlow = 'transition: filter var(--layout-transition-speed), trans
 
 // is wide screen?
 function checkWideScreen() {
+    if (SIMPLE_MODE) {
+        contentView.style.maxWidth = '100%';
+        contentView.style.margin = 0;
+        detailView.style.maxWidth = '100%';
+        detailView.style.margin = 0;
+        return false;
+    }
     return getCSSVar('--offset-main-menu-on-open') != '0';
 }
 
@@ -622,8 +629,7 @@ function orbitMenuLoop(t) {
 
 // blur main menu
 function blurMainMenu(bool) {
-    const isWideScreen = getCSSVar('--offset-main-menu-on-open') != '0';
-    if (isWideScreen) {
+    if (checkWideScreen()) {
         mainMenu.classList.remove('blur');
         starfield.classList.remove('blur');
         return;
